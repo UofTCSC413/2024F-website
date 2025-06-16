@@ -2,63 +2,140 @@
 title: "Final Project Guidelines"
 ---
 
-
 ### Introduction
 
-CSC2626 involves a course project in which you will implement a research idea on the topic of imitation learning specifically related to robotics (e.g. control, human-robot interaction, computer vision) or related areas. Any of the broad topic descriptions on the course website, under which weekly readings are listed, can act as a good
-starting point for picking a project. The purpose of the final project is to give you the chance to spend a
-significant amount of time focusing on a single research direction. The types of projects that we envision include the following:
+The project in this course is an opportunity to develop deep learning application in an area of your own choosing. It also provides the chance to complete a deep learning project that is much closer to a real-world application area, for example in medicine, finance, robotics, commerce, biology, chemistry, physics (or other sciences), social media, or other fields.
 
+While this project has some structure, you will be required to deal with the ambiguity and significant decision making that make up the life of a deep learning practitioner.
 
-* Implement the main algorithm described in one of the papers listed on the course website, try to replicate the results, and run it in 2-3 new scenarios.
-* Provide an empirical evaluation and comparison of at least three algorithms from the papers in the reading list, on 1-2 illustrative scenarios.
-* Provide a theoretical analysis of an algorithm from the papers in the reading list. This could included expected runtime, asymptotic analysis, variance analysis, existence of a property, or something different. 
-* Extend the main algorithm described in one of the papers listed on the course website in a non-trivial way, and evaluate it on 1-2 new scenarios.
-* Design a new algorithm, and provide sufficient evaluation to demonstrate the merit of the idea, at minimum 1-2 scenarios.
+## Project Proposal
 
-You can get full marks for the project component by selecting any of these types of projects. You are not expected to produce a novel research idea, although courses like this are meant to create the conditions for students to attempt it. We encourage you to try.
+### Logistics
 
-### Policy on Collaboration
+Projects must be done in groups of 3-4. Please form groups on Markus by March 17, 10pm. Exceptions to this rule can be made only in rare cases provided there is good reason to do so. Email the instructors if this applies to you. If you do not know anyone in class feel free to post a message on Piazza. We will also set aside some time during the tutorial for students who are looking for collaborators to find each other and discuss forming a group.
 
-Previous iterations of the course have allowed group collaborations for the final project. This year, we will experiment with only allowing individual final projects. Exceptions to this rule can be made
-only in rare cases provided there is good reason to do so. Email the instructor if this applies to you. 
+A 1-2 page project proposal is due March 21, 10pm. You will also be asked to summarize the data set that you are using for this proposal.
 
+Each team will submit a github repository page that describes the deep learning model built in the project. The repository should also contain the code that you wrote.
 
-### Project Proposal 
+### Project Requirements
 
-You are expected to describe a well-defined research goal in the proposal. When choosing this goal try to identify the minimum viable objective that you think is likely to work and you can accomplish, just to get you started, some nice-to-haves that you will do provided there is time, and a short review of related work. The definition of your research project may change during the course of a month and a half that you will be working on your project, but your proposal should be as specific and well-defined as possible, otherwise we cannot provide helpful feedback. If you are unsure about your plans, contact the instructor well before the proposal due date. **Proposals should not be based only on papers covered in class by the due date. Students are encouraged to look further ahead in the schedule and to start planning their project definition well ahead of the due date.**
+By default, your project must either take a sequence (of variable length) as an input, or produce a sequence as an output, or both. If you have a project proposal that does not involve sequences, please contact the instructors.
 
-Proposals are limited to 3 pages (excluding references), with the following suggested structure: 1/4 page for abstract/introduction
-1/2 page for the problem definition, 1/2 page for related work, 3/4 page for your proposed method, 1/2 page for your proposed evaluation, 1/4 page for your planned timeline, 1/4 page for anticipated risks and your mitigation plan, and as many pages for references as you need. Proposals should follow the paper template provided by the RSS conference (Robotics: Science and Systems). You will submit your proposal by uploading the pdf on Quercus. The marking scheme for the project proposal is shown in the Grading page of this website.  
+Your model should thus involve an RNN or a Transformer component. Students who want to use methods that we have not covered in the course (e.g. diffusion models, neural ODEs) are free to do so, as long as they confirm their methodology with the instructors before they submit this project proposal. There is also flexibility for students to pursue an open research problem. If any groups want to attempt this, they need to discuss this with one of the instructors before the prject proposal deadline.
 
+Here are some examples of possible projects:
 
-#### Project Proposal FAQ
+-   Using an RNN (or transformer) to classify sequences (e.g. whether a restaurant review is positive or negative)
+-   Using a generative RNN to produce sequences (e.g. South Park TV scripts)
+-   Using a Siamese network to determine whether two StackOverflow questions are duplicates
+-   Predict the next item in a sequence (e.g. Stock market)
+-   Predict the outcome of a patient based on some sequential factors
+-   Predict the dynamics of objects under contact and collision (e.g. robotics and graphics)
+-   Generate molecules, or predict properties of molecules
 
-* **Can I extend a project I completed in a previous class?** Yes, you are welcome to do this as long as you provide your final report from that class and include an appendix to the proposal that clarifies what is being added to the previous project.
+Before choosing a project, consider whether there is data available for you. Since the project deadline is about a month away, consider tailoring your project ideas to what data is available to you.
 
-* **Can I extend a project I completed or am working on as part of my research/thesis?** Yes, you are welcome to do this as long as you include an appendix to the proposal that clarifies what is being added to the research you have done so far outside this course.
+You are encouraged to use transfer learning and data augmentation ideas in your project.
 
-* **Which simulator or dataset should I use?** Use the one that is going to allow you to quickly try ideas and prototype. I would not recommend starting with game engines like Unreal Engine 4 and Unity, unless you know what you are doing. Similarly, choose the easiest dataset to get started. Toy data is fine. So are simple scenarios. Start with the easiest and most predictable setting/environment, and only increase complexity if you are making progress. I do not suggest starting from the most complex environment and gradually moving to simpler ones.
+You can use deep learning packages (e.g. pytorch, huggingface). However, you should be able to explain the steps involved in the forward pass computation of your model.
 
+### Project Proposal
 
-* **I need a GPU but I don’t have access to one. What should I do?** Email the instructor early on if this is a problem. You should also look into Google Colab, and any GPU desktops provided by your department (if any).
+A 1-2 page project proposal is due March 21, 10pm. Please use 12-point font and standard margins. You will also be asked to summarize the data set that you are using for this proposal.
 
+The proposal should:
 
-### Presentation
+-   Clearly describe the task that your model will perform. (2pt)
+    -   2/2 for clearly describing the task using standard deep learning terminology
+    -   1.5/2 for describing the task in a way that is understandable to the grader, but that uses non-standard terminology
+    -   1/2 for describing the task generally (e.g. "sequence classification" without stating the exact classes)
+    -   0/2 for a proposal that does not align with the project requirements
+-   Clearly describe the model that you intend to use (2pt)
+    -   2/2 for clearly describing the model using standard deep learning terminology; the grader can picture exactly how the model could be used.
+    -   1.5/2 for describing the task in a way that is understandable to the grader, but that uses non-standard terminology
+    -   1/2 for describing the models generally (e.g. sequence-to-sequence model, without describing which ones)
+    -   0/2 for a model that does not align with the project requirements
+-   Outline the data set that you intend to use, and provide some statistics about the amount/type of data that is available (4pt)
+    -   1 point for convincing the grader that you are able to acquire the data that you need (with the appropriate license/permission for educational use)
+    -   1 point for convincing the grader that the type and amount of data is sufficient (e.g. via summary statistics, examples data set)
+    -   2 points for convincing the grader that you have explored the data, and considered information about your data relevant to your model (like in A1 Q1)
+-   Discuss any ethical implications of your model---how might the use (or misuse) of this model help or hurt people? (2pt)
+    -   2/2 For a thoughtful discussion that considers the ethical implications across many groups of people (that different groups may be impacted differently).
+    -   1/2 For a discussion that is generic, or considers the ethical implications for only one group of people.
+-   Describe how work will be divided amongst the team members. We recommend pair-coding for parts of the project, but consider the work that it might take to load/format your data, write a first model, "overfit" to a single data point, etc... (2pt)
+    -   2/2 The description provides enough detail so that if a team member is replaced, they know exactly what their responsibilities will be.
+    -   1/2 There is clearly an attempt to describe the division of tasks, but the communication is unclear and/or only the tasks listed above are assigned.
+    -   0/2 Only vague assertions are made (e.g. "we will divide the work equally", "everyone will work on everything", or "we will determine who will work on what as the project progresses).
+-   Proper formatting (2pt)
+    -   2/2 Proposal is 1-2 pages. The proposal is formatted so that readers can find specific information quickly (e.g. via the use of paragraphs and topic sentences)
+    -   1/2 Proposal is slightly over the length limit. There was clearly an attempt to format the proposal, but information is still scattered in various places.
+    -   0/2 Proposal runs extremely long. It is difficult to understand the structure of the proposal.
 
-This is a 10min presentation during class, during which you will present the main idea of your project and the
-progress you have made until that point. It is not required that you have finished your project by this point.
+## Final Project
 
-### Final Report and Code
+### Submission
 
-The final report needs to have at least five pages that include: 1/4 page abstract, 1/2 page introduction, 1/2
-page related works, 1.5+ pages describing your method, 1.5+ pages describing your results and evaluation, 1/2
-page limitations. The final report may include as many references and appendices as you need. Figures and
-tables are encouraged. Final reports should follow the same paper template as the proposal. Submit your final
-project report in pdf form, and a zip file with your code or a link to a github repository to the instructor.
-The marking scheme for the finalproject is shown in the Grading page of this website.  
+Please submit a file called `github.txt` containing a link to the github repository. If your repository will be private, please email the instructors by April 7, 10pm so that TAs and instructors can be added---even if you use tokens.
 
+### Repository Content
 
-\section*{Final remarks}
-Do not forget to enjoy your project and have fun with it. This is an opportunity to learn and investigate what you find exciting! 
+The repository should contain:
 
+(1) **The code you used to pre-process the data, but not the data itself**. It is generally a bad idea to include data in your github repository, since git is great for lots of small files, but a poor choice for sharing large files. Moreover, most groups are using data collected by other people. While you should share the source of your data, you should generally not share a copy of the data.
+
+(2) **The code you used to train your model**. You *may* opt to share model weights, or not.
+
+(3) **A README file with the following component**:
+
+-   Introduction that states the deep learning model that you are building
+-   Model:
+    -   A figure/diagram of the model architecture that demonstrates understanding of the steps involved in computing the forward pass
+    -   Count the number of parameters in the model, and a description of where the parameters come from
+    -   Examples of how the model performs on two actual examples from the test set: one successful and one unsuccessful
+-   Data:
+    -   Describe the source of your data
+    -   Provide summary statistics of your data to help interpret your results (similar to in the proposal)
+    -   Describe how you transformed the data (e.g. any data augmentation techniques)
+    -   If appropriate to your project, describe how the train/validation/test set was split. (Note that splitting the training/validation/test set is not always straightforward!)
+-   Training:
+    -   The training curve of your final model
+    -   A description how you tuned hyper-parameters
+-   Results:
+    -   Describe the quantitative measure that you are using to evaluate your result
+    -   Describe the quantitative and qualitative results
+    -   A justification that your implemented method performed reasonably, given the difficulty of the problem---or a hypothesis for why it doesn't (this is extremely important)
+-   Ethical Consideration:
+    -   Description of a use of the system that could give rise to ethical issues. Are there limitations of your model? Your training data?
+-   Authors
+    -   A description of how the work was split---i.e. who did what in this project.
+
+### Marking Scheme
+
+Here is the marking scheme that we will use. Note that you model must be able to make reasonable predictions for your project to receive a passing project grade. In particular, without a reasonable model, you won't be able to earn credit for Model Examples, Training Curve, Hyperparameter Tuning, Qualitative/Quantitative Results, etc.
+
+**README/Writeup (70 points)**
+
+-   **Introduction (4 points)**: What deep learning model are you building? We are looking for a clear and concise description that uses standard deep learning terminology. Clearly describe the type of task that you are solving, and what your input/outputs are.
+-   **Model Figure (4 points)**: A figure/diagram of the model architecture that demonstrates understanding of the steps involved in computing the forward pass. We are looking to see if you understand the steps involved in the model computation (i.e. are you treating the model as a black box or do you understand what it's doing?)
+-   **Model Parameters(4 points)**: Count the number of parameters in the model, and a description of where the parameters come from. Again, we are looking to see if you understand what the model is doing, and what parameters are being tuned.
+-   **Model Examples (4 points)**: Examples of how the model performs on two actual examples from the test set: one successful and one unsuccessful.
+-   **Data Source (1 point)**: Describe the source of your data.
+-   **Data Summary (4 points)**: Provide summary statistics of your data to help interpret your results, similar to in the proposal. Please review the feedback provided in the proposal for some guidance on what information is helpful for interpreting your model behaviour.
+-   **Data Transformation (3 points)**: Describe how you transformed the data, i.e. the steps you took to turn the data from what you downloaded, to something that a neural network can use as input. We are looking for a concise description that has just enough information for another person to replicate your process.
+-   **Data Split (2 points)**: If appropriate to your project, describe how the train/validation/test set was split. Note that splitting strategy is not always straightforward, so we are looking to see a split that can be justified.
+-   **Training Curve (4 points)**: The training curve of your final model. We are looking for a curve that shows both training and validation performance (if applicable). Your training curve should look reasonable for the problem that you are solving.
+-   **Hyperparamter Tuning (4 points)**: A description how you tuned hyper-parameters. We are looking for hyperparameter choices that makes sense.
+-   **Quantitative Measures (2 points)**: A description and justification of the quantitative measure that you are using to evaluate your results. For some problems this will be straightforward. For others, please justify the measure that you chose.
+-   **Quantitative and Qualitative Results (8 points)**: Describe the quantitative and qualitative results. You may choose to use a table or figure to aid in your description. We are looking for both a clear presentation, and a result that makes sense given your data summary. (As an extreme example, you should not have a result that performs worse than a model that, say, predicts the most common class.)
+-   **Justification of Results (20 points)**: A justification that your implemented method performed reasonably, given the difficulty of the problem---or a hypothesis for why it doesn't. This is extremely important. We are looking for an interpretation of the result. You may want to refer to your data summary and hyperparameter choices to make your argument.
+-   **Ethical Consideration (4 points)**: Description of a use of the system that could give rise to ethical issues. Are there limitations of your model? Your training data? Please review the feedback provided in the proposal for some guidance on how to think deeply about these issues.
+-   **Authors (2 points)**: A description of how the work was split---i.e. who did what in this project. If there are significant issues with the way that work is split, we may follow up with individual teams, and not award equal points to all team members.
+
+**Code/Documentation (20 points)** We are looking for whether TAs can generally understand what your code does, how it is organized, and the steps that needs to be taken to replicate your model and results. Your code must be in working order (otherwise the TA will not be able to replicate your results)
+
+**Advanced Concept (10 points)**. Your project involves at least one of the following:
+
+-   Data Augmentation *applied in a way that makes sense for your domain*
+-   Transformer
+-   Generative Model, Sequence-to-Sequence Architecture (e.g. that uses teacher-forcing)
