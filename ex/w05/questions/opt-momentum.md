@@ -1,0 +1,1 @@
+Implement stochastic gradient descent with momentum and apply it to optimize some elementary functions in 1d and 2d.  

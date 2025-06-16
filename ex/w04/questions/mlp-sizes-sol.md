@@ -1,0 +1,3 @@
+The number of parameters for each neuron is the number of weights plus one for the biaas term. The number of weights corresponds to the number of inputs / activations from the previous layer. So for the first layer, we have 10 inputs and thus 11 parameters per neuron resulting in 55 parameters total per layer. 
+
+A similar computation gives 60 and 55 as the number of parameters for the next two layers. Thus, the network has a total of 170 parameters.

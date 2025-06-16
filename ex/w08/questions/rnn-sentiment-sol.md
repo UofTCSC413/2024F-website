@@ -1,0 +1,5 @@
+(a) We will need to compute $h^{(t)}$ for $t = 1, \ldots, T$. Each of this computation requires applying the weight matrices $W$ and $T$ once. The matrix $V$ is only applied once at the end. Therefore, we need to apply $W$ and $U$ $T$ times each and $V$ once.
+
+(b) The shape of $U$ is $d_h \times d_x$, the shape of $W$ is $d_h \times d_h$, and the shape of $V$ is $d_y \times d_h$, where $d_h$ is the dimensionality of the $h^{(i)}$ (i.e. $h^{(i)}\in\R^{d_h}$), $d_x$ is the dimensionality of the inputs $x^{(i)}$, and $d_y$ is the dimensionality of the ouput $y$.
+
+(c) For each of the $T$ steps, we need to perform two matrix-vector multiplications (one for $Ux^{(i)}$ and one for $Uh^{(i)}$) and two vector additions. To compute the output, we need one additional matrix-vector multiplication and one vector addition. 

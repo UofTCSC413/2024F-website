@@ -1,0 +1,365 @@
+\usepackage{amssymb} % Zusätzliche mathematische Symbole
+%\usepackage{amsmath}
+\usepackage{amsopn} % Verbesserte Operatornamen.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Verschiedene Schriften %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Griechische Buchstaben
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\Gm}{\Gamma}
+\newcommand{\gm}{\gamma}
+\newcommand{\De}{\Delta}
+\newcommand{\de}{\delta}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\ka}{\kappa}
+\newcommand{\La}{\Lambda}
+\newcommand{\la}{\lambda}
+\providecommand{\Si}{\Sigma} % Avoid double naming.
+\providecommand{\si}{\sigma}
+\newcommand{\ta}{\tau}
+\newcommand{\Te}{\Theta}
+\newcommand{\te}{\theta}
+\newcommand{\Ph}{\Phi}
+\newcommand{\ph}{\varphi}
+\newcommand{\Ps}{\Psi}
+\newcommand{\ps}{\psi}
+\newcommand{\om}{\omega}
+\newcommand{\Om}{\Omega}
+
+
+% Caliographic Font
+\newcommand{\mcA}{\mathcal{A}}
+\newcommand{\mcB}{\mathcal{B}}
+\newcommand{\mcC}{\mathcal{C}}
+\newcommand{\mcD}{\mathcal{D}}
+\newcommand{\mcE}{\mathcal{E}}
+\newcommand{\mcF}{\mathcal{F}}
+\newcommand{\mcG}{\mathcal{G}}
+\newcommand{\mcJ}{\mathcal{J}}
+\newcommand{\mcL}{\mathcal{L}}
+\newcommand{\mcO}{\mathcal{O}}
+\newcommand{\mcP}{\mathcal{P}}
+\newcommand{\mcT}{\mathcal{T}}
+\newcommand{\mcU}{\mathcal{U}}
+\newcommand{\mcW}{\mathcal{W}}
+
+% Non-italic font
+\newcommand{\rmi}{\mathrm{i}}
+\newcommand{\rmj}{\mathrm{j}}
+\newcommand{\rmk}{\mathrm{k}}
+
+
+% Different fields / rings
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Hbb}{\mathbb{H}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Sbb}{\mathbb{S}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Verschiedene Textdekoration %%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Letters with bar
+\newcommand{\bB}{\bar{B}}
+\newcommand{\bb}{\bar{b}}
+\newcommand{\bh}{\bar{h}}
+\newcommand{\bp}{\bar{p}}
+\newcommand{\bR}{\bar{R}}
+\newcommand{\bX}{\bar{X}}
+\newcommand{\bY}{\bar{Y}}
+\newcommand{\by}{\bar{y}}
+\newcommand{\bla}{\bar{\lambda}}
+
+% Leters with dot
+\newcommand{\dotu}{\dot{u}}
+\newcommand{\dotr}{\dot{r}}
+\newcommand{\dotPhi}{\dot{\Phi}}
+
+% Letters with double dot
+\newcommand{\ddotq}{\ddot{q}}
+
+% Letters in bold font.
+\newcommand{\fA}{\mathbf{A}}
+\newcommand{\fa}{\mathbf{a}}
+\newcommand{\fB}{\mathbf{B}}
+\newcommand{\fb}{\mathbf{b}}
+\newcommand{\fC}{\mathbf{C}}
+\newcommand{\fc}{\mathbf{c}}
+\newcommand{\fD}{\mathbf{D}}
+\newcommand{\fd}{\mathbf{d}}
+\newcommand{\fe}{\mathbf{e}}
+\newcommand{\fE}{\mathbf{E}}
+\newcommand{\fF}{\mathbf{F}}
+\newcommand{\ff}{\mathbf{f}}
+\newcommand{\fg}{\mathbf{g}}
+\newcommand{\fH}{\mathbf{H}}
+\newcommand{\fh}{\mathbf{h}}
+\newcommand{\fI}{\mathbf{I}}
+\newcommand{\fJ}{\mathbf{J}}
+\newcommand{\fK}{\mathbf{K}}
+\newcommand{\fM}{\mathbf{M}}
+\newcommand{\fm}{\mathbf{m}}
+\newcommand{\fN}{\mathbf{N}}
+\newcommand{\fn}{\mathbf{n}}
+\newcommand{\fo}{\mathbf{o}}
+\newcommand{\fO}{\mathbf{O}}
+\newcommand{\fP}{\mathbf{P}}
+\newcommand{\fp}{\mathbf{p}}
+\newcommand{\fQ}{\mathbf{Q}}
+\newcommand{\fq}{\mathbf{q}}
+\newcommand{\fR}{\mathbf{R}}
+\newcommand{\frr}{\mathbf{r}}
+\newcommand{\fS}{\mathbf{S}}
+\newcommand{\fs}{\mathbf{s}}
+\newcommand{\fT}{\mathbf{T}}
+\newcommand{\ft}{\mathbf{t}}
+\newcommand{\fu}{\mathbf{u}}
+\newcommand{\fU}{\mathbf{U}}
+\newcommand{\fV}{\mathbf{V}}
+\newcommand{\fv}{\mathbf{v}}
+\newcommand{\fw}{\mathbf{w}}
+\newcommand{\fW}{\mathbf{W}}
+\newcommand{\fX}{\mathbf{X}}
+\newcommand{\fx}{\mathbf{x}}
+\newcommand{\fy}{\mathbf{y}}
+\newcommand{\fZ}{\mathbf{Z}}
+\newcommand{\fz}{\mathbf{z}}
+
+\newcommand{\fLa}{\mathbf{\La}}
+\newcommand{\fmu}{\mathbf{\mu}}
+\newcommand{\fPh}{\mathbf{\Ph}}
+\newcommand{\fSi}{\mathbf{\Si}}
+\newcommand{\fzero}{\mathbf{0}}
+
+
+% Letters with hat
+\newcommand{\hA}{\hat{A}}
+\newcommand{\ha}{\hat{a}}
+\newcommand{\hB}{\hat{B}}
+\newcommand{\hb}{\hat{b}}
+\newcommand{\hC}{\hat{C}}
+\newcommand{\hE}{\hat{E}}
+\newcommand{\hf}{\hat{f}}
+\newcommand{\hh}{\hat{h}}
+\newcommand{\ho}{\hat{o}}
+\newcommand{\hP}{\hat{P}}
+\newcommand{\hp}{\hat{p}}
+\newcommand{\htt}{\hat{t}}
+\newcommand{\hu}{\hat{u}}
+\newcommand{\hv}{\hat{v}}
+\newcommand{\hw}{\hat{w}}
+\newcommand{\hx}{\hat{x}}
+\newcommand{\hY}{\hat{Y}}
+\newcommand{\hy}{\hat{y}}
+\newcommand{\hz}{\hat{z}}
+
+\newcommand{\hal}{\hat{\alpha}}
+\newcommand{\hbe}{\hat{\beta}}
+\newcommand{\hga}{\hat{\gamma}}
+\newcommand{\hla}{\hat{\lambda}}
+\newcommand{\hte}{\hat{\theta}}
+\newcommand{\hmu}{\hat{\mu}}
+\newcommand{\hsi}{\hat{\sigma}}
+
+
+% Letters with line above.
+\newcommand{\ola}{\overline{\la}}
+
+% Buchstaben mit Tilde
+\newcommand{\tA}{\tilde{A}}
+\newcommand{\tB}{\tilde{B}}
+\newcommand{\tb}{\tilde{b}}
+\newcommand{\tC}{\tilde{C}}
+\newcommand{\tF}{\tilde{F}}
+\newcommand{\tf}{\tilde{f}}
+\newcommand{\tg}{\tilde{g}}
+\newcommand{\ti}{\tilde{i}}
+\newcommand{\tJ}{\tilde{J}}
+\newcommand{\tN}{\tilde{N}}
+\newcommand{\tp}{\tilde{p}}
+\newcommand{\tq}{\tilde{q}}
+\newcommand{\tQ}{\tilde{Q}}
+\newcommand{\tR}{\tilde{R}}
+\newcommand{\tS}{\tilde{S}}
+\newcommand{\tti}{\tilde{t}}
+\newcommand{\tu}{\tilde{u}}
+\newcommand{\tv}{\tilde{v}}
+\newcommand{\tw}{\tilde{w}}
+\newcommand{\tx}{\tilde{x}}
+\newcommand{\tZ}{\tilde{Z}}
+
+\newcommand{\ttau}{{\tilde \tau}}
+\newcommand{\tPh}{{\tilde \Phi}}
+\newcommand{\tPs}{{\tilde \Psi}}
+
+\newcommand{\tPbb}{{\tilde \Pbb}}
+
+\newcommand{\tFF}{\mathbb{\tilde F}}
+
+
+% Unterstrichene Buchstaben
+\newcommand{\ua}{\underline a}
+\newcommand{\ub}{\underline b}
+\newcommand{\uc}{\underline c}
+\newcommand{\ud}{\underline d}
+\newcommand{\ue}{\underline e} 
+\newcommand{\uf}{\underline f} 
+\newcommand{\ui}{\underline i}
+\newcommand{\uj}{\underline j}
+\newcommand{\uk}{\underline k}
+\newcommand{\um}{\underline m}
+\newcommand{\un}{\underline n}
+\newcommand{\up}{\underline{p}}
+\newcommand{\uq}{\underline q}
+\newcommand{\ur}{\underline r}
+\newcommand{\us}{\underline s}
+\newcommand{\ut}{\underline t}
+\newcommand{\uu}{\underline u}
+\newcommand{\uv}{\underline v}
+\newcommand{\uw}{\underline w}
+\newcommand{\ux}{\underline x}
+\newcommand{\uy}{\underline y}
+\newcommand{\uz}{\underline z}
+
+\newcommand{\ual}{\underline \alpha}
+\newcommand{\uet}{\underline \eta}
+\newcommand{\uPh}{\underline \Phi}
+\newcommand{\uom}{\underline \om}
+\newcommand{\usi}{\underline \sigma}
+\newcommand{\umu}{\underline \mu}
+%\newcommand{\uhx}{\underline \hx}
+
+\newcommand{\uzero}{{\underline 0}}
+
+
+% Kombinationen von Dekorationen
+\newcommand{\bfM}{\overline{\fM}}
+
+\newcommand{\fhA}{\hat{\fA}}
+\newcommand{\fhB}{\hat{\fB}}
+\newcommand{\fhC}{\hat{\fC}}
+\newcommand{\fhE}{\hat{\fE}}
+\newcommand{\fhM}{\hat{\fM}}
+\newcommand{\fhm}{\hat{\fm}}
+\newcommand{\fhP}{\hat{\fP}}
+\newcommand{\fhS}{\hat{\fS}}
+\newcommand{\fhy}{\hat{\fy}}
+\newcommand{\fhZ}{\hat{\fZ}}
+\newcommand{\fhz}{\hat{\fz}}
+
+\newcommand{\fte}{\tilde{\fe}}
+\newcommand{\ftC}{\tilde{\fC}}
+\newcommand{\ftZ}{\tilde{\fZ}}
+
+\newcommand{\hmcE}{\hat{\mcE}}
+
+\newcommand{\hub}{\hat{\underline{b}}}
+\newcommand{\hur}{\hat{\underline{r}}}
+\newcommand{\huy}{\hat{\underline{y}}}
+\newcommand{\hux}{\hat{\underline{x}}}
+\newcommand{\huw}{\hat{\underline{w}}}
+\newcommand{\huz}{\hat{\underline{z}}}
+
+
+\newcommand{\tmcE}{\tilde{\mcE}}
+
+
+\newcommand{\tuy}{\tilde{\uy}}
+\newcommand{\tuv}{\tilde{\uv}}
+\newcommand{\tuw}{\tilde{\uw}}
+
+%%%%%%%%%%%%%%%%%%% Mathematische Symbole und Abkuerzungen %%%%%%%%%%%%%%%%%%%
+
+
+% Abkuerzungen bestehender Formatierungsbefehle
+\newcommand{\dss}{\displaystyle}
+\newcommand{\fr}{\frac}
+\newcommand{\ovl}{\overline}
+\newcommand{\li}{\left}
+\newcommand{\ri}{\right}
+\newcommand{\pa}{\partial}
+
+% Abkuerzungen bestehender Umgebungen
+\newcommand{\barr}{\begin{array}}
+	\newcommand{\earr}{\end{array}}
+\newcommand{\bbmat}{\begin{bmatrix}}
+	\newcommand{\ebmat}{\end{bmatrix}}
+\newcommand{\bpmat}{\begin{pmatrix}}
+	\newcommand{\epmat}{\end{pmatrix}}
+
+
+% Besondere Zeichen
+\newcommand{\df}{\ \mathrm{d}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\acos}{\mathrm{acos}}
+\newcommand{\erf}{\mathrm{erf}}
+\newcommand{\ei}{\,\mathrm{Ei}}
+\newcommand{\arcsinh}{\,\mathrm{arcsinh}}
+\newcommand{\sign}{\operatorname{sign}}
+
+%\providecommand{\argmin}{\mathrm{arg\,min}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\atan2}{atan2}
+
+% Klassische Zeichen mit Text
+\newcommand{\leqtext}[1]{\ensuremath{\mathrel{\stackrel{\mathrm{#1}}{\leq}}}}
+\newcommand{\eqtext}[1]{\ensuremath{\mathrel{\stackrel{\mathrm{#1}}{=}}}}
+\newcommand{\proptotext}[1]{\ensuremath{\mathrel{\stackrel{\mathrm{#1}}{\propto}}}}
+\newcommand{\Ratext}[1]{\ensuremath{\mathrel{\stackrel{\mathrm{#1}}{\Rightarrow}}}}
+
+\newcommand{\norm}[1]{\ensuremath{\left|\left|#1\right|\right|}}
+\newcommand{\norma}[1]{\ensuremath{||#1||}}
+\newcommand{\sprod}[2]{\ensuremath{\left\langle #1,\ #2\right\rangle}}
+\newcommand{\sproda}[2]{\ensuremath{\langle #1,\ #2\rangle}}
+
+% Allgemeine Abkuerzungen
+\newcommand{\adj}{\mathrm{adj}}
+\providecommand{\diag}{\mathrm{diag}}
+\providecommand{\rang}{\mathrm{rang}}
+\newcommand{\rem}{\mathrm{rem}}
+\newcommand{\tr}{\mathrm{tr}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Wahrscheinlichkeitstheorie %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% WT Operatoren
+\providecommand{\Cov}{\mathbf{Cov}}
+\providecommand{\Var}{\mathbf{Var}}
+\providecommand{\E}{\mathbb{E}}
+\newcommand{\Pb}{\mathbf{P}}
+
+% Pfadeigenschaften
+\newcommand{\cadlag}{c\`{a}dl\`{a}g }
+\newcommand{\caglad}{c\`{a}gl\`{a}d }
+
+% Verteilungsgleichheit und Stochastische Konvergenzen.
+\def\eqd{\,{\buildrel d \over =}\,}
+\def\dcon{\,{\buildrel d \over \longrightarrow}\,}
+\def\pcon{\,{\buildrel p \over \longrightarrow}\,}
+
+% Probability distributions
+\newcommand{\bind}{\mathrm{B}} % Binomial
+\newcommand{\binghamd}{\mathrm{Bingham}} % Binomial
+\newcommand{\expd}{\mathrm{Exp}} % Exponential
+\newcommand{\gigd}{\mathrm{GIG}} % Generalised inverse Gaussian
+\newcommand{\ghd}{\mathrm{GH}} % Generalised hyperbolic
+\newcommand{\igd}{\mathrm{IG}} % Inverse Gaussian
+\newcommand{\lnd}{\mathrm{LN}} % Log-Normal
+\newcommand{\nd}{\mathrm{N}} % Normal
+\newcommand{\nigd}{\mathrm{NIG}} % Normal-inverse Gaussian
+\newcommand{\normd}{\mathcal{N}} % Normal
+\newcommand{\stabd}{\mathrm{S}} % stable
+\newcommand{\vgd}{\mathrm{VG}} % Variance-Gamma
+\newcommand{\vmd}{\mathrm{VM}} % von Mises
+\newcommand{\weibulld}{\mathrm{Weibull}} % Weibull
+\newcommand{\wnd}{\mathrm{WN}} % Wrapped normal

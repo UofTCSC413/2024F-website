@@ -1,0 +1,1 @@
+Assume you are given datapoints $(\fx_i)_{i=1}^N$ with $\fx_i\in\R^n$ coming from a Gaussian distribution.  Derive the maximum likelihood estimator of its mean.

@@ -1,0 +1,1 @@
+Assume you are given datapoints $(x_i)_{i=1}^N$ with $x_i\in\R$ coming from a Exponential distribution. The probability density function of a exponential distribution is given by $f(x) = \la \exp(-\la x)$ with $x\in\R$.  Derive the maximum likelihood estimator of the parameter $\la$.
