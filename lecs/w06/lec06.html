@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.31">
+
+  <title>CSC413 - Fall 2024 – CSC413 Neural Networks and Deep Learning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="CSC413 Neural Networks and Deep Learning – CSC413 - Fall 2024">
+<meta property="og:description" content="Lecture 6">
+<meta property="og:site_name" content="CSC413 - Fall 2024">
+<meta name="twitter:title" content="CSC413 Neural Networks and Deep Learning – CSC413 - Fall 2024">
+<meta name="twitter:description" content="Lecture 6">
+<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/lecs/w06/images/twitter-card.png">
+<meta name="twitter:creator" content="@minebocek">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">CSC413 Neural Networks and Deep Learning</h1>
+  <p class="subtitle">Lecture 6</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section>
+<section id="lecture-overview" class="title-slide slide level1 center">
+<h1>Lecture Overview</h1>
+
+</section>
+<section id="last-week" class="slide level2">
+<h2>Last Week</h2>
+<ul>
+<li class="fragment">Optimization Landscape</li>
+<li class="fragment">Gradient Descent and SGD</li>
+</ul>
+</section>
+<section id="this-week" class="slide level2">
+<h2>This week</h2>
+<ul>
+<li class="fragment">Generalization</li>
+<li class="fragment">Diagnosing Issues using Learning Curves</li>
+<li class="fragment">Bias-Variance Tradeoff</li>
+<li class="fragment">Differential Privacy</li>
+</ul>
+</section></section>
+<section>
+<section id="generalization" class="title-slide slide level1 center">
+<h1>Generalization</h1>
+
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+<div class="fragment">
+<ul>
+<li>How do we choose between different neural network models?
+<ul>
+<li>For example, different number of hidden units, hidden layers, …?</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>How do we know how well a model will perform on new data?</strong></li>
+</ul>
+</div>
+</section>
+<section id="the-training-set" class="slide level2">
+<h2>The Training Set</h2>
+<p>The training set is used</p>
+<div class="fragment">
+<ul>
+<li>to determine the value of the <strong>parameters</strong></li>
+</ul>
+</div>
+<div class="fragment">
+<p>The model’s prediction accuracy over the training set is called the <strong>training accuracy</strong>.</p>
+</div>
+</section>
+<section id="the-training-set-ii" class="slide level2">
+<h2>The Training Set II</h2>
+<p>Q: Can we use the <strong>training accuracy</strong> to estimate how well a model will perform on new data?</p>
+<div class="fragment">
+<ul>
+<li>No! It is possible for a model to fit well to the training set, but fail to <em>generalize</em></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>We want to know how well the model performs on <em>new data</em> that we didn’t already use to optimize the model</li>
+</ul>
+</div>
+</section>
+<section id="poor-generalization" class="slide level2">
+<h2>Poor Generalization</h2>
+<center>
+<img data-src="imgs2/polynomial_1.png" height="380"> <img data-src="imgs2/polynomial_3.png" height="380">
+</center>
+<aside class="notes">
+<p>Example of poor generalization: - green: data generating process / red: fit. - Plot 1: datapoints fitted poorly. - Plot 2: datapoints fitted overly well.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="underfitting" class="slide level2">
+<h2>Underfitting</h2>
+<ul>
+<li>The model is simple and doesn’t fit the data</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>The model does not capture <em>discriminative</em> features of the data</li>
+</ul>
+</div>
+</section>
+<section id="overfitting" class="slide level2">
+<h2>Overfitting</h2>
+<ul>
+<li>The model is too complex and does not generalize</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>The model captures information about patterns in training set that happened by chance
+<ul>
+<li>e.g.&nbsp;Ringo happens to be always wearing a red shirt in the training set</li>
+<li>Model learns: high red pixel content =&gt; predict Ringo</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="the-test-set" class="slide level2">
+<h2>The Test Set</h2>
+<p>We set aside a <strong>test set</strong> of labeled examples.</p>
+<div class="fragment">
+<p>The model’s prediction accuracy over the test set is called the <strong>test accuracy</strong>.</p>
+</div>
+<div class="fragment">
+<p>The purpose of the test set is to give us a good estimate of how well a model will perform on new data.</p>
+</div>
+<div class="fragment">
+<p>Q: In general, will the test accuracy be <em>higher</em> or <em>lower</em> than the training accuracy?</p>
+<aside class="notes">
+<ul>
+<li>The test accuracy will be lower because the model can “memorize” the data.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="model-choices" class="slide level2">
+<h2>Model Choices</h2>
+<p>But what about decisions like:</p>
+<div class="fragment">
+<ul>
+<li>How many layers?</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>How many units in each layer?</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>What non-linear activation to use?</li>
+</ul>
+</div>
+</section>
+<section id="model-choices-ii" class="slide level2">
+<h2>Model Choices II</h2>
+<p>Q: Why can’t we use the test set to determine which model we should deploy?</p>
+<div class="fragment">
+<ul>
+<li>If we use the test set to make modeling decisions, then we will overestimate how well our model will perform on new data!</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>We are “cheating” by “looking at the test”</li>
+</ul>
+</div>
+</section>
+<section id="the-validation-set" class="slide level2">
+<h2>The Validation Set</h2>
+<p>We therefore need a third set of labeled data called the <strong>validation set</strong></p>
+<p>The model’s prediction accuracy over the validation set is called the <strong>validation accuracy</strong>.</p>
+</section>
+<section id="the-validation-set-ii" class="slide level2">
+<h2>The Validation Set II</h2>
+<p>This dataset is used to:</p>
+<div class="fragment">
+<ul>
+<li>Make decisions about models that is <strong>not continuous</strong> and can’t be optimized via gradient descent</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Example: choose <span class="math inline">\(k\)</span>, choose which features <span class="math inline">\(x_j\)</span> to use, choose <span class="math inline">\(\alpha\)</span>, …
+<ul>
+<li>These model settings are called <strong>hyperparameters</strong></li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>The validation set is used to optimize <strong>hyperparameters</strong></li>
+</ul>
+</div>
+</section>
+<section id="splitting-the-dataset" class="slide level2">
+<h2>Splitting the Dataset</h2>
+<p>Example split:</p>
+<div class="fragment">
+<ul>
+<li>60% Training</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>20% Validation</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>20% Test</li>
+</ul>
+</div>
+<div class="fragment">
+<p>The actual split depends on the amount of data that you have.</p>
+<p>If you have more data, you can get a way with a smaller % validation and set.</p>
+</div>
+</section>
+<section id="detecting-overfitting" class="slide level2">
+<h2>Detecting Overfitting</h2>
+<p>Learning curve:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><img data-src="imgs2/overfit.png" height="300"></p>
+</div><div class="column" style="width:55%;">
+<ul>
+<li><strong>x-axis</strong>: epochs or iterations</li>
+<li><strong>y-axis</strong>: cost, error, or accuracy</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p>Q: In which epochs is the model overfitting? Underfitting?</p>
+</div>
+<div class="fragment">
+<p>Q: Why don’t we plot the test accuracy plot?</p>
+<aside class="notes">
+<ul>
+<li>Underfitting: the first ~8 epochs and overfitting after that</li>
+<li>Test accuracy is only supposed to be used for the evaluation of the final trained model and not for any design decisions such as number of epochs.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="strategies-to-prevent-overfitting" class="slide level2">
+<h2>Strategies to Prevent Overfitting</h2>
+<div class="fragment">
+<ul>
+<li>Data Augmentation</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Reducing the number of parameters</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Weight decay</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Early stopping</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Ensembles</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Stochastic regularization (e.g.&nbsp;dropout)</li>
+</ul>
+<!--
+- Collect more data: always the best first thing to try
+    - data agumentation: add noise to the data
+- Use a simpler model: doesn't work well in practice
+- Early-stopping: stop training before training accuracy convergences
+    - In practice, save (or **checkpoint**) the weights after every $E$ epochs. Use the weights that produce the highest validation accuracy
+- Use a training strategy that reduces overfitting:
+    - Example: weight decay, dropout
+    -->
+</div>
+</section>
+<section id="data-augmentation" class="slide level2">
+<h2>Data Augmentation</h2>
+<p>The best way to improve generalization is to collect more data!</p>
+<div class="fragment">
+<p>But if we already have all the data we’re willing to collect. We can augment the training data by <em>transforming</em> the examples.</p>
+</div>
+<div class="fragment">
+<p>This is called <strong>data augmentation</strong>.</p>
+</div>
+</section>
+<section id="data-augmentation-ii" class="slide level2">
+<h2>Data Augmentation II</h2>
+<p>Examples (for images, but depends on task):</p>
+<div class="fragment">
+<ul>
+<li>translation / rotation</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>horizontal or vertical flip</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>smooth warping</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>noise (e.g.&nbsp;flip random pixels)</li>
+</ul>
+<p>We should only augment the training examples, not the validation or test examples (why?)</p>
+</div>
+</section>
+<section id="reducing-the-number-of-parameters" class="slide level2">
+<h2>Reducing the Number of Parameters</h2>
+<ul>
+<li>Networks with fewer trainable parameters are less likely to overfit.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>We can reduce the number of layers, or the number of parameters per layer.</li>
+</ul>
+</div>
+</section>
+<section id="reducing-the-number-of-parameters-ii" class="slide level2">
+<h2>Reducing the Number of Parameters II</h2>
+<p>Adding a <strong>bottleneck layer</strong> is another way to reduce the number of parameters</p>
+<center>
+<img data-src="imgs2/bottleneck.png" height="275">
+</center>
+<div class="fragment">
+<p>In practise, this isn’t a great idea (as too much informaiton may get lost).</p>
+</div>
+</section>
+<section id="weight-decay-idea" class="slide level2">
+<h2>Weight Decay Idea</h2>
+<p>Idea: Penalize <strong>large weights</strong>, by adding a term (e.g.&nbsp;<span class="math inline">\(\sum_k w_k ^ 2\)</span>) to the cost function</p>
+<p>Q: Why is it not ideal to have large (absolute value) weights?</p>
+<div class="fragment">
+<p>Because large weights mean that the prediction relies <strong>a lot</strong> on the content of one feature (e.g.&nbsp;one pixel)</p>
+</div>
+</section>
+<section id="small-vs-large-weights" class="slide level2">
+<h2>Small vs Large Weights</h2>
+<p>The red polynomial overfits. Notice it has really large coefficients</p>
+<center>
+<img data-src="imgs2/polynomial_overfit.png" height="450">
+</center>
+</section>
+<section id="weight-decay" class="slide level2">
+<h2>Weight Decay</h2>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(L^1\)</span> regularization: add a term <span class="math inline">\(\sum_{j=1}^D |w_j|\)</span> to the cost function
+<ul>
+<li>Mathematically, this term encourages weights to be exactly 0</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(L^2\)</span> regularization: add a term <span class="math inline">\(\sum_{j=1}^D w_j^2\)</span> to the cost function
+<ul>
+<li>Mathematically, in each iteration the weight is pushed towards 0</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Combination of both.</li>
+</ul>
+</div>
+</section>
+<section id="example-weight-decay-for-regression" class="slide level2">
+<h2>Example: Weight Decay for Regression</h2>
+<p>Cost function:</p>
+<p><span class="math display">\[\mathcal{E}({\bf w}, b) = \frac{1}{2N}\sum_i \left(\left({\bf w} {\bf x}^{(i)} + b\right) - t^{(i)}\right)^2\]</span></p>
+<div class="fragment">
+<p>Cost function with weight decay:</p>
+<p><span class="math display">\[\mathcal{E}_{WD}({\bf w}, b) = \frac{1}{2N}\sum_i \left(\left({\bf w} {\bf x}^{(i)} + b\right) - t^{(i)}\right)^2 + \lambda \sum_j w_j^2\]</span></p>
+</div>
+</section>
+<section id="weight-decay-nomanclature" class="slide level2">
+<h2>Weight Decay Nomanclature</h2>
+<p><span class="math display">\[\mathcal{E}_{WD}({\bf w}, b) = \frac{1}{2N}\sum_i \left(\left({\bf w} {\bf x}^{(i)} + b\right) - t^{(i)}\right)^2 + \lambda \sum_j w_j^2\]</span></p>
+<div class="fragment">
+<p><span class="math display">\[\frac{\partial \mathcal{E}_{WD}}{\partial w_j} = \frac{\partial \mathcal{E}}{\partial w_j} + \lambda 2 w_j\]</span></p>
+</div>
+<div class="fragment">
+<p>So the gradient descent update rule becomes:</p>
+<p><span class="math display">\[w_j \leftarrow w_j - \alpha\left(\frac{\partial \mathcal{E}}{\partial w_j} + 2 \lambda w_j\right)\]</span></p>
+</div>
+</section>
+<section id="early-stopping" class="slide level2">
+<h2>Early Stopping</h2>
+<p>Idea: Stop training when the validation error starts going up.</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><img data-src="imgs2/overfit.png" height="350"></p>
+</div><div class="column" style="width:55%;">
+<p>In practice, this is implemented by <strong>checkpointing</strong> (saving) the neural network weights every few iterations/epochs during training. <!-- <br>
+
+Some other text that should be below the first paragraph. --></p>
+</div></div>
+</div>
+<div class="fragment">
+<p>We choose the checkpoint with the best validation error to actually use. (And if there is a tie, use the <strong>earlier</strong> checkpoint)</p>
+</div>
+</section>
+<section id="why-does-early-stopping-work" class="slide level2">
+<h2>Why does Early Stopping Work?</h2>
+<p>Weights start off small, so it takes time for them to grow large.</p>
+<div class="fragment">
+<p>Therefore, stopping early has a similar effect to weight decay.</p>
+</div>
+<div class="fragment">
+<p>If you’re using sigmoid units, and the weights start out small, then the inputs to the activation functions take only a small range of values.</p>
+</div>
+<div class="fragment">
+<ul>
+<li>The neural network starts out approximately linear, and gradually becomes non-linear (and thus more powerful)</li>
+</ul>
+</div>
+</section>
+<section id="ensembles" class="slide level2">
+<h2>Ensembles</h2>
+<p>If a loss function is convex (with respect to the predictions), you have a bunch of predictions for an input, and you don’t know which one is best, you are always better off averaging them!</p>
+<div class="fragment">
+<p><span class="math display">\[\mathcal{L}(\lambda_1 y_1 + \dots \lambda_N y_N, t) \le \lambda_1 \mathcal{L}(y_1, t) + \dots \lambda_N\mathcal{L}(y_N, t)\]</span></p>
+<p>for <span class="math inline">\(\lambda_i \ge 0\)</span> and <span class="math inline">\(\sum_i \lambda_i = 1\)</span></p>
+</div>
+<div class="fragment">
+<p><strong>Idea</strong>: Build multiple candidate models, and average the predictions on the test data.</p>
+</div>
+<div class="fragment">
+<p>This set of models is called an <strong>ensemble</strong>.</p>
+</div>
+</section>
+<section id="examples-of-ensembles" class="slide level2">
+<h2>Examples of Ensembles</h2>
+<div class="fragment">
+<ul>
+<li>Train neural networks starting from different random initialization (might not give enough diversity)</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Train different network on different subset of the training data (called <strong>bagging</strong>)</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Train networks with different architectures, hyperparameters, or use other machine learning models</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Ensembles can improve generalization substantially.</p>
+</div>
+<div class="fragment">
+<p>However, ensembles are expensive.</p>
+<aside class="notes">
+<ul>
+<li>The first strategy is most common in practice.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="stochastic-regularization" class="slide level2">
+<h2>Stochastic Regularization</h2>
+<p>For a network to overfit, its computations need to be really precise.</p>
+<div class="fragment">
+<p>This suggests regularizing them by injecting noise into the computations, a strategy known as <strong>stochastic regularization</strong>.</p>
+</div>
+<div class="fragment">
+<p>One example is <strong>dropout</strong>: in each training iteration, random choose a portion of <strong>activations</strong> to set to 0.</p>
+</div>
+</section>
+<section id="stochastic-regularization-ii" class="slide level2">
+<h2>Stochastic Regularization II</h2>
+<p>The probability <span class="math inline">\(p\)</span> that an activation is set to 0 is a hyperparameter.</p>
+<center>
+<img data-src="imgs2/neural_net2.jpeg" style="height:30.0%">
+</center>
+</section>
+<section id="dropout" class="slide level2">
+<h2>Dropout</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="imgs2/dropout.png" height="500"></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Can be seen as training an ensemble of 2D different architectures with shared weights (where D is the number of units)</li>
+<li>Avoids <strong>co-adaptation</strong></li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li><strong>co-adaptation</strong> refers to the phenomena where two neurons cancel each other out by learning essentially the same thing.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="dropout-at-test-time" class="slide level2">
+<h2>Dropout at Test Time</h2>
+<p>Don’t do dropout at test time (why not?)</p>
+<div class="fragment">
+<p>Multiply the weights by <span class="math inline">\(1-p\)</span> (why?)</p>
+</div>
+<div class="fragment">
+<aside class="notes">
+<ul>
+<li><p>Dropout at test time would be like using one network of an ensemble.</p></li>
+<li><p>Since the weights are on <span class="math inline">\(1-p\)</span> fraction of the time, multiplying the weights by <span class="math inline">\(1-p\)</span> matches the expected value of the activation magnitude (e.g.&nbsp;going into the next layer).</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="summary-of-bag-of-tricks" class="slide level2">
+<h2>Summary of “Bag of Tricks”</h2>
+<div class="fragment">
+<ul>
+<li>Data Augmentation</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Reducing the number of parameters</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Weight decay</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Early stopping</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Ensembles</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Stochastic regularization (e.g.&nbsp;dropout)</li>
+</ul>
+<!-- 04curves -->
+</div>
+</section></section>
+<section>
+<section id="diagnosing-issues-using-learning-curves" class="title-slide slide level1 center">
+<h1>Diagnosing Issues using Learning Curves</h1>
+
+</section>
+<section id="why-does-the-training-curve-look-like-his" class="slide level2">
+<h2>Why does the Training Curve look like his?</h2>
+<!-- (From week 3 tutorial) -->
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/curve1.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>The learning rate is too high</li>
+<li>The learning rate is too low</li>
+<li>The number of iterations is too low</li>
+<li>The weights are all initialized to zero</li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li>Learning rate likely too high.</li>
+<li>Loss curve shows jumps and no consistent decrease</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/curve1.png}
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item The learning rate is too high
+\item The learning rate is too low
+\item The number of iterations is too low
+\item The weights are all initialized to zero
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+</section>
+<section id="why-does-the-training-curve-look-like-this" class="slide level2">
+<h2>Why does the Training Curve look like this?</h2>
+<!-- (From practice test) -->
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/e3.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>The batch size is too small</li>
+<li>Batch normalization was used</li>
+<li>The number of parameters is too large</li>
+<li>The learning rate is too small</li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li>Batch size likely too small.</li>
+<li>Learning curve very noisy.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/e3.png}
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item The batch size is too small
+\item Batch normalization was used
+\item The number of parameters is too large
+\item The learning rate is too small
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+<!-- (From old test) -->
+</section>
+<section id="why-does-the-training-curve-look-like-this-1" class="slide level2">
+<h2>Why does the Training Curve look like this?</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/p1.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>The network probably has too few parameters</li>
+<li>The network probably has too many parameters</li>
+<li>The learning rate is probably too small</li>
+<li>If weight decay is used, the lambda parameter is probably too large.</li>
+<li>Either (1) or (4) could be true</li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li>Too few parameters as convergence stopped too early.</li>
+<li>Too much weight decay has similar effect.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/p1.png}
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item The network probably has too few parameters
+\item The network probably has too many parameters
+\item The learning rate is probably too small
+\item If weight decay is used, the lambda parameter is probably too large.
+\item Either (1) or (4) could be true
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+</section>
+<section id="why-does-the-training-curve-look-like-this-2" class="slide level2">
+<h2>Why does the Training Curve look like this?</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/t1.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>Evidence of overfitting</li>
+<li>Evidence of underfitting</li>
+<li>Too much momentum</li>
+<li>The weights were all initialized to 0</li>
+</ul>
+</div></div>
+<aside class="notes">
+<ul>
+<li>This model did not fit yet and is so far underfitting the data.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/t1.png}
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item Evidence of overfitting
+\item Evidence of underfitting
+\item Too much momentum
+\item The weights were all initialized to 0
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+<!-- 05bias -->
+</section></section>
+<section>
+<section id="bias-variance-tradeoff" class="title-slide slide level1 center">
+<h1>Bias-Variance Tradeoff</h1>
+
+</section>
+<section id="expected-test-error-for-regression" class="slide level2">
+<h2>Expected Test Error for Regression</h2>
+<div class="fragment">
+<ul>
+<li>Training set <span class="math inline">\(D = \{(x_1, y_1), ..., (x_n, y_n)\}\)</span> drawn i.i.d. from distribution <span class="math inline">\(P(X,Y)\)</span>. Let’s write this as <span class="math inline">\(D \sim P^n\)</span>.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Assume for simplicity this is a regression problem with <span class="math inline">\(y \in \mathbb{R}\)</span> and <span class="math inline">\(L_2\)</span> loss.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>What is the expected test error for a function <span class="math inline">\(h_D(x)=y\)</span> trained on the training set <span class="math inline">\(D \sim P^n\)</span>, assuming a learning algorithm <span class="math inline">\(\mathcal{A}\)</span>? It is:</li>
+</ul>
+</div>
+</section>
+<section id="method-rmsprop-contd" class="slide level2">
+<h2>Method: RMSProp (cont’d)</h2>
+<p>The following update is applied to each coordinate j independently: <span class="math display">\[\begin{align*}
+\mathbb{E}_{D \sim P^n, (x,y) \sim P} \left[ (h_D(x) - y)^2 \right]
+\end{align*}\]</span></p>
+</section>
+<section id="expected-test-error-for-regression-ii" class="slide level2">
+<h2>Expected Test Error for Regression II</h2>
+<p><span class="math display">\[\begin{align*}
+\mathbb{E}_{D \sim P^n, (x,y) \sim P} \left[ (h_D(x) - y)^2 \right]
+\end{align*}\]</span></p>
+<div class="fragment">
+<ul>
+<li>The expectation is taken with respect to possible training sets <span class="math inline">\(D \sim P^n\)</span> and the test distribution P. Let’s write the expectation as <span class="math inline">\(\mathbb{E}_{D,x,y}\)</span> for notational simplicity.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Note that this is the <em>expected test error</em> not the <em>empirical test error</em> that we report after training. How are they different?</li>
+</ul>
+</div>
+</section>
+<section id="decomposing-the-expected-test-error" class="slide level2">
+<h2>Decomposing the Expected Test Error</h2>
+<p>Let’s start by adding and subtracting the same quantity <span class="math display">\[\begin{multline*}
+  \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - y\right)^2 \right] \\
+  = \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - \hat{h}(x) + \hat{h}(x) - y\right)^2 \right]
+\end{multline*}\]</span></p>
+<div class="fragment">
+<p><span class="math inline">\(\hat{h}(x) = \mathbb{E}_{D \sim P^n}[h_D(x)]\)</span> is the expected regressor over possible training sets, given the learning algorithm <span class="math inline">\(\mathcal{A}\)</span>.</p>
+</div>
+</section>
+<section id="decomposing-the-expected-test-error-1" class="slide level2">
+<h2>Decomposing the Expected Test Error</h2>
+<p>After some algebraic manipulation (<a href="https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html">proof</a>), we can show that:</p>
+<p><span class="math display">\[\begin{multline*}
+  \underbrace{\mathbb{E}_{D,x,y} \left[ (h_D(x) - y)^2 \right]}_{\text{Expected test error}}
+  = \underbrace{\mathbb{E}_{D,x} \left[\left(h_D(x) - \hat{h}(x)\right)^2 \right]}_{\text{Variance}} \\
+  + \underbrace{\mathbb{E}_{x,y} \left[\left(\hat{y}(x) - y\right)^2 \right]}_{\text{Noise}} +
+         \underbrace{\mathbb{E}_{x} \left[\left(\hat{h}(x) - \hat{y}(x)\right)^2 \right]}_{\text{Bias}}
+\end{multline*}\]</span></p>
+<div class="fragment">
+<p><span class="math inline">\(\hat{y}(x) = \mathbb{E}_{y|x}[y]\)</span> is the expected label given <span class="math inline">\(x\)</span>. Labels might not be deterministic given x.</p>
+<!-- * You can find the proof in [this URL (*)](https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html) -->
+</div>
+</section></section>
+<section>
+<section id="differential-privacy" class="title-slide slide level1 center">
+<h1>Differential Privacy</h1>
+
+</section>
+<section id="what-is-differential-privacy-dp" class="slide level2">
+<h2>What is Differential Privacy (DP)?</h2>
+<ul>
+<li><strong>Definition:</strong> A mathematical framework for quantifying and controlling the privacy risks in data analysis.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Goal:</strong> Ensures that the inclusion or exclusion of a single data point does not significantly affect the output of a model.</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Why?</strong></p>
+</div>
+<div class="fragment">
+<ul>
+<li>Protects sensitive information in training data.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Prevents models from overfitting to individual samples.</li>
+</ul>
+</div>
+</section>
+<section id="definition-of-differential-privacy" class="slide level2">
+<h2>Definition of Differential Privacy</h2>
+<ul>
+<li><strong>Intuitive definition</strong> An algorithm is <em>differentially private</em> if the addition or removal of a single data point does not significantly affect the output.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Formal definition:</strong> An algorithm is <em><span class="math inline">\(\varepsilon\)</span>-differentially private</em> if for all datasets ( D ) and ( D’ ) differing in one element, and for all outputs ( S ):</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+\Pr[Model(D) = S] \leq \exp(\varepsilon) \cdot \Pr[Model(D') = S]
+\end{align*}\]</span></p>
+</div>
+</section>
+<section id="dp-in-deep-learning" class="slide level2">
+<h2>DP in Deep Learning</h2>
+<p><strong>Applying DP in Neural Networks:</strong> Introduce noise to gradients during training.</p>
+<div class="fragment">
+<p><strong>Mechanisms (DP-SGD)</strong></p>
+<ul>
+<li>Clips gradients to a maximum norm.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Adds calibrated Gaussian noise to the gradients.</li>
+</ul>
+</div>
+</section>
+<section id="example-healthcare-dataset" class="slide level2">
+<h2>Example – Healthcare Dataset</h2>
+<p><strong>Scenario:</strong> Predicting Disease Risk</p>
+<div class="fragment">
+<p><strong>Task:</strong> A neural network is trained to predict the risk of a disease based on patient health records.</p>
+</div>
+<div class="fragment">
+<p><strong>Data:</strong> Sensitive medical information such as diagnosis history.</p>
+</div>
+</section>
+<section id="example-healthcare-dataset-ii" class="slide level2">
+<h2>Example – Healthcare Dataset II</h2>
+<p><strong>What Happens Without DP?</strong></p>
+<ul>
+<li><strong>Outcome:</strong> The model performs well but memorizes some specific details from training samples.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Risk:</strong> If an attacker queries the model with information about a specific individual, the model could reveal their presence in the training set by giving a higher probability for that individual, leaking private information.</li>
+</ul>
+</div>
+</section>
+<section id="example-healthcare-dataset-iii" class="slide level2">
+<h2>Example – Healthcare Dataset III</h2>
+<p><strong>With DP:</strong></p>
+<ul>
+<li><strong>Outcome:</strong> The model’s predictions are less influenced by any single training sample. The addition of noise prevents overfitting to specific patient data.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Benefit:</strong> The model’s output is less likely to change noticeably even if a single patient’s record is added or removed, protecting patient privacy.</li>
+</ul>
+</div>
+</section>
+<section id="example-e-commerce-recommendations" class="slide level2">
+<h2>Example – E-Commerce Recommendations</h2>
+<p><strong>Scenario:</strong> Personalized Product Recommendations</p>
+<div class="fragment">
+<p><strong>Task:</strong> A deep learning model recommends products based on customer browsing history and previous purchases.</p>
+</div>
+<div class="fragment">
+<p><strong>Data:</strong> Includes user shopping patterns, age, and location.</p>
+</div>
+</section>
+<section id="example-e-commerce-recommendations-ii" class="slide level2">
+<h2>Example – E-Commerce Recommendations II</h2>
+<p><strong>Without DP:</strong></p>
+<ul>
+<li><strong>Outcome:</strong> The model gives highly personalized recommendations.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Risk:</strong> An attacker could infer specific details about individual users (e.g., based on specific product recommendations or similarities to other users’ behaviors), leading to a privacy breach.</li>
+</ul>
+</div>
+</section>
+<section id="example-e-commerce-recommendations-iii" class="slide level2">
+<h2>Example – E-Commerce Recommendations III</h2>
+<p><strong>With DP:</strong></p>
+<ul>
+<li><strong>Outcome:</strong> Slightly less personalized recommendations but better generalization to unseen users.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Benefit:</strong> An attacker would have a much harder time inferring personal details from the recommendations, thanks to the noise added during model training.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center">
+<h1>Wrap Up</h1>
+
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<center>
+<img data-src="imgs2/adamcite.png" height="250">
+</center>
+<!-- 02optim -->
+</section></section>
+<section>
+<section id="gradient-descent-and-sgd" class="title-slide slide level1 center">
+<h1>Gradient Descent and SGD</h1>
+
+</section>
+<section id="learning-rate" class="slide level2">
+<h2>Learning Rate</h2>
+<p>The learning rate <span class="math inline">\(\alpha\)</span> is a hyperparameter we need to tune. Here are the things that can go wrong in batch mode:</p>
+<center>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\alpha\)</span> too small:</th>
+<th><span class="math inline">\(\alpha\)</span> too large:</th>
+<th><span class="math inline">\(\alpha\)</span> much too large:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img data-src="imgs2/slow_progress.png" height="150"></td>
+<td><img data-src="imgs2/oscillations.png" height="150"></td>
+<td><img data-src="imgs2/instability.png" height="150"></td>
+</tr>
+<tr class="even">
+<td>slow progress</td>
+<td>oscillations</td>
+<td>instability</td>
+</tr>
+</tbody>
+</table>
+</center>
+<!-- \begin{columns}
+\begin{column}{0.25 \linewidth}
+  \includegraphics[width=\linewidth]{imgs2/slow_progress.png}
+  \begin{center}
+    $\alpha$ too small: \\ slow progress
+  \end{center}
+\end{column}
+\begin{column}{0.25 \linewidth}
+  \includegraphics[width=\linewidth]{imgs2/oscillations.png}
+  \begin{center}
+    $\alpha$ too large: \\ oscillations
+  \end{center}
+\end{column}
+\begin{column}{0.3 \linewidth}
+  \includegraphics[width=\linewidth]{imgs2/instability.png}
+  \begin{center}
+    $\alpha$ much too large: \\ instability
+  \end{center}
+\end{column}
+\end{columns} -->
+</section>
+<section id="stochastic-gradient-descent" class="slide level2">
+<h2>Stochastic Gradient Descent</h2>
+<p>Batch gradient descent moves directly downhill. SGD takes steps in a noisy direction, but moves downhill on average.</p>
+<center>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>batch gradient descent:</th>
+<th>stochastic gradient descent:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img data-src="imgs2/batch_gradient_descent.png" height="300"></td>
+<td><img data-src="imgs2/sgd.png" height="300"></td>
+</tr>
+</tbody>
+</table>
+</center>
+<!-- \begin{columns}
+\begin{column}{0.35 \linewidth}
+  \includegraphics[width=\linewidth]{imgs2/batch_gradient_descent.png}
+  \begin{center}
+    {\bf \small batch gradient descent}
+  \end{center}
+\end{column}
+    \begin{column}{0.4 \linewidth}
+  \includegraphics[width=0.85\linewidth]{imgs2/sgd.png}
+  \begin{center}
+    {\bf \small stochastic gradient descent}
+  \end{center}
+\end{column}
+\end{columns} -->
+</section>
+<section id="sgd-learning-rate" class="slide level2">
+<h2>SGD Learning Rate</h2>
+<p>In stochastic training, the learning rate also influences the <em>fluctuations</em> due to the stochasticity of the gradients.</p>
+<center>
+<img data-src="imgs2/fluctuations.png" height="250">
+</center>
+<ul>
+<li>Use a large learning rate early in training so you can get close to the optimum</li>
+<li>Gradually decay the learning rate to reduce the fluctuations</li>
+</ul>
+</section>
+<section id="sgd-batch-size" class="slide level2">
+<h2>SGD Batch Size</h2>
+<p>The tradeoff between smaller vs larger batch size</p>
+<p><span class="math display">\[\begin{align*}
+  \text{Var}\left[\frac{1}{S} \sum_{i=1}^S \frac{\partial \mathcal{L}^{(i)}}{\partial \theta_j}\right]
+  &amp;=
+  \frac{1}{S^2} \text{Var} \left[\sum_{i=1}^S \frac{\partial \mathcal{L}^{(i)}}{\partial \theta_j} \right] \\
+  &amp;=
+  \frac{1}{S} \text{Var} \left[\frac{\partial \mathcal{L}^{(i)}}{\partial \theta_j} \right]
+\end{align*}\]</span></p>
+<p>Larger batch size implies smaller variance, but at what cost?</p>
+</section>
+<section id="training-curve-or-learning-curve" class="slide level2">
+<h2>Training Curve (or Learning Curve)</h2>
+<p>To diagnose optimization problems, it’s useful to look at <strong>learning curves</strong>: plot the training cost (or other metrics) as a function of iteration.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><img data-src="imgs2/training_curve.png" height="350"></p>
+</div><div class="column" style="width:55%;">
+<ul>
+<li><strong>Note</strong>: it’s very hard to tell from the training curves whether an optimizer has converged. They can reveal major problems, but they can’t guarantee convergence.</li>
+</ul>
+</div></div>
+</section>
+<section id="visualizing-optimization-algorithms" class="slide level2">
+<h2>Visualizing Optimization Algorithms</h2>
+<p>You might want to check out these links:</p>
+<ul>
+<li><p>An overview of gradient descent algorithms: <a href="https://ruder.io/optimizing-gradient-descent">https://ruder.io/optimizing-gradient-descent</a></p></li>
+<li><p>CS231n: <a href="https://cs231n.github.io/neural-networks-3/">https://cs231n.github.io/neural-networks-3/</a></p></li>
+<li><p>Why momentum really works: <a href="https://distill.pub/2017/momentum/">https://distill.pub/2017/momentum/</a></p></li>
+</ul>
+<!-- 03gen -->
+</section></section>
+<section>
+<section id="generalization-1" class="title-slide slide level1 center">
+<h1>Generalization</h1>
+
+</section>
+<section id="questions-1" class="slide level2">
+<h2>Questions</h2>
+<ul>
+<li>How do we choose between different neural network models?
+<ul>
+<li>For example, different number of hidden units, hidden layers, …?</li>
+</ul></li>
+<li><strong>How do we know how well a model will perform on new data?</strong></li>
+</ul>
+</section>
+<section id="the-training-set-1" class="slide level2">
+<h2>The Training Set</h2>
+<p>The training set is used</p>
+<ul>
+<li>to determine the value of the <strong>parameters</strong></li>
+</ul>
+<p>The model’s prediction accuracy over the training set is called the <strong>training accuracy</strong>.</p>
+</section>
+<section id="the-training-set-contd" class="slide level2">
+<h2>The Training Set (cont’d)</h2>
+<p>Q: Can we use the <strong>training accuracy</strong> to estimate how well a model will perform on new data?</p>
+<div class="fragment">
+<ul>
+<li>No! It is possible for a model to fit well to the training set, but fail to <em>generalize</em></li>
+<li>We want to know how well the model performs on <em>new data</em> that we didn’t already use to optimize the model</li>
+</ul>
+</div>
+</section>
+<section id="poor-generalization-1" class="slide level2">
+<h2>Poor Generalization</h2>
+<center>
+<img data-src="imgs2/polynomial_1.png" height="380"> <img data-src="imgs2/polynomial_3.png" height="380">
+</center>
+</section>
+<section id="overfitting-and-underfitting" class="slide level2">
+<h2>Overfitting and Underfitting</h2>
+<p>Underfitting:</p>
+<ul>
+<li>The model is simple and doesn’t fit the data</li>
+<li>The model does not capture <em>discriminative</em> features of the data</li>
+</ul>
+<p>Overfitting:</p>
+<ul>
+<li>The model is too complex and does not generalize</li>
+<li>The model captures information about patterns in training set that happened by chance</li>
+</ul>
+<!--
+## Preventing Overfitting
+
+- Use a larger training set (expensive, often not feasible)
+- Use a smaller network (requires starting over, might underfit)
+- Other techniques (we'll explore later)
+-->
+</section>
+<section id="overfitting-and-underfitting-contd" class="slide level2">
+<h2>Overfitting and Underfitting (cont’d)</h2>
+<p>Overfitting:</p>
+<ul>
+<li>The model is too complex and does not generalize</li>
+<li>The model captures information about patterns in training set that happened by chance
+<ul>
+<li>e.g.&nbsp;Ringo happens to be always wearing a red shirt in the training set</li>
+<li>Model learns: high red pixel content =&gt; predict Ringo</li>
+</ul></li>
+</ul>
+<!--
+## Preventing Overfitting
+
+- Use a larger training set (expensive, often not feasible)
+- Use a smaller network (requires starting over, might underfit)
+- Other techniques (we'll explore later)
+-->
+</section>
+<section id="the-test-set-1" class="slide level2">
+<h2>The Test Set</h2>
+<p>We set aside a <strong>test set</strong> of labelled examples.</p>
+<p>The model’s prediction accuracy over the test set is called the <strong>test accuracy</strong>.</p>
+<p>The purpose of the test set is to give us a good estimate of how well a model will perform on new data.</p>
+<p>Q: In general, will the test accuracy be <em>higher</em> or <em>lower</em> than the training accuracy?</p>
+</section>
+<section id="model-choices-1" class="slide level2">
+<h2>Model Choices</h2>
+<p>But what about decisions like:</p>
+<ul>
+<li>How many layers?</li>
+<li>How many units in each layer?</li>
+<li>What non-linear activation to use?</li>
+</ul>
+</section>
+<section id="model-choices-contd" class="slide level2">
+<h2>Model Choices (cont’d)</h2>
+<p>Q: Why can’t we use the test set to determine which model we should deploy?</p>
+<div class="fragment">
+<ul>
+<li>If we use the test set to make modeling decisions, then we will overestimate how well our model will perform on new data!</li>
+<li>We are “cheating” by “looking at the test”</li>
+</ul>
+</div>
+</section>
+<section id="the-validation-set-1" class="slide level2">
+<h2>The Validation set</h2>
+<p>We therefore need a third set of labeled data called the <strong>validation set</strong></p>
+<p>The model’s prediction accuracy over the validation set is called the <strong>validation accuracy</strong>.</p>
+<p>This dataset is used to:</p>
+<ul>
+<li>Make decisions about models that is <strong>not continuous</strong> and can’t be optimized via gradient descent</li>
+<li>Example: choose <span class="math inline">\(k\)</span>, choose which features <span class="math inline">\(x_j\)</span> to use, choose <span class="math inline">\(\alpha\)</span>, …</li>
+</ul>
+</section>
+<section id="the-validation-set-contd" class="slide level2">
+<h2>The Validation set (cont’d)</h2>
+<p>The model’s prediction accuracy over the validation set is called the <strong>validation accuracy</strong>.</p>
+<p>This dataset is used to:</p>
+<ul>
+<li>Make decisions about models that is <strong>not continuous</strong> and can’t be optimized via gradient descent</li>
+<li>Example: choose <span class="math inline">\(k\)</span>, choose which features <span class="math inline">\(x_j\)</span> to use, choose <span class="math inline">\(\alpha\)</span>, …
+<ul>
+<li>These model settings are called <strong>hyperparameters</strong></li>
+</ul></li>
+<li>The validation set is used to optimize <strong>hyperparameters</strong></li>
+</ul>
+</section>
+<section id="splitting-the-data-set" class="slide level2">
+<h2>Splitting the data set</h2>
+<p>Example split:</p>
+<ul>
+<li>60% Training</li>
+<li>20% Validation</li>
+<li>20% Test</li>
+</ul>
+<p>The actual split depends on the amount of data that you have.</p>
+<p>If you have more data, you can get a way with a smaller % validation and set.</p>
+</section>
+<section id="detecting-overfitting-1" class="slide level2">
+<h2>Detecting Overfitting</h2>
+<p>Learning curve:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><img data-src="imgs2/overfit.png" height="300"></p>
+</div><div class="column" style="width:55%;">
+<ul>
+<li><strong>x-axis</strong>: epochs or iterations</li>
+<li><strong>y-axis</strong>: cost, error, or accuracy</li>
+</ul>
+</div></div>
+<p>Q: In which epochs is the model overfitting? Underfitting?</p>
+<p>Q: Why don’t we plot the test accuracy plot?</p>
+</section>
+<section id="strategies-to-prevent-overfitting-1" class="slide level2">
+<h2>Strategies to Prevent Overfitting</h2>
+<ul>
+<li>Data Augmentation</li>
+<li>Reducing the number of parameters</li>
+<li>Weight decay</li>
+<li>Early stopping</li>
+<li>Ensembles</li>
+<li>Stochastic regularization (e.g.&nbsp;dropout)</li>
+</ul>
+<!--
+- Collect more data: always the best first thing to try
+    - data agumentation: add noise to the data
+- Use a simpler model: doesn't work well in practice
+- Early-stopping: stop training before training accuracy convergences
+    - In practice, save (or **checkpoint**) the weights after every $E$ epochs. Use the weights that produce the highest validation accuracy
+- Use a training strategy that reduces overfitting:
+    - Example: weight decay, dropout
+    -->
+</section>
+<section id="data-augmentation-1" class="slide level2">
+<h2>Data Augmentation</h2>
+<p>The best way to improve generalization is to collect more data!</p>
+<p>But if we already have all the data we’re willing to collect. We can augment the training data by <em>transforming</em> the examples. This is called <strong>data augmentation</strong>.</p>
+</section>
+<section id="data-augmentation-contd" class="slide level2">
+<h2>Data Augmentation (cont’d)</h2>
+<p>Example (for images, but depends on task):</p>
+<ul>
+<li>translation</li>
+<li>horizontal or vertical flip</li>
+<li>rotation</li>
+<li>smooth warping</li>
+<li>noise (e.g.&nbsp;flip random pixels)</li>
+</ul>
+<p>We should only warp the training examples, not the validation or test examples (why?)</p>
+</section>
+<section id="reducing-the-number-of-parameters-1" class="slide level2">
+<h2>Reducing the Number of Parameters</h2>
+<p>Networks with fewer trainable parameters are less likely to overfit. We can reduce the number of layers, or the number of parameters per layer.</p>
+<p>Adding a <strong>bottleneck layer</strong> is another way to reduce the number of parameters</p>
+</section>
+<section id="reducing-the-number-of-parameters-contd" class="slide level2">
+<h2>Reducing the Number of Parameters (cont’d)</h2>
+<p>Adding a <strong>bottleneck layer</strong> is another way to reduce the number of parameters</p>
+<center>
+<img data-src="imgs2/bottleneck.png" height="275">
+</center>
+<p>In practise, this isn’t a great idea.</p>
+</section>
+<section id="weight-decay-idea-1" class="slide level2">
+<h2>Weight Decay Idea</h2>
+<p>Idea: Penalize <strong>large weights</strong>, by adding a term (e.g.&nbsp;<span class="math inline">\(\sum_k w_k ^ 2\)</span>) to the cost function</p>
+<p>Q: Why is it not ideal to have large (absolute value) weights?</p>
+<div class="fragment">
+<p>Because large weights mean that the prediction relies <strong>a lot</strong> on the content of one feature (e.g.&nbsp;one pixel)</p>
+</div>
+</section>
+<section id="small-vs-large-weights-1" class="slide level2">
+<h2>Small vs Large Weights</h2>
+<p>The red polynomial overfits. Notice it has really large coefficients</p>
+<center>
+<img data-src="imgs2/polynomial_overfit.png" height="450">
+</center>
+</section>
+<section id="weight-decay-1" class="slide level2">
+<h2>Weight Decay</h2>
+<ul>
+<li><span class="math inline">\(L^1\)</span> regularization: add a term <span class="math inline">\(\sum_{j=1}^D |w_j|\)</span> to the cost function
+<ul>
+<li>Mathematically, this term encourages weights to be exactly 0</li>
+</ul></li>
+<li><span class="math inline">\(L^2\)</span> regularization: add a term <span class="math inline">\(\sum_{j=1}^D w_j^2\)</span> to the cost function
+<ul>
+<li>Mathematically, in each iteration the weight is pushed towards 0</li>
+</ul></li>
+<li>Combination of <span class="math inline">\(L^1\)</span> and <span class="math inline">\(L^2\)</span> regularization: add a term <span class="math inline">\(\sum_{j=1}^D |w_j| + w_j^2\)</span> to the cost function</li>
+</ul>
+</section>
+<section id="example-weight-decay-for-regression-1" class="slide level2">
+<h2>Example: Weight Decay for Regression</h2>
+<p>Cost function:</p>
+<p><span class="math display">\[\mathcal{E}({\bf w}, b) = \frac{1}{2N}\sum_i \left(\left({\bf w} {\bf x}^{(i)} + b\right) - t^{(i)}\right)^2\]</span></p>
+<p>Cost function with weight decay:</p>
+<p><span class="math display">\[\mathcal{E}_{WD}({\bf w}, b) = \frac{1}{2N}\sum_i \left(\left({\bf w} {\bf x}^{(i)} + b\right) - t^{(i)}\right)^2 + \lambda \sum_j w_j^2\]</span></p>
+</section>
+<section id="weight-decay-nomanclature-1" class="slide level2">
+<h2>Weight Decay Nomanclature</h2>
+<p><span class="math display">\[\mathcal{E}_{WD}({\bf w}, b) = \frac{1}{2N}\sum_i \left(\left({\bf w} {\bf x}^{(i)} + b\right) - t^{(i)}\right)^2 + \lambda \sum_j w_j^2\]</span></p>
+<p><span class="math display">\[\frac{\partial \mathcal{E}_{WD}}{\partial w_j} = \frac{\partial \mathcal{E}}{\partial w_j} + \lambda 2 w_j\]</span></p>
+<p>So the gradient descent update rule becomes:</p>
+<p><span class="math display">\[w_j \leftarrow w_j - \alpha\left(\frac{\partial \mathcal{E}}{\partial w_j} + 2 \lambda w_j\right)\]</span></p>
+</section>
+<section id="early-stopping-1" class="slide level2">
+<h2>Early Stopping</h2>
+<p>Idea: Stop training when the validation error starts going up.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><img data-src="imgs2/overfit.png" height="350"></p>
+</div><div class="column" style="width:55%;">
+<p>In practice, this is implemented by <strong>checkpointing</strong> (saving) the neural network weights every few iterations/epochs during training. <!-- <br>
+
+Some other text that should be below the first paragraph. --></p>
+</div></div>
+<!-- <center>
+![](imgs2/overfit.png){ height=40% }
+</center> -->
+<!-- In practice, this is implemented by **checkpointing** (saving) the
+neural network weights every few iterations/epochs during training. -->
+<p>We choose the checkpoint with the best validation error to actually use. (And if there is a tie, use the <strong>earlier</strong> checkpoint)</p>
+</section>
+<section id="why-does-early-stopping-work-1" class="slide level2">
+<h2>Why does early stopping work?</h2>
+<p>Weights start off small, so it takes time for them to grow large.</p>
+<p>Therefore, stopping early has a similar effect to weight decay.</p>
+<p>If you’re using sigmoid units, and the weights start out small, then the inputs to the activation functions take only a small range of values.</p>
+<ul>
+<li>The neural network starts out approximately linear, and gradually becomes non-linear (and thus more powerful)</li>
+</ul>
+</section>
+<section id="ensembles-1" class="slide level2">
+<h2>Ensembles</h2>
+<p>If a loss function is convex (with respect to the predictions), you have a bunch of predictions for an input, and you don’t know which one is best, you are always better off averaging them!</p>
+<p><span class="math display">\[\mathcal{L}(\lambda_1 y_1 + \dots \lambda_N y_N, t) \le \lambda_1 \mathcal{L}(y_1, t) + \dots \lambda_N\mathcal{L}(y_N, t)\]</span></p>
+<p>for <span class="math inline">\(\lambda_i \ge 0\)</span> and <span class="math inline">\(\sum_i \lambda_i = 1\)</span></p>
+<p><strong>Idea</strong>: Build multiple candidate models, and average the predictions on the test data.</p>
+<p>This set of models is called an <strong>ensemble</strong>.</p>
+</section>
+<section id="examples-of-ensembles-1" class="slide level2">
+<h2>Examples of Ensembles</h2>
+<ul>
+<li>Train neural networks starting from different random initialization (might not give enough diversity)</li>
+<li>Train different network on different subset of the training data (called <strong>bagging</strong>)</li>
+<li>Train networks with different architectures, hyperparameters, or use other machine learning models</li>
+</ul>
+<p>Ensembles can improve generalization substantially.</p>
+<p>However, ensembles are expensive.</p>
+</section>
+<section id="stochastic-regularization-1" class="slide level2">
+<h2>Stochastic Regularization</h2>
+<p>For a network to overfit, its computations need to be really precise. This suggests regularizing them by injecting noise into the computations, a strategy known as <strong>stochastic regularization</strong>.</p>
+<p>One example is <strong>dropout</strong>: in each training iteration, random choose a portion of <strong>activations</strong> to set to 0.</p>
+</section>
+<section id="stochastic-regularization-contd" class="slide level2">
+<h2>Stochastic Regularization (cont’d)</h2>
+<p>The probability <span class="math inline">\(p\)</span> that an activation is set to 0 is a hyperparameter.</p>
+<center>
+<img data-src="imgs2/neural_net2.jpeg" style="height:30.0%">
+</center>
+</section>
+<section id="dropout-1" class="slide level2">
+<h2>Dropout</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="imgs2/dropout.png" height="500"></p>
+</div><div class="column" style="width:50%;">
+<p>Dropout can be seen as training an ensemble of 2D different architectures with shared weights (where D is the number of units)</p>
+</div></div>
+</section>
+<section id="dropout-at-test-time-1" class="slide level2">
+<h2>Dropout at Test Time</h2>
+<p>Don’t do dropout at test time (why not?)</p>
+<p>Multiply the weights by <span class="math inline">\(1-p\)</span> (why?)</p>
+<div class="fragment">
+<p>Since the weights are on <span class="math inline">\(1-p\)</span> fraction of the time, multiplying the weights by <span class="math inline">\(1-p\)</span> matches the expected value of the activation magnitude (e.g.&nbsp;going into the next layer).</p>
+</div>
+</section>
+<section id="summary-of-bag-of-tricks-1" class="slide level2">
+<h2>Summary of “Bag of Tricks”</h2>
+<ul>
+<li>Data Augmentation</li>
+<li>Reducing the number of parameters</li>
+<li>Weight decay</li>
+<li>Early stopping</li>
+<li>Ensembles</li>
+<li>Stochastic regularization (e.g.&nbsp;dropout)</li>
+</ul>
+<!-- 04curves -->
+</section></section>
+<section>
+<section id="diagnosing-issues-using-learning-curves-1" class="title-slide slide level1 center">
+<h1>Diagnosing issues using learning curves</h1>
+
+</section>
+<section id="why-does-the-training-curve-to-look-like-this" class="slide level2">
+<h2>Why does the training curve to look like this?</h2>
+<!-- (From week 3 tutorial) -->
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/curve1.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>The learning rate is too high</li>
+<li>The learning rate is too low</li>
+<li>The number of iterations is too low</li>
+<li>The weights are all initialized to zero</li>
+</ul>
+</div></div>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/curve1.png}
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item The learning rate is too high
+\item The learning rate is too low
+\item The number of iterations is too low
+\item The weights are all initialized to zero
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+</section>
+<section id="why-does-the-training-curve-to-look-like-this-1" class="slide level2">
+<h2>Why does the training curve to look like this?</h2>
+<!-- (From practice test) -->
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/e3.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>The batch size is too small</li>
+<li>Batch normalization was used</li>
+<li>The number of parameters is too large</li>
+<li>The learning rate is too small</li>
+</ul>
+</div></div>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/e3.png}
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item The batch size is too small
+\item Batch normalization was used
+\item The number of parameters is too large
+\item The learning rate is too small
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+<!-- (From old test) -->
+</section>
+<section id="why-does-the-training-curve-to-look-like-this-2" class="slide level2">
+<h2>Why does the training curve to look like this?</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/p1.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>The network probably has too few parameters</li>
+<li>The network probably has too many parameters</li>
+<li>The learning rate is probably too small</li>
+<li>If weight decay is used, the lambda parameter is probably too large.</li>
+<li>Either (1) or (4) could be true</li>
+</ul>
+</div></div>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/p1.png} 
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item The network probably has too few parameters
+\item The network probably has too many parameters
+\item The learning rate is probably too small
+\item If weight decay is used, the lambda parameter is probably too large.
+\item Either (1) or (4) could be true
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+</section>
+<section id="why-does-the-training-curve-to-look-like-this-3" class="slide level2">
+<h2>Why does the training curve to look like this?</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p><img data-src="curve/t1.png" height="500"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>Evidence of overfitting</li>
+<li>Evidence of underfitting</li>
+<li>Too much momentum</li>
+<li>The weights were all initialized to 0</li>
+</ul>
+</div></div>
+<!-- \begin{center}
+\begin{minipage}{0.4 \linewidth}
+  \includegraphics[width=\linewidth]{curve/t1.png}
+\end{minipage}
+\begin{minipage}{0.4 \linewidth}
+\begin{enumerate}
+\item Evidence of overfitting
+\item Evidence of underfitting
+\item Too much momentum
+\item The weights were all initialized to 0
+\end{enumerate}
+\end{minipage}
+\end{center} -->
+<!-- 05bias -->
+</section></section>
+<section>
+<section id="bias-variance-tradeoff-1" class="title-slide slide level1 center">
+<h1>Bias-Variance Tradeoff</h1>
+
+</section>
+<section id="expected-test-error-for-regression-1" class="slide level2">
+<h2>Expected Test Error for Regression</h2>
+<ul>
+<li><p>Training set <span class="math inline">\(D = \{(x_1, y_1), ..., (x_n, y_n)\}\)</span> drawn i.i.d. from distribution <span class="math inline">\(P(X,Y)\)</span>. Let’s write this as <span class="math inline">\(D \sim P^n\)</span>.</p></li>
+<li><p>Assume for simplicity this is a regression problem with <span class="math inline">\(y \in \mathbb{R}\)</span> and <span class="math inline">\(L_2\)</span> loss.</p></li>
+<li><p>What is the expected test error for a function <span class="math inline">\(h_D(x)=y\)</span> trained on the training set <span class="math inline">\(D \sim P^n\)</span>, assuming a learning algorithm <span class="math inline">\(\mathcal{A}\)</span>? It is:</p></li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+\mathbb{E}_{D \sim P^n, (x,y) \sim P} \left[ (h_D(x) - y)^2 \right]
+\end{align*}\]</span></p>
+</section>
+<section id="expected-test-error-for-regression-contd" class="slide level2">
+<h2>Expected Test Error for Regression (cont’d)</h2>
+<p><span class="math display">\[\begin{align*}
+\mathbb{E}_{D \sim P^n, (x,y) \sim P} \left[ (h_D(x) - y)^2 \right]
+\end{align*}\]</span></p>
+<ul>
+<li><p>The expectation is taken with respect to possible training sets <span class="math inline">\(D \sim P^n\)</span> and the test distribution P. Let’s write the expectation as <span class="math inline">\(\mathbb{E}_{D,x,y}\)</span> for notational simplicity.</p></li>
+<li><p>Note that this is the <em>expected test error</em> not the <em>empirical test error</em> that we report after training. How are they different?</p></li>
+</ul>
+</section>
+<section id="decomposing-the-expected-test-error-2" class="slide level2">
+<h2>Decomposing the Expected Test Error</h2>
+<p>Let’s start by adding and subtracting the same quantity <span class="math display">\[\begin{align*}
+  \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - y\right)^2 \right] = \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - \hat{h}(x) + \hat{h}(x) - y\right)^2 \right]
+\end{align*}\]</span></p>
+<p><span class="math inline">\(\hat{h}(x) = \mathbb{E}_{D \sim P^n}[h_D(x)]\)</span> is the expected regressor over possible training sets, given the learning algorithm <span class="math inline">\(\mathcal{A}\)</span>.</p>
+<p><span class="math inline">\(\hat{y}(x) = \mathbb{E}_{y|x}[y]\)</span> is the expected label given <span class="math inline">\(x\)</span>. Labels might not be deterministic given x.</p>
+</section>
+<section id="decomposing-the-expected-test-error-3" class="slide level2">
+<h2>Decomposing the Expected Test Error</h2>
+<p>After some algebraic manipulation (<a href="https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html">proof</a>), we can show that:</p>
+<p><span class="math display">\[\begin{align*}
+  \underbrace{\mathbb{E}_{D,x,y} \left[ (h_D(x) - y)^2 \right]}_{\text{Expected test error}} =\;&amp; \underbrace{\mathbb{E}_{D,x} \left[\left(h_D(x) - \hat{h}(x)\right)^2 \right]}_{\text{Variance}} + \\
+    &amp; \underbrace{\mathbb{E}_{x,y} \left[\left(\hat{y}(x) - y\right)^2 \right]}_{\text{Noise}} + \\
+        &amp; \underbrace{\mathbb{E}_{x} \left[\left(\hat{h}(x) - \hat{y}(x)\right)^2 \right]}_{\text{Bias}}
+\end{align*}\]</span></p>
+<!-- * You can find the proof in [this URL (*)](https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html) -->
+</section>
+<section id="bias-variance" class="slide level2">
+<h2>Bias, Variance, …</h2>
+<ul>
+<li><p><strong>Variance</strong>: Captures how much your regressor <span class="math inline">\(h_D\)</span> changes if you train on a different training set. How “over-specialized” is your regressor <span class="math inline">\(h_D\)</span> to a particular training set <span class="math inline">\(D\)</span>? I.e. how much does it overfit? If we have the best possible model for our training data, how far off are we from the average regressor <span class="math inline">\(\hat{h}\)</span>?</p></li>
+<li><p><strong>Bias</strong>: What is the inherent error that you obtain from your regressor <span class="math inline">\(h_D\)</span> even with infinite training data? This is due to your model being “biased” to a particular kind of solution (e.g.&nbsp;linear model). In other words, bias is inherent to your model/architecture.</p></li>
+</ul>
+</section>
+<section id="and-noise" class="slide level2">
+<h2>… and Noise</h2>
+<ul>
+<li><strong>Noise</strong>: How big is the data-intrinsic noise? This error measures ambiguity due to your data distribution and feature representation. You can never beat this, it is an aspect of the physical data generation process, over which you have no control. You cannot improve this with more training data. It is sometimes called “aleatoric uncertainty”.</li>
+</ul>
+</section>
+<section id="the-bias-variance-tradeoff" class="slide level2">
+<h2>The Bias-Variance Tradeoff</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="curve/biasvariance.png" height="325"></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>If you use a high-capacity model, you will get low bias, but the variance over different training sets will be high.</li>
+</ul>
+</div></div>
+<!-- ![](curve/biasvariance.png){ height=35% } -->
+<!-- - If you use a high-capacity model, you will get low bias, but the variance over different training sets will be high. -->
+<ul>
+<li><p>If you use a low-capacity model, you will get high bias, but the variance over different training sets will be low.</p></li>
+<li><p>There is a sweet spot that trades off between the two.</p></li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"src":"chalkboard.json","boardmarkerWidth":2,"chalkWidth":2,"chalkEffect":1},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

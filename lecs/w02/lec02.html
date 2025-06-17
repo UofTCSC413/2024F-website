@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.31">
+
+  <title>CSC413 - Fall 2024 – CSC413 Neural Networks and Deep Learning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="CSC413 Neural Networks and Deep Learning – CSC413 - Fall 2024">
+<meta property="og:description" content="Lecture 2">
+<meta property="og:site_name" content="CSC413 - Fall 2024">
+<meta name="twitter:title" content="CSC413 Neural Networks and Deep Learning – CSC413 - Fall 2024">
+<meta name="twitter:description" content="Lecture 2">
+<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/lecs/w02/images/twitter-card.png">
+<meta name="twitter:creator" content="@minebocek">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">CSC413 Neural Networks and Deep Learning</h1>
+  <p class="subtitle">Lecture 2</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="last-week" class="slide level2">
+<h2>Last Week</h2>
+<ul>
+<li class="fragment">Review of linear models
+<ul>
+<li class="fragment">linear regression</li>
+<li class="fragment">linear classification (logistic regression)</li>
+</ul></li>
+<li class="fragment">Gradient descent to train these models</li>
+</ul>
+</section>
+<section id="this-week" class="slide level2">
+<h2>This Week</h2>
+<ul>
+<li class="fragment">Biological and Artifical Neurons</li>
+<li class="fragment">Limitations of Linear Models for Classification</li>
+<li class="fragment">Multilayer Perceptrons</li>
+<li class="fragment">Backpropagation</li>
+</ul>
+<!-- 01neuron -->
+</section>
+<section>
+<section id="biological-and-artificial-neurons" class="title-slide slide level1 center">
+<h1>Biological and Artificial Neurons</h1>
+
+</section>
+<section id="neuron" class="slide level2">
+<h2>Neuron</h2>
+<p><img data-src="imgs/neuron.png" class="absolute" style="top: 160px; height: 65%; "></p>
+<aside class="notes">
+<ul>
+<li>A Neuron is a cell also known as <em>nerve cell</em></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="neuron-anatomy" class="slide level2">
+<h2>Neuron Anatomy</h2>
+<ul>
+<li class="fragment">The <strong>dendrites</strong>, which are connected to other cells that provide information.</li>
+<li class="fragment">The <strong>cell body</strong>, which consolidates information from the dendrites.</li>
+<li class="fragment">The <strong>axon</strong>, which is an extension from the cell body that passes information to other cells.</li>
+<li class="fragment">The <strong>synapse</strong>, which is the area where the axon of one neuron and the dendrite of another connect.</li>
+</ul>
+</section>
+<section id="what-does-a-neuron-do" class="slide level2">
+<h2>What does a neuron do?</h2>
+<center>
+<!-- ![](imgs/synapse.png){ height=30%} -->
+<p><img data-src="imgs/synapse.png" height="250"></p>
+</center>
+<ul>
+<li class="fragment">Consolidates “information” (voltage difference) from its dendrites</li>
+<li class="fragment">If the total activity in a neuron’s dendrite lowers the voltage difference enough, the entire cell <em>depolarizes</em> and the neuron <em>fires</em></li>
+</ul>
+</section>
+<section id="what-does-a-neuron-do-1" class="slide level2">
+<h2>What does a neuron do?</h2>
+<center>
+<!-- ![](imgs/synapse.png){ height=30%} -->
+<p><img data-src="imgs/synapse.png" height="250"></p>
+</center>
+<ul>
+<li class="fragment">The voltage signal spreads along the axon and to the synapse, then to the next neurons</li>
+<li class="fragment">Neuron sends information to the next cell</li>
+</ul>
+</section>
+<section id="what-makes-a-neuron-fire" class="slide level2">
+<h2>What makes a neuron fire?</h2>
+<p>Neurons can fire in response to…</p>
+<ul>
+<li>retinal cells</li>
+<li>certain edges, lines, angles, movements</li>
+<li>hands and faces (in primates)</li>
+<li>specific people (in humans)
+<ul>
+<li>although the existence of these “grandmother cells” is contested</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<ul>
+<li><em>Grandmother cells</em> are also known as <em>Jennifer Aniston neurons</em></li>
+<li><a href="https://en.wikipedia.org/wiki/Grandmother_cell">Observed</a> single neuron firing when shown pictures of Jennifer Aniston by operating on patients with epileptic seizures.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="modeling-individual-neurons" class="slide level2">
+<h2>Modeling Individual Neurons</h2>
+<center>
+<img data-src="imgs/neuron_model.jpeg" height="300">
+</center>
+<ul>
+<li class="fragment"><span class="math inline">\(x_{i}\)</span> are <strong>inputs</strong> to the neuron</li>
+<li class="fragment"><span class="math inline">\(w_{i}\)</span> are the neuron’s <strong>weights</strong></li>
+<li class="fragment"><span class="math inline">\(b\)</span> is the neuron’s <strong>bias</strong></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>In Learning with Artifical Neural Networks, we want to create a simplified model of neurons in the brain.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="modeling-individual-neurons-ii" class="slide level2">
+<h2>Modeling Individual Neurons II</h2>
+<center>
+<img data-src="imgs/neuron_model.jpeg" height="300">
+</center>
+<ul>
+<li class="fragment"><span class="math inline">\(f\)</span> is an <strong>activation function</strong></li>
+<li class="fragment"><span class="math inline">\(f(\sum_i x_i w_i + b)\)</span> is the neuron’s <strong>activation</strong> (output)</li>
+</ul>
+</section>
+<section id="linear-models-as-a-single-neuron" class="slide level2">
+<h2>Linear Models as a Single Neuron</h2>
+<center>
+<img data-src="imgs/neuron_model.jpeg" height="300">
+</center>
+<ul>
+<li><span class="math inline">\(x_{i}\)</span> are the inputs</li>
+<li><span class="math inline">\(w_{i}\)</span> are components of the <strong>weight vector</strong> <span class="math inline">\({\bf w}\)</span></li>
+<li><span class="math inline">\(b\)</span> is the <strong>bias</strong></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>A (univariate) linear model can be interpreted as one single neuron.</li>
+<li>Univariate means that we model one single attribute.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="linear-models-as-a-single-neuron-ii" class="slide level2">
+<h2>Linear Models as a Single Neuron II</h2>
+<center>
+<img data-src="imgs/neuron_model.jpeg" height="300">
+</center>
+<ul>
+<li><span class="math inline">\(f\)</span> is the identity function</li>
+<li><span class="math inline">\(y = \sum_i x_i w_i + b = {\bf w}^\top {\bf x} + b\)</span> is the output</li>
+</ul>
+</section>
+<section id="logistic-regression-models-for-binary-classification-as-a-single-neuron" class="slide level2">
+<h2>Logistic Regression Models (for Binary Classification) as a Single Neuron</h2>
+<center>
+<img data-src="imgs/neuron_model.jpeg" height="300">
+</center>
+<ul>
+<li><span class="math inline">\(x_{i}\)</span> are the inputs</li>
+<li><span class="math inline">\(w_{i}\)</span> are components of the <strong>weight vector</strong> <span class="math inline">\({\bf w}\)</span></li>
+<li><span class="math inline">\(b\)</span> is the <strong>bias</strong></li>
+</ul>
+</section>
+<section id="logistic-regression-models-for-binary-classification-as-a-single-neuron-ii" class="slide level2">
+<h2>Logistic Regression Models (for Binary Classification) as a Single Neuron II</h2>
+<center>
+<img data-src="imgs/neuron_model.jpeg" height="300">
+</center>
+<ul>
+<li><span class="math inline">\(f = \sigma\)</span></li>
+<li><span class="math inline">\(y = \sigma(\sum_i x_i w_i + b) = \sigma({\bf w}^\top {\bf x} + b)\)</span></li>
+</ul>
+</section>
+<section id="logistic-regression-models-for-multi-class-classification-as-a-neural-network" class="slide level2">
+<h2>Logistic Regression Models (for Multi-Class Classification) as a Neural Network</h2>
+<p>We use <span class="math inline">\(K\)</span> neurons (one for each class):</p>
+<ul>
+<li class="fragment"><span class="math inline">\(x_{i}\)</span> are the inputs</li>
+<li class="fragment"><span class="math inline">\(w_{j,i}\)</span> are components of the <strong>weight matrix</strong> <span class="math inline">\(W\in \mathbb{R}^{K\times N}\)</span></li>
+<li class="fragment"><span class="math inline">\(b_i\)</span> are components of the <strong>bias vector</strong> <span class="math inline">\({\bf b}\)</span></li>
+<li class="fragment"><span class="math inline">\(f = \text{softmax}\)</span> : applied to the entire vector of values</li>
+<li class="fragment"><span class="math inline">\({\bf y} = \text{softmax}(W{\bf x} + {\bf b})\)</span> : outputs of <span class="math inline">\(K\)</span> neurons</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Now we have an entire weight matrix <span class="math inline">\(W\)</span> with <span class="math inline">\(K\)</span> rows and a <span class="math inline">\(K\)</span>-dimensional bias vector. One for each class.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- 02limits -->
+</section></section>
+<section>
+<section id="limits-of-linear-models-for-binary-classification" class="title-slide slide level1 center">
+<h1>Limits of Linear Models for Binary Classification</h1>
+
+</section>
+<section id="xor-example" class="slide level2">
+<h2>XOR example</h2>
+<ul>
+<li>Single neurons (linear classifiers) are very limited in expressive power</li>
+<li>XOR is a classic example of a function that’s not linearly separable, with an elegant proof using convexity</li>
+</ul>
+<center>
+<img data-src="imgs/xor.png" height="250">
+</center>
+</section>
+<section id="convex-sets" class="slide level2">
+<h2>Convex Sets</h2>
+<p>A set <span class="math inline">\(S\subseteq\mathbb{R}^n\)</span> is <strong>convex</strong> if any line segment connecting points in <span class="math inline">\(S\)</span> lies in <span class="math inline">\(S\)</span>.</p>
+<div class="fragment">
+<p>More formally, <span class="math inline">\(S\)</span> is convex iff</p>
+<p><span class="math display">\[{\bf x_1}, {\bf x_2} \in S \implies \forall \lambda \in [0,\, 1],\, \lambda {\bf x_1} + (1 - \lambda){\bf x_2} \in S.\]</span></p>
+</div>
+<div class="fragment">
+<p>A simple inductive argument shows that for <span class="math inline">\({\bf x_1}, \dots, {\bf x_N} \in S\)</span>, the <strong>weighted average</strong> or <strong>convex combination</strong> lies in the set:</p>
+<p><span class="math display">\[\lambda_1 {\bf x_1} + \dots + \lambda_N {\bf x_N} \in S \text{ for }\lambda_1 + \dots + \lambda_N = 1\ .\]</span></p>
+</div>
+<aside class="notes">
+<ul>
+<li><em>iff</em> stands for <em>“if and only if”</em></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="xor-not-linearly-separable" class="slide level2">
+<h2>XOR not linearly separable</h2>
+<p><strong>Initial Observations</strong></p>
+<ul>
+<li class="fragment">A binary linear classifier divides the euclidean space into two half-spaces</li>
+<li class="fragment">Half-spaces are convex</li>
+</ul>
+</section>
+<section id="xor-not-linearly-separable-ii" class="slide level2">
+<h2>XOR not linearly separable II</h2>
+<div class="column" style="width:75%;">
+<ul>
+<li class="fragment">Suppose there were some feasible hypothesis. If the positive examples are in the positive half-space, then the green line segment must be as well.</li>
+<li class="fragment">Similarly, red line segment must lie within the negative half-space.</li>
+<li class="fragment">But the intersection can’t lie in both half-spaces. Contradiction!</li>
+</ul>
+</div><div class="column" style="width:25%;">
+<center>
+<img data-src="imgs/xor2.png">
+</center>
+</div></section>
+<section id="history-of-the-xor-example" class="slide level2">
+<h2>History of the XOR Example</h2>
+<div class="column" style="width:75%;">
+<ul>
+<li class="fragment">Minsky and Papert shown in their work <em>Perceptrons</em> that XOR cannot be learned by a Neuron.</li>
+<li class="fragment">Its pessimistic outlook on perceptrons is assumed as one of the causes for the AI winter of the 70s / early 80s.</li>
+</ul>
+</div><div class="column" style="width:25%;">
+<center>
+<img data-src="imgs/perceptrons_book.jpg">
+</center>
+</div></section>
+<section id="a-more-troubling-example" class="slide level2">
+<h2>A more troubling example</h2>
+<p><img data-src="imgs/notseparable.png" style="height:50.0%"></p>
+<div class="fragment">
+<p>These images represent 16-dimensional vectors. Want to distinguish patterns A and B in all possible translations (with wrap-around).</p>
+</div>
+<div class="fragment">
+<p>Suppose there’s a feasible solution. The average of all translations of A is the vector (0.25, 0.25, . . . , 0.25). Therefore, this point must be classified as A. All translations of B have the same average. Contradiction!</p>
+</div>
+<aside class="notes">
+<ul>
+<li>The argument here is basically a convexity argument again</li>
+<li>The average of all possible patterns A must be classified as A because of convexity. Same for B</li>
+<li>However, both patterns have the same average leading to a contradiction</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="nonlinear-feature-maps" class="slide level2">
+<h2>(Nonlinear) Feature Maps</h2>
+<p>Sometimes, we can overcome this limitation with <strong>nonlinear feature maps</strong>.</p>
+<div class="fragment">
+<p>Nonlinear feature maps transform the original input features into a different (often higher dimensional) representation.</p>
+</div>
+<div class="fragment">
+<p>Consider the XOR problem again and use the following feature map: <span class="math display">\[\Psi({\bf x}) = \begin{pmatrix}x_1 \\ x_2 \\ x_1x_2 \end{pmatrix}\]</span></p>
+</div>
+</section>
+<section id="nonlinear-feature-maps-ii" class="slide level2">
+<h2>(Nonlinear) Feature Maps II</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_1\)</span></th>
+<th><span class="math inline">\(x_2\)</span></th>
+<th><span class="math inline">\(\phi_1({\bf x})\)</span></th>
+<th><span class="math inline">\(\phi_2({\bf x})\)</span></th>
+<th><span class="math inline">\(\phi_3({\bf x})\)</span></th>
+<th>t</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>This is linearly separable (Try it!)</p>
+<div class="fragment">
+<p>… but generally, it can be hard to pick good basis functions.</p>
+</div>
+<div class="fragment">
+<p><strong>We’ll use neural nets to learn nonlinear hypotheses directly</strong></p>
+</div>
+<!-- 03mlp -->
+</section></section>
+<section>
+<section id="multilayer-perceptrons" class="title-slide slide level1 center">
+<h1>Multilayer Perceptrons</h1>
+
+</section>
+<section id="an-artificial-neural-network-multilayer-perceptron" class="slide level2">
+<h2>An Artificial Neural Network (Multilayer Perceptron)</h2>
+<center>
+<img data-src="imgs/neural_net.jpeg" height="270">
+</center>
+<p><strong>Idea</strong></p>
+<ul>
+<li class="fragment">Use a simplified (mathematical) model of a neuron as building blocks</li>
+<li class="fragment">Connect the neurons together accross multiple layers.</li>
+</ul>
+</section>
+<section id="an-artificial-neural-network-multilayer-perceptron-ii" class="slide level2">
+<h2>An Artificial Neural Network (Multilayer Perceptron) II</h2>
+<center>
+<img data-src="imgs/neural_net.jpeg" height="270">
+</center>
+<ul>
+<li class="fragment">An <strong>input layer</strong>: feed in input features (e.g.&nbsp;like retinal cells in your eyes)</li>
+<li class="fragment">A number of <strong>hidden layers</strong>: don’t have specific meaning</li>
+<li class="fragment">An <strong>output layer</strong>: interpret output like a “grandmother cell”</li>
+</ul>
+</section>
+<section id="but-what-do-these-neurons-mean" class="slide level2">
+<h2>But what do these neurons mean?</h2>
+<div class="fragment">
+<ul>
+<li>Use <span class="math inline">\(x_i\)</span> to encode the input
+<ul>
+<li>e.g.&nbsp;pixels in an image</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Use <span class="math inline">\(y\)</span> to encode the output (of a binary classification problem)
+<ul>
+<li>e.g.&nbsp;cancer vs.&nbsp;not cancer</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Use <span class="math inline">\(h_i^{(k)}\)</span> to denote a unit in the hidden layer
+<ul>
+<li>difficult to interpret</li>
+</ul></li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li><span class="math inline">\(x_i\)</span> can be thought of as the neurons that are connected to the receptors in the eye</li>
+<li><span class="math inline">\(y\)</span> can be thought of as a grandmother cell.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="example-mnist-digit-recognition" class="slide level2">
+<h2>Example: MNIST Digit Recognition</h2>
+<center>
+<img data-src="imgs/mnist.png" height="600">
+</center>
+</section>
+<section id="mnist-digit-recognition-ii" class="slide level2">
+<h2>MNIST Digit Recognition II</h2>
+<p>With a logistic regression model, we would have:</p>
+<div class="fragment">
+<ul>
+<li>Input: An 28x28 pixel grayscale image
+<ul>
+<li><span class="math inline">\({\bf x}\)</span> is a vector of length 784</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Target: The digit represented in the image
+<ul>
+<li><span class="math inline">\({\bf t}\)</span> is a one-hot vector of length 10</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Model: <span class="math inline">\({\bf y} = \text{softmax}(W{\bf x} + {\bf b})\)</span></li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li>Each <span class="math inline">\(x_i\)</span> is a intensity value of the corresponding pixel, i.e.&nbsp;a value between 0 and 255.</li>
+<li>As a reminder: the one-hot vector has 1 at the entry corresponding to the classified number and 0 everywhere elese.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="adding-a-hidden-layer" class="slide level2">
+<h2>Adding a Hidden Layer</h2>
+<p>Two layer neural network</p>
+<center>
+<img data-src="imgs/neural_net2.jpeg" height="250">
+</center>
+<ul>
+<li class="fragment">Input size: 784 (number of features)</li>
+<li class="fragment">Hidden size: 50 (we choose this number)</li>
+<li class="fragment">Output size: 10 (number of classes)</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>All the numbers that we can choose such as the number of hidden units are known as <em>Hyperparameters</em>.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="side-note-about-machine-learning-models" class="slide level2">
+<h2>Side note about machine learning models</h2>
+<p>When discussing machine learning and deep learning models, we usually</p>
+<ul>
+<li>first talk about <strong>how to make predictions</strong> assume the weights are trained</li>
+<li><em>then</em> talk about how to train the weights</li>
+</ul>
+<p>Often the second step requires gradient descent or some other optimization method</p>
+</section>
+<section id="making-predictions-computing-the-hidden-layer" class="slide level2">
+<h2>Making Predictions: computing the hidden layer</h2>
+<center>
+<img data-src="imgs/neural_net.jpeg" height="200">
+</center>
+<p><span class="math display">\[\begin{align*}
+h_1 &amp;= f\left(\sum_{i=1}^{784} w^{(1)}_{1,i} x_i + b^{(1)}_1\right) \\
+h_2 &amp;= f\left(\sum_{i=1}^{784} w^{(1)}_{2,i} x_i + b^{(1)}_2\right) \\
+...
+\end{align*}\]</span></p>
+</section>
+<section id="making-predictions-computing-the-output-pre-activation" class="slide level2">
+<h2>Making Predictions: computing the output (pre-activation)</h2>
+<center>
+<img data-src="imgs/neural_net.jpeg" height="200">
+</center>
+<p><span class="math display">\[\begin{align*}
+z_1 &amp;=  \sum_{j=1}^{50} w^{(2)}_{1,j} h_j + b^{(2)}_1  \\
+z_2 &amp;=  \sum_{j=1}^{50} w^{(2)}_{2,j} h_j + b^{(2)}_2  \\
+...
+\end{align*}\]</span></p>
+</section>
+<section id="making-predictions-applying-the-output-activation" class="slide level2">
+<h2>Making Predictions: applying the output activation</h2>
+<center>
+<img data-src="imgs/neural_net.jpeg" height="200">
+</center>
+<p><span class="math display">\[\begin{align*}
+{\bf z} &amp;= \begin{bmatrix}z_1 \\ z_2 \\ \vdots \\ z_{10}\end{bmatrix},\quad {\bf y} = \text{softmax}({\bf z})
+\end{align*}\]</span></p>
+</section>
+<section id="making-predictions-vectorized" class="slide level2">
+<h2>Making Predictions: Vectorized</h2>
+<center>
+<img data-src="imgs/neural_net.jpeg" height="300">
+</center>
+<p><span class="math display">\[\begin{align*}
+{\bf h} &amp;= f(W^{(1)}{\bf x} + {\bf b}^{(1)}) \\
+{\bf z} &amp;= W^{(2)}{\bf h} + {\bf b}^{(2)} \\
+{\bf y} &amp;= \text{softmax}({\bf z})
+\end{align*}\]</span></p>
+</section>
+<section id="activation-functions-common-choices" class="slide level2">
+<h2>Activation Functions: common choices</h2>
+<p>Common Choices:</p>
+<ul>
+<li>Sigmoid activation</li>
+<li>Tanh activation</li>
+<li>ReLU activation</li>
+</ul>
+<p>Rule of thumb: Start with ReLU activation. If necessary, try tanh.</p>
+</section>
+<section id="activation-function-sigmoid" class="slide level2">
+<h2>Activation Function: Sigmoid</h2>
+<center>
+<img data-src="imgs/sigmoid.jpeg" height="300">
+</center>
+<ul>
+<li>Gradient vanishes at the extremes as the function converges to <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> respectively.</li>
+<li>All activations are positive (see <a href="https://artemoppermann.com/activation-functions-in-deep-learning-sigmoid-tanh-relu/">this</a> blog post to learn why we don’t want this)</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Having only positive activations can lead to undesired behavior during training because all weights entering a neuron can either be only increased or only decreased.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="activation-function-tanh" class="slide level2">
+<h2>Activation Function: Tanh</h2>
+<center>
+<img data-src="imgs/tanh.jpeg" height="300">
+</center>
+<ul>
+<li>scaled version of the sigmoid activation</li>
+<li>also somewhat problematic due to gradient signal</li>
+<li>activations can be positive or negative</li>
+</ul>
+</section>
+<section id="activation-function-relu" class="slide level2">
+<h2>Activation Function: ReLU</h2>
+<center>
+<img data-src="imgs/relu.jpeg" height="300">
+</center>
+<ul>
+<li class="fragment">most often used nowadays</li>
+<li class="fragment">all activations are positive</li>
+<li class="fragment">easy to compute gradients</li>
+<li class="fragment">can be problematic if the bias is too large and negative, so the activations are always 0</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>The last point is known as the dying ReLU phenomenon if a neuron becomes inactive and never recovers.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="feature-learning" class="slide level2">
+<h2>Feature Learning</h2>
+<p>Neural nets can be viewed as a way of learning features:</p>
+<center>
+<img data-src="imgs/network_as_features.png" height="400">
+</center>
+</section>
+<section id="feature-learning-contd" class="slide level2">
+<h2>Feature Learning (cont’d)</h2>
+<p>The goal is for these features to become linearly separable:</p>
+<center>
+<img data-src="imgs/features_cartoon.png" height="400">
+</center>
+</section>
+<section id="computing-xor" class="slide level2">
+<h2>Computing XOR</h2>
+<p>Exercise: design a network to compute XOR</p>
+<p>Use a hard threshold activation function:</p>
+<p><span class="math display">\[\begin{align*}
+    f(x) = \begin{cases}
+                1, &amp; x \geq 0 \\
+                0, &amp; x &lt; 0
+            \end{cases}
+\end{align*}\]</span></p>
+</section>
+<section id="computing-xor-demo" class="slide level2">
+<h2>Computing XOR Demo</h2>
+<p>Demo: <a href="https://playground.tensorflow.org/" class="uri">https://playground.tensorflow.org/</a></p>
+</section>
+<section id="expressive-power-linear-layers-no-activation-function" class="slide level2">
+<h2>Expressive Power: Linear Layers (No Activation Function)</h2>
+<ul>
+<li class="fragment">We’ve seen that there are some functions that linear classifiers can’t represent. Are deep networks any better?</li>
+<li class="fragment">Any sequence of layers (with no activation function) can be equivalently represented with a single linear layer.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[\begin{align*}
+{\bf y} &amp;= \left(W^{(3)} W^{(2)} W^{(1)}\right) {\bf x} \\
+        &amp;= W^\prime {\bf x}
+\end{align*}\]</span></p>
+</div>
+<aside class="notes">
+<p>Deep linear networks are no more expressive than linear regression!</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="expressive-power-mlp-nonlinear-activation" class="slide level2">
+<h2>Expressive Power: MLP (nonlinear activation)</h2>
+<ul>
+<li class="fragment">Multilayer feed-forward neural nets with <em>nonlinear</em> activation functions are <strong>universal approximators</strong>: they can approximate any function arbitrarily well.</li>
+<li class="fragment">This has been shown for various activation functions (thresholds, logistic, ReLU, etc.)
+<ul>
+<li class="fragment">Even though ReLU is “almost” linear, it’s nonlinear enough!</li>
+</ul></li>
+</ul>
+</section>
+<section id="universality-for-binary-inputs-and-targets" class="slide level2">
+<h2>Universality for binary inputs and targets</h2>
+<ul>
+<li class="fragment">Hard threshold hidden units, linear output</li>
+<li class="fragment">Strategy: <span class="math inline">\(2^D\)</span> hidden units, each of which responds to one particular input configuration
+<ul>
+<li class="fragment">Only requires one hidden layer, though it needs to be extremely wide!</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p>Limits of universality</p>
+<ul>
+<li>You may need to represent an exponentially large network.</li>
+<li>If you can learn any function, you might just overfit.</li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li>As an exercise: try to think how such units would look like.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- 04backprop -->
+</section></section>
+<section>
+<section id="backpropagation" class="title-slide slide level1 center">
+<h1>Backpropagation</h1>
+
+</section>
+<section id="training-neural-networks" class="slide level2">
+<h2>Training Neural Networks</h2>
+<ul>
+<li class="fragment">How do we find good weights for the neural network?</li>
+<li class="fragment">We can continue to use the loss functions:
+<ul>
+<li class="fragment">cross-entropy loss for classification</li>
+<li class="fragment">square loss for regression</li>
+</ul></li>
+<li class="fragment">The neural network operations we used (weights, etc) are (almost everywhere) differentiable</li>
+</ul>
+<div class="fragment">
+<p><strong>We can use gradient descent!</strong></p>
+</div>
+</section>
+<section id="gradient-descent-recap" class="slide level2">
+<h2>Gradient Descent Recap</h2>
+<p><strong>Goal</strong>: Compute the minimum of a function <span class="math inline">\(\mathcal{E}({\bf a})\)</span></p>
+<ul>
+<li class="fragment">Start with a set of parameters <span class="math inline">\(\mathbf{a}_0\)</span> (initialize to some value)</li>
+<li class="fragment">Compute the gradient <span class="math inline">\(\frac{\partial \mathcal{E}}{\partial \mathbf{a}}\)</span>.</li>
+<li class="fragment">Update the parameters towards the negative direction of the gradient</li>
+</ul>
+</section>
+<section id="gradient-descent-for-neural-networks" class="slide level2">
+<h2>Gradient Descent for Neural Networks</h2>
+<p><strong>Idea:</strong> Use gradient descent for “learning” neural networks.</p>
+<ul>
+<li class="fragment">We have a lot of parameters
+<ul>
+<li class="fragment">High dimensional (all weights and biases are parameters)</li>
+<li class="fragment">Hard to visualize</li>
+<li class="fragment">Many iterations (“steps”) needed</li>
+</ul></li>
+<li class="fragment">In Deep Learning <span class="math inline">\(\frac{\partial \mathcal{E}}{\partial w}\)</span> is the average of <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial w}\)</span> over multiple training examples</li>
+</ul>
+<div class="fragment">
+<p><strong>Challenge:</strong> How to compute <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial w}\)</span> effectively.</p>
+</div>
+<div class="fragment">
+<p><strong>Solution:</strong> Backpropagation!</p>
+</div>
+</section>
+<section id="univariate-chain-rule" class="slide level2">
+<h2>Univariate Chain Rule</h2>
+<p>Recall: if <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(x(t)\)</span> are univariate functions, then</p>
+<p><span class="math display">\[\frac{d}{dt}f(x(t)) = \frac{df}{dx}\frac{dx}{dt}\]</span></p>
+</section>
+<section id="univariate-chain-rule-for-least-squares-with-a-logistic-model" class="slide level2">
+<h2>Univariate Chain Rule for Least Squares with a Logistic Model</h2>
+<p>Recall: Univariate logistic least squares model</p>
+<p><span class="math display">\[\begin{align*}
+z &amp;= wx + b \\
+y &amp;= \sigma(z) \\
+\mathcal{L} &amp;= \frac{1}{2}(y - t)^2
+\end{align*}\]</span></p>
+<p>Let’s compute the loss derivative</p>
+</section>
+<section id="univariate-chain-rule-computation-i" class="slide level2">
+<h2>Univariate Chain Rule Computation I</h2>
+<p>How you would have done it in calculus class</p>
+<p><span class="math display">\[\begin{align*}
+\mathcal{L} &amp;= \frac{1}{2} ( \sigma(w x + b) - t)^2 \\
+\frac{\partial \mathcal{L}}{\partial w} &amp;= \frac{\partial}{\partial w} \left[ \frac{1}{2} ( \sigma(w x + b) - t)^2 \right] \\
+&amp;= \frac{1}{2} \frac{\partial}{\partial w} ( \sigma(w x + b) - t)^2 \\
+&amp;= (\sigma(w x + b) - t) \frac{\partial}{\partial w} (\sigma(w x + b) - t) \\
+&amp;\ldots
+\end{align*}\]</span></p>
+</section>
+<section id="univariate-chain-rule-computation-ii" class="slide level2">
+<h2>Univariate Chain Rule Computation II</h2>
+<p>How you would have done it in calculus class</p>
+<p><span class="math display">\[\begin{align*}
+\ldots &amp;= (\sigma(w x + b) - t) \frac{\partial}{\partial w} (\sigma(w x + b) - t) \\
+&amp;= (\sigma(w x + b) - t) \sigma^\prime (w x + b) \frac{\partial}{\partial w} (w x + b) \\
+&amp;= (\sigma(w x + b) - t) \sigma^\prime (w x + b) x
+\end{align*}\]</span></p>
+</section>
+<section id="univariate-chain-rule-computation-iii" class="slide level2">
+<h2>Univariate Chain Rule Computation III</h2>
+<p>Similarly for <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial b}\)</span></p>
+<p><span class="math display">\[\begin{align*}
+\mathcal{L} &amp;= \frac{1}{2} ( \sigma(w x + b) - t)^2 \\
+\frac{\partial \mathcal{L}}{\partial b} &amp;= \frac{\partial}{\partial b} \left[ \frac{1}{2} ( \sigma(w x + b) - t)^2 \right] \\
+        &amp;= \frac{1}{2} \frac{\partial}{\partial b} ( \sigma(w x + b) - t)^2 \\
+        &amp;= (\sigma(w x + b) - t) \frac{\partial}{\partial b} (\sigma(w x + b) - t) \\
+        &amp;\ldots
+\end{align*}\]</span></p>
+</section>
+<section id="univariate-chain-rule-computation-iv" class="slide level2">
+<h2>Univariate Chain Rule Computation IV</h2>
+<p>Similarly for <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial b}\)</span></p>
+<p><span class="math display">\[\begin{align*}
+\ldots &amp;= (\sigma(w x + b) - t) \frac{\partial}{\partial b} (\sigma(w x + b) - t) \\
+&amp;= (\sigma(w x + b) - t) \sigma^\prime (w x + b) \frac{\partial}{\partial b} (w x + b) \\
+&amp;= (\sigma(w x + b) - t) \sigma^\prime (w x + b)
+\end{align*}\]</span></p>
+<div class="fragment">
+<p>Q: What are the disadvantages of this approach?</p>
+</div>
+</section>
+<section id="a-more-structured-way-to-compute-the-derivatives" class="slide level2">
+<h2>A More Structured Way to Compute the Derivatives</h2>
+<!-- \begin{minipage}{0.45 \linewidth} -->
+<p><span class="math display">\[\begin{align*}
+z &amp;= wx + b \\
+y &amp;= \sigma(z) \\
+\mathcal{L} &amp;= \frac{1}{2}(y - t)^2
+\end{align*}\]</span> <!-- \end{minipage} --></p>
+<p>Less repeated work; easier to write a program to efficiently compute derivatives</p>
+</section>
+<section id="a-more-structured-way-to-compute-the-derivatives-ii" class="slide level2">
+<h2>A More Structured Way to Compute the Derivatives II</h2>
+<!-- \begin{minipage}{0.45 \linewidth} -->
+<p><span class="math display">\[\begin{align*}
+  \frac{d \mathcal{L}}{d y} &amp;= y - t \\
+  \frac{d \mathcal{L}}{d z} &amp;= \frac{d \mathcal{L}}{d y}\sigma'(z) \\
+  \frac{\partial \mathcal{L}}{\partial w} &amp;= \frac{d \mathcal{L}}{d z} \, x \\
+  \frac{\partial \mathcal{L}}{\partial b} &amp;= \frac{d \mathcal{L}}{d z}
+\end{align*}\]</span> <!-- \end{minipage} --></p>
+<p>Less repeated work; easier to write a program to efficiently compute derivatives</p>
+</section>
+<section id="computation-graph" class="slide level2">
+<h2>Computation Graph</h2>
+<p>We can diagram out the computations using a <em>computation graph</em>.</p>
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">The <em>nodes</em> represent all the inputs and computed quantities.</li>
+<li class="fragment">The <em>edges</em> represent which nodes are computed directly as a function of which other nodes.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<center>
+<img data-src="imgs/unreg_computation_graph.png" height="400">
+</center>
+</div></section>
+<section id="chain-rule-error-signal-notation" class="slide level2">
+<h2>Chain Rule (Error Signal) Notation</h2>
+<ul>
+<li class="fragment">Use <span class="math inline">\(\overline{y}\)</span> to denote the derivative <span class="math inline">\(\frac{d \mathcal{L}}{d y}\)</span>
+<ul>
+<li class="fragment">sometimes called the <strong>error signal</strong></li>
+</ul></li>
+<li class="fragment">This notation emphasizes that the error signals are just values our program is computing (rather than a mathematical operation).</li>
+<li class="fragment">This is notation introduced by Prof.&nbsp;Roger Grosse, and not standard notation</li>
+</ul>
+</section>
+<section id="chain-rule-error-signal-notation-ii" class="slide level2">
+<h2>Chain Rule (Error Signal) Notation II</h2>
+<div class="column" style="width:50%;">
+<p>Computing the loss:</p>
+<p><span class="math display">\[\begin{align*}
+z &amp;= wx + b \\
+y &amp;= \sigma(z) \\
+\mathcal{L} &amp;= \frac{1}{2}(y - t)^2
+\end{align*}\]</span></p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p>Computing the derivatives:</p>
+<p><span class="math display">\[\begin{align*}
+\overline{y} &amp;= y - t \\
+\overline{z} &amp;= \overline{y} \sigma'(z) \\
+\overline{w} &amp;= \overline{z} \, x \\
+\overline{b} &amp;= \overline{z}
+\end{align*}\]</span></p>
+</div>
+</div></section>
+<section id="multiclass-logistic-regression-computation-graph" class="slide level2">
+<h2>Multiclass Logistic Regression Computation Graph</h2>
+<p>In general, the computation graph <em>fans out</em>:</p>
+<center>
+<img data-src="imgs/multiway_graph.png" height="400">
+</center>
+</section>
+<section id="multiclass-logistic-regression-computation-graph-ii" class="slide level2">
+<h2>Multiclass Logistic Regression Computation Graph II</h2>
+<!-- \begin{minipage}{0.45 \linewidth} -->
+<!-- \includegraphics[width=\linewidth]{imgs/multiway_graph.png} -->
+<!-- \end{minipage}
+\begin{minipage}{0.45 \linewidth} -->
+<p><span class="math display">\[\begin{align*}
+z_l &amp;= \sum_j w_{lj} x_j + b_l \\
+y_k &amp;= \frac{e^{z_k}}{\sum_l e^{z_l}} \\
+\mathcal{L} &amp;= -\sum_k t_k \log{y_k}
+\end{align*}\]</span> <!-- \end{minipage} --></p>
+<p>There are multiple paths for which a weight like <span class="math inline">\(w_{11}\)</span> affects the loss <span class="math inline">\(\mathcal{L}\)</span>.</p>
+</section>
+<section id="multivariate-chain-rule" class="slide level2">
+<h2>Multivariate Chain Rule</h2>
+<p>Suppose we have a function <span class="math inline">\(f(x, y)\)</span> and functions <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span> (all the variables here are scalar-valued). Then</p>
+<p><span class="math display">\[\frac{d}{dt}f(x(t), y(t)) = \frac{\partial f}{\partial x}\frac{dx}{dt} +  \frac{\partial f}{\partial y}\frac{dy}{dt}\]</span></p>
+<center>
+<img data-src="imgs/toy_multivariate_graph.png" height="250">
+</center>
+</section>
+<section id="multivariate-chain-rule-example" class="slide level2">
+<h2>Multivariate Chain Rule Example</h2>
+<p>If <span class="math inline">\(f(x, y) = y + e^{xy}\)</span>, <span class="math inline">\(x(t) = \cos t\)</span> and <span class="math inline">\(y(t) = t^2\)</span>…</p>
+<p><span class="math display">\[\begin{align*}
+\frac{d}{dt}f(x(t), y(t)) &amp;= \frac{\partial f}{\partial x}\frac{dx}{dt} +  \frac{\partial f}{\partial y}\frac{dy}{dt} \\
+&amp;= \left( y e^{xy} \right) \cdot \left( -\sin (t) \right) + \left( 1 + xe^{xy} \right) \cdot 2t
+\end{align*}\]</span></p>
+</section>
+<section id="multivariate-chain-rule-notation" class="slide level2">
+<h2>Multivariate Chain Rule Notation</h2>
+<center>
+<img data-src="imgs/label_equation.png" height="250"> <img data-src="imgs/multivariate_context.png" height="250">
+</center>
+<p>In our notation</p>
+<p><span class="math display">\[\overline{t} = \overline{x} \frac{dx}{dt} +  \overline{y} \frac{dy}{dt}\]</span></p>
+</section>
+<section id="the-backpropagation-algorithm" class="slide level2">
+<h2>The Backpropagation Algorithm</h2>
+<ul>
+<li>Backpropagation is an <em>algorithm</em> to compute gradients efficiency
+<ul>
+<li>Forward Pass: Compute predictions (and save intermediate values)</li>
+<li>Backwards Pass: Compute gradients</li>
+</ul></li>
+<li>The idea behind backpropagation is very similar to <em>dynamic programming</em>
+<ul>
+<li>Use chain rule, and be careful about the order in which we compute the derivatives</li>
+</ul></li>
+</ul>
+</section>
+<section id="backpropagation-example" class="slide level2">
+<h2>Backpropagation Example</h2>
+<center>
+<img data-src="imgs/mlp_graph.png" height="450">
+</center>
+<!-- \includegraphics[width=0.9 \linewidth]{imgs/mlp_graph.png} -->
+</section>
+<section id="backpropagation-for-a-mlp" class="slide level2">
+<h2>Backpropagation for a MLP</h2>
+<!-- \begin{minipage}{0.45 \linewidth} -->
+<!-- \includegraphics[width=0.9 \linewidth]{imgs/mlp_graph.png} -->
+<p><strong>Forward pass:</strong> <span class="math display">\[\begin{align*}
+z_i &amp;= \sum_j w_{ij}^{(1)} x_j + b_i^{(1)} \\
+h_i &amp;= \sigma(z_i) \\
+y_k &amp;= \sum_i w_{ki}^{(2)} h_i + b_k^{(2)} \\
+\mathcal{L} &amp;= \frac{1}{2}\sum_k (y_k - t_k)^2
+\end{align*}\]</span> <!-- \end{minipage} --></p>
+</section>
+<section id="backpropagation-for-a-mlp-ii" class="slide level2">
+<h2>Backpropagation for a MLP II</h2>
+<p><strong>Backward pass:</strong></p>
+<div class="column" style="width:50%;">
+<p><span class="math display">\[\begin{align*}
+\overline{\mathcal{L}} &amp;= 1 \\
+\overline{y_k}  &amp;= \overline{\mathcal{L}}(y_k - t_k) \\
+\overline{w_{ki}^{(2)}}  &amp;= \overline{y_k}h_i \\
+\overline{b_{k}^{(2)}}  &amp;= \overline{y_k}
+\end{align*}\]</span></p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><span class="math display">\[\begin{align*}
+\overline{h_i}  &amp;= \sum_k \overline{y_k} w_{ki}^{(2)} \\
+\overline{z_i} &amp;= \overline{h_i} \sigma'(z_i) \\
+\overline{w_{ij}^{(1)}} &amp;= \overline{z_i} x_j \\
+\overline{b_{i}^{(1)}} &amp;= \overline{z_i}
+\end{align*}\]</span></p>
+</div>
+</div></section>
+<section id="backpropagation-for-a-mlp-1" class="slide level2">
+<h2>Backpropagation for a MLP</h2>
+<div class="column" style="width:50%;">
+<!-- \begin{minipage}{0.45 \linewidth} -->
+<!-- \includegraphics[width=0.9 \linewidth]{imgs/mlp_graph.png} -->
+<p><strong>Forward pass:</strong> <span class="math display">\[\begin{align*}
+{\bf z} &amp;=  W^{(1)}{\bf x} + {\bf b}^{(1)} \\
+{\bf h} &amp;= \sigma({\bf z}) \\
+{\bf y} &amp;=  W^{(2)}{\bf h} + {\bf b}^{(2)} \\
+\mathcal{L} &amp;= \frac{1}{2} || {\bf y} - {\bf t}||^2
+\end{align*}\]</span> <!-- \end{minipage} --></p>
+</div><div class="column" style="width:50%;">
+<center>
+<img data-src="imgs/mlp_graph.png" height="250">
+</center>
+</div></section>
+<section id="backpropagation-for-a-mlp-2" class="slide level2">
+<h2>Backpropagation for a MLP</h2>
+<div class="column" style="width:50%;">
+<p><strong>Backward pass:</strong> <span class="math display">\[\begin{align*}
+\overline{\mathcal{L}} &amp;= 1 \\
+\overline{{\bf y}}  &amp;= \overline{\mathcal{L}}({\bf y} - {\bf t}) \\
+\overline{W^{(2)}}  &amp;= \overline{{\bf y}}{\bf h}^\top \\
+\overline{{\bf b^{(2)}}}  &amp;= \overline{{\bf y}} \\
+&amp; \ldots
+\end{align*}\]</span></p>
+</div><div class="column" style="width:50%;">
+<center>
+<img data-src="imgs/mlp_graph.png" height="250">
+</center>
+</div></section>
+<section id="backpropagation-for-a-mlp-3" class="slide level2">
+<h2>Backpropagation for a MLP</h2>
+<div class="column" style="width:50%;">
+<p><strong>Backward pass:</strong> <span class="math display">\[\begin{align*}
+&amp; \ldots \\
+\overline{{\bf h}}  &amp;= {W^{(2)}}^\top\overline{y} \\
+\overline{{\bf z}} &amp;= \overline{{\bf h}} \circ \sigma'({\bf z}) \\
+\overline{W^{(1)}} &amp;= \overline{{\bf z}} {\bf x}^\top \\
+\overline{{\bf b}^{(1)}} &amp;= \overline{{\bf z}}
+\end{align*}\]</span></p>
+</div><div class="column" style="width:50%;">
+<center>
+<img data-src="imgs/mlp_graph.png" height="250">
+</center>
+</div></section>
+<section id="implementing-backpropagation-i" class="slide level2">
+<h2>Implementing Backpropagation I</h2>
+<center>
+<img data-src="imgs/message_passing.png" height="500">
+</center>
+</section>
+<section id="implementing-backpropagation-ii" class="slide level2">
+<h2>Implementing Backpropagation II</h2>
+<p><strong>Forward pass:</strong> Each node…</p>
+<ul>
+<li>receives messages (inputs) from its parents</li>
+<li>uses these messages to compute its own values</li>
+</ul>
+<div class="fragment">
+<p><strong>Backward pass:</strong> Each node…</p>
+<ul>
+<li>receives messages (error signals) from its children</li>
+<li>uses these messages to compute its own error signal</li>
+<li>passes message to its parents</li>
+</ul>
+</div>
+<div class="fragment">
+<p>This algorithm provides <strong>modularity</strong>!</p>
+</div>
+<!--
+## In PyTorch (from tutorial 4)
+
+```python
+model = nn.Linear(784, 10) # classification model
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(model.parameters(), lr=0.005)
+
+zs = model(xs)           # forward pass
+loss = criterion(zs, ts) # compute the loss (cost)
+loss.backward()          # backwards pass (error signals)
+optimizer.step()         # update the parameters
+optimizer.zero_grad()    # a clean up step
+```
+-->
+</section>
+<section id="backpropagation-in-vectorized-form" class="slide level2">
+<h2>Backpropagation in Vectorized Form</h2>
+<center>
+<img data-src="imgs/backprop_vjp.png" height="600">
+</center>
+</section>
+<section id="backpropagation-in-practice" class="slide level2">
+<h2>Backpropagation in practice</h2>
+<div class="incrfemental">
+<ul>
+<li>Backprop is used to train the overwhelming majority of neural nets today.
+<ul>
+<li>Even optimization algorithms much fancier than gradient descent (e.g.~second-order methods) use backprop to compute the gradients.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="backpropagation-in-practice-ii" class="slide level2">
+<h2>Backpropagation in practice II</h2>
+<ul>
+<li class="fragment">Despite its practical success, backprop is believed to be neurally (biologically) implausible.
+<ul>
+<li class="fragment">No evidence for biological signals analogous to error derivatives.</li>
+<li class="fragment">All the biologically plausible alternatives we know about learn much more slowly (on computers).</li>
+</ul></li>
+</ul>
+<!-- Wrap-Up -->
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center">
+<h1>Wrap Up</h1>
+
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<ul>
+<li class="fragment">Artificial neurons draw inspiration from nerve cells / neurons in the brain</li>
+<li class="fragment">On its own, the expresiveness of a single neuron is limited</li>
+<li class="fragment">Stacking neurons and nonlinear activation functions allows for learning more complex functions</li>
+<li class="fragment">Backpropagation can be used for this learning task</li>
+</ul>
+</section>
+<section id="what-to-do-this-week" class="slide level2">
+<h2>What to do this week?</h2>
+<ul>
+<li class="fragment">You can already complete Assignment 1
+<ul>
+<li class="fragment">Start early so you can get help early!</li>
+</ul></li>
+<li class="fragment">Attend tutorials this week!</li>
+<li class="fragment">Complete the readings for this week.</li>
+<li class="fragment">Preview next week’s materials</li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"src":"chalkboard.json","boardmarkerWidth":2,"chalkWidth":2,"chalkEffect":1},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
