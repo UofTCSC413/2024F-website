@@ -1,6 +1,6 @@
-# Website for CSC 2626 at the University of Toronto (Fall 2024)
+# Website for CSC 413 at the University of Toronto (Fall 2024)
 
-🔗 https://csc2626.github.io/website/
+🔗 https://uoftcsc413.github.io/2024F-website/
 
 ## Colors
 
