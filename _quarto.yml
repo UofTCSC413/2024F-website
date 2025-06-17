@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: _site
 
 website:
   page-navigation: true
@@ -32,18 +33,12 @@ website:
       - icon: github
         href: https://github.com/UofTCSC413
         text: "Github workspace for the course"
-      # - icon: chat-quote
-      #   href: https://piazza.com/utoronto.ca/fall2024/csc2626/home
-      #   text: "Discuss on Piazza"
       - icon: megaphone
         href: https://q.utoronto.ca/courses/366713
         text: "Official announcements on Quercus"
       - icon: envelope-at
         href: course-team.html
         text: "Email teaching staff"
-      # - icon: robot
-      #   href: https://robotics.utoronto.ca/
-      #   text: "UofT Robotics Institute"
    	
         
     style: "docked"
@@ -62,8 +57,8 @@ website:
         text: Teaching Staff
       - href: course-schedule.qmd
         text: Schedule
-      # - href: course-links.qmd
-      #   text: Robotics Simulators
+      - href: weekly-material.qmd
+        text: Weekly Material
       - href: project-description.qmd
         text: Final Project
       

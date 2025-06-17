@@ -1,0 +1,185 @@
+---
+title: "Weekly Materials"
+---
+
+## Week 1 {#week-1}
+
+**Prepare**\
+[Software Installations](https://q.utoronto.ca/courses/366713/pages/software-installations)
+
+**Tutorials/Labs**
+
+-   No tutorials/labs this week but please complete the [Pre-Requisite Math Problems](https://q.utoronto.ca/courses/366713/files/32607079?wrap=1 "prereq.pdf")
+-   Suggested Review :
+    -   [Linear Algebra review](http://www.deeplearningbook.org/contents/linear_algebra.html) 
+    -   [Probability review](https://www.deeplearningbook.org/contents/prob.html) 
+
+## Week 2 {#week-2}
+
+**Notes**
+
+-   Prof. Roger Grosse's notes on [backdrop](https://q.utoronto.ca/courses/366713/files/32607080?wrap=1)
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w02/exercises02.html "Exercise"){aria-label="Exercise 2"}
+
+-   [Solutions](/ex/w02/exercises02_solution.html "Exercise Solutions"){aria-label="Exercise 2 Solutions"}
+
+**Tutorials/Labs**
+
+-   In-person lab session: PyTorch basics with linear models [lab01](/labs/lab01.html "Lab instructions"){aria-label="Lab 1 instructions"}
+
+## Week 3 {#week-3}
+
+**Notes**
+
+-   [GloVe embedding demo](https://colab.research.google.com/drive/1aNbE6HcawVF67RV0hWi4qK33Um7cKykr?usp=sharing#scrollTo=H1mONlhzJ_qQ) 
+
+-   [Video on autodiff](https://www.youtube.com/watch?v=wG_nF1awSSY)
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w03/exercises03.html "Exercise"){aria-label="Exercise 3"}
+
+-   [Solutions](/ex/w03/exercises03_solution.html "Exercise Solutions"){aria-label="Exercise 3 Solutions"}
+
+**Additional Resources**
+
+-   Prof. Roger Grosse's notes on [autodiff](https://q.utoronto.ca/courses/366713/files/32607086?wrap=1 "L03a.pdf") and [word embeddings](https://q.utoronto.ca/courses/366713/files/32607091?wrap=1 "L03b.pdf")
+
+-   Notes on Backpropagation <https://cs231n.github.io/optimization-2/>
+
+-   Automatic Differentiation in Machine Learning: a Survey (2018) <https://arxiv.org/pdf/1502.05767.pdf>
+
+**Tutorials/Labs**
+
+-   In-person lab session: numerical gradients / word embeddings [lab02](/labs/lab02.html "Lab instructions"){aria-label="Lab 2 instructions"}
+
+## Week 4 {#week-4}
+
+-   Demo: [Colab Notebook](https://colab.research.google.com/drive/1AL2ocL6muULg4P2hzHBOLTPL6RGbQaB5?usp=sharing)
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w04/exercises04.html "Exercise"){aria-label="Exercise 4"}
+
+-   [Solutions](/ex/w04/exercises04_solution.html "Exercise Solutions"){aria-label="Exercise 4 Solutions"}
+
+**Tutorials/Labs**
+
+-   In-person lab session: classification and medical MNIST [lab03](/labs/lab03.html "Lab instructions"){aria-label="Lab 3 instructions"}
+
+## Week 5 {#week-5}
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w05/exercises05.html "Exercise"){aria-label="Exercise 5"}
+
+-   [Solutions](/ex/w05/exercises05_solution.html "Exercise Solutions"){aria-label="Exercise 5 Solutions"}
+
+**Additional Resources**
+
+-   Taylor Series <https://www.youtube.com/watch?v=3d6DsjIBzJ4>
+
+**Tutorials/Labs**
+
+-   Tutorial: how to implement SGD with momentum [neural network optimization](https://q.utoronto.ca/courses/366713/files/33627019?wrap=1)
+
+## Week 6 {#week-6}
+
+-   [Ensembling code skeleton](https://q.utoronto.ca/courses/366713/files/32607111?wrap=1 "exercises06-ensembling.ipynb")
+
+-   [The definition of differential privacy](https://www.youtube.com/watch?v=lg-VhHlztqo)
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w06/exercises06.html "Exercise"){aria-label="Exercise 6"}
+
+-   [Solutions](/ex/w06/exercises06_solution.html "Exercise Solutions"){aria-label="Exercise 6 Solutions"}
+
+**Tutorials/Labs**
+
+-   In-person lab session: optimization and differential privacy [lab05](/labs/lab05.html "Lab instructions"){aria-label="Lab 5 instructions"}
+
+## Week 7 {#week-7}
+
+-   [Troubleshooting Deep Neural Networks](http://josh-tobin.com/assets/pdf/troubleshooting-deep-neural-networks-01-19.pdf)
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w07/exercises07.html "Exercise"){aria-label="Exercise 7"}
+
+-   [Solutions](/ex/w07/exercises07_solution.html "Exercise Solutions"){aria-label="Exercise 7 Solutions"}
+
+**Tutorials/Labs** - In-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions
+
+## Week 8 {#week-8}
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w08/exercises08.html "Exercise"){aria-label="Exercise 8"}
+
+-   [Solutions](/ex/w08/exercises08_solution.html "Exercise Solutions"){aria-label="Exercise 8 Solutions"}
+
+**Tutorials/Labs** - In-person lab session: transfer learning and double descent [lab07](/labs/lab07.html "Lab instructions"){aria-label="Lab 7 instructions"}
+
+## Week 9 {#week-9}
+
+Fall reading week. No lecture.
+
+## Week 10 {#week-10}
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w09/exercises09.html "Exercise"){aria-label="Exercise 9"}
+
+-   [Solutions](/ex/w09/exercises09_solution.html "Exercise Solutions"){aria-label="Exercise 9 Solutions"}
+
+**Additional Resources**
+
+-   Transformer video:<https://www.youtube.com/watch?v=XSSTuhyAmnI>
+
+-   <https://nlp.seas.harvard.edu/2018/04/03/attention.html>
+
+-   <http://peterbloem.nl/blog/transformers>
+
+-   Last year's A3 (a seq2seq autoencoder) <http://modelai.gettysburg.edu/2021/headlines/>
+
+**Tutorials/Labs**
+
+-   In-person lab session: gradcam and input gradients [lab09](/labs/lab09.html "Lab instructions"){aria-label="Lab 9 instructions"}
+
+## Week 11 {#week-11}
+
+-   [Autoencoder Notebook](/lecs/w10/autoencoder_notebook.html)
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w10/exercises10.html "Exercise"){aria-label="Exercise 10"}
+-   [Solutions](/ex/w10/exercises10_solution.html "Exercise Solutions"){aria-label="Exercise 10 Solutions"}
+
+**Tutorials/Labs**
+
+-   In-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions
+
+## Week 12 {#week-12}
+
+**Exercises**
+
+-   [In-class Exercise](/ex/w11/exercises11.html "Exercise"){aria-label="Exercise 11"}
+-   [Solutions](/ex/w11/exercises11_solution.html "Exercise Solutions"){aria-label="Exercise 11 Solutions"}
+
+**Tutorials/Labs**
+
+-   In-person lab session: RNN text classification [lab10](/labs/lab10.html "Lab instructions"){aria-label="Lab 10 instructions"}
+
+## Week 13 {#week-13}
+
+**Tutorials/Labs**
+
+-   In-person lab session: text generation with transformers [lab11](/labs/lab11.html "Lab instructions"){aria-label="Lab 11 instructions"}
+
+## Week 14 {#week-14}
+
+Final project submission
