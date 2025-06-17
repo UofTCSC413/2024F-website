@@ -30,7 +30,7 @@ website:
     
     tools:
       - icon: github
-        href: https://github.com/csc2626
+        href: https://github.com/UofTCSC413
         text: "Github workspace for the course"
       # - icon: chat-quote
       #   href: https://piazza.com/utoronto.ca/fall2024/csc2626/home
@@ -52,12 +52,10 @@ website:
     contents:
       - href: index.qmd
         text: Overview
-      # - href: https://piazza.com/utoronto.ca/fall2024/csc2626/home
-      #   text: Piazza
       - href: https://q.utoronto.ca/courses/366713
         text: Quercus	
-      # - href: course-syllabus.qmd
-      #   text: Syllabus
+      - href: course-syllabus.qmd
+        text: Syllabus
       # - href: course-grading.qmd
       #   text: Grading
       - href: course-team.qmd
