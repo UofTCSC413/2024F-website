@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab02 – CSC413 - Fall 2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-69b08db278f499bc7d235ce342f73d67.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="CSC413 - Fall 2024">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta property="og:site_name" content="CSC413 - Fall 2024">
+<meta name="twitter:title" content="CSC413 - Fall 2024">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta name="twitter:creator" content="@minebocek">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#csc413-lab-2-word-embeddings" id="toc-csc413-lab-2-word-embeddings" class="nav-link active" data-scroll-target="#csc413-lab-2-word-embeddings">CSC413 Lab 2: Word Embeddings</a>
+  <ul class="collapse">
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#part-1.-data" id="toc-part-1.-data" class="nav-link" data-scroll-target="#part-1.-data">Part 1. Data</a></li>
+  <li><a href="#part-2.-model-building-forward-pass" id="toc-part-2.-model-building-forward-pass" class="nav-link" data-scroll-target="#part-2.-model-building-forward-pass">Part 2. Model Building: Forward Pass</a></li>
+  <li><a href="#part-3.-model-building-backwards-pass" id="toc-part-3.-model-building-backwards-pass" class="nav-link" data-scroll-target="#part-3.-model-building-backwards-pass">Part 3. Model Building: Backwards Pass</a></li>
+  <li><a href="#part-4.-applying-the-model" id="toc-part-4.-applying-the-model" class="nav-link" data-scroll-target="#part-4.-applying-the-model">Part 4. Applying the Model</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab02.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="csc413-lab-2-word-embeddings" class="level1">
+<h1>CSC413 Lab 2: Word Embeddings</h1>
+<p>In this lab, we will build a neural network that can predict the next word in a sentence given the previous three. We will apply an idea called <em>weight sharing</em> to go beyond the multi-layer perceptrons that we discussed in class.</p>
+<p>We will also solve this problem problem twice: once in numpy, and once using PyTorch. When using numpy, you’ll implement the backpropagation computation manually.</p>
+<p>The prediction task is not very interesting on its own, but in learning to predict subsequent words given the previous three, our neural networks will learn about how to <em>represent</em> words. In the last part of the lab, we’ll explore the <em>vector representations</em> of words that our model produces, and analyze these representations.</p>
+<p>Acknowledgements:</p>
+<ul>
+<li>Based on an assignment by George Dahl, Jing Yao Li, and Roger Grosse</li>
+<li>Modification by Lisa Zhang</li>
+</ul>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>Click “Working Alone” on Markus.</p>
+<p>Submit the ipynb file <code>lab02.ipynb</code> on Markus <strong>containing all your solutions to the Graded Task</strong>s. Your notebook file must contain your code <strong>and outputs</strong> where applicable, including printed lines and images. Your TA will not run your code for the purpose of grading.</p>
+<p>For this lab, you should submit the following:</p>
+<ul>
+<li>Part 1. Your implementation of <code>convert_words_to_indices</code> (1 point)</li>
+<li>Part 2. Your implementation of <code>do_forward_pass</code> (4 points)</li>
+<li>Part 3. Your implementation of <code>do_backward_pass</code> (3 points)</li>
+<li>Part 3. The output of the gradient checking code (1 point)</li>
+<li>Part 4. Your explanation of why each row of <code>model.Ww</code> corresponds to a word representation (1 point)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-1.-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
+<p>We will begin by downloading the data onto Google Colab.</p>
+<pre><code># Download lab data file
+!wget https://www.cs.toronto.edu/~lczhang/413/raw_sentences.txt</code></pre>
+<p>With any machine learning problem, the first thing that we would want to do is to get an intuitive understanding of what our data looks like. The following code reads the sentences in our file, split each sentence into its individual words, and stores the sentences (list of words) in the variable <code>sentences</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sentences <span class="op">=</span> []</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> <span class="bu">open</span>(<span class="st">'raw_sentences.txt'</span>):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> line.split()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    sentence <span class="op">=</span> [word.lower() <span class="cf">for</span> word <span class="kw">in</span> words]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    sentences.append(sentence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are 97,162 sentences in total, and these sentences are composed of 250 distinct words.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> <span class="bu">set</span>([w <span class="cf">for</span> s <span class="kw">in</span> sentences <span class="cf">for</span> w <span class="kw">in</span> s])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(sentences)) <span class="co"># 97162</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(vocab)) <span class="co"># 250</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will separate our data into training, validation, and test. We will use 10,000 sentences for test, 10,000 for validation, and the remaining for training.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, randomly shuffle the sentences in case these sentences are</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># temporally correlated (i.e., so that our train/val/test sets have</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># equal probability of getting the earlier vs later sentences)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">10</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>random.shuffle(sentences)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>test, valid, train <span class="op">=</span> sentences[:<span class="dv">10000</span>], sentences[<span class="dv">10000</span>:<span class="dv">20000</span>], sentences[<span class="dv">20000</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: To get an understanding of the data set that we are working with, start by printing 10 sentences in the training set. How are punctuated treated in this word representation? What about words with apostrophes?</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your code goes here</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, s <span class="kw">in</span> <span class="bu">enumerate</span>(sentences): <span class="co"># SOLUTION</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s)            <span class="co"># SOLUTION</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;=</span> <span class="dv">10</span>:         <span class="co"># SOLUTION</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span>           <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is also a good idea to explore the distributional properties of the data.</p>
+<p><strong>Task</strong>: The length of the sentences affects the types of modeling we can perform on the data. If the sentences are too short, then using a model that depends on many previous words would not make sense. Run the below code, which computes the length of the shortest, average, and longest sentences in the training set.</p>
+<pre><code>sentence_lengths = [len(s) for s in train]
+print("Shortest Sentence", np.min(sentence_lengths))
+print("Average Sentence", np.mean(sentence_lengths))
+print("Longest Sentence", np.max(sentence_lengths))</code></pre>
+<p><strong>Task</strong>: How many words are in the training set? In general, there may be words in the validation/test sets that are <em>not</em> in training!</p>
+<pre><code># TODO: Write code to perform the computation
+vocab = set([w for s in train for w in s]) # SOLUTION
+print(len(vocab)) # SOLUTION</code></pre>
+<p><strong>Task</strong>: What is the most common word in the training set? How often does this word appear in the training set? This information is useful to know since it helps us understand the difficult of the word prediction problem. In other words, this figure represents the <em>accuracy</em> of a “baseline” model that simply returns the most common word as the prediction for what the next word should be!</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>total_words <span class="op">=</span> <span class="dv">0</span>        <span class="co"># count number of words in the training set</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>word_count <span class="op">=</span> Counter() <span class="co"># count the occurrence of each word</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> train:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> w <span class="kw">in</span> s:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        word_count[w] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        total_words <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: find the most common word</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(word_count.most_common(<span class="dv">1</span>)) <span class="co"># ('.', 64303) # SOLUTION</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">64303</span><span class="op">/</span>total_words)                        <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that we understand a bit about the distributional properties of our data, we can move on to representing our data numerically in a way that a neural network can use.</p>
+<p>We will use a one-hot encoding to represent words. Alternatively, you can think of what we’re doing as assigning each word to a unique integer index. We will need some functions that converts sentences into the corresponding word indices.</p>
+<p><strong>Graded Task</strong>: Complete the helper functions <code>convert_words_to_indices</code>. The functions <code>generate_4grams</code> and <code>process_data</code> have been written for you. The <code>process_data</code> function will take a list of sentences (i.e.&nbsp;list of list of words), and generate an <span class="math inline">\(N \times 4\)</span> numpy matrix containing indices of 4 words that appear next to each other. You can use the constants <code>vocab</code>, <code>vocab_itos</code>, and <code>vocab_stoi</code> in your code.</p>
+<pre><code># A list of all the words in the data set. We will assign a unique 
+# identifier for each of these words.
+vocab = sorted(list(set([w for s in train for w in s])))
+# A mapping of index =&gt; word (string)
+vocab_itos = dict(enumerate(vocab))
+# A mapping of word =&gt; its index
+vocab_stoi = {word:index for index, word in vocab_itos.items()}
+
+def convert_words_to_indices(sents):
+    """
+    This function takes a list of sentences (list of list of words)
+    and returns a new list with the same structure, but where each word
+    is replaced by its index in `vocab_stoi`.
+
+    Example:
+    &gt;&gt;&gt; convert_words_to_indices([['one', 'in', 'five', 'are', 'over', 'here'],
+                                  ['other', 'one', 'since', 'yesterday'],
+                                  ['you']])
+    [[148, 98, 70, 23, 154, 89], [151, 148, 181, 246], [248]]
+    """
+    indices = []
+    # TODO: Write your code here
+    for s in sents:                                # SOLUTION
+        indices.append([vocab_stoi[w] for w in s]) # SOLUTION
+    return indices
+
+def generate_4grams(seqs):
+    """
+    This function takes a list of sentences (list of lists) and returns
+    a new list containing the 4-grams (four consecutively occurring words)
+    that appear in the sentences. Note that a unique 4-gram can appear multiple
+    times, one per each time that the 4-gram appears in the data parameter `seqs`.
+
+    Example:
+
+    &gt;&gt;&gt; generate_4grams([[148, 98, 70, 23, 154, 89], [151, 148, 181, 246], [248]])
+    [[148, 98, 70, 23], [98, 70, 23, 154], [70, 23, 154, 89], [151, 148, 181, 246]]
+    &gt;&gt;&gt; generate_4grams([[1, 1, 1, 1, 1]])
+    [[1, 1, 1, 1], [1, 1, 1, 1]]
+    """
+    grams = []
+    for seq in seqs:
+        for i in range(len(seq) - 4):
+            grams.append(seq[i:i+4])
+    return grams
+
+def process_data(sents):
+    """
+    This function takes a list of sentences (list of lists), and generates an
+    numpy matrix with shape [N, 4] containing indices of words in 4-grams.
+    """
+    indices = convert_words_to_indices(sents)
+    fourgrams = generate_4grams(indices)
+    return np.array(fourgrams)
+
+train4grams = process_data(train)
+valid4grams = process_data(valid)
+test4grams = process_data(test)</code></pre>
+<p><strong>Task</strong>: We are almost ready to discuss the model. Review the following helper functions, which has been written for you:</p>
+<ul>
+<li><code>make_onehot</code>, which converts indices</li>
+</ul>
+<pre><code>def make_onehot(indicies, total=250):
+    """
+    Convert indicies into one-hot vectors.
+
+    Parameters:
+        `indices` - a numpy array of any shape (e.g. `[N, 3]` where `N`
+                    is the batch size)
+        `total` - an integer describing the total number of possible classes
+                  (maximum possible value in `indicies`)
+
+    Returns: a one-hot representation of the input numpy array 
+             (If the input is of shape `[X, Y]`, then the output would
+             be of shape `[X, Y, total]` and consists of 0's and 1's)
+    """
+    # create an identity matrix of shape [total, total]
+    I = np.eye(total)
+    # index the appropriate columns of that identity matrix
+    return I[indicies]
+
+def softmax(x):
+    """
+    Compute the softmax of vector x, or row-wise for a matrix x.
+    We subtract x.max(axis=0) from each row for numerical stability.
+
+    Parameters:
+        `x` - a numpy array shape `[N, num_classes]`
+
+    Returns: a numpy array of the same shape as the input.
+    """
+    x = x.T
+    exps = np.exp(x - x.max(axis=0))
+    probs = exps / np.sum(exps, axis=0)
+    return probs.T</code></pre>
+<p>There is one more data processing function that we need, which turns the four-grams into inputs (consisting of the one-hot representations of the first 3 words), and the target output (the index of the 4th word).</p>
+<p>Since the one-hot representation is not memory efficient, we will only convert data into this representation when required, and only do so at a minibatch level.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_batch(data, range_min, range_max, onehot<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Convert one batch of data (specifically, `data[range_min:range_max]`)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">    in the form of 4-grams into input and output data and return the</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    training data.</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">        `data` - a numpy array of shape [N, 4] produced by a call</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">                 to the function `process_data`</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">        `range_min` - the starting index of the minibatch</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">        `range_max` - the ending index of the minibatch, with</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">                      range_max &gt; range_min and</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">                      batch_size = range_max - range_min</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">        `onehot` - boolean value, if `True` the targets are also made</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">                   to be one-hot vectors rather than indices</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: a tuple `(x, t)` where</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">     - `x` is an numpy array of one-hot vectors of shape [batch_size, 3, 250]</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">     - `t` is either</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">            - a numpy array of shape [batch_size, 250] if onehot is True,</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">            - a numpy array of shape [batch_size] containing indicies otherwise</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> data[range_min:range_max, :<span class="dv">3</span>]</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> make_onehot(x)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">750</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> data[range_min:range_max, <span class="dv">3</span>]</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> onehot:</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> make_onehot(t).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">250</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, t</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># some testing code for illustrative purposes</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>x_, t_ <span class="op">=</span> get_batch(train4grams, <span class="dv">0</span>, <span class="dv">10</span>, onehot<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train4grams[<span class="dv">0</span>])</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>pos_index <span class="op">=</span> train4grams[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, pos_index<span class="op">-</span><span class="dv">1</span>]) <span class="co"># should be 0</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, pos_index])   <span class="co"># should be 1</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, pos_index<span class="op">+</span><span class="dv">1</span>]) <span class="co"># should be 0</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>pos_index <span class="op">=</span> train4grams[<span class="dv">1</span>][<span class="dv">0</span>]</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, <span class="dv">250</span> <span class="op">+</span> pos_index<span class="op">-</span><span class="dv">1</span>]) <span class="co"># should be 0</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, <span class="dv">250</span> <span class="op">+</span> pos_index])   <span class="co"># should be 1</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, <span class="dv">250</span> <span class="op">+</span> pos_index<span class="op">+</span><span class="dv">1</span>]) <span class="co"># should be 0</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>pos_index <span class="op">=</span> train4grams[<span class="dv">2</span>][<span class="dv">0</span>]</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, <span class="dv">500</span> <span class="op">+</span> pos_index<span class="op">-</span><span class="dv">1</span>]) <span class="co"># should be 0</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, <span class="dv">500</span> <span class="op">+</span> pos_index])   <span class="co"># should be 1</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_[<span class="dv">0</span>, <span class="dv">500</span> <span class="op">+</span> pos_index<span class="op">+</span><span class="dv">1</span>]) <span class="co"># should be 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, the <code>estimate_accuracy</code> function has been provided to you as well. This function is similar to the <code>accuracy</code> function from lab 1.</p>
+<pre><code>def estimate_accuracy(model, data, batch_size=5000, max_N=10000):
+    """
+    Estimate the accuracy of the model on the data. To reduce
+    computation time, use at least `max_N` elements of `data` to
+    produce the estimate.
+
+    Parameters:
+        `model` - an object (e.g. `NNModel`, see below) with a forward()
+                  method that produces predictions for an input
+        `data` - a dataset of 4grams (produced by `process_data`) over
+                 which we compute accuracy
+        `batch_size` - integer batch size to use to produce predictions
+        `max_N` - integer value describing the minimum number of predictions
+                  to make to produce the accuracy estimate
+
+    Returns: a floating point value between 0 and 1
+    """
+    num_correct = 0
+    num_preds = 0
+    for i in range(0, data.shape[0], batch_size):
+        xs, ts = get_batch(data, i, i + batch_size, onehot=False)
+        z = model.forward(xs)
+        pred = np.argmax(z, axis=1)
+        num_correct += np.sum(ts == pred)
+        num_preds += ts.shape[0]
+
+        if num_preds &gt;= max_N: # at least max_N predictions have been made
+            break
+    return num_correct / num_preds</code></pre>
+</section>
+<section id="part-2.-model-building-forward-pass" class="level2">
+<h2 class="anchored" data-anchor-id="part-2.-model-building-forward-pass">Part 2. Model Building: Forward Pass</h2>
+<p>In this section, we will build our deep learning model. As we did in the previous lab, we begin by understanding how to make predictions with this model. So, in this part of the lab, we will write the functions required to perform the forward pass operation. We will write the backward-pass and train the model in Part 3 and 4.</p>
+<p><strong>Task</strong>: Consider the following two models architectures:</p>
+<p>Model 1: <img src="https://www.cs.toronto.edu/~lczhang/321/hw/p2_model1.png"></p>
+<p>Model 2: <img src="https://www.cs.toronto.edu/~lczhang/321/hw/p2_model2.png"></p>
+<p>In Model 1, the input <span class="math inline">\(\bf{x}\)</span> consists of three one-hot vectors concatenated together. We can think of <span class="math inline">\(\bf{h}\)</span> as a representation of those three words (all together). However, the model architecture treat the three one-hot vectors from the three words distinctly. However, <span class="math inline">\(\bf{W^{(1)}}\)</span> needs to learn about the first word separately from the second and third word. In other words, the deep learning model treats these three sets of one-hot features as if they have no semantic connection in common.</p>
+<p>In <em>Model 2</em>, we use an idea called <em>weight sharing</em>, where we use the sample set of weights <span class="math inline">\(\bf{W}^{(word)}\)</span> to map the one-hot vectors into a vector representation. This allows us to learn the weights <span class="math inline">\(\bf{W}^{(word)}\)</span> from informatino from all three words. This model architecture encodes our knowledge that the three sets of one-hot vectors share something in common.</p>
+<p>We will use model 2 in the rest of this lab. For clarity, here is the forward-pass computation to be performed. (Note that this is <em>not</em> vectorized!)</p>
+<p><span class="math display">\[\begin{align*}
+\bf{x_a} &amp;= \textrm{the one-hot vector for word 1} \\
+\bf{x_b} &amp;= \textrm{the one-hot vector for word 2} \\
+\bf{x_c} &amp;= \textrm{the one-hot vector for word 3} \\
+\bf{v_a} &amp;= \bf{W}^{(word)} \bf{x_a} \\
+\bf{v_b} &amp;= \bf{W}^{(word)} \bf{x_b} \\
+\bf{v_c} &amp;= \bf{W}^{(word)} \bf{x_c} \\
+\bf{v} &amp;= \textrm{concatenate}(\bf{v_a}, \bf{v_b}, \bf{v_c})\\
+\bf{m} &amp;= \bf{W^{(1)}} \bf{v} + \bf{b^{(1)}} \\
+\bf{h} &amp;= \textrm{ReLU}(\bf{m}) \\
+\bf{z} &amp;= \bf{W^{(2)}} \bf{h} + \bf{b^{(2)}} \\
+\bf{y} &amp;= \textrm{softmax}(\bf{z}) \\
+L &amp;= \mathcal{L}_\textrm{Cross-Entropy}(\bf{y}, \bf{t}) \\
+\end{align*}\]</span></p>
+<p>The class <code>NNModel</code> represents this above neural network model. This class stores the weights and biases of our model. Moreover, this class will also have methods that use and modify these weights.</p>
+<p>Most of the class has been implemented for you, including these methods:</p>
+<ul>
+<li>The <code>initializeParams()</code> method, which randomly initializes the weights</li>
+<li>The <code>loss()</code> method, which computes the average cross-entropy loss</li>
+<li>The <code>update()</code> method, which performs the gradient updates</li>
+<li>The <code>cleanup()</code> method, which clears the member variables used in the computation</li>
+</ul>
+<p>The implementation for these methods are incomplete:</p>
+<ul>
+<li>The <code>forward</code> method computes the prediction given a data matrix <code>X</code>. These computations are known as the <strong>forward pass</strong>. This method also saves some of the intermediate values in the neural network computation, to make gradient computation easier.</li>
+<li>The <code>backward</code> method computes the gradient of the average loss with respect to various quantities (i.e.&nbsp;the error signals). These computations are known as the <strong>backward pass</strong>.</li>
+</ul>
+<p>You may assume that during an iteration of gradient descent, the following methods will be called in order:</p>
+<ul>
+<li>The <code>cleanup</code> method to clear information stored from the previous computation</li>
+<li>The <code>forward</code> method to compute the predictions</li>
+<li>The <code>backward</code> method to compute the error signals</li>
+<li>(Possibly the <code>loss</code> method to compute the average loss)</li>
+<li>The <code>update</code> method to move the weights</li>
+</ul>
+<p>You might recognize that the way we set up the class correspond to what PyTorch does.</p>
+<pre><code>class NNModel(object):
+    def __init__(self, vocab_size=250, emb_size=150, num_hidden=100):
+        """
+        Initialize the weights and biases of this two-layer MLP.
+        """
+        # information about the model architecture
+        self.vocab_size = vocab_size
+        self.emb_size = emb_size
+        self.num_hidden = num_hidden
+
+        # weights for the embedding layer of the model
+        self.Ww = np.zeros([vocab_size, emb_size])
+
+        # weights and biases for the first layer of the MLP
+        self.W1 = np.zeros([emb_size * 3, num_hidden])
+        self.b1 = np.zeros([num_hidden])
+
+        # weights and biases for the second layer of the MLP
+        self.W2 = np.zeros([num_hidden, vocab_size])
+        self.b2 = np.zeros([vocab_size])
+
+        # initialize the weights and biases
+        self.initializeParams()
+
+        # set all values of intermediate variables (to be used in the
+        # forward/backward passes) to None
+        self.cleanup()
+
+    def initializeParams(self):
+        """
+        Initialize the weights and biases of this two-layer MLP to be random.
+        This random initialization is necessary to break the symmetry in the
+        gradient descent update for our hidden weights and biases. If all our
+        weights were initialized to the same value, then their gradients will
+        all be the same!
+        """
+        self.Ww = np.random.normal(0, 2/self.vocab_size, self.Ww.shape)
+        self.W1 = np.random.normal(0, 2/(3*self.emb_size), self.W1.shape)
+        self.b1 = np.random.normal(0, 2/(3*self.emb_size), self.b1.shape)
+        self.W2 = np.random.normal(0, 2/self.num_hidden, self.W2.shape)
+        self.b2 = np.random.normal(0, 2/self.num_hidden, self.b2.shape)
+
+    def forward(self, X):
+        """
+        Compute the forward pass to produce prediction logits.
+
+        Parameters:
+            `X` - A numpy array of shape (N, self.vocab_size * 3)
+
+        Returns: A numpy array of logit predictions of shape
+                 (N, self.vocab_size)
+        """
+        return do_forward_pass(self, X) # To be implemented below
+
+    def backward(self, ts):
+        """
+        Compute the backward pass, given the ground-truth, one-hot targets.
+
+        You may assume that the `forward()` method has been called for the
+        corresponding input `X`, so that the quantities computed in the
+        `forward()` method is accessible.
+
+        Parameters:
+            `ts` - A numpy array of shape (N, self.vocab_size)
+        """
+        return do_backward_pass(self, ts)
+
+    def loss(self, ts):
+        """
+        Compute the average cross-entropy loss, given the ground-truth, one-hot targets.
+
+        You may assume that the `forward()` method has been called for the
+        corresponding input `X`, so that the quantities computed in the
+        `forward()` method is accessible.
+
+        Parameters:
+            `ts` - A numpy array of shape (N, self.num_classes)
+        """
+        return np.sum(-ts * np.log(self.y)) / ts.shape[0]
+
+    def update(self, alpha):
+        """
+        Compute the gradient descent update for the parameters of this model.
+
+        Parameters:
+            `alpha` - A number representing the learning rate
+        """
+        self.Ww = self.Ww - alpha * self.Ww_bar
+        self.W1 = self.W1 - alpha * self.W1_bar
+        self.b1 = self.b1 - alpha * self.b1_bar
+        self.W2 = self.W2 - alpha * self.W2_bar
+        self.b2 = self.b2 - alpha * self.b2_bar
+
+    def cleanup(self):
+        """
+        Erase the values of the variables that we use in our computation.
+        """
+        # To be filled in during the forward pass
+        self.N = None # Number of data points in the batch
+        self.xa = None # word (a)'s one-hot encoding
+        self.xb = None # word (b)'s one-hot encoding
+        self.xc = None # word (c)'s one-hot encoding
+        self.va = None # word (a)'s embedding
+        self.vb = None # word (b)'s embedding
+        self.vc = None # word (c)'s embedding
+        self.v = None  # concatenated embedding
+        self.m = None  # pre-activation hidden state
+        self.h = None  # post-activation hidden state
+        self.z = None  # prediction logit
+        self.y = None  # prediction softmax
+
+        # To be filled in during the backward pass
+        self.z_bar  = None # The error signal for self.z
+        self.W2_bar = None # The error signal for self.W2
+        self.b2_bar = None # The error signal for self.b2
+        self.h_bar  = None # The error signal for self.h
+        self.m_bar  = None # The error signal for self.z1
+        self.W1_bar = None # The error signal for self.W1
+        self.b1_bar = None # The error signal for self.b1
+        self.v_bar  = None # The error signal for self.v
+        self.va_bar = None # The error signal for self.va
+        self.vb_bar = None # The error signal for self.vb
+        self.vc_bar = None # The error signal for self.vc
+        self.Ww_bar = None # The error signal for self.Ww</code></pre>
+<p><strong>Graded Task</strong>: Complete the implementation of the <code>do_forward_pass</code> method, which computes the predictions given a <code>NNModel</code> and a batch of input data.</p>
+<p>We recommend that you reason about your approach on paper before writing any numpy code. Track the shapes of your quantities carefully! When you finally write your numpy code, print out the shapes of your quantities as you go along, and reason about whether these shapes match your initial expectations.</p>
+<pre><code>def do_forward_pass(model, X):
+    """
+    Compute the forward pass to produce prediction logits.
+
+    This function also keeps some of the intermediate values in
+    the neural network computation, to make computing gradients easier.
+
+    For the ReLU activation, you may find the function `np.maximum` helpful
+
+    Parameters:
+        `model` - An instance of the class NNModel
+        `X` - A numpy array of shape (N, model.vocab_size)
+
+    Returns: A numpy array of logit predictions of shape
+             (N, model.vocab_size)
+    """
+    # populate the input attributes necessary for the
+    # backward pass
+    model.N = X.shape[0]
+    model.X = X
+
+    # for xa, xb, xc, we index the appropriate range of X
+    # (recall that the tensor X has shape [batch_size, 3*vocab_size])
+    model.xa = X[:, :model.vocab_size]
+    model.xb = X[:, model.vocab_size:model.vocab_size*2]
+    model.xc = X[:, model.vocab_size*2:]
+
+    # compute the embeddings
+    model.va = None # TODO
+    model.vb = None # TODO
+    model.vc = None # TODO
+    model.va = model.xa @ model.Ww # SOLUTION
+    model.vb = model.xb @ model.Ww # SOLUTION
+    model.vc = model.xc @ model.Ww # SOLUTION
+    model.v = np.concatenate([model.va, model.vb, model.vc], axis=1)
+
+    # compute the remaining part of the forward pass
+    model.m = None # TODO - the hidden state value (pre-activation)
+    model.m = model.v @ model.W1 + model.b1 # SOLUTION
+    model.h = None # TODO - the hidden state value (post ReLU activation)
+    model.h = np.maximum(model.m, 0) # SOLUTION
+    model.z = None # TODO - the logit scores (pre-activation)
+    model.z = model.h @ model.W2 + model.b2 # SOLUTION
+    model.y = None # TODO - the class probabilities (post-activation)
+    model.y = softmax(model.z) # SOLUTION
+    return model.z</code></pre>
+<p><strong>Task</strong>: One way important way to check your implementation is to run the <code>forward()</code> method to ensure that the shapes of your quantities are correct. Run the below code. If you run into shape mismatch issues, print out the shapes of the quantities that you are working with (e.g.&nbsp;<code>print(model.va.shape)</code>) and ensure that these shapes are what you expect them to be.</p>
+<pre><code># Create a batch of data that we will use for gradient checking
+# we will use a small batch size of 8. This number is chosen
+# because it is small, but also because this shape does not
+# appear elsewhere in our architecture (e.g. vocab size, num hidden)
+# so that shape mismatch issues are easier to identify.
+x_, t_ = get_batch(train4grams, 0, 8)
+model = NNModel()
+y = model.forward(x_)
+
+# TODO: Check that these shapes are correct. What should these shapes be?
+print(model.va.shape, model.vb.shape, model.vc.shape)
+print(model.v.shape)
+print(model.m.shape, model.h.shape)
+print(model.z.shape, model.y.shape)</code></pre>
+<p>At this point, we can work with a pre-trained model by loading weights that are provided to you via the link below. If you would like, you can jump to part 4 first and explore the interesting properties of this model before tackling backpropagation and model training.</p>
+<pre><code>!wget https://www.cs.toronto.edu/~lczhang/413/sentence_pretrained.pk
+
+
+def load_pretrained(model):
+    import pickle
+    assert(model.vocab_size == 250)
+    assert(model.emb_size   == 150)
+    assert(model.num_hidden == 100)
+    Ww, W1, b1, W2, b2 = pickle.load(open("sentence_pretrained.pk", "rb"))
+    model.Ww = Ww
+    model.W1 = W1
+    model.b1 = b1
+    model.W2 = W2
+    model.b2 = b2
+    model.cleanup()
+    return model
+
+model = load_pretrained(NNModel())</code></pre>
+</section>
+<section id="part-3.-model-building-backwards-pass" class="level2">
+<h2 class="anchored" data-anchor-id="part-3.-model-building-backwards-pass">Part 3. Model Building: Backwards Pass</h2>
+<p>We are ready to complete the function that computes the backward pass of our model!</p>
+<p>You should start by reviewing the lecture slides on backpropagation. One difference between the slides and our implementation here is that the slides express the required computations for computing the gradients of the loss for a <em>single data point</em>. However, our implementation of backpropagation is further vectorized to compute gradients of the loss for a <em>batch consisting of multiple data points</em>.</p>
+<p>We begin with applying the backpropagation algorithm on our forward pass steps from earlier. Recall that our model’s forward pass is as follows:</p>
+<p><span class="math display">\[\begin{align*}
+\bf{x_a} &amp;= \textrm{the one-hot vector for word 1} \\
+\bf{x_b} &amp;= \textrm{the one-hot vector for word 2} \\
+\bf{x_c} &amp;= \textrm{the one-hot vector for word 3} \\
+\bf{v_a} &amp;= \bf{W}^{(word)} \bf{x_a} \\
+\bf{v_b} &amp;= \bf{W}^{(word)} \bf{x_b} \\
+\bf{v_c} &amp;= \bf{W}^{(word)} \bf{x_c} \\
+\bf{v} &amp;= \textrm{concatenate}(\bf{v_a}, \bf{v_b}, \bf{v_c})\\
+\bf{m} &amp;= \bf{W^{(1)}} \bf{v} + \bf{b^{(1)}} \\
+\bf{h} &amp;= \textrm{ReLU}(\bf{m}) \\
+\bf{z} &amp;= \bf{W^{(2)}} \bf{h} + \bf{b^{(2)}} \\
+\bf{y} &amp;= \textrm{softmax}(\bf{z}) \\
+L &amp;= \mathcal{L}_\textrm{Cross-Entropy}(\bf{y}, \bf{t}) \\
+\end{align*}\]</span></p>
+<p>Following the steps discussed in this week’s lecture, we should get the following backward-pass computation (verify this yourself!): <span class="math display">\[\begin{align*}
+\overline{{\bf z}}  &amp;= {\bf y} - {\bf t} \\
+\overline{W^{(2)}}  &amp;= \overline{{\bf z}}{\bf h}^T \\
+\overline{{\bf b^{(2)}}}  &amp;= \overline{{\bf z}} \\
+\overline{{\bf h}}  &amp;= {W^{(2)}}^T\overline{z} \\
+\overline{W^{(1)}} &amp;= \overline{{\bf m}} {\bf v}^T \\
+\overline{{\bf b}^{(1)}} &amp;= \overline{{\bf m}} \\
+\overline{{\bf m}}  &amp;= \overline{{\bf h}}\circ \textrm{ReLU}'({\bf m}) \\
+\overline{{\bf v}} &amp;=  {W^{(1)}}^T \overline{{\bf m}} \\
+\overline{{\bf v_a}} &amp;= \dots \\
+\overline{{\bf v_b}} &amp;= \dots \\
+\overline{{\bf v_c}} &amp;= \dots \\
+\overline{{\bf W^{(word)}}} &amp;= \dots \\
+\end{align*}\]</span></p>
+<p><strong>Task</strong>: What is the error signal <span class="math inline">\(\overline{{\bf v_a}}\)</span>? How does this quantity relate to <span class="math inline">\(\overline{{\bf v}}\)</span>? To answer this question, reason about the scalars that make up the elements of <span class="math inline">\(\overline{{\bf v}}\)</span>. Which of these scalars also appear in <span class="math inline">\(\overline{{\bf v_a}}\)</span>?</p>
+<p>Express your answer by computing <code>va_bar</code> (representing the quantity <span class="math inline">\(\overline{{\bf v_a}}\)</span>) given <code>v_bar</code> (representing the quantity <span class="math inline">\(\overline{{\bf v}}\)</span>).</p>
+<pre><code>N = 10
+emb_size = 100
+v_bar = np.random.rand(N, emb_size * 3)
+
+va_bar = None # TODO
+vb_bar = None # TODO
+vc_bar = None # TODO
+va_bar = v_bar [:, :emb_size] # SOLUTION</code></pre>
+<p><strong>Task</strong>: What is the derivative <span class="math inline">\(\overline{{\bf W^{(word)}}}\)</span>? You may find it helpful to draw a computation graph, and then remember the multivariate chain rule. If <span class="math inline">\(\overline{{\bf W^{(word)}}}\)</span> affects the loss in 3 different paths, what do we do with those 3 gradients?</p>
+<pre><code># TODO: Work out the derivative on paper.</code></pre>
+<p>We are still not done: the gradient computation is for a single input <span class="math inline">\({\bf x}\)</span>. We will need to vectorize each of these computations so that they work for an entire batch of inputs <span class="math inline">\({\bf X}\)</span> of shape <span class="math inline">\(N \times 3\textrm{vocab_size}\)</span>.</p>
+<p>For some quantities, vectorizing the backward-pass computation is just as straightforward as the forward-pass computation, requiring the same techniques. For example, each input <span class="math inline">\({\bf x}\)</span> in a batch will have its own corresponding value of <span class="math inline">\({\bf z}\)</span> and thus $. (If this sentence is confusing, check that your description of the shape for <code>z_bar</code> from Part 2 has the batch size <code>N</code> in there somewhere.)</p>
+<p>For other quantities, vectorizing requires the use of the multivariate chain rule. For example, there is a single weight matrix <span class="math inline">\(W^{(2)}\)</span>, used for all inputs in a batch. Thus, a change in <span class="math inline">\(W^{(2)}\)</span> will affect the predictions for <em>all</em> inputs. (If this sentence is confusing, check that your description of the shape for <code>W2_bar</code> from Part 2 <strong>does not</strong> have batch size <code>N</code> in there.)</p>
+<p>The vectorization for the quantities consistent with those of a MLP is already provided to you in the <code>do_backward_pass</code> function. However, the rest of this function is incomplete.</p>
+<p><strong>Graded Task</strong>: Complete the implementation of the <code>do_backward_pass</code> function, which performs backpropagation given a <code>NNModel</code>, given the ground-truth one-hot targets <code>ts</code>. This function assumes that the forward pass method had been called on the input <code>X</code> corresponding to those one-hot targets.</p>
+<p>Once again, we recommend that you reason about your approach on paper before writing any numpy code! In particular, understand the vectorization strategies discussed in the previous weeks and above before proceeding. Track the shapes of your quantities carefully! When you finally write your numpy code, print out the shapes of your quantities as you go along, and reason about whether these shapes match your initial expectations.</p>
+<pre><code>def do_backward_pass(model, ts):
+    """
+    Compute the backward pass, given the ground-truth, one-hot targets.
+
+    You may assume that `model.forward()` has been called for the
+    corresponding input `X`, so that the quantities computed in the
+    `forward()` method is accessible.
+
+    The member variables you store here will be used in the `update()`
+    method. Check that the shapes match what you wrote in Part 2.
+
+    Parameters:
+        `model` - An instance of the class NNModel
+        `ts` - A numpy array of shape (N, model.num_classes)
+    """
+    # The gradient signal for the MLP part of this is given
+    # to you (or worked out together from above, TODO)
+    model.z_bar = (model.y - ts) / model.N
+    model.W2_bar = np.dot(model.h.T, model.z_bar)
+    model.b2_bar = np.dot(np.ones(model.N).T, model.z_bar)
+    model.h_bar = np.matmul(model.z_bar, model.W2.T)
+    model.m_bar = model.h_bar * (model.m &gt; 0)
+    model.W1_bar = np.dot(model.v.T, model.m_bar)
+    model.b1_bar = np.dot(np.ones(model.N).T, model.m_bar)
+    model.v_bar = np.matmul(model.m_bar, model.W1.T)
+
+    # Refer to your answer above
+    model.va_bar = None # TODO
+    model.vb_bar = None # TODO
+    model.vc_bar = None # TODO
+    model.va_bar = model.v_bar[:, :model.emb_size]                 # SOLUTION
+    model.vb_bar = model.v_bar[:, model.emb_size:model.emb_size*2] # SOLUTION
+    model.vc_bar = model.v_bar[:, model.emb_size*2:]               # SOLUTION
+
+    # Refer to your answer above
+    model.Ww_bar = None
+    model.Ww_bar = np.dot(model.xa.T, model.va_bar) + np.dot(model.xb.T, model.vb_bar) + np.dot(model.xc.T, model.vc_bar) # SOLUTION</code></pre>
+<p>As we saw in CSC311, debugging machine learning code can be extremely challenging. It helps to <strong>be systematic about testing</strong>, and to test every helper function as we write it. It is important to test <code>do_backward_pass</code> before using it for training, so that we can isolates issues related to computing gradients vs.&nbsp;other training issues (e.g.&nbsp;those related to poor hyperparameter choices).</p>
+<p><strong>Task</strong>: As in the forward pass, start by making sure that the shapes match. Again, If you run into shape mismatch issues, print out the shapes of the quantities that you are working with.</p>
+<pre><code>x_, t_ = get_batch(train4grams, 0, 8)
+model = NNModel()
+
+model.forward(x_)
+model.backward(t_)
+model.update(0.001)</code></pre>
+<p>The above step checks that the shapes match. But we also saw, in CSC311, that one way to check the gradient computation is through <strong>finite difference</strong>. Recall the definition of a derivative. For a function <span class="math inline">\(g(w): \mathbb{R} \rightarrow \mathbb{R}\)</span>,</p>
+<p><span class="math display">\[g'(w) = \lim_{h \rightarrow 0} \frac{g(w+h) - g(w)}{h}\]</span></p>
+<p>This above rule tells us that if we have a way to evaluate <code>g</code> and would like to test our implementation of <span class="math inline">\(g'\)</span>, we can choose an <span class="math inline">\(h\)</span> small enough, and check if:</p>
+<p><span class="math display">\[g'(w) \approx \frac{g(w+h) - g(w)}{h}\]</span></p>
+<p>In our case, we have that for any parameter <span class="math inline">\(w_j\)</span> and an <span class="math inline">\(h\)</span> small enough, we should have for our loss <span class="math display">\[\mathcal{E}\]</span>:</p>
+<p><span class="math display">\[\frac{\partial \mathcal{E}}{\partial w_j} \approx \frac{\mathcal{E}(w_0, w_1, \dots, w_{j-1}, w_j + h, w_{j+1}, \dots, w_D) - \mathcal{E}(w_0, w_1, \dots, w_D)}{h}\]</span></p>
+<p>(A word about notation: here we are enumerating over all scalar weights <span class="math inline">\(w_0 \dots w_D\)</span> in our model. You will often see this in machine learning textbooks and papers, where we ignore the fact that these scalar weights come from several different weight matrices and bias vectors. This notation might feel strange/imprecise as first, but keep in mind that mathematical notations is a form of language whose purpose is to communicate ideas. Practitioners choose different notations, and even introduce new notation, with the goal of clearly communicating a specific idea. Here, the idea is that we should be able to test the gradient computation or a single scalar weight by computing the loss function twice: once with a slight perturbation on that scalar weight.)</p>
+<p><strong>Graded Task:</strong> Run the below code to spot test that the gradients <code>Ww_bar</code> is computed correctly. Include the output of the code in your submission.</p>
+<pre><code># We will opt to use a large batch size to test the gradients `Ww_bar`
+# with a large batch size. Why do you think this is? (Why might we
+# be more likely to have gradients of value 0 if the batch size is
+# small?)
+x_, t_ = get_batch(train4grams, 0, 800)
+
+model = NNModel()
+model.forward(x_)
+
+# Check the gradient for Ww_bar[3, 10]. 
+# You should spot check other indices too!
+model.backward(t_)
+gradient = model.Ww_bar[3, 10]
+
+# we should have 
+# gradient ~= (loss_perturbed - loss_initial) / h
+# where loss_perturbed is the loss if we perturb 
+# model.Ww_bar[3, 10] by a small value h
+
+loss_initial = model.loss(t_)
+
+h = 0.01
+model.Ww[3, 10] += h 
+
+model.cleanup()
+model.forward(x_)
+loss_perturbed = model.loss(t_)
+
+# These two values should be close
+print(gradient)
+print((loss_perturbed - loss_initial) / h) </code></pre>
+<p>If gradient checking succeeds, we are ready to train our model. The function <code>train_model</code> is written for you. Run the code below with the default hyperparameters. Although hyperparameter tuning is an important step in machine learning, we have chosen reasonable hyperparameters to you to keep this lab a reasonable size.</p>
+<pre><code>def train_model(model,
+                train_data=train4grams,
+                validation_data=valid4grams,
+                batch_size=50,
+                learning_rate=0.3,
+                max_iters=20000,
+                plot_every=1000):
+    """
+    Use gradient descent to train the numpy model on the dataset train4grams.
+    """
+    iters, train_loss, train_acc, val_acc = [], [], [], [] # for the training curve
+    iter_count = 0  # count the number of iterations
+    try:
+        while iter_count &lt; max_iters:
+            # shuffle the training data, and break early if we don't have
+            # enough data to remaining in the batch
+            np.random.shuffle(train_data)
+            for i in range(0, train_data.shape[0], batch_size):
+                if (i + batch_size) &gt; train_data.shape[0]:
+                    break
+
+                # get the input and targets of a minibatch
+                xs, ts = get_batch(train_data, i, i + batch_size, onehot=True)
+
+                # erase any accumulated gradients
+                model.cleanup()
+
+                # forward pass: compute prediction
+                ys = model.forward(xs)
+
+                # backward pass: compute error 
+                model.backward(ts)
+                model.update(learning_rate)
+
+                # increment the iteration count
+                iter_count += 1
+
+                # compute and plot the *validation* loss and accuracy
+                if (iter_count % plot_every == 0):
+                    iters.append(iter_count)
+                    train_loss.append(model.loss(ts))
+                    train_acc.append(estimate_accuracy(model, train_data))
+                    val_acc.append(estimate_accuracy(model, validation_data))
+                    model.cleanup()
+                    print(f"Iter {iter_count}. Acc [val:{val_acc[-1]}, train:{train_acc[-1]}] Loss {train_loss[-1]}]")
+                if iter_count &gt;= max_iters:
+                    break
+    finally:
+        plt.figure()
+        plt.plot(iters[:len(train_loss)], train_loss)
+        plt.title("Loss over iterations")
+        plt.xlabel("Iterations")
+        plt.ylabel("Loss")
+
+        plt.figure()
+        plt.plot(iters[:len(train_acc)], train_acc)
+        plt.plot(iters[:len(val_acc)], val_acc)
+        plt.title("Accuracy over iterations")
+        plt.xlabel("Iterations")
+        plt.ylabel("Loss")
+        plt.legend(["Train", "Validation"])
+
+model= NNModel()
+train_model(model)</code></pre>
+</section>
+<section id="part-4.-applying-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="part-4.-applying-the-model">Part 4. Applying the Model</h2>
+<p>In this section, we will use apply the model for sentence completion, and to explore model embeddings. If you do not have a trained model, you may use the trained weights provided as part of the assignment.</p>
+<pre><code># model = load_pretrained(NNModel())</code></pre>
+<p><strong>Task</strong>: The function <code>make_prediction</code> has been written for you. It takes as parameters a NNModel model and sentence (a list of words), and produces a prediction for the next word in the sentence.</p>
+<p>Run the following code to predict what the next word should be in each of the following sentences:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_prediction(model, sentence):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Use the model to make a prediction for the next word in the</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">    sentence using the last 3 words (sentence[-3:])</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> vocab_itos</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> convert_words_to_indices([sentence[<span class="op">-</span><span class="dv">3</span>:]])</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> make_onehot(indices).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">750</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> model.forward(X)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> np.argmax(z)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vocab_itos[i]</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_prediction(model, [<span class="st">'you'</span>, <span class="st">'are'</span>, <span class="st">'a'</span>]))</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_prediction(model, [<span class="st">'there'</span>, <span class="st">'are'</span>, <span class="st">'no'</span>]))</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(make_prediction(model, [<span class="st">'yesterday'</span>, <span class="st">'the'</span>, <span class="st">'federal'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Do your predictions make sense? (If all of your predictions are the same, train your model for more iterations, or change the hyper parameters in your model.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your analysis goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>While training the <code>NNModel</code>, we trained the weight <code>model.Ww</code>, which takes a one-hot representation of a word in our vocabulary, and returns a low-dimensional vector representation of that word. These representations, also called <strong>word embeddings</strong> have interesting properties.</p>
+<p><strong>Graded Task:</strong> Explain why each <em>row</em> of <code>model.Ww</code> contains the vector representing of a word. For example <code>model.Ww[vocab_stoi["any"],:]</code> contains the vector representation of the word “any”.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your explanation here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>One interesting thing about these word embeddings is that distances in these vector representations of words make some sense! To show this, we have provided code below that computes the cosine similarity of every pair of words in our vocabulary.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>norms <span class="op">=</span> np.linalg.norm(model.Ww, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>word_emb_norm <span class="op">=</span> (model.Ww.T <span class="op">/</span> norms).T</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>similarities <span class="op">=</span> np.matmul(word_emb_norm, word_emb_norm.T)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Some example distances. The first one should be larger than the second</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(similarities[vocab_stoi[<span class="st">'any'</span>], vocab_stoi[<span class="st">'many'</span>]])</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(similarities[vocab_stoi[<span class="st">'any'</span>], vocab_stoi[<span class="st">'government'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: Run the below code, which computes the 5 closest words to each of the following words. Replace these words with words of your choice to explore the distances in the word embeddings.</p>
+<pre><code>def get_closest(word):
+    dst = [(w, similarities[vocab_stoi[word], idx])
+           for w, idx in vocab_stoi.items()] 
+    dst = sorted(dst, key=lambda x: x[1], reverse=True)
+    return dst[1:6]
+
+print(get_closest("four"))
+print(get_closest("go"))
+print(get_closest("should"))
+print(get_closest("yesterday"))</code></pre>
+<p>Notice that similar words provided above tend to <strong>occur in similar surrounding words</strong> in a sentence. Why do you think this might be? Consider the architecture used in this model, and what this model is trained to do. (How would replacing a word with another word with a similar embedding change the neural network prediction?)</p>
+<p>We can also visualize the word embeddings by reducing the dimensionality of the word vectors to 2D. There are many dimensionality reduction techniques that we could use, and we will use an algorithm called t-SNE. (You don’t need to know what this is for the lab). Nearby points in this 2-D space are meant to correspond to nearby points in the original, high-dimensional space.</p>
+<p>The following code runs the t-SNE algorithm and plots the result. Look at the plot and find two clusters of related words. What do the words in each cluster have in common?</p>
+<p>Note that there is randomness in the initialization of the t-SNE algorithm. If you re-run this code, you may get a different image.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.manifold</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> sklearn.manifold.TSNE()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> tsne.fit_transform(word_emb_norm)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.xlim(Y[:,<span class="dv">0</span>].<span class="bu">min</span>(), Y[:, <span class="dv">0</span>].<span class="bu">max</span>())</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.ylim(Y[:,<span class="dv">1</span>].<span class="bu">min</span>(), Y[:, <span class="dv">1</span>].<span class="bu">max</span>())</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, w <span class="kw">in</span> <span class="bu">enumerate</span>(vocab):</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    plt.text(Y[i, <span class="dv">0</span>], Y[i, <span class="dv">1</span>], w)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># For instructor use # SOLUTION
+def save_model(model):  # SOLUTION
+    import pickle# SOLUTION
+    weights = (model.Ww, model.W1, model.b1, model.W2, model.b2) # SOLUTION
+    pickle.dump(weights, open("sentence_pretrained.pk", "wb"))# SOLUTION
+save_model(model) # SOLUTION</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Florian Shkurti</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab02.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

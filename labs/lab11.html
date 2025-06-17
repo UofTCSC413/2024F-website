@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab11 – CSC413 - Fall 2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-69b08db278f499bc7d235ce342f73d67.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="CSC413 - Fall 2024">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta property="og:site_name" content="CSC413 - Fall 2024">
+<meta name="twitter:title" content="CSC413 - Fall 2024">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta name="twitter:creator" content="@minebocek">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#csc413-lab-11-text-generation-with-transformers" id="toc-csc413-lab-11-text-generation-with-transformers" class="nav-link active" data-scroll-target="#csc413-lab-11-text-generation-with-transformers">CSC413 Lab 11: Text Generation with Transformers</a>
+  <ul class="collapse">
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#part-1.-data" id="toc-part-1.-data" class="nav-link" data-scroll-target="#part-1.-data">Part 1. Data</a></li>
+  <li><a href="#part-2.-model" id="toc-part-2.-model" class="nav-link" data-scroll-target="#part-2.-model">Part 2. Model</a></li>
+  <li><a href="#part-3.-training" id="toc-part-3.-training" class="nav-link" data-scroll-target="#part-3.-training">Part 3. Training</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab11.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="csc413-lab-11-text-generation-with-transformers" class="level1">
+<h1>CSC413 Lab 11: Text Generation with Transformers</h1>
+<p>In this lab, we will build a generative transformer to generate new lines that emulates the TV show <a href="https://www.imdb.com/title/tt0108778/">Friends</a>. In order to do so, we will leverage Andrej Karpathy’s implementation of GPT2 called the <a href="https://github.com/karpathy/nanoGPT">nanoGPT</a>. This particular implementation uses a small number of components and focuses on the essential ideas behind the GPT2 model.</p>
+<p>Instead of training a GPT model from scratch, we will <em>fine-tune</em> a pre-trained model. This reduces training time necessary to achieve a reasonable measure of performance.</p>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Fine-tune a transformer model on a new data set.</li>
+<li>Trace the execution of a transformer model to explain its inner working.</li>
+<li>Compare the batching approach used here and in the pervious lab.</li>
+<li>Explain the ethical issues involved in applying large language models.</li>
+</ul>
+<p>Acknowledgements:</p>
+<ul>
+<li>The nanoGPT implementation is from https://github.com/karpathy/nanoGPT</li>
+<li>Data is from https://convokit.cornell.edu/documentation/friends.html</li>
+<li>The Byte Pair Encoding tokenizer is from https://github.com/openai/tiktoken</li>
+<li>GPT2 Model was introduced in the paper <a href="https://insightcivic.s3.us-east-1.amazonaws.com/language-models.pdf">Language Models are Unsupervised Multitask Learners</a></li>
+</ul>
+<p>Please work in groups of 1-2 during the lab.</p>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>If you are working with a partner, start by creating a group on Markus. If you are working alone, click “Working Alone”.</p>
+<p>Submit the ipynb file <code>lab11.ipynb</code> on Markus <strong>containing all your solutions to the Graded Task</strong>s. Your notebook file must contain your code <strong>and outputs</strong> where applicable, including printed lines and images. Your TA will not run your code for the purpose of grading.</p>
+<p>For this lab, you should submit the following:</p>
+<ul>
+<li>Part 1. Your code to generate the list <code>uts</code>. (1 point)</li>
+<li>Part 1. Your explanation for why the tokenization method needs to be consistent. (1 point)</li>
+<li>Part 1. Your explanation of why the target tensor is an “offset” of the input tensor. (1 point)</li>
+<li>Part 2. Your explanation of the relationship between <code>lm_head</code> and <code>wte</code>. (1 point)</li>
+<li>Part 2. Your result for the shape of <code>x</code> in the <code>GPT.forward()</code> method. (1 point)</li>
+<li>Part 2. Your computation of the shape of <code>(q @ k.transpose(-2, -1))</code> in the causal self attention module (1 point)</li>
+<li>Part 2. Your explantion of why masking makes sense intuitively for causal self attention. (1 point)</li>
+<li>Part 2. Your computation of the number of parameters in a GPT2 model. (3 points)</li>
+</ul>
+</section>
+<section id="part-1.-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
+<p>The “Friends Corpus” can be downloaded through the ConvKit package on Python. You can read more about the data <a href="https://convokit.cornell.edu/documentation/friends.html">here</a>.</p>
+<p>Let’s install this package, and explore the data set.</p>
+<pre><code>%pip install convokit</code></pre>
+<pre><code>import convokit</code></pre>
+<pre><code>corpus = convokit.Corpus(convokit.download('friends-corpus'))</code></pre>
+<p><strong>Task</strong>: Run the code below, which iterates through the first 10 utterances of the show. How is each utterance formatted? What do the <code>speaker</code> and <code>text</code> field mean?</p>
+<pre><code>for i, utterance in enumerate(corpus.iter_utterances()):
+    print(utterance)
+    if (i &gt;= 9): 
+        break</code></pre>
+<p><strong>Graded Task</strong>: Create a list of strings called <code>uts</code> that contains all utterances made by your favourite (of the 6) main character of the show.</p>
+<pre><code>character = 'Monica Geller' # OR 'Chandler Bing' OR 'Phoebe Buffay' OR ...
+
+uts = []
+
+for utterance in corpus.iter_utterances():
+    pass # TODO
+    uts.append(utterance.text) # SOLUTION - this needs to be changed to account for the character chosen</code></pre>
+<p>Please include the output of this next line in your solution</p>
+<pre><code>print(len(uts)) 
+# {'Monica Geller': 8498, 'Ross Geller': 9161, 'Phoebe Buffay': 7539, 'Chandler Bing': 8568, 'Joey Tribbiani': 8215, 'Rachel Green': 9331} # SOLUTION</code></pre>
+<p><strong>Task</strong>: Run the below code. This code combines these lines into a large string for training, and a large string for validation. We will index ranges in this large string for use in a minibatch—i.e. a minibatch of data will consist of a substring in this large string. This substring may start in the middle of an utterance and may contain multiple utterances—and that turns out to be okay! Our neural network still manages to learn what an utterance looks like and emulate it.</p>
+<p>Since this approach is simpler to implement than the batching approach seen in the previous lab, it is more often used.</p>
+<p>We will use 90% of the data for training, and 10% of the data for validation.</p>
+<pre><code>train_split = 0.9
+n = len(uts)
+
+train_data_str = '\n'.join(uts[:int(n*train_split)])
+val_data_str = '\n'.join(uts[int(n*train_split):])</code></pre>
+<p><strong>Task</strong>: Notice that we split the utterances so that the earlier utterances are in the training set, and the later utterances (i.e., later in the TV show) are in the validation set. Why is this method preferable to randomly splitting the utterances into training and validation?</p>
+<pre><code># Include your explanation here</code></pre>
+<p><strong>Task</strong>: Why do we not set aside a test set?</p>
+<pre><code># Include your explanation here</code></pre>
+<p>Just like in the previous lab, we will <em>tokenize</em> our text. Modern models use a tokenization strategy called <a href="https://en.wikipedia.org/wiki/Byte_pair_encoding">Byte Pair Encoding</a>, which tokenize text into common into <strong>sub-word tokens</strong>. Sub-word tokens split words into commonly occuring (and thus meaningful) parts. For example, the word “utterance” could be split into “utter” and “ance”. The model would learn about these constinuent tokens in different contexts, helping the model generalize better.</p>
+<p>We will use the Byte Pair Encoding (BPE) tokenizer from the <code>tiktoken</code> library. Let’s install and import this library.</p>
+<pre><code>%pip install tiktoken</code></pre>
+<pre><code>import tiktoken</code></pre>
+<p><strong>Graded Task</strong>: We will be fine-tuning a pre-trained GPT2 model. Explain why it is important for us to use the same tokenization method as is used in the original GPT2 model whose weights we will be using.</p>
+<pre><code># Your explanation goes here</code></pre>
+<p>Now, let’s retrieve the original GPT2 model.</p>
+<pre><code>enc = tiktoken.get_encoding("gpt2")
+
+train_ids = enc.encode_ordinary(train_data_str)
+val_ids = enc.encode_ordinary(val_data_str)</code></pre>
+<p><strong>Task</strong>: How many tokens are in the training and validation sets? How does this compare with the number of <em>words</em> in each data set (computed using the <code>str.split()</code> method)? What about the number of <em>characters</em>?</p>
+<pre><code># TODO
+print("training data:")              # SOLUTION
+print("tokens: ", len(train_ids))   # SOLUTION
+print("words: ", len(train_data_str.split()))   # SOLUTION
+print("chars: ", len(train_data_str))   # SOLUTION
+print() # SOLUTION
+print("valdiation data:")              # SOLUTION
+print("tokens: ", len(val_ids))   # SOLUTION
+print("words: ", len(val_data_str.split()))   # SOLUTION
+print("chars: ", len(val_data_str))   # SOLUTION
+
+# SOLUTION: There are about 1.5 tokens per word, and 3.4 characters per token</code></pre>
+<p><strong>Task</strong>: Run the below code, which will save the above numpy arrays in a file. This way, we can use the <code>np.memmap</code> function, which creates a memory-map to an array stored in a binary file on disk. This approach is useful for accessing segments of a large file on disk, which we will be doing.</p>
+<pre><code>import numpy as np
+import os
+
+data_dir = 'friends_gpt2'
+os.makedirs(data_dir, exist_ok=True)
+
+# export to bin files
+train_ids = np.array(train_ids, dtype=np.uint16)
+val_ids = np.array(val_ids, dtype=np.uint16)
+train_ids.tofile(os.path.join(data_dir, 'train.bin'))
+val_ids.tofile(os.path.join(data_dir, 'val.bin'))</code></pre>
+<pre><code># create a memory map
+train_data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
+val_data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')</code></pre>
+<p><strong>Task</strong>: Use the <code>get_batch</code> function below to extract a sample input/output from this data set. Here, we will be using the approach shown in the generative RNN lecture, where the model generates the next token given the previous context.</p>
+<pre><code>import torch
+
+def get_batch(data, block_size, batch_size, device):
+    """
+    Return a minibatch of data. This function is not deterministic.
+    Calling this function multiple times will result in multiple different
+    return values.
+
+    Parameters:
+        `data` - a numpy array (e.g., created via a call to np.memmap)
+        `block_size` - the length of each sequence
+        `batch_size` - the number of sequences in the batch
+        `device` - the device to place the returned PyTorch tensor
+
+    Returns: A tuple of PyTorch tensors (x, t), where
+        `x` - represents the input tokens, with shape (batch_size, block_size)
+        `y` - represents the target output tokens, with shape (batch_size, block_size)
+    """
+    ix = torch.randint(len(data) - block_size, (batch_size,))
+    x = torch.stack([torch.from_numpy((data[i:i+block_size]).astype(np.int64)) for i in ix])
+    t = torch.stack([torch.from_numpy((data[i+1:i+1+block_size]).astype(np.int64)) for i in ix])
+    if 'cuda' in device:
+        # pin arrays x,t, which allows us to move them to GPU asynchronously
+        #  (non_blocking=True)
+        x, t = x.pin_memory().to(device, non_blocking=True), t.pin_memory().to(device, non_blocking=True)
+    else:
+        x, t = x.to(device), t.to(device)
+    return x, t</code></pre>
+<pre><code>device = 'cuda' if torch.cuda.is_available()  else 'cpu'
+# TODO: get and print a single batch from the training set
+get_batch(train_data, 10, 12, device) # SOLUTION</code></pre>
+<p><strong>Graded Task</strong>: Once again, we will be using the approach shown in the generative RNN lecture, where the model’s goal is to generate the next token given the previous context. With that in mind, explain why the target output tokens is very similar to the input tokens, just offset by 1 along the <code>block_size</code> dimension.</p>
+<pre><code># TODO: Your explanation goes here.</code></pre>
+</section>
+<section id="part-2.-model" class="level2">
+<h2 class="anchored" data-anchor-id="part-2.-model">Part 2. Model</h2>
+<p>Now that we have our data set in mind, it is time to set up our GPT2 model. We will use the code provided in the <a href="https://github.com/karpathy/nanoGPT">nanoGPT repository</a>, slightly modified here for succinctness. Thus, we will not re-implement the GPT2 model. Instead, let’s use the nanoGPT implementation to understand, step-by-step, what happens in a GPT model.</p>
+<p>We will explore the components of the GPT2 model first in a <em>top-down</em> manner, to get an intuition as to how the pieces connect. Then, we will explore the same components in a <em>bottom-up</em> manner, so that we can fully understand the role of each component.</p>
+<pre><code>from dataclasses import dataclass
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import inspect</code></pre>
+<p>We begin with the <code>GPTConfig</code> class, which contains model architecture settings for our GPT2 model. The settings specify:</p>
+<ul>
+<li><code>block_size</code>: the input sequence length. Shorter sequences can be padded (with a padding token as seen in the previous lab), and longer sequences must be cut shorter. During training, we will generate batches with sequences that are exactly the block size</li>
+<li><code>vocab_size</code>: the number of unique tokens in our vocabulary. This affects the size of the initial embedding layer.</li>
+<li><code>n_layer</code>: the number of transformer layers.</li>
+<li><code>n_head</code>: the number of <em>attention heads</em> to use in the causal self-attention layer.</li>
+<li><code>n_embd</code>: the embedding size used throughout the model. You can think of each token position as being represented as a vector of length <code>n_embd</code>.</li>
+<li><code>dropout</code>: for dropout.</li>
+<li><code>bias</code>: A boolean to determine whether to use a bias parameter in certain layers or not.</li>
+</ul>
+<pre><code>@dataclass
+class GPTConfig:
+    block_size: int = 1024
+    vocab_size: int = 50304 # GPT-2 vocab_size of 50257, padded up to nearest multiple of 64 for efficiency
+    n_layer: int = 12
+    n_head: int = 12
+    n_embd: int = 768
+    dropout: float = 0.0
+    bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster</code></pre>
+<p><strong>Task</strong>: Which of these settings do you think would affect the total number of trainable parameters in a GPT model? Which of them do you think have the <strong>largest impact</strong> on the number of trainable parameters? Please write down your guess before continuing, and we will check back here later.</p>
+<pre><code># TODO: Write down your thoughts here.</code></pre>
+<p>With the setting in mind, we can set up a GPT model. A GPT model will take a GPTConfig object as a parameter. Pay particular attention to the <code>__init__()</code> and <code>forward()</code> methods. These are the methods that we will study in more detail.</p>
+<p>The code uses a more PyTorch features that we have not discussed, but these features are mostly cosmetic and do not provide significantly different functionality: the use of <code>nn.ModuleDict</code> allows us to access modules in the <code>GPT</code> class in a straightforward way, and <code>nn.ModuleList</code> allows us to create a list of modules. We have not yet defined the PyTorch neural network modules <code>Block</code> and <code>LayerNorm</code>, but we will do so soon.</p>
+<p>If you see a PyTorch feature used that you don’t understand, you can always look it up in the PyTorch documentation. However, you don’t try to understand everything at one go. It is normal to read code in multiple “passes”, and focus on the big picture in the first pass.</p>
+<p><strong>Task</strong>: Begin with a first pass read of the <code>__init__()</code> and <code>forward()</code> methods of the <code>GPT</code> module.</p>
+<pre><code>class GPT(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        assert config.vocab_size is not None
+        assert config.block_size is not None
+        self.config = config
+
+        self.transformer = nn.ModuleDict(dict(
+            wte = nn.Embedding(config.vocab_size, config.n_embd),
+            wpe = nn.Embedding(config.block_size, config.n_embd),
+            drop = nn.Dropout(config.dropout),
+            h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
+            ln_f = LayerNorm(config.n_embd, bias=config.bias),
+        ))
+        self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
+        # with weight tying when using torch.compile() some warnings get generated:
+        # "UserWarning: functional_call was passed multiple values for tied weights.
+        # This behavior is deprecated and will be an error in future versions"
+        # not 100% sure what this is, so far seems to be harmless. TODO investigate
+        self.transformer.wte.weight = self.lm_head.weight # https://paperswithcode.com/method/weight-tying
+
+        # init all weights
+        self.apply(self._init_weights)
+        # apply special scaled init to the residual projections, per GPT-2 paper
+        for pn, p in self.named_parameters():
+            if pn.endswith('c_proj.weight'):
+                torch.nn.init.normal_(p, mean=0.0, std=0.02/math.sqrt(2 * config.n_layer))
+
+        # report number of parameters
+        print("number of parameters: %.2fM" % (self.get_num_params()/1e6,))
+
+    def get_num_params(self, non_embedding=True):
+        """
+        Return the number of parameters in the model.
+        For non-embedding count (default), the position embeddings get subtracted.
+        The token embeddings would too, except due to the parameter sharing these
+        params are actually used as weights in the final layer, so we include them.
+        """
+        n_params = sum(p.numel() for p in self.parameters())
+        if non_embedding:
+            n_params -= self.transformer.wpe.weight.numel()
+        return n_params
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
+            if module.bias is not None:
+                torch.nn.init.zeros_(module.bias)
+        elif isinstance(module, nn.Embedding):
+            torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
+
+    def forward(self, idx, targets=None):
+        device = idx.device
+        b, t = idx.size()
+        assert t &lt;= self.config.block_size, f"Cannot forward sequence of length {t}, block size is only {self.config.block_size}"
+        pos = torch.arange(0, t, dtype=torch.long, device=device) # shape (t)
+
+        # forward the GPT model itself
+        tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, t, n_embd)
+        pos_emb = self.transformer.wpe(pos) # position embeddings of shape (t, n_embd)
+        x = self.transformer.drop(tok_emb + pos_emb)
+        for block in self.transformer.h:
+            x = block(x)
+        x = self.transformer.ln_f(x)
+
+        if targets is not None:
+            # if we are given some desired targets also calculate the loss
+            logits = self.lm_head(x)
+            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
+        else:
+            # inference-time mini-optimization: only forward the lm_head on the very last position
+            logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim
+            loss = None
+
+        return logits, loss
+
+    def crop_block_size(self, block_size):
+        # model surgery to decrease the block size if necessary
+        # e.g. we may load the GPT2 pretrained model checkpoint (block size 1024)
+        # but want to use a smaller block size for some smaller, simpler model
+        assert block_size &lt;= self.config.block_size
+        self.config.block_size = block_size
+        self.transformer.wpe.weight = nn.Parameter(self.transformer.wpe.weight[:block_size])
+        for block in self.transformer.h:
+            if hasattr(block.attn, 'bias'):
+                block.attn.bias = block.attn.bias[:,:,:block_size,:block_size]
+
+    @classmethod
+    def from_pretrained(cls, model_type, override_args=None):
+        assert model_type in {'gpt2', 'gpt2-medium', 'gpt2-large', 'gpt2-xl'}
+        override_args = override_args or {} # default to empty dict
+        # only dropout can be overridden see more notes below
+        assert all(k == 'dropout' for k in override_args)
+        from transformers import GPT2LMHeadModel
+        print("loading weights from pretrained gpt: %s" % model_type)
+
+        # n_layer, n_head and n_embd are determined from model_type
+        config_args = {
+            'gpt2':         dict(n_layer=12, n_head=12, n_embd=768),  # 124M params
+            'gpt2-medium':  dict(n_layer=24, n_head=16, n_embd=1024), # 350M params
+            'gpt2-large':   dict(n_layer=36, n_head=20, n_embd=1280), # 774M params
+            'gpt2-xl':      dict(n_layer=48, n_head=25, n_embd=1600), # 1558M params
+        }[model_type]
+        print("forcing vocab_size=50257, block_size=1024, bias=True")
+        config_args['vocab_size'] = 50257 # always 50257 for GPT model checkpoints
+        config_args['block_size'] = 1024 # always 1024 for GPT model checkpoints
+        config_args['bias'] = True # always True for GPT model checkpoints
+        # we can override the dropout rate, if desired
+        if 'dropout' in override_args:
+            print(f"overriding dropout rate to {override_args['dropout']}")
+            config_args['dropout'] = override_args['dropout']
+        # create a from-scratch initialized minGPT model
+        config = GPTConfig(**config_args)
+        model = GPT(config)
+        sd = model.state_dict()
+        sd_keys = sd.keys()
+        sd_keys = [k for k in sd_keys if not k.endswith('.attn.bias')] # discard this mask / buffer, not a param
+
+        # init a huggingface/transformers model
+        model_hf = GPT2LMHeadModel.from_pretrained(model_type)
+        sd_hf = model_hf.state_dict()
+
+        # copy while ensuring all of the parameters are aligned and match in names and shapes
+        sd_keys_hf = sd_hf.keys()
+        sd_keys_hf = [k for k in sd_keys_hf if not k.endswith('.attn.masked_bias')] # ignore these, just a buffer
+        sd_keys_hf = [k for k in sd_keys_hf if not k.endswith('.attn.bias')] # same, just the mask (buffer)
+        transposed = ['attn.c_attn.weight', 'attn.c_proj.weight', 'mlp.c_fc.weight', 'mlp.c_proj.weight']
+        # basically the openai checkpoints use a "Conv1D" module, but we only want to use a vanilla Linear
+        # this means that we have to transpose these weights when we import them
+        assert len(sd_keys_hf) == len(sd_keys), f"mismatched keys: {len(sd_keys_hf)} != {len(sd_keys)}"
+        for k in sd_keys_hf:
+            if any(k.endswith(w) for w in transposed):
+                # special treatment for the Conv1D weights we need to transpose
+                assert sd_hf[k].shape[::-1] == sd[k].shape
+                with torch.no_grad():
+                    sd[k].copy_(sd_hf[k].t())
+            else:
+                # vanilla copy over the other parameters
+                assert sd_hf[k].shape == sd[k].shape
+                with torch.no_grad():
+                    sd[k].copy_(sd_hf[k])
+
+        return model
+
+    def configure_optimizers(self, weight_decay, learning_rate, betas, device_type):
+        # start with all of the candidate parameters
+        param_dict = {pn: p for pn, p in self.named_parameters()}
+        # filter out those that do not require grad
+        param_dict = {pn: p for pn, p in param_dict.items() if p.requires_grad}
+        # create optim groups. Any parameters that is 2D will be weight decayed, otherwise no.
+        # i.e. all weight tensors in matmuls + embeddings decay, all biases and layernorms don't.
+        decay_params = [p for n, p in param_dict.items() if p.dim() &gt;= 2]
+        nodecay_params = [p for n, p in param_dict.items() if p.dim() &lt; 2]
+        optim_groups = [
+            {'params': decay_params, 'weight_decay': weight_decay},
+            {'params': nodecay_params, 'weight_decay': 0.0}
+        ]
+        num_decay_params = sum(p.numel() for p in decay_params)
+        num_nodecay_params = sum(p.numel() for p in nodecay_params)
+        print(f"num decayed parameter tensors: {len(decay_params)}, with {num_decay_params:,} parameters")
+        print(f"num non-decayed parameter tensors: {len(nodecay_params)}, with {num_nodecay_params:,} parameters")
+        # Create AdamW optimizer and use the fused version if it is available
+        fused_available = 'fused' in inspect.signature(torch.optim.AdamW).parameters
+        use_fused = fused_available and device_type == 'cuda'
+        extra_args = dict(fused=True) if use_fused else dict()
+        optimizer = torch.optim.AdamW(optim_groups, lr=learning_rate, betas=betas, **extra_args)
+        print(f"using fused AdamW: {use_fused}")
+
+        return optimizer
+
+    def estimate_mfu(self, fwdbwd_per_iter, dt):
+        """ estimate model flops utilization (MFU) in units of A100 bfloat16 peak FLOPS """
+        # first estimate the number of flops we do per iteration.
+        # see PaLM paper Appendix B as ref: https://arxiv.org/abs/2204.02311
+        N = self.get_num_params()
+        cfg = self.config
+        L, H, Q, T = cfg.n_layer, cfg.n_head, cfg.n_embd//cfg.n_head, cfg.block_size
+        flops_per_token = 6*N + 12*L*H*Q*T
+        flops_per_fwdbwd = flops_per_token * T
+        flops_per_iter = flops_per_fwdbwd * fwdbwd_per_iter
+        # express our flops throughput as ratio of A100 bfloat16 peak flops
+        flops_achieved = flops_per_iter * (1.0/dt) # per second
+        flops_promised = 312e12 # A100 GPU bfloat16 peak flops is 312 TFLOPS
+        mfu = flops_achieved / flops_promised
+        return mfu
+
+    @torch.no_grad()
+    def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None):
+        """
+        Take a conditioning sequence of indices idx (LongTensor of shape (b,t)) and complete
+        the sequence max_new_tokens times, feeding the predictions back into the model each time.
+        Most likely you'll want to make sure to be in model.eval() mode of operation for this.
+        """
+        for _ in range(max_new_tokens):
+            # if the sequence context is growing too long we must crop it at block_size
+            idx_cond = idx if idx.size(1) &lt;= self.config.block_size else idx[:, -self.config.block_size:]
+            # forward the model to get the logits for the index in the sequence
+            logits, _ = self(idx_cond)
+            # pluck the logits at the final step and scale by desired temperature
+            logits = logits[:, -1, :] / temperature
+            # optionally crop the logits to only the top k options
+            if top_k is not None:
+                v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
+                logits[logits &lt; v[:, [-1]]] = -float('Inf')
+            # apply softmax to convert logits to (normalized) probabilities
+            probs = F.softmax(logits, dim=-1)
+            # sample from the distribution
+            idx_next = torch.multinomial(probs, num_samples=1)
+            # append sampled index to the running sequence and continue
+            idx = torch.cat((idx, idx_next), dim=1)
+
+        return idx</code></pre>
+<p>Doing a first-pass read on both the <code>__init__()</code> and <code>forward()</code> methods, you should see that the GPT model has the following components (ignoring dropout):</p>
+<ul>
+<li><code>transformer.wte</code>, which is an embedding layer that maps tokens to a vector embedding.</li>
+<li><code>transformer.wtp</code>, is also an embedding layer, but this one maps <strong>token position indices</strong> to a vector embedding. This index is required to inject position information into the embedding—otherwise transformer computation would be invariant to the reordering of input tokens (i.e., the computation would not change if the order of the input tokens change). Since the length of a sequence is at most <code>block_size</code>, so there are at most <code>block_size</code> indices to embed.</li>
+<li>A sequence of <code>Block</code>s — to be defined. The output from the previous block is taken as the input of the next block.</li>
+<li>A final <code>LayerNorm</code> layer after the last block. This layer is also yet to be defined, and the name suggests that this is a normalization layer (similar to batch normalization) that does <em>not</em> change the shape of the features (i.e., the output shape is the same as the input shape).</li>
+<li><code>lm_head</code>, which is a linear layer that maps embeddings back to a distribution over the possible otuput tokens.</li>
+</ul>
+<p><strong>Task</strong>: Compute the number of parameters in the <code>wte</code> embedding layer of the GPT2 model. (For these and other questions that specifically mention GPT2 model, please use the config settings above and provide an actual numbers.)</p>
+<pre><code># TODO: Perform this computation by hand.</code></pre>
+<p><strong>Task</strong>: Compute the number of parameters in the <code>wtp</code> embedding layer of the GPT2 model.</p>
+<pre><code># TODO: Perform this computation by hand.</code></pre>
+<p><strong>Graded Task</strong>: Explain why the linear layer <code>lm_head</code> has the same number of parameters as the embedding layer <code>wte</code>. Provide an intuitive explanation for why <strong>weight tying</strong>—i.e., using the same set of weights for both layers, just transposed—would be reasonable. The weight tying is done to reduce the total number of parameters in the GPT2 model.</p>
+<pre><code># TODO: Include your explanations here</code></pre>
+<p><strong>Task</strong>: Explain why it is that in the <code>forward()</code> method, the tensor <code>tok_emb</code> has the shape <code>(b, t, n_embd)</code>, where <code>b</code> is the batch size, <code>t</code> is the sequence length (max <code>block_size</code>), and <code>n_embd</code> is the embedding size.</p>
+<pre><code># TODO: Include your explanations here</code></pre>
+<p><strong>Task</strong>: Notice that in the <code>forward()</code> method, the tensor <code>pos_emb</code> has the shape <code>(t, n_embd)</code>. In other words, we embed the position only once for each batch, and then rely on PyTorch tensor broadcasting to perform the addition <code>tok_emb + pos_emb</code>. Why is this ok?</p>
+<pre><code># TODO: Include your explanations here</code></pre>
+<p><strong>Task</strong>: What is the shape of <code>tok_emb + pos_emb</code> in the <code>forward()</code> method in a GPT2 model? This question is not trivial because the two addend tensors are not of the same shape. Thus, the addition uses broadcasting. PyTorch broadcasting works similarly to that of Numpy’s. You can look up “PyTorch broadcasting” to find resources related to how broadcasting works.</p>
+<pre><code># TODO: Perform this computation by hand.</code></pre>
+<p><strong>Graded Task</strong>: What is the shape of <code>x</code> in the <code>forward()</code> method? This is an important shape to remember, since it is the shape of the feature map consistent in most of the transformer network.</p>
+<pre><code># TODO: Perform this computation by hand.</code></pre>
+<p><strong>Task</strong>: What is the shape of <code>logits</code> in the <code>forward()</code> method?</p>
+<pre><code># TODO: Perform this computation by hand.</code></pre>
+<p>These questions above should give you a clear idea of the main components of the transformer model, the expected input and output tensor shapes, and the shapes of intermediate tensors. With this in mind, let’s explore the two modules referenced by <code>GPT</code>.</p>
+<p>We’ll start with the simple one. The LayerNorm layer is intended to be similar to <a href="https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html#torch.nn.LayerNorm">PyTorch’s LayerNorm layer</a>.</p>
+<pre><code>class LayerNorm(nn.Module):
+    """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
+
+    def __init__(self, ndim, bias):
+        super().__init__()
+        self.weight = nn.Parameter(torch.ones(ndim))
+        self.bias = nn.Parameter(torch.zeros(ndim)) if bias else None
+
+    def forward(self, input):
+        return F.layer_norm(input, self.weight.shape, self.weight, self.bias, 1e-5)</code></pre>
+<p><strong>Task</strong>: How many parameters are in a LayerNorm layer?</p>
+<pre><code># TODO: Perform this computation by hand.</code></pre>
+<p><strong>Task</strong>: Read the description of the LayerNorm layer in PyTorch at <a href="https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html#torch.nn.LayerNorm">https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html#torch.nn.LayerNorm</a>. Then, explain how layer normalization differs from batch normalization.</p>
+<pre><code># TODO: Perform this computation by hand.</code></pre>
+<p>Let’s move on to the <code>Block</code> module. Recall that here are several <code>Block</code> modules in a GPT model, and the output of one module is the input of the next.</p>
+<pre><code>class Block(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        self.ln_1 = LayerNorm(config.n_embd, bias=config.bias)
+        self.attn = CausalSelfAttention(config)
+        self.ln_2 = LayerNorm(config.n_embd, bias=config.bias)
+        self.mlp = MLP(config)
+
+    def forward(self, x):
+        x = x + self.attn(self.ln_1(x))
+        x = x + self.mlp(self.ln_2(x))
+        return x</code></pre>
+<p>This module is actually quite succinct, but it also refers to modules that are yet to be defined. It consists of:</p>
+<ul>
+<li>A layer normalization layer.</li>
+<li>A <strong>causal self attention</strong> layer (to be defined). This is the heart of the GPT model.</li>
+<li>Another layer normalization layer.</li>
+<li>An MLP layer (to be defined).</li>
+</ul>
+<p><strong>Task</strong>: Judging by the <code>Block.forward()</code> method above, why must the <code>CausalSelfAttention</code> and the <code>MLP</code> layers <strong>preserve the shape of the features</strong>?</p>
+<pre><code># TODO: Include your explanation here.</code></pre>
+<p><strong>Task</strong>: How might the <em>skip-connections</em> in the <code>Block.forward()</code> method help with gradient flow? An intuitive explanation is sufficient here.</p>
+<pre><code># TODO: Include your explanation here.</code></pre>
+<p>With the GPT2 <code>Block</code> in mind, we will define the <code>MLP</code> module next.</p>
+<pre><code>class MLP(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        self.c_fc    = nn.Linear(config.n_embd, 4 * config.n_embd, bias=config.bias)
+        self.gelu    = nn.GELU()
+        self.c_proj  = nn.Linear(4 * config.n_embd, config.n_embd, bias=config.bias)
+        self.dropout = nn.Dropout(config.dropout)
+
+    def forward(self, x):
+        x = self.c_fc(x)
+        x = self.gelu(x)
+        x = self.c_proj(x)
+        x = self.dropout(x)
+        return x</code></pre>
+<p>Immediately, we see that this MLP consists of two linear layers. The activation function used between these two layers is the <a href="https://pytorch.org/docs/stable/generated/torch.nn.GELU.html">Gaussian Error Linear Units function</a>. You can read more about it in <a href="https://arxiv.org/pdf/1606.08415.pdf">this paper</a>.</p>
+<p><strong>Task</strong>: Compute the number of parameters in a <code>MLP</code> layer in a GPT2 model.</p>
+<pre><code># TODO: Perform this computation by hand</code></pre>
+<p><strong>Task</strong>: Recall that the input of the MLP layer is a tensor with the usual dimension computed earlier. What is the shape of <code>self.c_fc(x)</code> in the <code>MLP.forward()</code> method? What about the shape of the return value in this method?</p>
+<pre><code># TODO: Perform this computation by hand</code></pre>
+<p><strong>Task</strong>: Explain why this MLP layer is also called the “pointwise feed forward” layer. (Hint: a “point” here refers to a single token or position in the input sequence)</p>
+<pre><code># TODO: Include your explanation here.</code></pre>
+<p>Finally, let’s study the definition of the <code>CausalSelfAttention</code> layer. This is the heart of the GPT model and is also the most complex module.</p>
+<p><strong>Task</strong>: Begin with a first pass read of the <code>__init__()</code> and <code>forward()</code> methods of <code>CausalSelfAttention</code> module. We will then trace through the case where <code>self.flash</code> is <code>False</code>, since the code provides more detailed explanation for the computation steps.</p>
+<pre><code>class CausalSelfAttention(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        assert config.n_embd % config.n_head == 0
+        # key, query, value projections for all heads, but in a batch
+        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_embd, bias=config.bias)
+        # output projection
+        self.c_proj = nn.Linear(config.n_embd, config.n_embd, bias=config.bias)
+        # regularization
+        self.attn_dropout = nn.Dropout(config.dropout)
+        self.resid_dropout = nn.Dropout(config.dropout)
+        self.n_head = config.n_head
+        self.n_embd = config.n_embd
+        self.dropout = config.dropout
+        # flash attention make GPU go brrrrr but support is only in PyTorch &gt;= 2.0
+        self.flash = hasattr(torch.nn.functional, 'scaled_dot_product_attention')
+        if not self.flash:
+            print("WARNING: using slow attention. Flash Attention requires PyTorch &gt;= 2.0")
+            # causal mask to ensure that attention is only applied to the left in the input sequence
+            self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
+                                        .view(1, 1, config.block_size, config.block_size))
+
+    def forward(self, x):
+        B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
+
+        # calculate query, key, values for all heads in batch and move head forward to be the batch dim
+        q, k, v  = self.c_attn(x).split(self.n_embd, dim=2)
+        k = k.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+
+        # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -&gt; (B, nh, T, T)
+        if self.flash:
+            # efficient attention using Flash Attention CUDA kernels
+            y = torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask=None, dropout_p=self.dropout if self.training else 0, is_causal=True)
+        else:
+            # manual implementation of attention
+            att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
+            att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
+            att = F.softmax(att, dim=-1)
+            att = self.attn_dropout(att)
+            y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -&gt; (B, nh, T, hs)
+        y = y.transpose(1, 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side
+
+        # output projection
+        y = self.resid_dropout(self.c_proj(y))
+        return y</code></pre>
+<p><strong>Task</strong>: Compute the number of parameters in the <code>c_attn</code> layer in a GPT2 model.</p>
+<pre><code># TODO: Perform this computation by hand</code></pre>
+<p><strong>Task</strong>: Like the comment in the <code>__init__()</code> method suggests, we can think of the <code>c_attn</code> layer as a combination of three <code>nn.Linear(config.n_embd, config.n_embd, bias=config.bias)</code> modules. These three networks projects the input embedding into three parts: <code>q</code> (for <em>query</em>), <code>k</code> (for <em>key</em>), and <code>v</code> (for *value).</p>
+<p>What is the shape of <code>self.c_attn(x)</code> in the <code>forward()</code> method? Use this answer to show that <code>self.c_attn(x).split(self.n_embd, dim=2)</code> gives us the same <code>q, k, v</code> values had we used three separate networks.</p>
+<pre><code># TODO: Perform the computation by hand, then include your explaination.</code></pre>
+<p><strong>Task</strong>: Explain why <code>config.n_head</code> must be a factor of <code>config.n_embd</code>.</p>
+<pre><code># TODO: Your explanation goes here.</code></pre>
+<p>We will explore the manual implementation of attention in the next few questions. For this part, it helps to first consider the case where the batch size <code>B=1</code>, and <code>n_head=1</code>. For a larger batch size and number of heads, the attention computation is repeated for every sequence in the batch and every attention head. Thus, the shapes of the three important tensors are:</p>
+<ul>
+<li><code>q</code>: (1, 1, T, n_embd)</li>
+<li><code>k</code>: (1, 1, T, n_embd)</li>
+<li><code>v</code>: (1, 1, T, n_embd)</li>
+</ul>
+<p>Like discussed in the lectures, you can think of the attention mechanism as a “soft” dictionary lookup. Instead of obtaining a single key/values for a given query, attention gives us a <em>probability distribution over the possible keys/values</em>. We can then use this probability distribution to obtain a weighted sum (akin to an expected value) of the lookup value. Moreover, instead of having strings, numbers, or other objects as keys/values, a key is a vector (of shape <code>n_embd</code>), and a value is also a vector (of shape <code>n_embd</code>). This is consistent with what we have seen in neural networks—everything is represented using a vector! The tensors <code>k</code> and <code>v</code> contains these keys and values, and there is one vector at every token position. The tensor <code>q</code> contains the <strong>queries</strong>— analogues to the item (a possible key) that we are searching for in a regular dictionary lookup. There is also one query vector for each token position: for each token position, we want to look up a corresponding (weighted sum of) values that contains information pertinent to understanding the meaning of the token in this position.</p>
+<p>With that in mind, let’s go through the mathematical computations.</p>
+<p><strong>Graded Task</strong>: What is the shape of <code>(q @ k.transpose(-2, -1))</code>? For this and the following questions, assume that <code>q</code>, <code>k</code>, <code>v</code> have the shape above, where we have assumed that batch size and num heads are both 1.</p>
+<pre><code># TODO: Perform this computation by hand
+# SOLUTION: (T, T)</code></pre>
+<p><strong>Task</strong>: What is the value of math.sqrt(k.size(-1))?</p>
+<pre><code># TODO: Perform this computation by hand
+# SOLUTION: n_embed</code></pre>
+<p><strong>Task</strong>: Argue that the line <code>att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))</code> is computing a “distance” or “similarity” metric between the query at each token position and the key at each token position.</p>
+<pre><code># TODO: Your explanation goes here</code></pre>
+<p>The following line of code references a <code>self.bias</code> parameter, which is defined in the last line of the <code>__init__()</code> method. Since <code>block_size</code> is quite large, we can understand what <code>self.bias</code> looks like by running a similar piece of code below with a smaller <code>block_size</code> value.</p>
+<pre><code>bias = torch.tril(torch.ones(5, 5)).view(1, 1, 5, 5)
+bias</code></pre>
+<p><strong>Task</strong>: Explain what the above code returns. Explain how PyTorch broadcasting may be useful for computations involving this tensor—i.e., why is it okay that the first two dimensions of this tensor are 1, thus assuming that batch size = 1 and num heads = 1?</p>
+<pre><code># TODO: Your explanation goes here</code></pre>
+<p><strong>Task</strong>: We will use a similar technique of running a modified version of the next two lines of code in the <code>forward()</code> method to better understand what it does. Run the below code, and explain what the <code>masked_fill</code> function does.</p>
+<pre><code>attn = torch.rand(1, 1, 5, 5)
+attn</code></pre>
+<pre><code>masked = attn.masked_fill(bias[:,:,:5, :5] == 0, float('-inf'))
+masked</code></pre>
+<pre><code>out = F.softmax(masked, dim=-1)
+out</code></pre>
+<pre><code># Your explanation goes here</code></pre>
+<p><strong>Graded Task</strong>: This masking is in place so that query tokens cannot “look up” key/values that are at a position with a larger index. Explain why this limitation means our GPT model cannot use information in subsequent/later tokens to form an understand of what what is in the current token. (Note: this masking is the “Causal” part of Causal Self-Attention!)</p>
+<pre><code># Your explanation goes here</code></pre>
+<p><strong>Task</strong>: Your answer above explains which positions in the <code>out</code> tensor need to be set to zero. Explain why setting the corresponding value of pre-softmax tensor <code>masked</code> to <code>-inf</code> is necessary. Why can’t we set the value of <code>masked</code> to 0 in these positions?</p>
+<pre><code># Your argument goes here</code></pre>
+<p><strong>Task</strong>: Argue that <code>out[0,0,0,0]</code> must always be 1.</p>
+<pre><code># Your argument goes here</code></pre>
+<p><strong>Task</strong>: Now, <code>out</code> in our example is akin to the final value of <code>att</code> in the <code>CausalSelfAttention.forward()</code> method. Explain why the operation <code>y = att @ v</code> computes a weighted sum of values at each token position, where the weights are defined by <code>att</code>.</p>
+<pre><code># Your explanation goes here</code></pre>
+<p><strong>Task</strong>: The above explanation pertain to a single attention head. Explain why using multiple attention heads allows a token position to consider information from various other positions. Alternatively, explain why using multiple heads might help the network learn different <em>ways</em> in which the meaning at one token could depend on other tokens.</p>
+<pre><code># Your explanation goes here</code></pre>
+<p><strong>Graded Task</strong>: Compute the total number of parameters in a GPT2 model by computing the following. Please use actual numbers in each case, assuming the GPT2 configuration from above.</p>
+<ol type="1">
+<li>The number of parameters in a <code>CausalSelfAttention</code> model.</li>
+<li>The number of parameters in a <code>MLP</code> module.</li>
+<li>The number of parameters in a <code>Block</code> module.</li>
+<li>The number of parameters in all <code>Block</code> modules in a GPT2 model.</li>
+<li>The number of parameters in the <code>wte</code> embedding layer in a GPT2 model.</li>
+<li>The total number of parameters in a GPT2 model.</li>
+</ol>
+<p>Please perform the computation either by hand (and show your work), or with a function that clearly shows the computations.</p>
+<p>You should see that approximately 30% of the GPT2 weight comes from the <code>wte</code> embedding layer. This is why weight tying is used in the <code>GPT</code> module!</p>
+<pre><code># TODO: Your work goes here
+
+# SOLUTION THAT I GET:
+# SOLUTION 1. 2360832
+# SOLUTION 2. 4722432
+# SOLUTION 3. 7086336
+# SOLUTION 4. 85036032
+# SOLUTION 5. 38633472
+# SOLUTION 6. 124457472</code></pre>
+</section>
+<section id="part-3.-training" class="level2">
+<h2 class="anchored" data-anchor-id="part-3.-training">Part 3. Training</h2>
+<p>We are ready to finetune our GPT2 model on the “Friends” data set! There is no graded task in this section since training this model can take some time to achieve reasonable performance.</p>
+<p>To run this part of the lab, you will need to use a GPU. On Google Colab, you can select a session with a GPU by navigating to the “Runtime” menu, selecting “Change runtime type”, and then selecting the “T4 GPU” option.</p>
+<p>We will set up a <code>config</code> object to make it easier to store and use configs.</p>
+<pre><code>import easydict
+import math
+import time
+
+finetune_config_dict = {
+  'gradient_accumulation_steps': 32,
+  'block_size': 256,
+  'dropout': 0.2,
+  'bias': False,
+  'learning_rate': 3e-5,
+  'weight_decay': 0.1,
+  'beta1': 0.9,
+  'beta2': 0.99,
+  'grad_clip': 1.0,
+  'decay_lr': False,
+  'warmup_iters': 100,
+  'lr_decay_iters': 5000,
+  'min_lr': 0.0001}
+config = easydict.EasyDict(finetune_config_dict)</code></pre>
+<p>First, we need to load the GPT2 weights.</p>
+<pre><code># initialize from OpenAI GPT-2 weights
+override_args = dict(dropout=config.dropout)
+model = GPT.from_pretrained('gpt2', override_args)
+
+# crop down the model block size using model surgery
+if config.block_size &lt; model.config.block_size:
+    model.crop_block_size(config.block_size)
+
+device = 'cuda' if torch.cuda.is_available()  else 'cpu'
+model.to(device)</code></pre>
+<p><strong>Task</strong>: Explain why reducing the <code>block_size</code> do not significantly reduce the number of parameters, but <em>does</em> significantly reduce memory usage.</p>
+<pre><code># TODO: Include your explanation here</code></pre>
+<p>There are some additional helpers to improve training.</p>
+<pre><code># initialize a GradScaler. If enabled=False scaler is a no-op
+dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16'
+ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torch.float16}[dtype]
+ctx = nullcontext() if device == 'cpu' else torch.amp.autocast(device_type=device, dtype=ptdtype)
+scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
+
+# learning rate decay scheduler (cosine with warmup)
+def get_lr(config, it):
+    # 1) linear warmup for warmup_iters steps
+    if it &lt; config.warmup_iters:
+        return config.learning_rate * it / config.warmup_iters
+    # 2) if it &gt; lr_decay_iters, return min learning rate
+    if it &gt; config.lr_decay_iters:
+        return config.min_lr
+    # 3) in between, use cosine decay down to min learning rate
+    decay_ratio = (it - config.warmup_iters) / (config.lr_decay_iters - config.warmup_iters)
+    assert 0 &lt;= decay_ratio &lt;= 1
+    coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio)) # coeff ranges 0..1
+    return config.min_lr + coeff * (config.learning_rate - config.min_lr)
+
+# helps estimate an arbitrarily accurate loss over either split using many batches
+@torch.no_grad()
+def estimate_loss(model, train_dataset, val_dataset, block_size):
+    out = {}
+    model.eval()
+    for split in ['train', 'val']:
+        losses = torch.zeros(eval_iters)
+        dataset = train_dataset if split == 'train' else val_dataset
+        for k in range(eval_iters):
+            X, Y = get_batch(dataset, block_size, batch_size, device)
+            with ctx:
+                logits, loss = model(X, Y)
+            losses[k] = loss.item()
+        out[split] = losses.mean()
+    model.train()
+    return out</code></pre>
+<p>Now we can begin the training loop. You may need to increase <code>max_iter</code> to obtain good results.</p>
+<pre><code>iter_num = 0
+best_val_loss = 1e9
+eval_interval = 10
+log_interval = 10
+eval_iters = 40
+max_iters = 500
+batch_size = 1
+
+# optimizer
+optimizer = model.configure_optimizers(config.weight_decay, config.learning_rate,
+   (config.beta1, config.beta2), device)
+
+# training loop
+X, Y = get_batch(train_data, config.block_size, batch_size, device) # fetch the very first batch
+t0 = time.time()
+local_iter_num = 0 # number of iterations in the lifetime of this process
+raw_model = model # unwrap DDP container if needed
+running_mfu = -1.0
+while True:
+    # determine and set the learning rate for this iteration
+    lr = get_lr(config, iter_num) if config.decay_lr else config.learning_rate
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
+
+    # evaluate the loss on train/val sets and write checkpoints
+    if iter_num % eval_interval == 0:
+        losses = estimate_loss(model, train_data, val_data, config.block_size)
+        print(f"step {iter_num}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+
+    # forward backward update, with optional gradient accumulation to simulate larger batch size
+    # and using the GradScaler if data type is float16
+    for micro_step in range(config.gradient_accumulation_steps):
+        with ctx:
+            logits, loss = model(X, Y)
+            loss = loss / config.gradient_accumulation_steps # scale the loss to account for gradient accumulation
+        # immediately async prefetch next batch while model is doing the forward pass on the GPU
+        X, Y = get_batch(train_data, config.block_size, batch_size, device)
+        # backward pass, with gradient scaling if training in fp16
+        scaler.scale(loss).backward()
+
+    # clip the gradient
+    if config.grad_clip != 0.0:
+        scaler.unscale_(optimizer)
+        torch.nn.utils.clip_grad_norm_(model.parameters(), config.grad_clip)
+
+    # step the optimizer and scaler if training in fp16
+    scaler.step(optimizer)
+    scaler.update()
+
+    # flush the gradients as soon as we can, no need for this memory anymore
+    optimizer.zero_grad(set_to_none=True)
+
+    # timing and logging
+    t1 = time.time()
+    dt = t1 - t0
+    t0 = t1
+    if iter_num % log_interval == 0:
+        # get loss as float. note: this is a CPU-GPU sync point
+        # scale up to undo the division above, approximating the true total loss (exact would have been a sum)
+        lossf = loss.item() * config.gradient_accumulation_steps
+        if local_iter_num &gt;= 5: # let the training loop settle a bit
+            mfu = raw_model.estimate_mfu(batch_size * config.gradient_accumulation_steps, dt)
+            running_mfu = mfu if running_mfu == -1.0 else 0.9*running_mfu + 0.1*mfu
+        print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms, mfu {running_mfu*100:.2f}%")
+
+    iter_num += 1
+    local_iter_num += 1
+
+    # termination conditions
+    if iter_num &gt; max_iters:
+        break</code></pre>
+<p>Here is some code you can use to generate a sequence using the fine-tuned GPT2 model.</p>
+<pre><code>init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
+out_dir = 'out' # ignored if init_from is not 'resume'
+start = "\n" # or "&lt;|endoftext|&gt;" or etc. Can also specify a file, use as: "FILE:prompt.txt"
+num_samples = 10 # number of samples to draw
+max_new_tokens = 500 # number of tokens generated in each sample
+temperature = 0.8 # 1.0 = no change, &lt; 1.0 = less random, &gt; 1.0 = more random, in predictions
+top_k = 200 # retain only the top_k most likely tokens, clamp others to have 0 probability
+
+
+enc = tiktoken.get_encoding("gpt2")
+encode = lambda s: enc.encode(s, allowed_special={"&lt;|endoftext|&gt;"})
+decode = lambda l: enc.decode(l)
+
+start_ids = encode(start)
+x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
+
+# model = finetuned_model
+# run generation
+with torch.no_grad():
+    with ctx:
+        for k in range(num_samples):
+            y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
+            print(decode(y[0].tolist()))
+            print('---------------')</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Florian Shkurti</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab11.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

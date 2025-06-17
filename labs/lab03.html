@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab03 – CSC413 - Fall 2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-69b08db278f499bc7d235ce342f73d67.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="CSC413 - Fall 2024">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta property="og:site_name" content="CSC413 - Fall 2024">
+<meta name="twitter:title" content="CSC413 - Fall 2024">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta name="twitter:creator" content="@minebocek">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#csc413-lab-3-multi-layer-perceptrons-with-medmnist" id="toc-csc413-lab-3-multi-layer-perceptrons-with-medmnist" class="nav-link active" data-scroll-target="#csc413-lab-3-multi-layer-perceptrons-with-medmnist">CSC413 Lab 3: Multi-Layer Perceptrons with MedMNIST</a>
+  <ul class="collapse">
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#google-colab-setup" id="toc-google-colab-setup" class="nav-link" data-scroll-target="#google-colab-setup">Google Colab Setup</a></li>
+  <li><a href="#part-1.-data" id="toc-part-1.-data" class="nav-link" data-scroll-target="#part-1.-data">Part 1. Data</a></li>
+  <li><a href="#part-2.-model-and-training" id="toc-part-2.-model-and-training" class="nav-link" data-scroll-target="#part-2.-model-and-training">Part 2. Model and Training</a></li>
+  <li><a href="#part-3.-performance-metrics" id="toc-part-3.-performance-metrics" class="nav-link" data-scroll-target="#part-3.-performance-metrics">Part 3. Performance Metrics</a></li>
+  <li><a href="#part-4.-hyperparameter-tuning-via-grid-search" id="toc-part-4.-hyperparameter-tuning-via-grid-search" class="nav-link" data-scroll-target="#part-4.-hyperparameter-tuning-via-grid-search">Part 4. Hyperparameter Tuning via Grid Search</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab03.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="csc413-lab-3-multi-layer-perceptrons-with-medmnist" class="level1">
+<h1>CSC413 Lab 3: Multi-Layer Perceptrons with MedMNIST</h1>
+<p>MedMNIST’s PneumoniaMNIST data set. We will now transition fully to using PyTorch for our labs going forward.</p>
+<p>By the end of this lab, you will be able to:</p>
+<ol type="1">
+<li>Build and train an MLP using PyTorch</li>
+<li>Define the following performance metrics for evaluating machine learning models: true positive, true negative, false positive, false negative, precision, recall, ROC curve, and AUC.</li>
+<li>Interpret the confusion matrix.</li>
+<li>Explain the advantages of the AUC metrics over accuracy metrics.</li>
+<li>Perform grid search to find hyperparameters.</li>
+</ol>
+<p>Acknowledgements:</p>
+<ul>
+<li>The MedMNIST data is from https://medmnist.com/</li>
+<li>This assignment is written by Mahdi Haghifam, Sonya Allin, Lisa Zhang, Mike Pawliuk and Rutwa Engineer</li>
+</ul>
+<p>Please work in groups of 1-2 during the lab.</p>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>If you are working with a partner, start by creating a group on Markus. If you are working alone, click “Working Alone”.</p>
+<p>Submit the ipynb file <code>lab03.ipynb</code> on Markus <strong>containing all your solutions to the Graded Task</strong>s. Your notebook file must contain your code <strong>and outputs</strong> where applicable, including printed lines and images. Your TA will not run your code for the purpose of grading.</p>
+<p>For this lab, you should submit the following:</p>
+<ul>
+<li>Part 2. Your expression that computes the number of trainable parameters in the MLPModel (1 point)</li>
+<li>Part 2. Your implementation of <code>accuracy</code>. (1 point)</li>
+<li>Part 2. Your implementation of <code>train_model</code>. (2 points)</li>
+<li>Part 3. Your implementation of <code>precision</code> and <code>recall</code>. (2 points)</li>
+<li>Part 3. Your interpretation of the confusion matrix for <code>m_once</code> (1 point)</li>
+<li>Part 4. Your completion of the grid search, along with the output (2 point)</li>
+<li>Part 4. Your description of why a model with high AUC may still perform poorly for some groups (1 point)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="google-colab-setup" class="level2">
+<h2 class="anchored" data-anchor-id="google-colab-setup">Google Colab Setup</h2>
+<p>We will be using the <code>medmnist</code> data set, which is available as a Python package. Recall that on Google Colab, we use “!” to run shell commands.</p>
+<pre><code>!pip install medmnist</code></pre>
+</section>
+<section id="part-1.-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
+<p>We will use the MedMNIST data set, which is described here: <a href="https://medmnist.com/">https://medmnist.com/</a>. We will use the PneumoniaMNIST images, which are greyscale chest X-ray images that has been resized to 28x28. The task is to predict, given one of these X-ray images, whether the patient has pneumonia or not—a binary classification task. We chose this dataset both because it is lightweight, and because it allows us to discuss the sensitive nature of biomedical images.</p>
+<p>Let’s begin by printing some information about the PneumoniaMNIST data set:</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+import medmnist
+from medmnist import PneumoniaMNIST
+
+medmnist.INFO['pneumoniamnist']</code></pre>
+<p><strong>Task</strong>: The dataset providers already split the data into training, validation, and test sets. How many samples are there in the training, validation, and test sets?</p>
+<pre><code># TODO: Write your answer here.</code></pre>
+<p>Let’s visually inspect the first element of the training data:</p>
+<pre><code>train_data_imgs = PneumoniaMNIST(split='train', download=True)
+
+for img, target in train_data_imgs:
+    plt.imshow(img, cmap='gray')
+    print(np.array(img)) # img is a numpy array of shape 28x28 , with integer values between 0-255
+    print(target)        # the target
+    break</code></pre>
+<p><strong>Task</strong>: Based on the code above, what is the type of the data structure <code>train_data</code>?</p>
+<pre><code># TODO: Write your answer here.</code></pre>
+<p><strong>Task</strong>: The code below plots 5 images from each class: normal and pneumonia. Do you notice qualitative differences between these two sets of images? It is always important to qualitatively assess your data prior to training, so that you can develop intuition as to what features may or may not be important for your model. Understanding your data also helps to estimate how challenging the classification problem may be and identify incorrect implementations (e.g., a surprisingly high model accuracy could indicate issues with training set leakage into the test set).</p>
+<pre><code># normal images
+plt.figure()
+n = 0
+for img, target in train_data_imgs:
+    if int(target) == 0:
+      plt.subplot(1, 5, n+1)
+      plt.title("normal")
+      plt.imshow(img, cmap='gray')
+      n += 1
+    if n &gt;= 5:
+      break
+# pneumonia images
+plt.figure()
+n = 0
+for img, target in train_data_imgs:
+    if int(target) == 1:
+      plt.subplot(1, 5, n+1)
+      plt.title("pneumonia")
+      plt.imshow(img, cmap='gray')
+      n += 1
+    if n &gt;= 5:
+      break</code></pre>
+<pre><code># TODO: Write your explanation here.</code></pre>
+<p>PyTorch makes it easy to apply pre-processing transformations to the data, for example to normalize the data prior to using for training. We will use the standard preprocessing functions to <em>transform the images into tensors</em> for PyTorch to be able to use. This transformation also changes the values to be floating-point numbers between 0 and 1.</p>
+<pre><code>import torchvision.transforms as transforms # contains a collection of transformations
+
+train_data = PneumoniaMNIST(split='train', download=True, transform=transforms.ToTensor())
+val_data = PneumoniaMNIST(split='val', download=True, transform=transforms.ToTensor())
+test_data = PneumoniaMNIST(split='test', download=True, transform=transforms.ToTensor())
+
+for img, target in train_data:
+    print(img)    # img is a PyTorch tensor fo shape 1x28x28
+    print(target) # the target
+    break</code></pre>
+<p><strong>Task</strong>: How many X-ray images are in the training set <em>with</em> pneumonia? What about <em>without</em> pneumonia? What about the validation/test sets? What does your answer say about the data balance?</p>
+<pre><code># TODO: Write code to find the answer here.
+
+from collections import Counter # SOLUTION
+print("train", Counter([int(target) for img, target in train_data]))   # SOLUTION
+print("val", Counter([int(target) for img, target in val_data]))   # SOLUTION
+print("test", Counter([int(target) for img, target in test_data]))   # SOLUTION</code></pre>
+</section>
+<section id="part-2.-model-and-training" class="level2">
+<h2 class="anchored" data-anchor-id="part-2.-model-and-training">Part 2. Model and Training</h2>
+<p>We will build our own PyTorch model, which will be a subclass of <code>nn.Module</code>. This subclass provides the important methods that we used in the training loop in lab 1, including the methods that allow us to compute the forward pass by calling the model object, and other methods used under the hood to compute the backward pass.</p>
+<p>Our model will be a three-layer MLP with the following architecture: ACTUALTODO—the model architecture may change!</p>
+<pre><code>import torch
+import torch.nn as nn
+import torch.optim as optim
+
+class MLPModel(nn.Module):
+    """A three-layer MLP model for binary classification"""
+    def __init__(self, input_dim=28*28, num_hidden=100):
+        super(MLPModel, self).__init__()
+        self.fc1 = nn.Linear(input_dim, num_hidden)
+        self.fc2 = nn.Linear(num_hidden, num_hidden)
+        self.fc3 = nn.Linear(num_hidden, 1)
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.relu(out)
+        out = self.fc2(out)
+        out = self.relu(out)
+        out = self.fc3(out)
+        return out</code></pre>
+<p><strong>Graded Task</strong>: How many trainable parameters are in this model? Express your answer in terms of <code>input_dim</code> and <code>num_hidden</code>.</p>
+<pre><code># TODO: Compute the number of trainable parameters in MLPModel</code></pre>
+<p>In order to assess model performance, we will begin by implementing the <code>accuracy</code> function, which computes the accuracy of the model across a dataset.</p>
+<p><strong>Graded Task</strong>: Complete the <code>accuracy</code> function. Keep in mind that this function will be slightly different from the <code>accuracy</code> function in lab 1, since we are working on a binary classification problem and prediction here is a single logit value (rather than a vector).</p>
+<pre><code>def accuracy(model, dataset):
+    """
+    Compute the accuracy of `model` over the `dataset`.
+    We will take the **most probable class**
+    as the class predicted by the model.
+
+    Parameters:
+        `model` - A PyTorch MLPModel
+        `dataset` - A data structure that acts like a list of 2-tuples of
+                  the form (x, t), where `x` is a PyTorch tensor of shape
+                  [1, 28, 28] representing an MedMNIST image,
+                  and `t` is the corresponding binary target label
+
+    Returns: a floating-point value between 0 and 1.
+    """
+
+    correct, total = 0, 0
+    loader = torch.utils.data.DataLoader(dataset, batch_size=100)
+    for img, t in loader:
+        X = img.reshape(-1, 784)
+        z = model(X)
+
+        y = None # TODO: pred should be a [N, 1] tensor with binary 
+                    # predictions, (0 or 1 in each entry)
+        y = (z &gt; 0).to(torch.int) # SOLUTION
+
+        correct += int(torch.sum(t == y))
+        total   += t.shape[0]
+    return correct / total</code></pre>
+<p>Because we are working with binary classification, we will be using a different implementation of the cross-entropy loss function, implemented via PyTorch in a class called <code>BCEWithLogitsLoss</code> (short for Binary Cross Entropy with Logits loss).</p>
+<pre><code>criterion = nn.BCEWithLogitsLoss()</code></pre>
+<p>This loss function takes a predicted logit (pre-softmax activation) and the ground-truth label. The use of pre-softmax logits rather than prediction probabilities is due to numerical stability reasons.</p>
+<pre><code>print(criterion(torch.tensor([2.5]),  # predicted
+                torch.tensor([1.])))  # actual
+
+print(criterion(torch.tensor([-2.5]), # predicted
+                torch.tensor([1.])))  # actual</code></pre>
+<p><strong>Task</strong>: Explain why the second printed value above is <em>larger</em> than the first. In other words, why does it make sense that we think of the second prediction (logit of z=-2.5) as “worse” than the first (logit of z=2.5)?</p>
+<pre><code># TODO: Your explanation goes here.</code></pre>
+<p><strong>Graded Task</strong>: Complete the following code to be used for training.</p>
+<pre><code>def train_model(model,                # an instance of MLPModel
+                train_data,           # training data
+                val_data,             # validation data
+                learning_rate=0.1,
+                batch_size=100,
+                num_epochs=10,
+                plot_every=50,        # how often (in # iterations) to track metrics
+                plot=True):           # whether to plot the training curve
+    train_loader = torch.utils.data.DataLoader(train_data,
+                                               batch_size=batch_size,
+                                               shuffle=True) # reshuffle minibatches every epoch
+    criterion = nn.BCEWithLogitsLoss()
+    optimizer = optim.SGD(model.parameters(), lr=learning_rate)
+
+    # these lists will be used to track the training progress
+    # and to plot the training curve
+    iters, train_loss, train_acc, val_acc = [], [], [], []
+    iter_count = 0 # count the number of iterations that has passed
+
+    try:
+        for e in range(num_epochs):
+            for i, (images, labels) in enumerate(train_loader):
+                z = None # TODO
+                z = model(images.reshape(-1, 784)) # SOLUTION
+  
+                loss = None # TODO
+                loss = criterion(z, labels.to(torch.float)) # SOLUTION
+  
+                loss.backward() # propagate the gradients
+                optimizer.step() # update the parameters
+                optimizer.zero_grad() # clean up accumualted gradients
+  
+                iter_count += 1
+                if iter_count % plot_every == 0:
+                    iters.append(iter_count)
+                    ta = accuracy(model, train_data)
+                    va = accuracy(model, val_data)
+                    train_loss.append(float(loss))
+                    train_acc.append(ta)
+                    val_acc.append(va)
+                    print(iter_count, "Loss:", float(loss), "Train Acc:", ta, "Val Acc:", va)
+    finally:
+        # This try/finally block is to display the training curve
+        # even if training is interrupted
+        if plot:
+            plt.figure()
+            plt.plot(iters[:len(train_loss)], train_loss)
+            plt.title("Loss over iterations")
+            plt.xlabel("Iterations")
+            plt.ylabel("Loss")
+
+            plt.figure()
+            plt.plot(iters[:len(train_acc)], train_acc)
+            plt.plot(iters[:len(val_acc)], val_acc)
+            plt.title("Accuracy over iterations")
+            plt.xlabel("Iterations")
+            plt.ylabel("Accuracy")
+            plt.legend(["Train", "Validation"])
+
+# Please include the output of this cell for grading
+model = MLPModel()
+train_model(model, train_data, val_data)</code></pre>
+<p><strong>Task</strong>: Suppose that a model has a validation accuracy of 74% for this binary classification task. Why would this model be considered a very bad model? Your answer should illustrate why accuracy may not be an excellent tool to use.</p>
+<pre><code># TODO: Write your explanation here
+# SOLUTION: Data imbalance!</code></pre>
+</section>
+<section id="part-3.-performance-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="part-3.-performance-metrics">Part 3. Performance Metrics</h2>
+<p>We often use accuracy as a go-to metric when evaluating the performance of a classification model. However, the accuracy measure weighs all errors equally. A deeper look into the types of errors made can provide a more complete picture of model performance, especially when there is data imbalance and—when applying models in real situations—when some errors may be associated with more serious impacts to users than others.</p>
+<p>To start our explorations, we’ll look at the decisions we made well, i.e.&nbsp;the:</p>
+<ul>
+<li>True Positives (TP), or positive outcomes that were correctly predicted as positive.</li>
+<li>True Negatives (TN), or negative outcomes that were correctly predicted as negative.</li>
+</ul>
+<p>Then we will look at our mistakes, i.e.&nbsp;the:</p>
+<ul>
+<li>False Positives (FP, or Type I errors), or negative outcomes that were predicted as positive. In our case, this occurs when our model predicts that a person has heart disease, but they do not.</li>
+<li>False Negatives (FN, or Type II errors), or positive outcomes that were predicted as negative. In our case, this occurs when our model predicts that a person does not have heart disease, but they do.</li>
+</ul>
+<p>We can then use the metrics above to calculate:</p>
+<ul>
+<li>Precision (or True Positive Rate, or Positive Predicive Value): <span class="math inline">\(\frac{TP}{TP + FP}\)</span>. The answers the question: out of all the examples that we predicted as positive, how many are really positive?</li>
+<li>Recall (or Sensitivity): <span class="math inline">\(\frac{TP}{TP + FN}\)</span>. The answers the question: out of all the positive examples in the data set, how many did we predict as positive?</li>
+<li>False Positive Rate (or Negative Predicive Value): <span class="math inline">\(\frac{TN}{TN + FN}\)</span>. The answers the question: out of all the examples that we predicted as negative, how many are really negative?</li>
+</ul>
+<p><strong>Graded Task</strong>: Complete the functions <code>precision</code> and <code>recall</code>:</p>
+<pre><code>def precision(model, dataset):
+    """
+    Compute the precision of `model` over the `dataset`.  We will take the
+    **most probable class** as the class predicted by the model.
+
+    Parameters:
+        `model` - A PyTorch MLPModel
+        `dataset` - A data structure that acts like a list of 2-tuples of
+                  the form (x, t), where `x` is a PyTorch tensor of shape
+                  [1, 28, 28] representing an MedMNIST image,
+                  and `t` is the corresponding binary target label
+
+    Returns: a floating-point value between 0 and 1.
+    """
+    true_pos, total_pred_pos = 0, 0
+    loader = torch.utils.data.DataLoader(dataset, batch_size=100)
+    for img, t in loader:
+        X = img.reshape(-1, 784)
+        z = model(X)
+
+        y = None # TODO: pred should be a [N, 1] tensor with binary 
+                    # predictions, (0 or 1 in each entry)
+        y = (z &gt; 0).to(torch.int) # SOLUTION
+
+        # TODO: update total_pred_pos and true_pos
+        total_pred_pos += torch.sum(y)      # SOLUTION
+        true_pos += torch.sum((y + t) == 2) # SOLUTION
+    return true_pos / total_pred_pos
+
+
+def recall(model, dataset):
+    """
+    Compute the recall (or sensitivity) of `model` over the `dataset`.  We will
+    take the **most probable class** as the class predicted by the model.
+
+    Parameters:
+        `model` - A PyTorch MLPModel
+        `dataset` - A data structure that acts like a list of 2-tuples of
+                  the form (x, t), where `x` is a PyTorch tensor of shape
+                  [1, 28, 28] representing an MedMNIST image,
+                  and `t` is the corresponding binary target label
+
+    Returns: a floating-point value between 0 and 1.
+    """
+    true_pos, total_actual_pos = 0, 0 # track the true and false positive
+    loader = torch.utils.data.DataLoader(dataset, batch_size=100)
+    for img, t in loader:
+        X = img.reshape(-1, 784)
+        z = model(X)
+
+        y = None # TODO: pred should be a [N, 1] tensor with binary 
+                    # predictions, (0 or 1 in each entry)
+        y = (z &gt; 0).to(torch.int) # SOLUTION
+
+        # TODO: update total_pos and true_pos
+        total_actual_pos += torch.sum(t)    # SOLUTION
+        true_pos += torch.sum((y + t) == 2) # SOLUTION
+    return true_pos / total_actual_pos
+
+print("Precision(Training)", precision(model, train_data))
+print("Recall(Training)", recall(model, train_data))
+print("Precision(Validation)", precision(model, val_data))
+print("Recall(Validation)", recall(model, val_data))</code></pre>
+<p>A <strong>confusion matrix</strong> is a table that shows the number of TP, TN, FP, and FN. A confusion matrix can be a valuable tool in understanding why a model makes the mistake that it makes.</p>
+<p><strong>Task</strong> Run the code below to display the confusion matrix for your model for the validation data.</p>
+<pre><code>from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+def get_prediction(model, data, sample=1000):
+    loader = torch.utils.data.DataLoader(data, batch_size=sample, shuffle=True)
+    for X, t in loader:
+        z = model(X.view(-1, 784))
+        y = torch.sigmoid(z)
+        break
+    y = y.detach().numpy()
+    t = t.detach().numpy()
+    return y, t
+
+y, t = get_prediction(model, val_data)
+y = y &gt; 0.5
+cm = confusion_matrix(t, y)
+cmp = ConfusionMatrixDisplay(cm, display_labels=["0", "1"])
+cmp.plot()
+plt.title("Confusion Matrix (Val Data)")</code></pre>
+<p><strong>Task</strong>: The code below trains a MLPModel for a very few number of iterations. You should see that this model achieves a 74% accuracy. Display the confusion matrix for this model by running the code below.</p>
+<pre><code>m_once = MLPModel()
+train_model(m_once, train_data, val_data, learning_rate=0.5, batch_size=500, num_epochs=1)
+print("Training Accuracy:", accuracy(m_once, train_data))
+print("Validation Accuracy:", accuracy(m_once, val_data))
+
+y, t = get_prediction(m_once, val_data)
+y = y &gt; 0.5
+ConfusionMatrixDisplay(confusion_matrix(t, y), display_labels=["0", "1"]).plot()
+plt.title("Confusion Matrix (Val Data)")</code></pre>
+<p><strong>Graded Task</strong>: What does the confusion matrix tell you about how the <code>m_once</code> model is achieving 74% accuracy?</p>
+<pre><code># TODO: Your explanation goes here.</code></pre>
+<p>We have been choosing a threshold of 0.5 for turning our continuous predicted probabilities into a discrete prediction. However, this can be an arbitrary choice.</p>
+<p><strong>Task</strong>: Explain why, in practical application, it may be reasonable to use a different threshold value. In what situation might you want the threshold to be set very high in order to make a positive prediction? What about a negative prediction?</p>
+<pre><code># TODO: Your explanation goes here.</code></pre>
+<p>A <strong>receiver operating characteristic curve</strong> (or ROC) shows how the True Positive Rate and False Positive Rate vary based on our choice of the decision making threshold used to binarize predictions. By default, this threshold is 0.5, but it can be changed to any value between 0 and 1. Different thresholds will result in different TP and FP rates, all of which are illustrated on our graph. we can calculate the area underneath this curve in order to get a sense as to how our classifiers might work across a wide range of different thresholds. This calcution of area can also be used as a metric of our model’s “goodness”, and it is called AUC (or “Area Under Curve”).</p>
+<p>The AUC metric is particularly useful for machine learning practitioners because it does <em>not</em> depend on the choice of the threshold value used for making discrete predicions. The metric is also resistant to measurement.</p>
+<p><strong>Task</strong>: Is it better for the AUC to be larger or smaller? Explain why.</p>
+<pre><code># TODO: Your explanation goes here</code></pre>
+<p>The code below plots the ROC curve for a model.</p>
+<pre><code>from sklearn.metrics import roc_curve, RocCurveDisplay, auc
+
+y, t = get_prediction(model, val_data)
+
+fpr, tpr, thresholds = roc_curve(t, y)
+roc_auc = auc(fpr, tpr)
+rocp = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc)
+rocp.plot()
+plt.title("Validation ROC Curve")
+
+
+y, t = get_prediction(model, train_data)
+
+fpr, tpr, thresholds = roc_curve(t, y)
+roc_auc = auc(fpr, tpr)
+rocp = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc)
+rocp.plot()
+plt.title("Training ROC Curve")</code></pre>
+<p>Here is a function you can use to estimate the auc:</p>
+<pre><code>def get_auc(model, data):
+    y, t = get_prediction(model, data)
+    fpr, tpr, thresholds = roc_curve(t, y)
+    return auc(fpr, tpr)</code></pre>
+</section>
+<section id="part-4.-hyperparameter-tuning-via-grid-search" class="level2">
+<h2 class="anchored" data-anchor-id="part-4.-hyperparameter-tuning-via-grid-search">Part 4. Hyperparameter Tuning via Grid Search</h2>
+<p>As we mentioned in lab 1, hyperparameter choices matter significantly, and these hyperparameter choices interact with one another. Practitioners use a strategy called <strong>grid search</strong> to try all variations of hyperparameters from a set of hyperparameters.</p>
+<p>One very important hyperparameter is the number of hidden units in our MLPModel. This setting affects the number of parameters (weights/biases) used in our model.</p>
+<p>The use of ReLU vs sigmoid activation function is another hyperparameter that we will explore.</p>
+<p>Finally, optimization parameters like the batch size and the learning rate can also significantly affect the learning process.</p>
+<pre><code>class MLPModelSigmoid(nn.Module):
+    """A three-layer MLP model for binary classification"""
+    def __init__(self, input_dim=28*28, num_hidden=100):
+        super(MLPModelSigmoid, self).__init__()
+        self.fc1 = nn.Linear(input_dim, num_hidden)
+        self.fc2 = nn.Linear(num_hidden, num_hidden)
+        self.fc3 = nn.Linear(num_hidden, 1)
+        self.sig = nn.Sigmoid()
+
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.sig(out)
+        out = self.fc2(out)
+        out = self.sig(out)
+        out = self.fc3(out)
+        return out</code></pre>
+<p><strong>Graded Task</strong>: Complete the code below, which performs grid search over the following hyperparameter values of the:</p>
+<ul>
+<li>hidden size</li>
+<li>activation function (ReLu vs sigmoid activation)</li>
+<li>batch size</li>
+<li>learning rate</li>
+</ul>
+<p>Do so by creating a new model and train it with the appropriate settings, then assessing the final training/validation accuracy, precision, recall, and AUC score. You may use to use the flag <code>plot=False</code> when calling <code>train_model</code>. You might also set <code>plot_every</code> to a large value and visualize the training curve as a separate step for hyperparameter values that you’re interested in.</p>
+<p>Please include all your output in your submission.</p>
+<p>(There is one more graded task below that you can complete while the hyperparameter tuning is running.)</p>
+<pre><code>gridsearch = {}
+for num_hidden in [25, 100, 250]:
+    for act in ["relu", "sigmoid"]:
+        for bs in [10, 100, 500]:
+            for lr in [0.01, 0.1]:
+                # Adjust num_epoch based on the batch size, so that we 
+                # train for the same number of iterations irrespective
+                # of batch size
+                ne = int(20 * (bs/100))
+
+                modelname = f"num_hidden: {num_hidden}, activation: {act}, batch_size: {bs}, learning_rate: {lr}"
+                print(f"========={modelname}")
+
+                # TODO: create and train the model with the appropriate settings
+                if act == "relu":                   # SOLUTION
+                    m = MLPModel(num_hidden=num_hidden)  # SOLUTION
+                else:                               # SOLUTION
+                    m = MLPModelSigmoid(num_hidden=num_hidden) # SOLUTION
+                train_model(m, train_data, val_data,  # SOLUTION
+                            learning_rate=lr,         # SOLUTION
+                            batch_size=bs,            # SOLUTION
+                            num_epochs=ne,            # SOLUTION
+                            plot=False)            # SOLUTION
+
+                # Update and display metrics. This part is done for you.
+                metrics = {
+                    "acc_train": accuracy(m, train_data),
+                    "acc_val": accuracy(m, val_data),
+                    "precision_train": precision(m, train_data),
+                    "precision_val": precision(m, val_data),
+                    "recall_train": recall(m, train_data),
+                    "recall_val": recall(m, val_data),
+                    "auc_train": get_auc(m, train_data),
+                    "auc_val": get_auc(m, val_data),
+                }
+                gridsearch[modelname] = metrics
+                print(f'Accuracy (train):{metrics["acc_train"]} (val):{metrics["acc_val"]}')
+                print(f'Precision (train):{metrics["precision_train"]} (val):{metrics["precision_val"]}')
+                print(f'Recall (train):{metrics["recall_train"]} (val):{metrics["recall_val"]}')
+                print(f'AUC (train):{metrics["auc_train"]} (val):{metrics["auc_val"]}')</code></pre>
+<p>Please include the below output in your submission</p>
+<pre><code>print(gridsearch)</code></pre>
+<p><strong>Task</strong>: Which hyperparameter choice is the “best”? You should base this answer on the validation AUC. Use the other metrics as a guide to understand the kinds of predictions and mistakes that your model is likely make. Train a final model with those hyperparameter values.</p>
+<pre><code># TODO</code></pre>
+<p><strong>Task</strong>: Report the test accuracy and AUC for this model, and plot the confusion matrix over the test set.</p>
+<pre><code># TODO</code></pre>
+<p><strong>Graded Task</strong>: Explain why a model with high AUC may still produce consistently poor predictions for a subset of the population. You might find this article interesting: <a href="https://www.pnas.org/doi/10.1073/pnas.1919012117">Gender imbalance in medical imaging datasets produces biased classifiers for computer-aided diagnosis</a>; in particular, Figure 1 shows how test AUC differs male/female patients depending on the training set used.</p>
+<pre><code># TODO</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Florian Shkurti</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab03.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

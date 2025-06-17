@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab07 – CSC413 - Fall 2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-69b08db278f499bc7d235ce342f73d67.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="CSC413 - Fall 2024">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta property="og:site_name" content="CSC413 - Fall 2024">
+<meta name="twitter:title" content="CSC413 - Fall 2024">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta name="twitter:creator" content="@minebocek">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#csc413-lab-9-transfer-learning-and-descent" id="toc-csc413-lab-9-transfer-learning-and-descent" class="nav-link active" data-scroll-target="#csc413-lab-9-transfer-learning-and-descent">CSC413 Lab 9: Transfer Learning and Descent</a>
+  <ul class="collapse">
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#part-1.-data" id="toc-part-1.-data" class="nav-link" data-scroll-target="#part-1.-data">Part 1. Data</a></li>
+  <li><a href="#part-2.-training-a-cnn-model" id="toc-part-2.-training-a-cnn-model" class="nav-link" data-scroll-target="#part-2.-training-a-cnn-model">Part 2. Training a CNN Model</a></li>
+  <li><a href="#part-2.-model-architecture-biasvariance-and-double-descent" id="toc-part-2.-model-architecture-biasvariance-and-double-descent" class="nav-link" data-scroll-target="#part-2.-model-architecture-biasvariance-and-double-descent">Part 2. Model Architecture, Bias/Variance and Double Descent</a></li>
+  <li><a href="#part-3.-transfer-learning" id="toc-part-3.-transfer-learning" class="nav-link" data-scroll-target="#part-3.-transfer-learning">Part 3. Transfer Learning</a></li>
+  <li><a href="#part-4.-data" id="toc-part-4.-data" class="nav-link" data-scroll-target="#part-4.-data">Part 4. Data</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab07.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="csc413-lab-9-transfer-learning-and-descent" class="level1">
+<h1>CSC413 Lab 9: Transfer Learning and Descent</h1>
+<p>Transfer learning is a technique where we use neural network weights trained to complete one task to complet a different task. In this tutorial, we will go through an example of <em>transfer learning</em> to detect American Sign Language (ASL) gestures letters A-I. Although we could train a CNN from scratch, you will see that using CNN weights that are pretrained on a larger dataset and more complex task provides much better results, all with less training.</p>
+<p>American Sign Language (ASL) is a complete, complex language that employs signs made by moving the hands combined with facial expressions and postures of the body. It is the primary language of many North Americans who are deaf and is one of several communication options used by people who are deaf or hard-of-hearing.</p>
+<p>The hand gestures representing English alphabets are shown below. This lab focuses on classifying a subset of these hand gesture images using convolutional neural networks. Specifically, given an image of a hand showing one of the letters A-I, we want to detect which letter is being represented.</p>
+<p><img src="https://qualityansweringservice.com/wp-content/uploads/2010/01/images_abc1280x960.png" width="400px&quot;"></p>
+<p>By the end of this lab, you will be able to:</p>
+<ol type="1">
+<li>Analyze the role of batch normalization and other model architecture choice in a neural network.</li>
+<li>Define the double descent phenomenon and explain why it occurs.</li>
+<li>Analyze the shape of the training curve of a convolutional neural network with respect to the double descent phenomenon.</li>
+<li>Apply transfer learning to solve an image classification task.</li>
+<li>Compare transfer learning vs.&nbsp;training a CNN from scratch.</li>
+<li>Identify and suggest corrections for model building issues by inspecting misclassified data.</li>
+</ol>
+<p>Acknowledgements:</p>
+<ul>
+<li>Data is collected from a previous machine learning course APS360. Only data of students who provided consent is included.</li>
+</ul>
+<p>Please work in groups of 1-2 during the lab.</p>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>If you are working with a partner, start by creating a group on Markus. If you are working alone, click “Working Alone”.</p>
+<p>Submit the ipynb file <code>lab07.ipynb</code> on Markus <strong>containing all your solutions to the Graded Task</strong>s. Your notebook file must contain your code <strong>and outputs</strong> where applicable, including printed lines and images. Your TA will not run your code for the purpose of grading.</p>
+<p>For this lab, you should submit the following:</p>
+<ul>
+<li>Part 1. Your answer to the question about the splitting of the data into train/validation/test sets. (1 point)</li>
+<li>Part 2. Your comparison of the CNN model with and without batch normalization. (1 point)</li>
+<li>Part 2. Your comparison of <code>BatchNorm1d</code> vs <code>BatchNorm2d</code>. (1 point)</li>
+<li>Part 2. Your analysis of the effect of varying the CNN model width. (1 point)</li>
+<li>Part 2. Your analysis of the effect of varying weight decay parameter. (1 point)</li>
+<li>Part 2. Your analysis of the training curve that illustrates double descent. (1 point)</li>
+<li>Part 3. Your implementation of <code>LinearModel</code> for transfer learning. (1 point)</li>
+<li>Part 3. Your comparison of transfer learning vs the CNN model. (1 point)</li>
+<li>Part 4. Your analysis of the confusion matrix. (1 point)</li>
+<li>Part 4. Your explanation for how to mitigate an issue we notice by visually inspecting misclassified images. (1 point)</li>
+</ul>
+<pre><code>import matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision.models, torchvision.datasets
+
+%matplotlib inline</code></pre>
+</section>
+<section id="part-1.-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
+<p>We will begin by downloading the data onto Google Colab.</p>
+<pre><code># Download lab data file
+!wget https://www.cs.toronto.edu/~lczhang/413/asl_data.zip
+!unzip asl_data.zip</code></pre>
+<p>The file structure we use is intentional, so that we can use <code>torchvision.datasets.ImageFolder</code> to help load our data and create labels.</p>
+<p>You can read what <code>torchvision.datasets.ImageFolder</code> does for us here https://pytorch.org/docs/stable/torchvision/datasets.html#imagefolder</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train_path <span class="op">=</span> <span class="st">"asl_data/train/"</span> <span class="co"># edit me</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>valid_path <span class="op">=</span> <span class="st">"asl_data/valid/"</span> <span class="co"># edit me</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>test_path <span class="op">=</span> <span class="st">"asl_data/test/"</span>   <span class="co"># edit me</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> torchvision.datasets.ImageFolder(train_path, transform<span class="op">=</span>torchvision.transforms.ToTensor())</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>valid_data <span class="op">=</span> torchvision.datasets.ImageFolder(valid_path, transform<span class="op">=</span>torchvision.transforms.ToTensor())</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> torchvision.datasets.ImageFolder(test_path, transform<span class="op">=</span>torchvision.transforms.ToTensor())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As in previous labs, we can iterate through the one training data point at a time like this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, t <span class="kw">in</span> train_data:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x, t)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    plt.imshow(x.transpose(<span class="dv">2</span>, <span class="dv">0</span>).transpose(<span class="dv">0</span>, <span class="dv">1</span>).numpy()) <span class="co"># display an image</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span> <span class="co"># uncomment if you'd like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: What do the variables <code>x</code> and <code>t</code> contain? What is the shape of our images? What are our labels? Based on what you learned in Part (a), how were the labels generated from the folder structure?</p>
+<pre><code># Your explanation goes here</code></pre>
+<p>We saw in the earlier tutorials that PyTorch has a utility to help us creat minibatches with our data. We can use the same DataLoader helper here:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, t <span class="kw">in</span> train_loader:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x, t)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span> <span class="co"># uncomment if you'd like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: What do the variables <code>x</code> and <code>t</code> contain? What are their shapes? What data do they contain?</p>
+<pre><code># Your explanation goes here</code></pre>
+<p><strong>Task</strong>: How many images are there in the training, validation, and test sets?</p>
+<pre><code># Your explanation goes here</code></pre>
+<p>Notice that there are <em>fewer</em> images in the training set, compared to the validation and test sets. This is so that we can explore the effect of having a limited training set.</p>
+<p><strong>Graded Task</strong>: The data set is generated by students taking pictures of their hand while making the corresponding gestures. We therefor split the training, validation, and test sets were split so that images generated by a student all belongs in a single data set. In other words, we avoid cases where some students’ images are in the training set and others end up in the test set. Why do you think this important for obtaining a representative test accuracy?</p>
+<pre><code># Your explanation goes here</code></pre>
+</section>
+<section id="part-2.-training-a-cnn-model" class="level2">
+<h2 class="anchored" data-anchor-id="part-2.-training-a-cnn-model">Part 2. Training a CNN Model</h2>
+<p>For this part, we will be working with this CNN network.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CNN(nn.Module):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, width<span class="op">=</span><span class="dv">4</span>, bn<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">        A 4-layer convolutional neural network. The first layer has</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">        `width` number of channels, and with each layer we half the</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">        feature width/height and double the number of channels.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">        If `bn` is set to False, then batch normalization will not run.</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(CNN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bn <span class="op">=</span> bn</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># define all the conv layers</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.conv1 <span class="op">=</span> nn.Conv2d(in_channels<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                               out_channels<span class="op">=</span><span class="va">self</span>.width,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>                               kernel_size<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                               padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.conv2 <span class="op">=</span> nn.Conv2d(in_channels<span class="op">=</span><span class="va">self</span>.width,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                               out_channels<span class="op">=</span><span class="va">self</span>.width<span class="op">*</span><span class="dv">2</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                               kernel_size<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                               padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.conv3 <span class="op">=</span> nn.Conv2d(in_channels<span class="op">=</span><span class="va">self</span>.width<span class="op">*</span><span class="dv">2</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>                               out_channels<span class="op">=</span><span class="va">self</span>.width<span class="op">*</span><span class="dv">4</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>                               kernel_size<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>                               padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.conv4 <span class="op">=</span> nn.Conv2d(in_channels<span class="op">=</span><span class="va">self</span>.width<span class="op">*</span><span class="dv">4</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>                               out_channels<span class="op">=</span><span class="va">self</span>.width<span class="op">*</span><span class="dv">8</span>,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>                               kernel_size<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>                               padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># define all the BN layers</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> bn:</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.bn1 <span class="op">=</span> nn.BatchNorm2d(<span class="va">self</span>.width)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.bn2 <span class="op">=</span> nn.BatchNorm2d(<span class="va">self</span>.width<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.bn3 <span class="op">=</span> nn.BatchNorm2d(<span class="va">self</span>.width<span class="op">*</span><span class="dv">4</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.bn4 <span class="op">=</span> nn.BatchNorm2d(<span class="va">self</span>.width<span class="op">*</span><span class="dv">8</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pooling layer has no parameter, so one such layer</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># can be shared across all conv layers</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pool <span class="op">=</span> nn.MaxPool2d(<span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># FC layers</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc1 <span class="op">=</span> nn.Linear(<span class="va">self</span>.width <span class="op">*</span> <span class="dv">8</span> <span class="op">*</span> <span class="dv">14</span> <span class="op">*</span> <span class="dv">14</span>, <span class="dv">100</span>)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc2 <span class="op">=</span> nn.Linear(<span class="dv">100</span>, <span class="dv">9</span>)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.pool(torch.relu(<span class="va">self</span>.conv1(x)))</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.bn:</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="va">self</span>.bn1(x)</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.pool(torch.relu(<span class="va">self</span>.conv2(x)))</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.bn:</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="va">self</span>.bn2(x)</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.pool(torch.relu(<span class="va">self</span>.conv3(x)))</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.bn:</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="va">self</span>.bn3(x)</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.pool(torch.relu(<span class="va">self</span>.conv4(x)))</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.bn:</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="va">self</span>.bn4(x)</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x.view(<span class="op">-</span><span class="dv">1</span>, <span class="va">self</span>.width <span class="op">*</span> <span class="dv">8</span> <span class="op">*</span> <span class="dv">14</span> <span class="op">*</span> <span class="dv">14</span>)</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> torch.relu(<span class="va">self</span>.fc1(x))</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.fc2(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>:</p>
+<p>The training code is written for you. Train the <code>CNN()</code> model for at least 6 epochs, and report on the maximum validation accuracy that you can attain.</p>
+<p>As your model is training, you might want to move on to the next question.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_accuracy(model, data, device<span class="op">=</span><span class="st">"cpu"</span>):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    loader <span class="op">=</span> torch.utils.data.DataLoader(data, batch_size<span class="op">=</span><span class="dv">256</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    model.to(device)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">eval</span>() <span class="co"># annotate model for evaluation (important for batch normalization)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> imgs, labels <span class="kw">in</span> loader:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> labels.to(device)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> model(imgs.to(device))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> output.<span class="bu">max</span>(<span class="dv">1</span>, keepdim<span class="op">=</span><span class="va">True</span>)[<span class="dv">1</span>] <span class="co"># get the index of the max log-probability</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        correct <span class="op">+=</span> pred.eq(labels.view_as(pred)).<span class="bu">sum</span>().item()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> imgs.shape[<span class="dv">0</span>]</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_model(model,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                train_data,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                valid_data,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                batch_size<span class="op">=</span><span class="dv">64</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                weight_decay<span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                learning_rate<span class="op">=</span><span class="fl">0.001</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>                num_epochs<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>                plot_every<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>                plot<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                device<span class="op">=</span>torch.device(<span class="st">"cuda:0"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)):</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    train_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data,</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                                               batch_size<span class="op">=</span>batch_size,</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                                               shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> model.to(device) <span class="co"># move model to GPU if applicable</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    optimizer <span class="op">=</span> optim.Adam(model.parameters(),</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                           lr<span class="op">=</span>learning_rate,</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>                           weight_decay<span class="op">=</span>weight_decay)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for plotting</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    iters, train_loss, train_acc, val_acc <span class="op">=</span> [], [], [], []</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    iter_count <span class="op">=</span> <span class="dv">0</span> <span class="co"># count the number of iterations that has passed</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> imgs, labels <span class="kw">in</span> <span class="bu">iter</span>(train_loader):</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> imgs.size()[<span class="dv">0</span>] <span class="op">&lt;</span> batch_size:</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>                labels <span class="op">=</span> labels.to(device)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>                imgs <span class="op">=</span> imgs.to(device)</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>                model.train()</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>                out <span class="op">=</span> model(imgs)</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> criterion(out, labels)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>                loss.backward()</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>                optimizer.step()</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>                optimizer.zero_grad()</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>                iter_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> iter_count <span class="op">%</span> plot_every <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>                    loss <span class="op">=</span> <span class="bu">float</span>(loss)</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>                    tacc <span class="op">=</span> get_accuracy(model, train_data, device)</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>                    vacc <span class="op">=</span> get_accuracy(model, valid_data, device)</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"Iter </span><span class="sc">%d</span><span class="st">; Loss </span><span class="sc">%f</span><span class="st">; Train Acc </span><span class="sc">%.3f</span><span class="st">; Val Acc </span><span class="sc">%.3f</span><span class="st">"</span> <span class="op">%</span> (iter_count, loss, tacc, vacc))</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>                    iters.append(iter_count)</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>                    train_loss.append(loss)</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>                    train_acc.append(tacc)</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>                    val_acc.append(vacc)</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_loss)], train_loss)</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Loss over iterations"</span>)</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_acc)], train_acc)</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(val_acc)], val_acc)</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Accuracy over iterations"</span>)</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Accuracy"</span>)</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>        plt.legend([<span class="st">"Train"</span>, <span class="st">"Validation"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: Run the training code below. What validation accuracy can be achieved by this CNN?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="part-2.-model-architecture-biasvariance-and-double-descent" class="level2">
+<h2 class="anchored" data-anchor-id="part-2.-model-architecture-biasvariance-and-double-descent">Part 2. Model Architecture, Bias/Variance and Double Descent</h2>
+<p>In this section, we will explore the effect of various aspects of a CNN model architecture. We will pay particluar attention to architecture decisions that affect the bias and variance of the model. Finally, we explore a phenomenon called <strong>double descent</strong>.</p>
+<p>To begin, let’s explore the effect of batch normalization.</p>
+<p><strong>Task</strong>: Run the training code below to explore the effect of training <em>without</em> batch normalization.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(bn<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Graded Task</strong>: Compare the two sets of training curves above for the CNN model with and without batch normalization. What is the effect of batch normalization on the training loss and accuracy? What about the validation accuracy?</p>
+<pre><code># TODO: Include your analysis here
+# SOLUTION - training loss/acc improves a lot more quickly with BN
+# SOLUTION   but final val loss is about the same for this task</code></pre>
+<p><strong>Graded Task</strong>: We used the layer called <code>BatchNorm2d</code> in our CNN. What do you think is the difference between <code>BatchNorm2d</code> and <code>BatchNorm1d</code>? Why are we using <code>BatchNorm2d</code> in our CNN? Why would we use <code>BatchNorm1d</code> in an MLP? You may wish to consult the PyTorch documentation. (How can you find it?)</p>
+<pre><code># Explain your answer here</code></pre>
+<p><strong>Task</strong>: Run the training code below to explore the effect of varying the model width for this particular data set.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">2</span>, bn<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">4</span>, bn<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">16</span>, bn<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Graded Task</strong>: What is the effect of varying the model width above for this particular data set? Do you notice an effect on the training loss? What about the training/validation accuracy? The final validation accuracy? (Your answer may or may not match your expectations. Please answer based on the actual results above.)</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your analysis here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: Run the training code below to explore the effect of weight decay when training a large model.</p>
+<pre><code>cnn = CNN(width=16, bn=False)
+train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.001)</code></pre>
+<pre><code>cnn = CNN(width=16, bn=True) # try with batch norm on
+train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.001)</code></pre>
+<pre><code>cnn = CNN(width=16, bn=True) # try decreasing weight decay parameter
+train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.0001)</code></pre>
+<p><strong>Graded Task</strong>: What is the effect of setting weight decay to the above value? Do you notice an effect on the training loss? What about the training/validation accuracy? The final validation accuracy? (Again, your answer may or may not match your expectations. Please answer based on the actual results above.)</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your analysis here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: Note that there is quite a bit of noise in the results that we might obtain above. That is, if you run the same code twice, you may obtain different answers. Why might that be? What are two sources of noise/randomness?</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation here</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SOLUTION: SGD and initalization of parameters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These settings that we have been exporting are hyperparameters that should be tuned when you train a neural network. These hyperparameters interact with one another, and thus we should tune them using the <strong>grid search</strong> strategy mentioned in previous labs.</p>
+<p>You are not required to perform grid search for this lab, so that we can explore a few other phenomena.</p>
+<p>One interesting phenomenon is called <strong>double descent</strong>. In statistical learning theory, we expect validation error to <em>decrease</em> with increase model capacity, and then <em>increase</em> as the model overfits to the number of data points available for training. In practise, in neural networks, we often see that as model capacity increases, validation error first decreases, then increase, and then <strong>decrease again</strong>—hence the name “double descent”.</p>
+<p>In fact, the increase in validation error is actually quite subtle. However, what is readily apparent is that in most cases, increasing model capacity does <em>not</em> result in a decrease in validation accuracy.</p>
+<p><strong>Optional Task</strong>: To illustrate that validation accuracy is unlikely to decrease with increased model parameter, train the below network.</p>
+<pre><code># Uncomment to run. 
+# cnn = CNN(width=40, bn=True)
+# train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=50)</code></pre>
+<p>Double descent is actually not that mysterious. It comes from the fact that when capacity is large enough there are many parameter choices that achieves 100% training accuracy, the neural network optimization procedure is effectively choosing a <em>best parameters</em> out of the many that can achieve this perfect training accuracy. This differs from when capacity is low, where the optimization process needs to find a set of parameter choices that best fits the training data—since no choice of parameters fits the training data perfectly. When the capacity is just large enough to be able to find parameters that fit the data, but too small for there be a range of parameter choices available to be able to select a “best” one.</p>
+<p>This twitter thread written by biostatistics professor Daniela Witten also provides an intuitive explanation, using polynomial curve fitting as an example: <a href="https://twitter.com/daniela_witten/status/1292293102103748609">https://twitter.com/daniela_witten/status/1292293102103748609</a></p>
+<p>Double descent explored in depth in this paper here: <a href="https://openreview.net/pdf?id=B1g5sA4twr">https://openreview.net/pdf?id=B1g5sA4twr</a> This paper highlights that the increase in validation/test error occurs when the training accuracy approximates 100%. Moreover, the double descent phenomena is noticable when varying model capacity (e.g.&nbsp;number of parameters) and when varying the number of iterations/epochs of training.</p>
+<p>We will attempt to explore the latter effect—i.e.&nbsp;we will train a large model, use a small numer of training data points, and explore how each iteration of training impacts validation accuracy. The effect is subtle and, depending on your neural network initialization, you may not see an effect. So, a training curve is also provided for you to analyze.</p>
+<p><strong>Optional Task</strong>: Run the code below to try and reproduce the “double descent” phenomena. This code will take a while to run, so you may wish to continue with the remaining questions while it runs.</p>
+<pre><code># use a subset of the training data
+# uncomment to train
+
+# train_data_subset, _ =  random_split(train_data, [50, len(train_data)-50])
+# cnn = CNN(width=20)
+# train_model(cnn,
+#             train_data_subset,
+#             valid_data,
+#             batch_size=50, # set batch_size=len(train_data_subset) to minimize training noise
+#             num_epochs=200,
+#             plot_every=1,  # plot every epoch (this is slow)
+#             learning_rate=0.0001)  # choose a low learning rate</code></pre>
+<p>For reference, here is the our training curve showing the loss and accuracy over 200 iterations:</p>
+<p><img src="https://www.cs.toronto.edu/~lczhang/413/double_descent_loss.png" width="400"> <img src="https://www.cs.toronto.edu/~lczhang/413/double_descent.png" width="400"></p>
+<p>We are not able to consistently reproduce this result (e.g., due to initialization), so it is totally reasonable for your figure to look different!</p>
+<p><strong>Task</strong>: In the provided training curve, during which iterations do the validation accuracy initially increase (i.e.&nbsp;validation error decrease)?</p>
+<pre><code># TODO: Include your answer here</code></pre>
+<p><strong>Graded Task</strong>: In the provided training curve, during which iterations do the validation accuracy decrease slightly? Approximately what training accuracy is achieved at this piont?</p>
+<pre><code># TODO: Include your answer here</code></pre>
+<p><strong>Task</strong>: In the provided training curve, during which iterations do the validation accuracy increase for a second time (i.e.&nbsp;validation error descends for a second time)?</p>
+<pre><code># TODO: Include your answer here</code></pre>
+</section>
+<section id="part-3.-transfer-learning" class="level2">
+<h2 class="anchored" data-anchor-id="part-3.-transfer-learning">Part 3. Transfer Learning</h2>
+<p>For many image classification tasks, it is generally not a good idea to train a very large deep neural network model from scratch due to the enormous compute requirements and lack of sufficient amounts of training data.</p>
+<p>A better option is to try using an existing model that performs a similar task to the one you need to solve. This method of utilizing a pre-trained network for other similar tasks is broadly termed <strong>Transfer Learning</strong>. In this assignment, we will use Transfer Learning to extract features from the hand gesture images. Then, train a smaller network to use these features as input and classify the hand gestures.</p>
+<p>As you have learned from the CNN lecture, convolution layers extract various features from the images which get utilized by the fully connected layers for correct classification. AlexNet architecture played a pivotal role in establishing Deep Neural Nets as a go-to tool for image classification problems and we will use an ImageNet pre-trained AlexNet model to extract features in this assignment.</p>
+<p>Here is the code to load the AlexNet network, with pretrained weights. When you first run the code, PyTorch will download the pretrained weights from the internet.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.models</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>alexnet <span class="op">=</span> torchvision.models.alexnet(pretrained<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alexnet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As you can see, the <code>alexnet</code> model is split up into two components: <code>alexnet.features</code> and <code>alexnet.classifier</code>. The first neural network component, <code>alexnet.features</code>, is used to computed convolutional features, which is taken as input in <code>alexnet.classifier</code>.</p>
+<p>The neural network <code>alexnet.features</code> expects an image tensor of shape Nx3x224x224 as inputs and it will output a tensor of shape Nx256x6x6 . (N = batch size).</p>
+<p>Here is an example code snippet showing how you can compute the AlexNet features for some images (your actual code might be different):</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>img, label <span class="op">=</span> train_data[<span class="dv">0</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> alexnet.features(img.unsqueeze(<span class="dv">0</span>)).detach()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(features.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the <code>.detach()</code> at the end will be necessary in your code. The reason is that PyTorch automatically builds computation graphs to be able to backpropagate graidents. If we did not explicitly “detach” this tensor from the AlexNet portion of the computation graph, PyTorch might try to backpropagate gradients to the AlexNet weight and tune the AlexNet weights.</p>
+<p><strong>TODO</strong> Compute the AlexNet features for each of your training, validation, and test data by completing the function <code>compute_features</code>. The code below creates three new arrays called <code>train_data_fets</code>, <code>valid_data_fets</code> and <code>test_data_fets</code>. Each of these arrays contains tuples of the form <code>(alexnet_features, label)</code>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_features(data):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    fets <span class="op">=</span> []</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> img, t <span class="kw">in</span> data:</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        features <span class="op">=</span> <span class="va">None</span>  <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        features <span class="op">=</span> alexnet.features(img.unsqueeze(<span class="dv">0</span>)).detach() <span class="co"># SOLUTION</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        fets.append((features, t),)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fets</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>train_data_fets <span class="op">=</span> compute_features(train_data)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>valid_data_fets <span class="op">=</span> compute_features(valid_data)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>test_data_fets <span class="op">=</span> compute_features(test_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the rest of this part of the lab, we will test two models that will take <strong>as input</strong> these AlexNet features, and make a prediction for which letter the hand gesture represents. The two models are a linear model, a two-layer MLP. We will compare the performance of these two models.</p>
+<p><strong>Graded Task</strong>: Complete the definition of the <code>LinearModel</code> class, which is a linear model (e.g., logistic regression). This model should as input these AlexNet features, and make a prediction for which letter the hand gesture represents.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LinearModel(nn.Module):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(LinearModel, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: What layer need to be initialized?</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc <span class="op">=</span> nn.Linear(<span class="dv">256</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">*</span> <span class="dv">6</span>, <span class="dv">10</span>) <span class="co"># SOLUTION</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x.view(<span class="op">-</span><span class="dv">1</span>, <span class="dv">256</span> <span class="op">*</span> <span class="dv">6</span> <span class="op">*</span> <span class="dv">6</span>) <span class="co"># flatten the input</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: What computation needs to be performed?</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">self</span>.fc(x) <span class="co"># SOLUTION</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>m_linear <span class="op">=</span> LinearModel()</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>m_linear(train_data_fets[<span class="dv">0</span>][<span class="dv">0</span>]) <span class="co"># this should produce a(n unnormalized) prediction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task</strong>: Train a <code>LinearModel()</code> for at least 6 epochs, and report on the maximum validation accuracy that you can attain. We should still be able to use the <code>train_model</code> function, but make sure to provide the AlexNet features as input (and not the image features).</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>m_linear <span class="op">=</span> LinearModel()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Train the linear model. Include your output in your submission</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>train_model(m_linear, train_data_fets, valid_data_fets) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Graded Task</strong>: Compare this model with the CNN() models that we trained earlier. How does this model perform in terms of validation accuracy? What about in terms of the time it took to train this model?</p>
+<pre><code># TODO: Your observation goes here</code></pre>
+<p><strong>Task</strong>: We decide to use AlexNet features as input to our MLP, and avoided tuning AlexNet weights. However, we could have considered AlexNet to be a part of our model, and continue to tune AlexNet weights to improve our model performance. What are the advantages and disadvantages of continuing to tune AlexNet weights?</p>
+<pre><code># TODO</code></pre>
+</section>
+<section id="part-4.-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-4.-data">Part 4. Data</h2>
+<p><strong>Task</strong>: Report the test accuracy on this transfer learning model.</p>
+<pre><code># TODO
+get_accuracy(m_linear, test_data_fets) # SOLUTION</code></pre>
+<p><strong>Task</strong>: Use this code below to construct the confusion matrix for this model over the test set.</p>
+<pre><code>from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+import sklearn
+label = "ABCDEFGHI"
+def plot_confusion(model, data):
+    n = 0
+    ts = []
+    ys = []
+    for x, t in data:
+        z = model(x.unsqueeze(0))
+        y = int(torch.argmax(z))
+        ts.append(t)
+        ys.append(y)
+
+    cm = confusion_matrix(ts, ys)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=label)
+    plt.figure()
+    disp.plot()
+
+plot_confusion(m_linear, test_data_fets)</code></pre>
+<p><strong>Graded Task</strong>: Which class is most likely mistaken as another? Is this reasonable? (i.e.&nbsp;is that class particularly challenging, or very similar to another class?)</p>
+<pre><code># TODO: Include your analysis here</code></pre>
+<p><strong>Task</strong>: In order to understand where errors come from, it is <em>crucial</em> that we explore why and how our models fail. A first step is to visually inspect the test data points where failure occurs. That way, we can identify what we can do to prevent/fix errors before our models are deployed.</p>
+<p>Run the below code to display images in the test set that our model <em>misclassifies</em>:</p>
+<pre><code>for i, (x, t) in enumerate(test_data_fets):
+    y = int(torch.argmax(m_linear(x)))
+    if not (y == t):
+        plt.figure()
+        plt.imshow(test_data[i][0].transpose(0,1).transpose(1,2).numpy())</code></pre>
+<p><strong>Task</strong>: By visually inspecting these misclassified images, we see that there are two main reasons for misclassification. What reason for misclassification is due to a mistake in the formatting of the test set images?</p>
+<pre><code># TODO</code></pre>
+<p><strong>Graded Task</strong>: We also see a much more serious issue, where gestures made by individuals with darker skin tones may be more frequently misclasified. This result suggests that errors in the model may impact some groups more than others. What steps should we take to mitigate this issue?</p>
+<pre><code># TODO</code></pre>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Florian Shkurti</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab07.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab05 – CSC413 - Fall 2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-69b08db278f499bc7d235ce342f73d67.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-87aedce6c5c32840e93824ffc3714634.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="CSC413 - Fall 2024">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta property="og:site_name" content="CSC413 - Fall 2024">
+<meta name="twitter:title" content="CSC413 - Fall 2024">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta name="twitter:creator" content="@minebocek">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#csc413-lab-5-differential-privacy" id="toc-csc413-lab-5-differential-privacy" class="nav-link active" data-scroll-target="#csc413-lab-5-differential-privacy">CSC413 Lab 5: Differential Privacy</a>
+  <ul class="collapse">
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#google-colab-setup" id="toc-google-colab-setup" class="nav-link" data-scroll-target="#google-colab-setup">Google Colab Setup</a></li>
+  <li><a href="#part-1.-data-and-model" id="toc-part-1.-data-and-model" class="nav-link" data-scroll-target="#part-1.-data-and-model">Part 1. Data and Model</a></li>
+  <li><a href="#part-2.-privacy-issues-in-our-model" id="toc-part-2.-privacy-issues-in-our-model" class="nav-link" data-scroll-target="#part-2.-privacy-issues-in-our-model">Part 2. Privacy issues in our model</a></li>
+  <li><a href="#part-3.-differential-privacy" id="toc-part-3.-differential-privacy" class="nav-link" data-scroll-target="#part-3.-differential-privacy">Part 3. Differential Privacy</a></li>
+  <li><a href="#part-4.-differentially-private-sgd" id="toc-part-4.-differentially-private-sgd" class="nav-link" data-scroll-target="#part-4.-differentially-private-sgd">Part 4. Differentially-Private SGD</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab05.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="csc413-lab-5-differential-privacy" class="level1">
+<h1>CSC413 Lab 5: Differential Privacy</h1>
+<p>In this lab, we will explore how training a neural network with some of the optimization methods discussed in the lecture can cause models to capture more information about the training data than we might intend. We will discuss why this may be problematic from a privacy perspective, and introduce the idea of <strong>differential privacy</strong>.</p>
+<p>Finally, this lab introduces an optimization strategy called <strong>DP-SGD</strong> or differentially private stochastic gradient descent. This strategy has some provable properties about the amount of information captured.</p>
+<p>This lab also serves as an introductory guide to implementing optimization models that are presented in research papers. We hope that the techniques used in this lab build skills so that you can implement new techniques and ideas presented in other papers.</p>
+<p>By the end of this lab, you will be able to:</p>
+<ol type="1">
+<li>Recognize that typical methods of using SGD to train a neural network might capture too much information about the training data.</li>
+<li>Articulate the importance of privacy to stakeholders.</li>
+<li>Explain the components of the DP-SGD algorithm.</li>
+<li>Compare models trained using SGD and those trained with DP-SGD through the lens of differential privacy.</li>
+<li>Implement, from an algorithm description, optimization techniques like DP-SGD that requires manual gradient manipulation in Pytorch.</li>
+</ol>
+<p>Please work in groups of 1-2 during the lab.</p>
+<p>Acknowledgements:</p>
+<ul>
+<li>The MedMNIST data is from https://medmnist.com/</li>
+<li>This assignment is written by Mahdi Haghifam, Sonya Allin, Lisa Zhang, Mike Pawliuk and Rutwa Engineer</li>
+</ul>
+<p>Please work in groups of 1-2 during the lab.</p>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>If you are working with a partner, start by creating a group on Markus. If you are working alone, click “Working Alone”.</p>
+<p>Submit the ipynb file <code>lab05.ipynb</code> on Markus <strong>containing all your solutions to the Graded Task</strong>s. Your notebook file must contain your code <strong>and outputs</strong> where applicable, including printed lines and images. Your TA will not run your code for the purpose of grading.</p>
+<p>For this lab, you should submit the following:</p>
+<ol type="1">
+<li>Part 2: Description of the difference between the non-dp model predictions over data in/out of training (1 point)</li>
+<li>Part 3: Explanation of why the “average height” model is not <span class="math inline">\(\epsilon\)</span>-DP (1 point)</li>
+<li>Part 4: Explanation of <code>T_max</code> in <code>CosineAnnealingLR</code> (1 point)</li>
+<li>Part 4: Explanation why <code>max_grad_norm &gt;= 7.49</code> causes gradient clipping to remain unchanged in the example (1 point)</li>
+<li>Part 4: Implementation of <code>dp_grads</code> function (4 points)</li>
+<li>Part 4: Explanation of the difference in the histogram of the dp and non-dp models (1 point)</li>
+<li>Part 4: Analysis of the impact of privacy breach on a vulnerable individual (1 point)</li>
+</ol>
+</section>
+<section id="google-colab-setup" class="level2">
+<h2 class="anchored" data-anchor-id="google-colab-setup">Google Colab Setup</h2>
+<p>Like last week, we will be using the <code>medmnist</code> data set, which is available as a Python package. We will also be using <code>opacus</code>, which is a differential privacy library.</p>
+<p>Recall that on Google Colab, we use “!” to run shell commands. Below, we use such commands to install the Python packages.</p>
+<pre><code>!pip install medmnist
+!pip install opacus</code></pre>
+</section>
+<section id="part-1.-data-and-model" class="level2">
+<h2 class="anchored" data-anchor-id="part-1.-data-and-model">Part 1. Data and Model</h2>
+<p>We will be using the same data and model as in lab 3, with modifications in the way that the training, validation, and test sets are split. These modifications are necessary to be able to showcase differential privacy issues using a small model and limited data set size to ensure that models do not take an overwhelming amount of time to train.</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+import torch
+import opacus
+import medmnist
+from medmnist import PneumoniaMNIST
+import torchvision.transforms as transforms
+
+import torch.utils.data as data_utils
+
+medmnist.INFO['pneumoniamnist']
+</code></pre>
+<p><strong>Task</strong> Use code from lab 3 to re-acquaint yourself with the training data. What do the inputs look like? What about the targets? What is the distribution of the targets? Intuitively, how difficult is the classification problem?</p>
+<pre><code># TODO: Run/revise the data exploration code from lab 3 so
+# that you can describe the dataset and the difference between
+# the two classes</code></pre>
+<p><strong>Task</strong>: Using the standard train/validation/test split provided by the dataset, what percentage of the training set had the label <code>0</code>? What about the validation set?</p>
+<pre><code># TODO: Write code to compute the figures here</code></pre>
+<p>These statistics differ significantly between the training, validation and test sets for our DP demonstration to work well with our small MLP model. Thus, we will perform our own split of the training, validation, and test sets.</p>
+<p>In addition, we will split the data into four sets: training, validation, test, and a <strong>memorization assessment set</strong>. This data set will be the same size as our training set. Practitioners sometimes call this set a <em>second</em> or <em>unused</em> training set, even though this data set is not used for training. The idea is that we want to see if there is a difference between data that we actually used for training, vs another data that we <em>could have</em> used for training.</p>
+<p><strong>Task</strong>: Run the following code to obtain the four datasets.</p>
+<pre><code># Load the training, validation, and test sets
+# We will normalize each data set to mean 0.5 and std 0.5: this
+# improves training speed
+data_transform = transforms.Compose([transforms.ToTensor(),
+                                     transforms.Normalize(mean=[.5], std=[.5])])
+train_dataset = PneumoniaMNIST(split='train', transform=data_transform, download=True)
+valid_dataset = PneumoniaMNIST(split='val', transform=data_transform, download=True)
+test_dataset = PneumoniaMNIST(split='test', transform=data_transform, download=True)
+
+# Combine the training and validation
+combined_data = train_dataset + valid_dataset
+
+# Re-split the data into training,  memory assessment
+train_dataset, mem_asses_dataset, valid_dataset = torch.utils.data.random_split(combined_data, [0.4, 0.4, 0.2])</code></pre>
+<p><strong>Task</strong>: What percentage of the training set had the label <code>0</code>? What about the memorization assessment set? What about the validation set?</p>
+<pre><code># TODO: Run code to complete your solution here.</code></pre>
+<p>Now that our data is ready, we can set up the model and training code similar to lab 3.</p>
+<pre><code>import torch
+import torch.nn as nn
+import torch.optim as optim
+
+class MLPModel(nn.Module):
+    """A three-layer MLP model for binary classification"""
+    def __init__(self, input_dim=28*28, num_hidden=600):
+        super(MLPModel, self).__init__()
+        self.fc1 = nn.Linear(input_dim, num_hidden)
+        self.fc2 = nn.Linear(num_hidden, num_hidden)
+        self.fc3 = nn.Linear(num_hidden, 1)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.sigmoid(out)
+        out = self.fc2(out)
+        out = self.sigmoid(out)
+        out = self.fc3(out)
+        return out</code></pre>
+<p>To explore the distribution of predicted logits, the following code is written for you: it produces both the predictions and ground-truth labels across a dataset. There is also another utility function that can be used to measure the accuracy.</p>
+<pre><code>def get_predictions(model, data):
+    """
+    Return the ground truth and predicted value across a dataset.
+    Unlike the get_prediction function in lab 3, this dataset
+    will produce the predictions for the *entire* dataset (no sampling)
+
+    Parameters:
+        `model` - A PyTorch model
+        `data` - A PyTorch dataset of MedMNIST images
+
+    Returns: A tuple `(ys, ts)` where:
+        `ys` is a list of prediction probabilities, same length as `data`
+        `ts` is a list of ground-truth labels, same length as `data`
+    """
+    ys, ts = [], []
+    loader = torch.utils.data.DataLoader(data, batch_size=100)
+    for X, t in loader:
+        z = model(X.reshape(-1, 784))
+        ys += [float(y) for y in torch.sigmoid(z)]
+        ts += [float(t_) for t_ in t]
+    return ys, ts
+
+def accuracy(model, dataset):
+    """
+    Compute the accuracy of `model` over the `dataset`.
+    We will take the **most probable class**
+    as the class predicted by the model.
+
+    Parameters:
+        `model` - A PyTorch model
+        `dataset` - A PyTorch dataset of MedMNIST images
+
+    Returns: a floating-point value between 0 and 1.
+    """
+
+    ys, ts = get_predictions(model, dataset)
+    predicted = np.ndarray.round(np.array(ys))
+    return np.mean(predicted == ts)</code></pre>
+<p>The training code below is analogues to the training code used in lab 3, with some differences. One difference is that we use the <strong>Adam</strong> optimizer rather than SGD. The Adam optimizer combines ideas from momentum and RMSProp and is able to train our model to a suitable accuracy with much fewer iterations.</p>
+<p><strong>Task</strong>: Run the code below to train our (non-private) model.</p>
+<pre><code>def train_model(model,                # a PyTorch model
+                train_data,           # training data
+                val_data,             # validation data
+                learning_rate=1e-2,
+                batch_size=100,
+                num_epochs=45,
+                plot_every=20,        # how often (in # iterations) to track metrics
+                plot=True):           # whether to plot the training curve
+    train_loader = torch.utils.data.DataLoader(train_data,
+                                               batch_size=batch_size,
+                                               shuffle=True) # reshuffle minibatches every epoch
+    criterion = nn.BCEWithLogitsLoss()
+    optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)
+
+    # these lists will be used to track the training progress
+    # and to plot the training curve
+    iters, train_loss, train_acc, val_acc = [], [], [], []
+    iter_count = 0 # count the number of iterations that has passed
+
+    for e in range(num_epochs):
+        for i, (images, labels) in enumerate(train_loader):
+              z = model(images.reshape(-1, 784))
+              loss = criterion(z, labels.to(torch.float))
+              loss.backward()
+              optimizer.step()
+              optimizer.zero_grad()
+
+              iter_count += 1
+              if iter_count % plot_every == 0:
+                  iters.append(iter_count)
+                  ta = accuracy(model, train_data)
+                  va = accuracy(model, val_data)
+                  train_loss.append(float(loss))
+                  train_acc.append(ta)
+                  val_acc.append(va)
+                  print(iter_count, "Loss:", float(loss), "Train Acc:", ta, "Val Acc:", va)
+
+    if plot:
+        plt.figure()
+        plt.plot(iters[:len(train_loss)], train_loss)
+        plt.title("Loss over iterations")
+        plt.xlabel("Iterations")
+        plt.ylabel("Loss")
+ 
+        plt.figure()
+        plt.plot(iters[:len(train_acc)], train_acc)
+        plt.plot(iters[:len(val_acc)], val_acc)
+        plt.title("Accuracy over iterations")
+        plt.xlabel("Iterations")
+        plt.ylabel("Loss")
+        plt.legend(["Train", "Validation"])
+
+model_np = MLPModel()
+train_model(model_np, train_dataset, valid_dataset)</code></pre>
+</section>
+<section id="part-2.-privacy-issues-in-our-model" class="level2">
+<h2 class="anchored" data-anchor-id="part-2.-privacy-issues-in-our-model">Part 2. Privacy issues in our model</h2>
+<p>In this part of the lab, we will show that our trained model captures more information about the training data than we might intend. In particular, we show that the model predictions have different patterns for images used in training (compared to images that are not used in training). Specifically, the prediction logits follow a different distribution for training images and images not used for training.</p>
+<p>In more general applications, the patterns in the logit distributions can be used to build classifiers that can predict <strong>whether an image was used in training</strong> a neural network.</p>
+<p><strong>Task</strong>: Suppose that you are a patient in a medical study, who consented for their data to be used to train a machine learning model to detect the strains of certain diseases (i.e., strain A or B of the same disease). Explain why you might <em>not</em> want it be known that your data was used to build the model.</p>
+<pre><code># TODO: Your explanation goes here.</code></pre>
+<p>Recall that we used <code>train_dataset</code> to train our model, but did not use the <code>mem_asses_dataset</code>. To show that our model behaves differently for data used in training (vs not), we will plot the histogram of prediction probabilities across these two datasets.</p>
+<p><strong>Task</strong>: Run the code below, which produces <em>cumulative</em> histogram plots showing showing the <em>log</em> model predictions of negative and positive samples (truth label=0 vs true label=1). The predictions for data point in the training set is shown in blue. The predictions for data points <em>not</em> in the training set (in the memorization assessment set) is in red.</p>
+<pre><code>def plot_hist(model, in_dataset, out_dataset):
+    """
+    Plots the histogram (cumulative, in the log space) of the predicted
+    probabilities for datasets that is in the training set vs out. The
+    histograms are separated by the true labels.
+
+    Parameters:
+        `model` - A PyTorch model
+        `in_dataset` - A PyTorch dataset used for training 
+                       (i.e. *in* the training set)
+        `out_dataset` - A PyTorch dataset not used for training 
+                       (i.e. *out* the training set)
+    """
+    # Obtain the prediction for data points in both data sets
+    ys_in, ts_in  = get_predictions(model, in_dataset)
+    ys_out, ts_out = get_predictions(model, out_dataset)
+
+    # Compute the negative log() of these predictions, separated by the
+    # ground truth labels. An epsilon is added to the prediction for
+    # numerical stability
+    epsilon = 1e-10
+    conf_in_0 = [-np.log(y + epsilon) for t, y in zip(ts_in, ys_in) if t == 0]
+    conf_in_1 = [-np.log(1 - y + epsilon) for t, y in zip(ts_in, ys_in) if t == 1]
+    conf_out_0 = [-np.log(y + epsilon) for t, y in zip(ts_out, ys_out) if t == 0]
+    conf_out_1 = [-np.log(1 - y + epsilon) for t, y in zip(ts_out, ys_out) if t == 1]
+
+    # Bins used for the density/histogram
+    bins_0 = np.linspace(0,max(max(conf_in_0),max(conf_out_0)),500)
+    bins_1 = np.linspace(0,max(max(conf_in_1),max(conf_out_1)),500)
+
+    # Plot the histogram for the predicted probabilities for true label = 0
+    plt.subplot(2, 1, 1)
+    plt.hist(conf_out_0, bins_0, color='r', label='out', alpha=0.5,cumulative=True, density=True)
+    plt.hist(conf_in_0, bins_0, color='b', label='in', alpha=0.5,cumulative=True, density=True)
+    plt.legend()
+    plt.ylabel('CDF')
+    plt.xlabel('-log(Pr(pred=1))')
+    plt.title("True label=0")
+
+    # Plot the histogram for the predicted probabilities for true label = 1
+    plt.subplot(2, 1, 2)
+    plt.hist(conf_out_1, bins_1, color='r', label='out', alpha=0.5,cumulative=True, density=True)
+    plt.hist(conf_in_1, bins_1, color='b', label='in', alpha=0.5,cumulative=True, density=True)
+    plt.legend()
+    plt.title("True label=1")
+    plt.ylabel('CDF')
+    plt.xlabel('-log(Pr(pred=0))')
+
+    plt.subplots_adjust(hspace=1)
+    plt.show()
+
+plot_hist(model_np, train_dataset, mem_asses_dataset)</code></pre>
+<p><strong>Graded Task</strong>: What difference do you notice between the histograms of the data points <em>in</em> the training set, vs those <em>not in</em> the training set? Explain how this difference is indicative of <em>overfitting</em>.</p>
+<pre><code># TODO: Your answer goes here</code></pre>
+</section>
+<section id="part-3.-differential-privacy" class="level2">
+<h2 class="anchored" data-anchor-id="part-3.-differential-privacy">Part 3. Differential Privacy</h2>
+<p>In the previous section, we observed that a model’s prediction confidence for the samples inside its training set can be different from those outside the training set. We already know that this disparity has a negative impact on the model’s performance during test time. This phenomenon is known as overfitting and we know several techniques on how to measure and reduce the overfitting. In this part, we want to argue that this disparity has a negative impact on <strong>privacy</strong> of the training samples.</p>
+<p>Assume the designed model in the previous section is published for the public as a classification model for Pneumonia. Assume that the training set consists of individuals’ X-ray. Even though the participants have consented to participate in the research, their privacy should still be protected. If an attacker can determine whether a specific individual’s data is part of the research dataset, it might lead to unintended privacy breaches. Participants might not want their involvement in such a study to be public knowledge due to the stigma associated with certain medical conditions. This disparity may also help an attacker to reconstruct a participant’s data. This example shows that the disparity between the model’s confidence lets the adversary infer the membership of a sample from the predictions. This is alarming! In the next part, we discuss how to mitigate this risk by introducing the fundamental concept of <strong>Differential Privacy</strong>.</p>
+<p>Differential privacy (DP) is a data privacy framework that aims to provide strong privacy guarantees when analyzing or sharing sensitive data. <strong>We say an ML algorithm satisfies Differential Privacy if changing <em>one</em> of the training samples does not change the output of the algorithm <em>significantly</em>.</strong> DP is an interesting property: assume you want to give a hospital access to your X-ray. If the hospital uses a DP ML algorithm, then, you are guaranteed that your presence does not affect the output significantly. This is promising and motivates people to give access to their data for the purpose of data analysis.</p>
+<p>Next, we discuss how to formalize DP.</p>
+<p>Assume we have a dataset <span class="math inline">\(S=\{(x_1,y_1),\dots,(x_n,y_n)\}\)</span> which consists of <span class="math inline">\(n\)</span> individuals data. Consider the neighboring dataset <span class="math inline">\(S'=\{(x_1,y_1),\dots,(x'_n, y'_n)\}\)</span> which differs from <span class="math inline">\(S\)</span> in only one sample. Then, we say a randomized algorithm <span class="math inline">\(\mathcal{A}\)</span> satisfies <span class="math inline">\(\epsilon\)</span>-DP if for all the output <span class="math inline">\(y\)</span> in the range of <span class="math inline">\(\mathcal{A}\)</span> it satisfies</p>
+<p><span class="math display">\[
+\mathbb{Pr}\left(\mathcal{A}(S) =y \right) \leq \exp(\epsilon)  \mathbb{Pr}\left(\mathcal{A}(S’) =y \right).
+\]</span></p>
+<p>But what is the intuition behind this equation?</p>
+<p><span class="math inline">\(\epsilon\)</span> is called the privacy budget. Privacy budget captures how strong our privacy guarantees are, by showing that the outcome is indistinguishable in two neighboring datasets. This can be shown by setting <span class="math inline">\(\epsilon = 0\)</span>, the probability the analysis having an outcome is the same with or without you in the database. So if we set <span class="math inline">\(\epsilon\)</span> to some small value, we can get good guarantees that the output will not differ much.</p>
+<p>A common property of privacy-preserving algorithms is randomness. To see why it is the case assume we are interested in the average height of the students enrolled in CSC413while preserving their privacy. Consider a <strong>deterministic</strong> algorithm that reports the average height of the students. We argue that there exists no finite <span class="math inline">\(\epsilon\)</span> for which this algorithm is DP. For this example, it can be shown that by adding a Gaussian noise to the average height we can preserve privacy of the individuals.</p>
+<p><strong>Graded Task</strong>: Explain why the algorithm that reports the average height of the students is not <span class="math inline">\(\epsilon\)</span>-DP for any finite <span class="math inline">\(\epsilon&gt;0\)</span>.</p>
+<pre><code># TODO: Include your explanation here</code></pre>
+<p>We hope that the basic intuition behind differential privacy is now clear. DP is now a widely-used method to preserve privacy. It has been used in companies like Google and Apple to gather the user’s data. It is also recently used for the US Census. See the following [video]{https://www.youtube.com/watch?v=nVPE1dbA394} to get more information.</p>
+</section>
+<section id="part-4.-differentially-private-sgd" class="level2">
+<h2 class="anchored" data-anchor-id="part-4.-differentially-private-sgd">Part 4. Differentially-Private SGD</h2>
+<p>In this section, we discuss how we can make stochastic gradient descent differentially private and implement it. We will follow the algorithmic description of DP-SGD forom <a href="https://arxiv.org/pdf/1607.00133.pdf">https://arxiv.org/pdf/1607.00133.pdf</a> that we reproduce below. Start by reading the words/headings in the description, then we will discuss the algorithm line by line.</p>
+<p>Algorithm Outline for Differentially Private SGD (DP-SGD)</p>
+<p><strong>Input</strong> Examples <span class="math inline">\(\left\{x_1, \ldots, x_N\right\}\)</span>, loss function <span class="math inline">\(\mathcal{L}(\theta)=\)</span> <span class="math inline">\(\frac{1}{N} \sum_i \mathcal{L}\left(\theta, x_i\right)\)</span>.</p>
+<p><strong>Parameters</strong>: learning rate <span class="math inline">\(\eta_t\)</span>, noise scale, <span class="math inline">\(\sigma\)</span>, group size <span class="math inline">\(L\)</span>, gradient norm bound <span class="math inline">\(C\)</span>. \</p>
+<p><strong>Initialize</strong> <span class="math inline">\(\theta_0\)</span> randomly</p>
+<p><strong>for</strong> <span class="math inline">\(t \in[T]\)</span> do * Take a random sample <span class="math inline">\(L_t\)</span> with sampling probability <span class="math inline">\(L / N\)</span> * <strong>Compute gradient</strong> <span class="math inline">\(\quad\)</span> For each <span class="math inline">\(i \in L_t\)</span>, compute <span class="math inline">\(\mathbf{g}_t\left(x_i\right) \leftarrow \nabla_{\theta_t} \mathcal{L}\left(\theta_t, x_i\right)\)</span> * <strong>Clip gradient</strong> <span class="math inline">\(\overline{\mathbf{g}}_t\left(x_i\right) \leftarrow \mathbf{g}_t\left(x_i\right) / \max \left(1, \frac{\left\|\mathbf{g}_t\left(x_i\right)\right\|_2}{C}\right)\)</span> * <strong>Add noise</strong> <span class="math inline">\(\tilde{\mathbf{g}}_t \leftarrow \frac{1}{L}\left(\sum_i \overline{\mathbf{g}}_t\left(x_i\right)+\mathcal{N}\left(0, \sigma^2 C^2 \mathbf{I}\right)\right)\)</span> \ * <strong>Descent</strong> <span class="math inline">\(\theta_{t+1} \leftarrow \theta_t-\eta_t \tilde{\mathbf{g}}_t\)</span></p>
+<p><strong>Output</strong> <span class="math inline">\(\theta_T\)</span> and compute the overall privacy cost <span class="math inline">\((\varepsilon, \delta)\)</span> using a privacy accounting method.</p>
+<p><strong>Task</strong>: Read the algorithm above. Write down, for each symbol/notation used in the algorithm, what it represents. Pay particular attention to the symbol <span class="math inline">\(\mathbf{g}_t\left(x_i\right)\)</span> and its various modifications.</p>
+<pre><code># TODO: Make sure you understand the notation before moving on to the
+# detailed descriptions.</code></pre>
+<p>Now, let’s discuss the algorithm line by line.</p>
+<ul>
+<li><strong>Sampling</strong>: The sampling mechanism used in DP-SGD is different from SGD. In non-private SGD, we choose a random permutation at the beginning of each epoch. However, in DP-SGD at each iteration we select a sample with probability (batchsize/number of samples) to be a member of the batch at the current iteration. This sampling mechanism is also called <em>Poisson subsampling</em>. We will not implement this sampling ourselves; we will use <a href="https://opacus.ai/api/data_loader.html">Opacus software package implement</a> of it.</li>
+<li><strong>Gradient Computation</strong>: This step is analogous to gradient computation in SGD. However, the gradients of each sample in the batch is computed separately.</li>
+<li><strong>Clipping Gradients</strong>: You should be able to show that, mathematically, that clipping ensures that for each data point, the gradient vector of that data point has a maximum norm of <span class="math inline">\(C\)</span>. Why is this useful? Assume there is an outlier for which the gradient is very large. Without clipping, the impact of the outlier on the algorithm will be unbounded. DP-SGD performs clipping to each individual gradient point separately, which limits the contribution of each data point to the parameter update.</li>
+<li><strong>Adding Noise</strong>: In order to achieve a specific level of privacy determined by <span class="math inline">\(\epsilon\)</span>, we need to select the minimum amount of noise to be added in each iteration (<span class="math inline">\(\sigma\)</span> in the algorithm description). Since determining the exact amount requires a very technical calculation, there are software packages which can be used. Here, we use the Opacus software package from Meta research. It provides a function which takes as input the privacy level <span class="math inline">\(\epsilon\)</span>, batchsize and the number of training points, and outputs the variance of the noise. There is another input, i.e., <span class="math inline">\(\delta\)</span>. Do not make any changes to it. If you are interested to know what it means please read the following <a href="http://www.gautamkamath.com/CS860notes/lec5.pdf">lecture note</a>.</li>
+</ul>
+<p><strong>Task</strong>: Notice that the scale of the noise added to the gradient is related to the clipping parameter. Does the amount of the noise added <em>increase</em> or <em>decrease</em> if we allow a larger maximum norm <span class="math inline">\(C\)</span> during clipping? (Reasoning about these differences is one way to make sense of mathematical equations like these.)</p>
+<pre><code># TODO: Your answer goes here</code></pre>
+<p>In the next few tasks, we will describe the pieces of code that we will need to implement DP-SGD.</p>
+<p><strong>Task</strong>: Run the following code to compare the batches produced by the usual Dataloader vs.&nbsp;via Poisson Sampling. What do you noitce?</p>
+<pre><code># Create a dataset with 20 numbers
+x = torch.arange(20)
+print(x)
+dataset = torch.utils.data.TensorDataset(x)
+
+print('PyTorch DataLoader')
+data_loader = torch.utils.data.DataLoader(dataset, batch_size=4,shuffle=True)
+for _ in range(2): # run for 2 epochs
+    for x_b in data_loader:
+        print(x_b)
+    print('-------------------')
+
+print('Poisson Sampling')
+dp_data_loader = opacus.data_loader.DPDataLoader(dataset, sample_rate = 5/20)
+for _ in range(2): # run for 2 epochs
+    for x_b in dp_data_loader:
+        print(x_b)
+    print('-------------------')</code></pre>
+<p>In addition to using a different sampling method, we will use <code>CosineAnnealingLR</code> learning rate scheduler in pytorch. You need to understand how this learning rate scheduler works and how it can be updated.</p>
+<p><strong>Graded Task</strong> Read the PyTorch documentation on <a href="https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html">CosineAnnealingLR</a> and explain what the parameter <code>T_max</code> represent.</p>
+<pre><code># TODO: Write your explanation here.</code></pre>
+<p>The most challenging part of implementing DP-SGD is that we will need to implement our own optimization process to modify the default gradient descent behaviour. However, Pytorch has a nice feature that we saw in lab 1: each parameter in a model stores its own gradient as an attribute. In particular, consider the following snippet which can be used to print the name and gradient of the parameters in a model.</p>
+<pre><code>for name, param in model_np.named_parameters(): 
+    print(name)
+    print(param.grad)</code></pre>
+<p>What we didn’t see in lab 1 is that we can anually change the gradient of each parameter!</p>
+<p>This is powerful, because the optimizers in PyTorch uses the <code>.grad</code> attributes of each parameter to perform model updates. Thus, changing the <code>.grad</code> attributes provides a way to override the default gradient descent behaviour.</p>
+<p><strong>Task</strong>: Run the below code, which demonstrates how the <code>.grad</code> attribute can be modified.</p>
+<pre><code>model = nn.Linear(5, 1) # linear model with input dim = 5, and a single output
+print(list(model.parameters())) # print the current parameters
+
+# manually set the optimizers
+optimizer = torch.optim.SGD(model.parameters(), 0.1)
+model.weight.grad = torch.nn.parameter.Parameter(torch.Tensor([[1, 2, 3, 4, 5.]]))
+model.bias.grad = torch.nn.parameter.Parameter(torch.Tensor([1.]))
+optimizer.step()
+
+# what would you expect the output to be?
+print(list(model.parameters()))</code></pre>
+<p>To implement DP-SGD, We will need to manually modify the <code>.grad</code> attribute in a few ways. One of the steps to DP-SGD is gradient clipping. Fortunately, PyTorch actually comes with an implementation of gradient clipping through the function <code>torch.nn.utils.clip_grad_norm_</code>.</p>
+<p><strong>Task</strong>: Run this code to see how gradient clipping works. Notice that the gradient <em>direction</em> is unchanged, only the magnitude.</p>
+<pre><code>model = nn.Linear(5, 1) # linear model with input dim = 5, and a single output
+model.weight.grad = torch.Tensor([[1, 2, 3, 4, 5.]])
+model.bias.grad = torch.Tensor([1.])
+max_grad_norm = 0.5
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
+print(model.weight.grad, model.bias.grad)</code></pre>
+<p><strong>Graded Task</strong>: Explain why if we set <code>max_grad_norm &gt;= 7.49</code> above, the gradient will be unchanged. Your explanation should demonstrate the calculation of where the number 7.49 comes from.</p>
+<pre><code># TODO: Include your explanation and calculation here.</code></pre>
+<p><strong>Graded Task</strong>: Now that we have the pieces we need to implement our DP-SGD gradient computation, Complete the code below, which performs one iteration of DP-SGD update for a batch of data. You may wish to look ahead to see how this function will be used in DP-SGD training.</p>
+<pre><code>def dp_grads(model, batch_data, criterion, max_grad_norm, noise_multiplier):
+    """
+    Compute gradients for an iteration of DP-SGD training by setting the
+    .grad attribute of each parameter in model.named_parameters()
+    according to the DP-SGD algorithm.
+
+    Parameters:
+        - `model` - A PyTorch model
+        - `batch_data` - A list of tuples (x, t) representing a batch of data
+        - `criterion` - A PyTorch loss function
+        - `max_grad_norm` - The maximum gradient norm, used for gradient clipping
+                            (C in the algorithm description)
+        - `noise_multiplier` - The noise multiplier, used for adding noise
+                               (sigma in the algorithm description)
+
+    Returns: A dictionary `clipped_noisy_grads` that maps the names of each
+             parameter in `model.named_parameters()` to its modified gradient
+             computed according to DP-SGD
+    """
+    # Create the mapping of each parameter in our model to
+    # what will evetually be the noisy gradients
+    clipped_noisy_grads = {name: torch.zeros_like(param) for name, param in model.named_parameters()}
+
+    # Iterate over the data points in each batch. This is unfortunately
+    # necessary so that we can perform gradient clipping separtely for each
+    # data point
+    for xi, ti in batch_data:
+        zi = None # TODO: compute the model prediction (logit)
+        zi = model(xi) # SOLUTION
+        lossi = None # TODO: compute the loss for this data point
+        lossi = criterion(zi.reshape(1), ti.to(torch.float).reshape(1))  # SOLUTION
+
+        # TODO: perform the backward pass
+        lossi.backward(retain_graph=True)  # SOLUTION
+
+        # TODO: perform gradient clipping
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm) # SOLUTION
+
+        # accumulate the clipped gradients in `clipped_noisy_grads`
+        for name, param in model.named_parameters():
+            clipped_noisy_grads[name] += param.grad
+
+        # TODO: clear the gradients in the model's computation graph
+        model.zero_grad() # SOLUTION
+
+    # Now, we iterate over the name parameters to add noise
+    for name, param in model.named_parameters():
+        # TODO: Read the equation in the "Add Noise" section of the
+        #      algorithm description, and implement it. You may find
+        #      the function `torch.normal` helpful.
+        clipped_noisy_grads[name] += 0 # TODO
+
+        clipped_noisy_grads[name] += torch.normal(mean=0.0, std=noise_multiplier * max_grad_norm, size=param.size()) # SOLUTION
+        clipped_noisy_grads[name] /= len(batch_data) # SOLUTION
+
+    return clipped_noisy_grads</code></pre>
+<p>Please include the output of the tests below in your submission. (What should the output of the test be?)</p>
+<pre><code>model = nn.Linear(5, 1)
+model.weight = nn.Parameter(torch.Tensor([[1, 1, 0, 0, 0.]]))
+model.bias = nn.Parameter(torch.Tensor([0.]))
+batch_data = [(torch.Tensor([[1, 1, 1, 0, 0.]]), torch.Tensor([1.])),
+              (torch.Tensor([[1, 0, 1, 0, 0.]]), torch.Tensor([0.]))]
+criterion = nn.BCEWithLogitsLoss()
+
+# no noise and a large max_grad_norm
+print(dp_grads(model, batch_data, criterion, max_grad_norm=1000, noise_multiplier=0))
+print('-----------')
+
+# no noise and a small max_grad_norm
+print(dp_grads(model, batch_data, criterion, max_grad_norm=0.5, noise_multiplier=3))
+print('-----------')
+
+# small max_grad_norm and some noise (STD should be ~0.5x3/2)
+for i in range(10):
+    print(dp_grads(model, batch_data, criterion, max_grad_norm=0.5, noise_multiplier=3))</code></pre>
+<p><strong>Task</strong> Now that we have DP-SGD in place, run the below code to train a differentially private model.</p>
+<pre><code>def train_model_private(model, traindata, valdata, learning_rate=2e-1,
+                        batch_size=500, num_epochs=25, plot_every=20,
+                        epsilon=0.5, max_grad_norm=6):
+    # Compute the noise multiplier
+    N = len(traindata)
+    noise_multiplier = opacus.accountants.utils.get_noise_multiplier(
+        target_epsilon=epsilon,
+        target_delta=1/N,
+        sample_rate=batch_size/N,
+        epochs=num_epochs)
+
+    # Use the differentially private data loader
+    train_loader = opacus.data_loader.DPDataLoader(
+        dataset=traindata,
+        sample_rate=batch_size/N)
+
+    criterion = nn.BCEWithLogitsLoss()
+    optimizer = optim.SGD(model.parameters(), lr=learning_rate)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=N//batch_size * num_epochs)
+
+    # these lists will be used to track the training progress
+    # and to plot the training curve
+    iters, train_loss, train_acc, val_acc = [], [], [], []
+    iter_count = 0 # count the number of iterations that has passed
+ 
+    for e in range(num_epochs):
+        for i, (images, labels) in enumerate(train_loader):
+            images = images.reshape(-1, 28*28)
+            # get the clipped noisy gradients from the function you wrote
+            clipped_noisy_grads = dp_grads(model,
+                                           batch_data=list(zip(images,labels)),
+                                           criterion=criterion,
+                                           max_grad_norm=max_grad_norm,
+                                           noise_multiplier=noise_multiplier)
+            # manually update the gradients
+            for name, param in model.named_parameters():
+                param.grad = clipped_noisy_grads[name]
+            optimizer.step() # update the parameters
+            scheduler.step() # update the learning rate scheduler
+            optimizer.zero_grad() # clean up accumualted gradients
+
+            iter_count += 1
+            if iter_count % plot_every == 0:
+                # forward pass to compute the loss
+                z = model(images.reshape(-1, 784))
+                loss = criterion(z, labels.to(torch.float))
+                optimizer.zero_grad()
+
+                iters.append(iter_count)
+                ta = accuracy(model, traindata)
+                va = accuracy(model, valdata)
+                train_loss.append(float(loss))
+                train_acc.append(ta)
+                val_acc.append(va)
+                print(iter_count, "Loss:", float(loss), "Train Acc:", ta, "Val Acc:", va)
+   
+    plt.figure()
+    plt.plot(iters[:len(train_loss)], train_loss)
+    plt.title("Loss over iterations")
+    plt.xlabel("Iterations")
+    plt.ylabel("Loss")
+
+    plt.figure()
+    plt.plot(iters[:len(train_acc)], train_acc)
+    plt.plot(iters[:len(val_acc)], val_acc)
+    plt.title("Accuracy over iterations")
+    plt.xlabel("Iterations")
+    plt.ylabel("Loss")
+    plt.legend(["Train", "Validation"])</code></pre>
+<pre><code>model_priv = MLPModel()
+train_model_private(model_priv, train_dataset, valid_dataset)</code></pre>
+<p><strong>Graded Task</strong>: Plot the histogram of the model prediction for this differentially private model. How does this histogram differ from that of <code>model_np</code> from above?</p>
+<pre><code>plot_hist(model_priv, train_dataset, mem_asses_dataset)</code></pre>
+<pre><code># TODO: Explain how the histogram differs from that of model_np</code></pre>
+<p><strong>Task</strong> How does the accuracy differ from that of model_no mentioned above? Explain what you observe.</p>
+<pre><code># TODO: Your answer goes here</code></pre>
+<p><strong>Graded Task</strong>: Suppose that an attacker recognizes that your friend Taylor is in this data set, means that their X-ray was taken at some point during a hospitalization, and that Taylor provided researchers consent to be included in the study dataset. If this information is sold to a third-party (e.g., a credit reporting agency, an employer, or a landlord), how might this affect Taylor?</p>
+<pre><code># TODO: Your answer goes here</code></pre>
+<p>If you are interested in DP, we suggest performing hyperparameter tuning over batch size and max grad norm. In, DP-SGD usually larger batch size would help. So, for instance for two values of <span class="math inline">\(\varepsilon \in \{0.5,1,5\}\)</span>, try to find the best model for <span class="math inline">\(\text{batchsize}\in \{100,500\}\)</span> and <span class="math inline">\(\text{gradnorm}\in\{4,8,16\}\)</span>.</p>
+</section>
+<section id="appendix" class="level2">
+<h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
+<ul>
+<li>[Differential Privacy and the Census] https://www.youtube.com/watch?v=nVPE1dbA394</li>
+<li><a href="https://arxiv.org/abs/1607.00133">Main DP-SGD Paper</a></li>
+<li><a href="http://www.gautamkamath.com/CS860notes/lec13.pdf">CS 860 - Algorithms for Private Data Analysis at UWaterloo</a></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Florian Shkurti</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab05.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
