@@ -4,173 +4,269 @@ title: "Weekly Materials"
 
 ## Week 1 {#week-1}
 
-**Prepare**\
+#### Prepare
+
 [Software Installations](https://q.utoronto.ca/courses/366713/pages/software-installations)
 
-**Tutorials/Labs**
+#### Lecture
 
--   No tutorials/labs this week but please complete the [Pre-Requisite Math Problems](https://q.utoronto.ca/courses/366713/files/32607079?wrap=1 "prereq.pdf")
+[Slides](/lecs/w01/lec01.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
--   Suggested Review :
+#### Tutorials/Labs
 
-    -   [Linear Algebra review](http://www.deeplearningbook.org/contents/linear_algebra.html) 
-    -   [Probability review](https://www.deeplearningbook.org/contents/prob.html) 
+No tutorials/labs this week but please complete the [Pre-Requisite Math Problems](https://q.utoronto.ca/courses/366713/files/32607079?wrap=1 "prereq.pdf")
+
+Suggested Review :
+
+-   [Linear Algebra review](http://www.deeplearningbook.org/contents/linear_algebra.html) 
+-   [Probability review](https://www.deeplearningbook.org/contents/prob.html) 
 
 ## Week 2 {#week-2}
 
-**Notes**
+#### Lecture
 
--   Prof. Roger Grosse's notes on [backdrop](https://q.utoronto.ca/courses/366713/files/32607080?wrap=1)
+[Slides](/lecs/w02/lec02.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-**Exercises**
+Prof. Roger Grosse's notes on [backdrop](https://q.utoronto.ca/courses/366713/files/32607080?wrap=1)
 
--   [In-class Exercise](/ex/w02/exercises02.html "Exercise"){aria-label="Exercise 2"}
--   [Solutions](/ex/w02/exercises02_solution.html "Exercise Solutions"){aria-label="Exercise 2 Solutions"}
+#### Exercises
 
-**Tutorials/Labs**
+[In-class Exercise](/ex/w02/exercises02.html "Exercise"){aria-label="Exercise 2"} & [Solutions](/ex/w02/exercises02_solution.html "Exercise Solutions"){aria-label="Exercise 2 Solutions"}
 
--   In-person lab session: PyTorch basics with linear models [lab01](/labs/lab01.html "Lab instructions"){aria-label="Lab 1 instructions"}
+#### Tutorials/Labs
+
+In-person lab session: PyTorch basics with linear models [lab01](/labs/lab01.html "Lab instructions"){aria-label="Lab 1 instructions"}
+
+#### Quiz
+
+[Lec2 pre-recorded videos with quizzes](https://q.utoronto.ca/courses/366713/quizzes/404473)
 
 ## Week 3 {#week-3}
 
-**Notes**
+#### Lecture
 
--   [GloVe embedding demo](https://colab.research.google.com/drive/1aNbE6HcawVF67RV0hWi4qK33Um7cKykr?usp=sharing#scrollTo=H1mONlhzJ_qQ) 
--   [Video on autodiff](https://www.youtube.com/watch?v=wG_nF1awSSY)
+[GloVe embedding demo](https://colab.research.google.com/drive/1aNbE6HcawVF67RV0hWi4qK33Um7cKykr?usp=sharing#scrollTo=H1mONlhzJ_qQ) 
 
-**Exercises**
+[Video on autodiff](https://www.youtube.com/watch?v=wG_nF1awSSY)
 
--   [In-class Exercise](/ex/w03/exercises03.html "Exercise"){aria-label="Exercise 3"}
--   [Solutions](/ex/w03/exercises03_solution.html "Exercise Solutions"){aria-label="Exercise 3 Solutions"}
+[Slides](/lecs/w01/lec01.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-**Additional Resources**
+#### Exercises
 
--   Prof. Roger Grosse's notes on [autodiff](https://q.utoronto.ca/courses/366713/files/32607086?wrap=1 "L03a.pdf") and [word embeddings](https://q.utoronto.ca/courses/366713/files/32607091?wrap=1 "L03b.pdf")
--   Notes on Backpropagation <https://cs231n.github.io/optimization-2/>
--   Automatic Differentiation in Machine Learning: a Survey (2018) <https://arxiv.org/pdf/1502.05767.pdf>
+[In-class Exercise](/ex/w03/exercises03.html "Exercise"){aria-label="Exercise 3"} & [Solutions](/ex/w03/exercises03_solution.html "Exercise Solutions"){aria-label="Exercise 3 Solutions"}
 
-**Tutorials/Labs**
+#### Tutorials/Labs
 
--   In-person lab session: numerical gradients / word embeddings [lab02](/labs/lab02.html "Lab instructions"){aria-label="Lab 2 instructions"}
+In-person lab session: numerical gradients / word embeddings [lab02](/labs/lab02.html "Lab instructions"){aria-label="Lab 2 instructions"}
+
+#### Quiz
+
+[Lec3 pre-recorded videos with quizzes](https://q.utoronto.ca/courses/366713/quizzes/412392)
+
+#### Additional Resources
+
+Prof. Roger Grosse's notes on [autodiff](https://q.utoronto.ca/courses/366713/files/32607086?wrap=1 "L03a.pdf") and [word embeddings](https://q.utoronto.ca/courses/366713/files/32607091?wrap=1 "L03b.pdf")
+
+Notes on Backpropagation <https://cs231n.github.io/optimization-2/>
+
+Automatic Differentiation in Machine Learning: a Survey (2018) <https://arxiv.org/pdf/1502.05767.pdf>
 
 ## Week 4 {#week-4}
 
--   Demo: [Colab Notebook](https://colab.research.google.com/drive/1AL2ocL6muULg4P2hzHBOLTPL6RGbQaB5?usp=sharing)
+#### Lecture
 
-**Exercises**
+[Slides](/lecs/w04/lec04.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
--   [In-class Exercise](/ex/w04/exercises04.html "Exercise"){aria-label="Exercise 4"}
--   [Solutions](/ex/w04/exercises04_solution.html "Exercise Solutions"){aria-label="Exercise 4 Solutions"}
+Demo: [Colab Notebook](https://colab.research.google.com/drive/1AL2ocL6muULg4P2hzHBOLTPL6RGbQaB5?usp=sharing)
 
-**Tutorials/Labs**
+#### Exercises
 
--   In-person lab session: classification and medical MNIST [lab03](/labs/lab03.html "Lab instructions"){aria-label="Lab 3 instructions"}
+[In-class Exercise](/ex/w04/exercises04.html "Exercise"){aria-label="Exercise 4"} & [Solutions](/ex/w04/exercises04_solution.html "Exercise Solutions"){aria-label="Exercise 4 Solutions"}
+
+#### Tutorials/Labs
+
+In-person lab session: classification and medical MNIST [lab03](/labs/lab03.html "Lab instructions"){aria-label="Lab 3 instructions"}
+
+#### Quiz
+
+[Lecture 4 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/405061)
+
+#### Assignment
+
+[Math Assignment 1](https://q.utoronto.ca/courses/366713/files/folder/A1) posted
 
 ## Week 5 {#week-5}
 
-**Exercises**
+#### Lecture
 
--   [In-class Exercise](/ex/w05/exercises05.html "Exercise"){aria-label="Exercise 5"}
--   [Solutions](/ex/w05/exercises05_solution.html "Exercise Solutions"){aria-label="Exercise 5 Solutions"}
+[Slides](/lecs/w05/lec05.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-**Additional Resources**
+#### Exercises
 
--   Taylor Series <https://www.youtube.com/watch?v=3d6DsjIBzJ4>
+[In-class Exercise](/ex/w05/exercises05.html "Exercise"){aria-label="Exercise 5"} & [Solutions](/ex/w05/exercises05_solution.html "Exercise Solutions"){aria-label="Exercise 5 Solutions"}
 
-**Tutorials/Labs**
+#### Tutorials/Labs
 
--   Tutorial: how to implement SGD with momentum [neural network optimization](https://q.utoronto.ca/courses/366713/files/33627019?wrap=1)
+Tutorial: how to implement SGD with momentum [neural network optimization](https://q.utoronto.ca/courses/366713/files/33627019?wrap=1)
+
+#### Quiz
+
+[Lecture 5 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/417060)
+
+#### Additional Resources
+
+Taylor Series <https://www.youtube.com/watch?v=3d6DsjIBzJ4>
 
 ## Week 6 {#week-6}
 
--   [Ensembling code skeleton](https://q.utoronto.ca/courses/366713/files/32607111?wrap=1 "exercises06-ensembling.ipynb")
--   [The definition of differential privacy](https://www.youtube.com/watch?v=lg-VhHlztqo)
+#### Lecture
 
-**Exercises**
+[Slides](/lecs/w06/lec06.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
--   [In-class Exercise](/ex/w06/exercises06.html "Exercise"){aria-label="Exercise 6"}
--   [Solutions](/ex/w06/exercises06_solution.html "Exercise Solutions"){aria-label="Exercise 6 Solutions"}
+[Ensembling code skeleton](https://q.utoronto.ca/courses/366713/files/32607111?wrap=1 "exercises06-ensembling.ipynb")
 
-**Tutorials/Labs**
+[The definition of differential privacy](https://www.youtube.com/watch?v=lg-VhHlztqo)
 
--   In-person lab session: optimization and differential privacy [lab05](/labs/lab05.html "Lab instructions"){aria-label="Lab 5 instructions"}
+#### Exercises
+
+[In-class Exercise](/ex/w06/exercises06.html "Exercise"){aria-label="Exercise 6"} & [Solutions](/ex/w06/exercises06_solution.html "Exercise Solutions"){aria-label="Exercise 6 Solutions"}
+
+#### Tutorials/Labs
+
+In-person lab session: optimization and differential privacy [lab05](/labs/lab05.html "Lab instructions"){aria-label="Lab 5 instructions"}
+
+#### Quiz
+
+[Lecture 6 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/418108)
+
+#### Assignment
+
+Math assignment 1 due
 
 ## Week 7 {#week-7}
 
--   [Troubleshooting Deep Neural Networks](http://josh-tobin.com/assets/pdf/troubleshooting-deep-neural-networks-01-19.pdf)
+#### Lecture
 
-**Exercises**
+[Slides](/lecs/w07/lec07.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
--   [In-class Exercise](/ex/w07/exercises07.html "Exercise"){aria-label="Exercise 7"}
--   [Solutions](/ex/w07/exercises07_solution.html "Exercise Solutions"){aria-label="Exercise 7 Solutions"}
+[Troubleshooting Deep Neural Networks](http://josh-tobin.com/assets/pdf/troubleshooting-deep-neural-networks-01-19.pdf)
 
-**Tutorials/Labs**
+#### Exercises
 
--   In-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions
+[In-class Exercise](/ex/w07/exercises07.html "Exercise"){aria-label="Exercise 7"} & [Solutions](/ex/w07/exercises07_solution.html "Exercise Solutions"){aria-label="Exercise 7 Solutions"}
+
+#### Tutorials/Labs
+
+In-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions
+
+#### Assignment
+
+[Math assignment 2](https://q.utoronto.ca/courses/366713/files/folder/A2) posted
 
 ## Week 8 {#week-8}
 
-**Exercises**
+#### Lecture
 
--   [In-class Exercise](/ex/w08/exercises08.html "Exercise"){aria-label="Exercise 8"}
--   [Solutions](/ex/w08/exercises08_solution.html "Exercise Solutions"){aria-label="Exercise 8 Solutions"}
+[Slides](/lecs/w08/lec08.html)
 
-**Tutorials/Labs**
+Missing recording due to technical issue
 
--   In-person lab session: transfer learning and double descent [lab07](/labs/lab07.html "Lab instructions"){aria-label="Lab 7 instructions"}
+#### Exercises
+
+[In-class Exercise](/ex/w08/exercises08.html "Exercise"){aria-label="Exercise 8"} & [Solutions](/ex/w08/exercises08_solution.html "Exercise Solutions"){aria-label="Exercise 8 Solutions"}
+
+#### Tutorials/Labs
+
+In-person lab session: transfer learning and double descent [lab07](/labs/lab07.html "Lab instructions"){aria-label="Lab 7 instructions"}
+
+#### Quiz
+
+[Lecture 8 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/419409)
 
 ## Week 9 {#week-9}
 
 Fall reading week. No lecture.
 
+Math assignment 2 due.
+
 ## Week 10 {#week-10}
 
-**Exercises**
+#### Lecture
 
--   [In-class Exercise](/ex/w09/exercises09.html "Exercise"){aria-label="Exercise 9"}
--   [Solutions](/ex/w09/exercises09_solution.html "Exercise Solutions"){aria-label="Exercise 9 Solutions"}
+[Slides](/lecs/w09/lec09.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-**Additional Resources**
+#### Exercises
 
--   Transformer video:<https://www.youtube.com/watch?v=XSSTuhyAmnI>
--   <https://nlp.seas.harvard.edu/2018/04/03/attention.html>
--   <http://peterbloem.nl/blog/transformers>
--   Last year's A3 (a seq2seq autoencoder) <http://modelai.gettysburg.edu/2021/headlines/>
+[In-class Exercise](/ex/w09/exercises09.html "Exercise"){aria-label="Exercise 9"} & [Solutions](/ex/w09/exercises09_solution.html "Exercise Solutions"){aria-label="Exercise 9 Solutions"}
 
-**Tutorials/Labs**
+#### Tutorials/Labs
 
--   In-person lab session: gradcam and input gradients [lab09](/labs/lab09.html "Lab instructions"){aria-label="Lab 9 instructions"}
+In-person lab session: gradcam and input gradients [lab09](/labs/lab09.html "Lab instructions"){aria-label="Lab 9 instructions"}
+
+#### Final Project
+
+Deadline to form project groups on Markus, and submit a [project proposal](project-description.html#project-proposal)
+
+#### Additional Resources
+
+Transformer video: <https://www.youtube.com/watch?v=XSSTuhyAmnI>
+
+<https://nlp.seas.harvard.edu/2018/04/03/attention.html>
+
+<http://peterbloem.nl/blog/transformers>
+
+Last year's A3 (a seq2seq autoencoder) <http://modelai.gettysburg.edu/2021/headlines/>
 
 ## Week 11 {#week-11}
 
--   [Autoencoder Notebook](/lecs/w10/autoencoder_notebook.html)
+#### Lecture
 
-**Exercises**
+[Slides](/lecs/w10/lec10.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
--   [In-class Exercise](/ex/w10/exercises10.html "Exercise"){aria-label="Exercise 10"}
--   [Solutions](/ex/w10/exercises10_solution.html "Exercise Solutions"){aria-label="Exercise 10 Solutions"}
+[Autoencoder Notebook](https://q.utoronto.ca/courses/366713)
 
-**Tutorials/Labs**
+#### Exercises
 
--   In-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions
+[In-class Exercise](/ex/w10/exercises10.html "Exercise"){aria-label="Exercise 10"} & [Solutions](/ex/w10/exercises10_solution.html "Exercise Solutions"){aria-label="Exercise 10 Solutions"}
+
+#### Tutorials/Labs
+
+In-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions
+
+#### Quiz
+
+[Lecture 10 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/421077)
+
+#### Final Project
+
+Written feedback on project proposals sent by TAs and instructors.
 
 ## Week 12 {#week-12}
 
-**Exercises**
+#### Lecture
 
--   [In-class Exercise](/ex/w11/exercises11.html "Exercise"){aria-label="Exercise 11"}
--   [Solutions](/ex/w11/exercises11_solution.html "Exercise Solutions"){aria-label="Exercise 11 Solutions"}
+[Slides](/lecs/w11/lec11.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-**Tutorials/Labs**
+#### Exercises
 
--   In-person lab session: RNN text classification [lab10](/labs/lab10.html "Lab instructions"){aria-label="Lab 10 instructions"}
+[In-class Exercise](/ex/w11/exercises11.html "Exercise"){aria-label="Exercise 11"} & [Solutions](/ex/w11/exercises11_solution.html "Exercise Solutions"){aria-label="Exercise 11 Solutions"}
+
+#### Tutorials/Labs
+
+In-person lab session: RNN text classification [lab10](/labs/lab10.html "Lab instructions"){aria-label="Lab 10 instructions"}
 
 ## Week 13 {#week-13}
 
-**Tutorials/Labs**
+#### Lecture
 
--   In-person lab session: text generation with transformers [lab11](/labs/lab11.html "Lab instructions"){aria-label="Lab 11 instructions"}
+[Slides](/lecs/w11/lec11.html) & [Recordings](https://q.utoronto.ca/courses/366713)
+
+If you are interested in both groups' research, it is worth attending or watching both lectures this week.
+
+#### Tutorials/Labs
+
+In-person lab session: text generation with transformers [lab11](/labs/lab11.html "Lab instructions"){aria-label="Lab 11 instructions"}
 
 ## Week 14 {#week-14}
 
-Final project submission
+[Final project](project-description.html#final-project) submission

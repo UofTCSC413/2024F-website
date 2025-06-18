@@ -33,6 +33,9 @@ website:
       - icon: github
         href: https://github.com/UofTCSC413
         text: "Github workspace for the course"
+      - icon: chat-quote
+        href: https://q.utoronto.ca/courses/366713/external_tools/18207
+        text: "Discuss on Piazza"
       - icon: megaphone
         href: https://q.utoronto.ca/courses/366713
         text: "Official announcements on Quercus"
@@ -47,6 +50,8 @@ website:
     contents:
       - href: index.qmd
         text: Overview
+      - href: https://q.utoronto.ca/courses/366713/external_tools/18207
+        text: Piazza
       - href: https://q.utoronto.ca/courses/366713
         text: Quercus	
       - href: course-syllabus.qmd
