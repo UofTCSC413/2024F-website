@@ -3902,7 +3902,7 @@
     "href": "weekly-material.html",
     "title": "Weekly Materials",
     "section": "",
-    "text": "Prepare\nSoftware Installations\nTutorials/Labs\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review",
+    "text": "Software Installations\n\n\n\nSlides & Recordings\n\n\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3912,7 +3912,7 @@
     "href": "weekly-material.html#week-1",
     "title": "Weekly Materials",
     "section": "",
-    "text": "Prepare\nSoftware Installations\nTutorials/Labs\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review",
+    "text": "Software Installations\n\n\n\nSlides & Recordings\n\n\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3922,7 +3922,7 @@
     "href": "weekly-material.html#week-2",
     "title": "Weekly Materials",
     "section": "Week 2",
-    "text": "Week 2\nNotes\n\nProf. Roger Grosse’s notes on backdrop\n\nExercises\n\nIn-class Exercise\nSolutions\n\nTutorials/Labs\n\nIn-person lab session: PyTorch basics with linear models lab01",
+    "text": "Week 2\n\nLecture\nSlides & Recordings\nProf. Roger Grosse’s notes on backdrop\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: PyTorch basics with linear models lab01\n\n\nQuiz\nLec2 pre-recorded videos with quizzes",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3932,7 +3932,7 @@
     "href": "weekly-material.html#week-3",
     "title": "Weekly Materials",
     "section": "Week 3",
-    "text": "Week 3\nNotes\n\nGloVe embedding demo \nVideo on autodiff\n\nExercises\n\nIn-class Exercise\nSolutions\n\nAdditional Resources\n\nProf. Roger Grosse’s notes on autodiff and word embeddings\nNotes on Backpropagation https://cs231n.github.io/optimization-2/\nAutomatic Differentiation in Machine Learning: a Survey (2018) https://arxiv.org/pdf/1502.05767.pdf\n\nTutorials/Labs\n\nIn-person lab session: numerical gradients / word embeddings lab02",
+    "text": "Week 3\n\nLecture\nGloVe embedding demo \nVideo on autodiff\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: numerical gradients / word embeddings lab02\n\n\nQuiz\nLec3 pre-recorded videos with quizzes\n\n\nAdditional Resources\nProf. Roger Grosse’s notes on autodiff and word embeddings\nNotes on Backpropagation https://cs231n.github.io/optimization-2/\nAutomatic Differentiation in Machine Learning: a Survey (2018) https://arxiv.org/pdf/1502.05767.pdf",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3942,7 +3942,7 @@
     "href": "weekly-material.html#week-4",
     "title": "Weekly Materials",
     "section": "Week 4",
-    "text": "Week 4\n\nDemo: Colab Notebook\n\nExercises\n\nIn-class Exercise\nSolutions\n\nTutorials/Labs\n\nIn-person lab session: classification and medical MNIST lab03",
+    "text": "Week 4\n\nLecture\nSlides & Recordings\nDemo: Colab Notebook\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: classification and medical MNIST lab03\n\n\nQuiz\nLecture 4 pre-recorded videos and quizzes\n\n\nAssignment\nMath Assignment 1 posted",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3952,7 +3952,7 @@
     "href": "weekly-material.html#week-5",
     "title": "Weekly Materials",
     "section": "Week 5",
-    "text": "Week 5\nExercises\n\nIn-class Exercise\nSolutions\n\nAdditional Resources\n\nTaylor Series https://www.youtube.com/watch?v=3d6DsjIBzJ4\n\nTutorials/Labs\n\nTutorial: how to implement SGD with momentum neural network optimization",
+    "text": "Week 5\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nTutorial: how to implement SGD with momentum neural network optimization\n\n\nQuiz\nLecture 5 pre-recorded videos and quizzes\n\n\nAdditional Resources\nTaylor Series https://www.youtube.com/watch?v=3d6DsjIBzJ4",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3962,7 +3962,7 @@
     "href": "weekly-material.html#week-6",
     "title": "Weekly Materials",
     "section": "Week 6",
-    "text": "Week 6\n\nEnsembling code skeleton\nThe definition of differential privacy\n\nExercises\n\nIn-class Exercise\nSolutions\n\nTutorials/Labs\n\nIn-person lab session: optimization and differential privacy lab05",
+    "text": "Week 6\n\nLecture\nSlides & Recordings\nEnsembling code skeleton\nThe definition of differential privacy\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: optimization and differential privacy lab05\n\n\nQuiz\nLecture 6 pre-recorded videos and quizzes\n\n\nAssignment\nMath assignment 1 due",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3972,7 +3972,7 @@
     "href": "weekly-material.html#week-7",
     "title": "Weekly Materials",
     "section": "Week 7",
-    "text": "Week 7\n\nTroubleshooting Deep Neural Networks\n\nExercises\n\nIn-class Exercise\nSolutions\n\nTutorials/Labs\n\nIn-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions",
+    "text": "Week 7\n\nLecture\nSlides & Recordings\nTroubleshooting Deep Neural Networks\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions\n\n\nAssignment\nMath assignment 2 posted",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3982,7 +3982,7 @@
     "href": "weekly-material.html#week-8",
     "title": "Weekly Materials",
     "section": "Week 8",
-    "text": "Week 8\nExercises\n\nIn-class Exercise\nSolutions\n\nTutorials/Labs\n\nIn-person lab session: transfer learning and double descent lab07",
+    "text": "Week 8\n\nLecture\nSlides\nMissing recording due to technical issue\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: transfer learning and double descent lab07\n\n\nQuiz\nLecture 8 pre-recorded videos and quizzes",
     "crumbs": [
       "Weekly Material"
     ]
@@ -3992,7 +3992,7 @@
     "href": "weekly-material.html#week-9",
     "title": "Weekly Materials",
     "section": "Week 9",
-    "text": "Week 9\nFall reading week. No lecture.",
+    "text": "Week 9\nFall reading week. No lecture.\nMath assignment 2 due.",
     "crumbs": [
       "Weekly Material"
     ]
@@ -4002,7 +4002,7 @@
     "href": "weekly-material.html#week-10",
     "title": "Weekly Materials",
     "section": "Week 10",
-    "text": "Week 10\nExercises\n\nIn-class Exercise\nSolutions\n\nAdditional Resources\n\nTransformer video:https://www.youtube.com/watch?v=XSSTuhyAmnI\nhttps://nlp.seas.harvard.edu/2018/04/03/attention.html\nhttp://peterbloem.nl/blog/transformers\nLast year’s A3 (a seq2seq autoencoder) http://modelai.gettysburg.edu/2021/headlines/\n\nTutorials/Labs\n\nIn-person lab session: gradcam and input gradients lab09",
+    "text": "Week 10\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: gradcam and input gradients lab09\n\n\nFinal Project\nDeadline to form project groups on Markus, and submit a project proposal\n\n\nAdditional Resources\nTransformer video: https://www.youtube.com/watch?v=XSSTuhyAmnI\nhttps://nlp.seas.harvard.edu/2018/04/03/attention.html\nhttp://peterbloem.nl/blog/transformers\nLast year’s A3 (a seq2seq autoencoder) http://modelai.gettysburg.edu/2021/headlines/",
     "crumbs": [
       "Weekly Material"
     ]
@@ -4012,7 +4012,7 @@
     "href": "weekly-material.html#week-11",
     "title": "Weekly Materials",
     "section": "Week 11",
-    "text": "Week 11\n\nAutoencoder Notebook\n\nExercises\n\nIn-class Exercise\nSolutions\n\nTutorials/Labs\n\nIn-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions",
+    "text": "Week 11\n\nLecture\nSlides & Recordings\nAutoencoder Notebook\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions\n\n\nQuiz\nLecture 10 pre-recorded videos and quizzes\n\n\nFinal Project\nWritten feedback on project proposals sent by TAs and instructors.",
     "crumbs": [
       "Weekly Material"
     ]
@@ -4022,7 +4022,7 @@
     "href": "weekly-material.html#week-12",
     "title": "Weekly Materials",
     "section": "Week 12",
-    "text": "Week 12\nExercises\n\nIn-class Exercise\nSolutions\n\nTutorials/Labs\n\nIn-person lab session: RNN text classification lab10",
+    "text": "Week 12\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: RNN text classification lab10",
     "crumbs": [
       "Weekly Material"
     ]
@@ -4032,7 +4032,7 @@
     "href": "weekly-material.html#week-13",
     "title": "Weekly Materials",
     "section": "Week 13",
-    "text": "Week 13\nTutorials/Labs\n\nIn-person lab session: text generation with transformers lab11",
+    "text": "Week 13\n\nLecture\nSlides & Recordings\nIf you are interested in both groups’ research, it is worth attending or watching both lectures this week.\n\n\nTutorials/Labs\nIn-person lab session: text generation with transformers lab11",
     "crumbs": [
       "Weekly Material"
     ]
@@ -5462,7 +5462,7 @@
     "href": "course-schedule.html",
     "title": "Fall 2024 - CSC 413: Neural Networks and Deep Learning",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nNotebooks\nLabs\nAssignments\nTests\nProject\n\n\n\n\n1\nSept 2-6\nLinear Model\n🖥️\n\n\n\n\n\n\n\n2\nSept 9-13\nMulti-Layer Perceptron, Backpropagation, Losses\n🖥️\n📋\n💻\n\n\n\n\n\n3\nSept 16-20\nAutomatic Differentiation, Distributed Representation\n🖥️\n📋\n💻\n\n\n\n\n\n4\nSept 23-27\nConvolutional Neural Networks\n🖥️\n📋\n💻\n✍️\n\n\n\n\n5\nOct 1-4\nOptimization\n🖥️\n📋\n💻\n\n\n\n\n\n6\nOct 7-11\nGeneralization\n🖥️\n📋\n💻\n🔜\n\n\n\n\n7\nOct 14-18\nInterpreting Convolutional Neural Networks\n🖥️\n📋\n\n✍️\n✅\n\n\n\n8\nOct 21-25\nRecurrent Neural Networks\n🖥️\n📋\n💻\n\n\n\n\n\n9\nOct 28-Nov 1\nFall Reading Week\n\n\n\n🔜\n\n\n\n\n10\nNov 4-8\nAttention and Transformers\n🖥️\n📋\n💻\n\n\n📂\n\n\n11\nNov 11-15\nAutoencoders and Transpose Convolutions\n🖥️\n📋\n\n\n✅\n\n\n\n12\nNov 18-22\nGenerative Adversarial Networks\n🖥️\n📋\n💻\n\n\n\n\n\n13\nNov 25-29\nUse of Deep Learning in the Research of Profs Shkurti and Gilitschenski\n🖥️\n\n💻\n\n\n\n\n\n14\nDec 2-6\nFinal project submission\n\n\n\n\n\n📂",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nRecordings\nLabs\nQuiz\nAssignments\nTests\nProject\n\n\n\n\n1\nSept 2-6\nLinear Model\n🖥️\n🎥\n\n\n\n\n\n\n\n2\nSept 9-13\nMulti-Layer Perceptron, Backpropagation, Losses\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n3\nSept 16-20\nAutomatic Differentiation, Distributed Representation\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n4\nSept 23-27\nConvolutional Neural Networks\n🖥️\n🎥\n💻\n📋\n✍️\n\n\n\n\n5\nOct 1-4\nOptimization\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n6\nOct 7-11\nGeneralization\n🖥️\n🎥\n💻\n📋\n🔜\n\n\n\n\n7\nOct 14-18\nInterpreting Convolutional Neural Networks\n🖥️\n🎥\n\n\n✍️\n✅\n\n\n\n8\nOct 21-25\nRecurrent Neural Networks\n🖥️\n\n💻\n📋\n\n\n\n\n\n9\nOct 28-Nov 1\nFall Reading Week\n\n\n\n\n🔜\n\n\n\n\n10\nNov 4-8\nAttention and Transformers\n🖥️\n🎥\n💻\n\n\n\n📂\n\n\n11\nNov 11-15\nAutoencoders and Transpose Convolutions\n🖥️\n🎥\n\n📋\n\n✅\n\n\n\n12\nNov 18-22\nGenerative Adversarial Networks\n🖥️\n🎥\n💻\n\n\n\n\n\n\n13\nNov 25-29\nUse of Deep Learning in the Research of Profs Shkurti and Gilitschenski\n🖥️\n\n💻\n\n\n\n\n\n\n14\nDec 2-6\nFinal project submission\n\n\n\n\n\n\n📂",
     "crumbs": [
       "Schedule"
     ]

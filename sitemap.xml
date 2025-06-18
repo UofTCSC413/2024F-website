@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/course-grading.html</loc>
-    <lastmod>2025-06-17T12:58:44.494Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.218Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w06/lec06.html</loc>
-    <lastmod>2025-06-17T19:21:04.556Z</lastmod>
+    <lastmod>2025-06-17T21:06:17.338Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w08/lec08.html</loc>
@@ -30,11 +30,11 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w05/lec05.html</loc>
-    <lastmod>2025-06-17T19:26:13.231Z</lastmod>
+    <lastmod>2025-06-17T21:06:38.314Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w03/lec03.html</loc>
-    <lastmod>2025-06-17T19:21:04.289Z</lastmod>
+    <lastmod>2025-06-17T21:04:08.089Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/course-syllabus.html</loc>
@@ -94,7 +94,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w08/exercises08.html</loc>
-    <lastmod>2025-06-17T13:52:55.833Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.223Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/questions/attn-transformers-sol.html</loc>
@@ -118,7 +118,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/exercises09.html</loc>
-    <lastmod>2025-06-17T13:53:04.171Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.224Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/questions/cnn-by_hand.html</loc>
@@ -138,7 +138,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/exercises07_solution.html</loc>
-    <lastmod>2025-06-17T13:52:51.004Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.223Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/questions/tconv-params.html</loc>
@@ -162,7 +162,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/exercises10_solution.html</loc>
-    <lastmod>2025-06-17T13:53:13.749Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.225Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/questions/cnn-by_hand.html</loc>
@@ -190,7 +190,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/exercises11_solution.html</loc>
-    <lastmod>2025-06-17T13:53:20.031Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.225Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/questions/linalg-evs.html</loc>
@@ -210,7 +210,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/exercises02.html</loc>
-    <lastmod>2025-06-17T13:51:56.370Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.219Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/questions/opt-momentum-sol.html</loc>
@@ -226,7 +226,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/exercises05_solution.html</loc>
-    <lastmod>2025-06-17T13:52:27.566Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.222Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w04/questions/cnn-sizes-sol.html</loc>
@@ -246,11 +246,11 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w04/exercises04.html</loc>
-    <lastmod>2025-06-17T13:52:19.095Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.221Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w04/exercises04_solution.html</loc>
-    <lastmod>2025-06-17T13:52:22.768Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.221Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/questions/autodiff-modes.html</loc>
@@ -266,7 +266,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/exercises03.html</loc>
-    <lastmod>2025-06-17T13:52:10.428Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.220Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/weeks/week-15.html</loc>
@@ -298,7 +298,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/weekly-material.html</loc>
-    <lastmod>2025-06-17T20:30:15.339Z</lastmod>
+    <lastmod>2025-06-18T14:43:19.043Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/course-links.html</loc>
@@ -306,35 +306,35 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab02.html</loc>
-    <lastmod>2025-06-17T20:13:14.988Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.971Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab03.html</loc>
-    <lastmod>2025-06-17T13:33:22.690Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.971Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab01.html</loc>
-    <lastmod>2025-06-17T12:57:04.195Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.971Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab05.html</loc>
-    <lastmod>2025-06-17T12:57:04.219Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.971Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab11.html</loc>
-    <lastmod>2025-06-17T12:57:04.228Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.974Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab10.html</loc>
-    <lastmod>2025-06-17T17:32:01.939Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.974Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab07.html</loc>
-    <lastmod>2025-06-17T17:31:36.570Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.973Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/labs/lab09.html</loc>
-    <lastmod>2025-06-17T17:31:43.258Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.973Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/LICENSE.html</loc>
@@ -350,7 +350,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/weeks/week-1.html</loc>
-    <lastmod>2025-06-17T14:15:11.934Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.226Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/weeks/week-2.html</loc>
@@ -374,11 +374,11 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/project-tips-resources.html</loc>
-    <lastmod>2025-06-17T12:58:44.495Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.226Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/exercises03_solution.html</loc>
-    <lastmod>2025-06-17T13:52:13.771Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.220Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/questions/autodiff-modes-sol.html</loc>
@@ -418,7 +418,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/exercises05.html</loc>
-    <lastmod>2025-06-17T13:52:31.098Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.221Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/questions/calc-taylor.html</loc>
@@ -434,7 +434,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/exercises02_solution.html</loc>
-    <lastmod>2025-06-17T13:52:03.479Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.220Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/questions/nn-compgraph.html</loc>
@@ -454,7 +454,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/exercises11.html</loc>
-    <lastmod>2025-06-17T13:53:24.038Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.225Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/questions/pytorch-parameter_count.html</loc>
@@ -482,7 +482,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/exercises10.html</loc>
-    <lastmod>2025-06-17T13:53:16.271Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.224Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/questions/tconv-by_hand.html</loc>
@@ -502,7 +502,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/exercises07.html</loc>
-    <lastmod>2025-06-17T13:52:47.614Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.222Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/exercises07-notes.html</loc>
@@ -526,7 +526,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/exercises09_solution.html</loc>
-    <lastmod>2025-06-17T13:53:10.017Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.224Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/questions/attn-transformers_by_hand-sol.html</loc>
@@ -546,7 +546,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w08/exercises08_solution.html</loc>
-    <lastmod>2025-06-17T13:52:59.336Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.223Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w08/questions/rnn-sentiment.html</loc>
@@ -562,11 +562,11 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w06/exercises06.html</loc>
-    <lastmod>2025-06-17T13:52:40.515Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.222Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w06/exercises06_solution.html</loc>
-    <lastmod>2025-06-17T13:52:36.502Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.222Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w06/questions/prob-variance.html</loc>
@@ -582,7 +582,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/course-team.html</loc>
-    <lastmod>2025-06-17T19:46:48.852Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.219Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/supplemental/model-diagnostics-matrix.html</loc>
@@ -590,15 +590,15 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/supplemental/log-transformations.html</loc>
-    <lastmod>2025-06-17T14:14:55.981Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.226Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/computing-pipelines.html</loc>
-    <lastmod>2025-06-17T12:58:44.493Z</lastmod>
+    <lastmod>2025-06-17T21:04:23.218Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/course-schedule.html</loc>
-    <lastmod>2025-06-17T20:22:58.918Z</lastmod>
+    <lastmod>2025-06-18T14:45:48.139Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/project-description.html</loc>
@@ -610,19 +610,19 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w04/lec04.html</loc>
-    <lastmod>2025-06-17T19:21:04.474Z</lastmod>
+    <lastmod>2025-06-17T21:06:23.440Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w02/lec02.html</loc>
-    <lastmod>2025-06-17T19:21:04.179Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.976Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w10/lec10.html</loc>
-    <lastmod>2025-06-17T19:21:04.878Z</lastmod>
+    <lastmod>2025-06-17T21:04:08.091Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w07/lec07.html</loc>
-    <lastmod>2025-06-17T19:21:04.739Z</lastmod>
+    <lastmod>2025-06-17T21:04:08.090Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w09/seq2seq_transformer_translation.html</loc>
@@ -634,10 +634,10 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w01/lec01.html</loc>
-    <lastmod>2025-06-17T19:21:04.161Z</lastmod>
+    <lastmod>2025-06-17T21:04:07.976Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/lecs/w12/lec12.html</loc>
-    <lastmod>2025-06-17T19:21:30.314Z</lastmod>
+    <lastmod>2025-06-17T21:04:08.091Z</lastmod>
   </url>
 </urlset>
