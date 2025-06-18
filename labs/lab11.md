@@ -58,15 +58,15 @@ Python. You can read more about the data
 
 Let's install this package, and explore the data set.
 
-```
+```python
 %pip install convokit
 ```
 
-```
+```python
 import convokit
 ```
 
-```
+```python
 corpus = convokit.Corpus(convokit.download('friends-corpus'))
 ```
 
@@ -74,7 +74,7 @@ corpus = convokit.Corpus(convokit.download('friends-corpus'))
 of the show. How is each utterance formatted? What do the `speaker`
 and `text` field mean?
 
-```
+```python
 for i, utterance in enumerate(corpus.iter_utterances()):
     print(utterance)
     if (i >= 9): 
@@ -84,7 +84,7 @@ for i, utterance in enumerate(corpus.iter_utterances()):
 **Graded Task**: Create a list of strings called `uts` that contains
 all utterances made by your favourite (of the 6) main character of the show. 
 
-```
+```python
 character = 'Monica Geller' # OR 'Chandler Bing' OR 'Phoebe Buffay' OR ...
 
 uts = []
@@ -96,7 +96,7 @@ for utterance in corpus.iter_utterances():
 
 Please include the output of this next line in your solution
 
-```
+```python
 print(len(uts)) 
 # {'Monica Geller': 8498, 'Ross Geller': 9161, 'Phoebe Buffay': 7539, 'Chandler Bing': 8568, 'Joey Tribbiani': 8215, 'Rachel Green': 9331} # SOLUTION
 ```
@@ -116,7 +116,7 @@ seen in the previous lab, it is more often used.
 We will use 90% of the data for training, and 10% of the data
 for validation.
 
-```
+```python
 train_split = 0.9
 n = len(uts)
 
@@ -151,11 +151,11 @@ tokens in different contexts, helping the model generalize better.
 We will use the Byte Pair Encoding (BPE) tokenizer from the
 `tiktoken` library. Let's install and import this library.
 
-```
+```python
 %pip install tiktoken
 ```
 
-```
+```python
 import tiktoken
 ```
 
@@ -170,7 +170,7 @@ using.
 
 Now, let's retrieve the original GPT2 model.
 
-```
+```python
 enc = tiktoken.get_encoding("gpt2")
 
 train_ids = enc.encode_ordinary(train_data_str)
@@ -182,7 +182,7 @@ How does this compare with the number of *words* in each data set
 (computed using the `str.split()` method)?
 What about the number of *characters*?
 
-```
+```python
 # TODO
 print("training data:")              # SOLUTION
 print("tokens: ", len(train_ids))   # SOLUTION
@@ -202,7 +202,7 @@ This way, we can use the `np.memmap` function, which creates a memory-map
 to an array stored in a binary file on disk. This approach is useful for
 accessing segments of a large file on disk, which we will be doing.
 
-```
+```python
 import numpy as np
 import os
 
@@ -216,7 +216,7 @@ train_ids.tofile(os.path.join(data_dir, 'train.bin'))
 val_ids.tofile(os.path.join(data_dir, 'val.bin'))
 ```
 
-```
+```python
 # create a memory map
 train_data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
 val_data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')
@@ -227,7 +227,7 @@ from this data set. Here, we will be using the approach shown in
 the generative RNN lecture, where the model generates the next token given the
 previous context.
 
-```
+```python
 import torch
 
 def get_batch(data, block_size, batch_size, device):
@@ -258,7 +258,7 @@ def get_batch(data, block_size, batch_size, device):
     return x, t
 ```
 
-```
+```python
 device = 'cuda' if torch.cuda.is_available()  else 'cpu'
 # TODO: get and print a single batch from the training set
 get_batch(train_data, 10, 12, device) # SOLUTION
@@ -288,7 +288,7 @@ to get an intuition as to how the pieces connect. Then, we will explore the same
 components in a *bottom-up* manner, so that we can fully understand the role of each
 component.
 
-```
+```python
 from dataclasses import dataclass
 import torch
 import torch.nn as nn
@@ -312,7 +312,7 @@ settings for our GPT2 model. The settings specify:
 - `dropout`: for dropout.
 - `bias`: A boolean to determine whether to use a bias parameter in certain layers or not.
 
-```
+```python
 @dataclass
 class GPTConfig:
     block_size: int = 1024
@@ -354,7 +354,7 @@ and focus on the big picture in the first pass.
 **Task**: Begin with a first pass read of the `__init__()`
 and `forward()` methods of the `GPT` module.
 
-```
+```python
 class GPT(nn.Module):
 
     def __init__(self, config):
@@ -666,7 +666,7 @@ the two modules referenced by `GPT`.
 We'll start with the simple one. The LayerNorm layer is intended to be
 similar to [PyTorch's LayerNorm layer](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html#torch.nn.LayerNorm). 
 
-```
+```python
 class LayerNorm(nn.Module):
     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
 
@@ -695,7 +695,7 @@ class LayerNorm(nn.Module):
 Let's move on to the `Block` module. Recall that here are several `Block`
 modules in a GPT model, and the output of one module is the input of the next.
 
-```
+```python
 class Block(nn.Module):
 
     def __init__(self, config):
@@ -736,7 +736,7 @@ help with gradient flow? An intuitive explanation is sufficient here.
 
 With the GPT2 `Block` in mind, we will define the `MLP` module next.
 
-```
+```python
 class MLP(nn.Module):
 
     def __init__(self, config):
@@ -790,7 +790,7 @@ and `forward()` methods of `CausalSelfAttention` module.
 We will then trace through the case where `self.flash` is `False`, since
 the code provides more detailed explanation for the computation steps.
 
-```
+```python
 class CausalSelfAttention(nn.Module):
 
     def __init__(self, config):
@@ -926,7 +926,7 @@ defined in the last line of the `__init__()` method. Since `block_size` is
 quite large, we can understand what `self.bias` looks like by running a
 similar piece of code below with a smaller `block_size` value.
 
-```
+```python
 bias = torch.tril(torch.ones(5, 5)).view(1, 1, 5, 5)
 bias
 ```
@@ -945,17 +945,17 @@ of the next two lines of code in the `forward()` method to better understand
 what it does.  Run the below code, and explain what the `masked_fill`
 function does.
 
-```
+```python
 attn = torch.rand(1, 1, 5, 5)
 attn
 ```
 
-```
+```python
 masked = attn.masked_fill(bias[:,:,:5, :5] == 0, float('-inf'))
 masked
 ```
 
-```
+```python
 out = F.softmax(masked, dim=-1)
 out
 ```
@@ -1053,7 +1053,7 @@ a session with a GPU by navigating to the "Runtime" menu, selecting
 We will set up a `config` object to make it easier to store
 and use configs.
 
-```
+```python
 import easydict
 import math
 import time
@@ -1077,7 +1077,7 @@ config = easydict.EasyDict(finetune_config_dict)
 
 First, we need to load the GPT2 weights.
 
-```
+```python
 # initialize from OpenAI GPT-2 weights
 override_args = dict(dropout=config.dropout)
 model = GPT.from_pretrained('gpt2', override_args)
@@ -1100,7 +1100,7 @@ memory usage.
 
 There are some additional helpers to improve training.
 
-```
+```python
 # initialize a GradScaler. If enabled=False scaler is a no-op
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16'
 ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torch.float16}[dtype]
@@ -1142,7 +1142,7 @@ def estimate_loss(model, train_dataset, val_dataset, block_size):
 Now we can begin the training loop. You may need to increase `max_iter`
 to obtain good results.
 
-```
+```python
 iter_num = 0
 best_val_loss = 1e9
 eval_interval = 10
@@ -1219,7 +1219,7 @@ while True:
 Here is some code you can use to generate a sequence using the fine-tuned
 GPT2 model.
 
-```
+```python
 init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
 out_dir = 'out' # ignored if init_from is not 'resume'
 start = "\n" # or "<|endoftext|>" or etc. Can also specify a file, use as: "FILE:prompt.txt"
@@ -1245,7 +1245,3 @@ with torch.no_grad():
             print(decode(y[0].tolist()))
             print('---------------')
 ```
-
-
-
-

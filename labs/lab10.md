@@ -53,7 +53,7 @@ For this lab, you should submit the following:
 
 Start by running these two lines of code to download the data on to Google Colab.
 
-```
+```python
 # Download tutorial data files.
 !wget https://www.cs.toronto.edu/~lczhang/413/sample_tweets.csv
 ```
@@ -63,7 +63,7 @@ test set has been set aside for us. Both the training and test set files follow
 the same format. Each line in the csv file contains the tweet text,
 the string label "4" (positive) or "0" (negative), and some additional information about the tweet.
 
-```
+```python
 import csv
 datafile = "sample_tweets.csv"
 
@@ -77,7 +77,7 @@ for i, line in enumerate(data):
 
 **Task**: How many positive and negative tweets are in this file?
 
-```
+```python
 # TODO
 from collections import Counter # SOLUTION
 print(Counter(x[0] for x in csv.reader(open(datafile))))
@@ -86,14 +86,14 @@ print(Counter(x[0] for x in csv.reader(open(datafile))))
 **Graded Task**: We have printed several negative tweets above. 
 Print 10 positive tweets.
 
-```
+```python
 # TODO: Please make sure to include both your code and the
 # printed output
 ```
 
 We will now split the dataset into training, validation, and test sets:
 
-```
+```python
 # read the data; convert labels into integers
 data = [(review, int(label=='4'))  # label 1 = positive, 0 = negative
         for label, _, _, _, _, review in csv.reader(open(datafile))]
@@ -119,7 +119,7 @@ and generation tasks.
 In particular, the `Vocab` class and `build_vocab_from_iterator` will be useful for us
 for building the mapping from words to indices.
 
-```
+```python
 import torchtext
 
 from torchtext.data.utils import get_tokenizer
@@ -160,7 +160,7 @@ training set in order to be included in the vocabulary.
 
 Here you can see the `vocab` object in action:
 
-```
+```python
 # Print the number of words in the vocabulary
 print(len(vocab))
 
@@ -174,15 +174,14 @@ print(indices)
 
 **Task**: What is the index of the `<pad>` token?
 
-```
+```python
 # TODO: write code to identify the index of the `<pad>` token
 vocab.forward(['<pad>']) # SOLUTION: 3
 ```
 
 Now let's apply this transformation to the entire set of training, validation, and test data.
 
-```
-
+```python
 def convert_indices(data, vocab):
     """Convert data of form [(tweet, label)...] where tweet is a string
     into an equivalent list, but where the tweets represented as a list
@@ -210,7 +209,7 @@ which creates the input and target tensors
 for a batch of data.
 
 
-```
+```python
 import torch
 from torch.utils.data import DataLoader
 from torch.nn.utils.rnn import pad_sequence
@@ -251,7 +250,7 @@ With the above code in mind, we should be able to extract batches from `train_da
 Notice that `X.shape` is different in each batch.
 You should also see that the index `3` is used to pad shorter sequences in in a batch.
 
-```
+```python
 for i, (X, t) in enumerate(train_dataloader):
     print(X.shape, t.shape)
     if i >= 10:
@@ -263,7 +262,7 @@ print(X)
 **Task**: Why does each sequence begin with the token `0`, and end with the token `1` (ignoring
 the paddings).
 
-```
+```python
 # TODO: Your explanation goes here
 ```
 
@@ -285,7 +284,7 @@ sequence classification model:
 
 Let's define the model that we will use, and then explore it step by step.
 
-```
+```python
 import torch.nn as nn
 
 class MyRNN(nn.Module):
@@ -321,7 +320,7 @@ performed on the input `X` to obtain the final prediction. We do this by
 emulating the `forward` method of the `MyRNN` function.
 
 
-```
+```python
 X, t = next(iter(train_dataloader))
 
 print(X.shape)
@@ -330,7 +329,7 @@ print(X.shape)
 **Graded Task**: Run the code below to check the shape of `wordemb`.
 What shape does this tensor have?  Explain what each dimension in this shape means.
 
-```
+```python
 wordemb = model.emb(X)
 
 print(wordemb.shape)
@@ -344,7 +343,7 @@ What shape do the tensors `h` and `out` have?  Explain what these tensors corres
 (See the RNN reference [https://pytorch.org/docs/stable/generated/torch.nn.RNN.html](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html) on the PyTorch documentation page.)
 
 
-```
+```python
 h, out = model.rnn(wordemb)
 
 print(h.shape)
@@ -377,7 +376,7 @@ state at the last time step (the value `out` from above). Explain,
 intuitively, why you might expect this performance to be the case for a
 sentiment analysis task.
 
-```
+```python
 out1 = torch.amax(h, dim=1)
 out2 = torch.mean(h, dim=1)
 features = torch.cat([out1, out2], axis=-1)
@@ -396,7 +395,7 @@ print(features[index, :])
 the prediction for each element in the batch. Run the code below to
 complete this step.
 
-```
+```python
 print(model.fc(features))
 ```
 
@@ -405,7 +404,7 @@ to write a function to estimate the accuracy of the model. This is done for
 you below.
 
 
-```
+```python
 def accuracy(model, dataset, max=1000):
     """
     Estimate the accuracy of `model` over the `dataset`.
@@ -448,7 +447,7 @@ This is a way to check for bugs in the implementation.
 **Task**: Complete the training code below
 
 
-```
+```python
 import torch.optim as optim 
 import matplotlib.pyplot as plt
 
@@ -519,7 +518,7 @@ check if your model can obtain a 100\% training accuracy relatively quickly
 first 20 element of the training data.
 
 
-```
+```python
 model = MyRNN(vocab_size=len(vocab),
               emb_size=300,
               hidden_size=64,
@@ -533,14 +532,14 @@ train_model(model, train_data_indices[:20], val_data_indices[:20], # SOLUTION
 **Task**: Will this model that you trained above have a high accuracy over
 the validation set? Explain why or why not.
 
-```
+```python
 # TODO: Your explanation goes here
 ```
 
 **Graded Task**: Train your model on the full data set. What validation accuracy
 can you achieve?
 
-```
+```python
 # TODO: Include your code here. Try a few hyperparameter choices until you
 # are satisfied that your model performance is reasonable (i.e. no obviously
 # poor hyperparameter choices)
@@ -581,7 +580,7 @@ There is evidence that these types of bias issues
 continues to persist in LLMs as well.
 
 
-```
+```python
 from torchtext.vocab import GloVe
 
 glove = torchtext.vocab.GloVe(name="6B", dim=300)
@@ -589,7 +588,7 @@ glove = torchtext.vocab.GloVe(name="6B", dim=300)
 
 **Task**: Run the below code to print the GloVe word embedding for the word "cat".
 
-```
+```python
 print(glove['cat'])
 ```
 
@@ -599,7 +598,7 @@ tokens. So we will do without them.
 **Task**: Run the below code to look up GloVe word indices for the training, validation, and 
 test sets.
 
-```
+```python
 def convert_indices_glove(data, default=len(glove)-1):
     result = []
     for text, label in data:
@@ -623,7 +622,7 @@ test_data_glove = convert_indices_glove(test_data)
 
 Now, we will modify the `MyRNN` to use the pretrained GloVe vectors:
 
-```
+```python
 class MyGloveRNN(nn.Module):
     def __init__(self,  hidden_size, num_classes):
         super(MyGloveRNN, self).__init__()
@@ -660,7 +659,7 @@ model = MyGloveRNN(64, 2)
 **Task** Train this model. Use comparable hyperparameters so that you can compare
 your result against `MyRNN`. 
 
-```
+```python
 # TODO: Train your model here, and include the output
 model = MyGloveRNN(100, 2)                           # SOLUTION
 train_model(model, train_data_glove, val_data_glove, # SOLUTION
@@ -674,7 +673,7 @@ train_model(model, train_data_glove, val_data_glove, # SOLUTION
 iterations will be required to train this model to a reasonable
 performance (e.g. >70% validation accuracy). Why might this be?
 
-```
+```python
 # TODO: Include your explanation here
 ```
 
@@ -682,7 +681,7 @@ performance (e.g. >70% validation accuracy). Why might this be?
 embeddings (pretrained vs. not), **but only with the first 200 data points in the
 training set**. How do the validation accuracies compare between these two models?
 
-```
+```python
 # TODO: Training code for MyGloveRNN.
 # Include outputs and training curves in your submission
 glove_model = MyGloveRNN(100, 2)                                  # SOLUTION
@@ -694,7 +693,7 @@ train_model(glove_model, train_data_glove[:200], val_data_glove, # SOLUTION
 ```
 
 
-```
+```python
 # TODO: Training code for MyRNN
 # Include outputs and training curves in your submission
 rnn_model = MyRNN(len(vocab), 300, 100, 2)                                  # SOLUTION
@@ -704,7 +703,7 @@ train_model(rnn_model, train_data_indices[:200], val_data_indices, # SOLUTION
               plot_every=100, # SOLUTION
               learning_rate=0.001) # SOLUTION
 ```
-```
+```python
 # TODO: Compare the validation accuaries here
 ```
 
@@ -726,14 +725,14 @@ $$doctor - man + woman \approx ??$$
 To find the answers to the above analogy, we will compute the following vector,
 and then find the word whose vector representation is *closest* to it.
 
-```
+```python
 v = glove['doctor'] - glove['man'] + glove['woman']
 ```
 
 **Task**: Run the code below to find the closets word. You should see the word
 "nurse" fairly high up in that list.
 
-```
+```python
 def print_closest_words(vec, n=5):
     dists = torch.norm(glove.vectors - vec, dim=1)     # compute distances to all words
     lst = sorted(enumerate(dists.numpy()), key=lambda x: x[1]) # sort by distance
@@ -749,38 +748,38 @@ $$doctor - woman + man \approx ??$$
 In other words, we go the opposite direction in the "gender" axis to check
 if similarly concerning analogies exist.
 
-```
+```python
 print_closest_words(glove['doctor'] - glove['woman'] + glove['man'])
 ```
 
 
 **Task**: Compare the following two outputs.
 
-```
+```python
 print_closest_words(glove['programmer'] - glove['man'] + glove['woman'])
 ```
 
-```
+```python
 print_closest_words(glove['programmer'] - glove['woman'] + glove['man'])
 ```
 
 **Task**: Compare the following two outputs.
 
-```
+```python
 print_closest_words(glove['professor'] - glove['man'] + glove['woman'])
 ```
 
-```
+```python
 print_closest_words(glove['professor'] - glove['woman'] + glove['man'])
 ```
 
 **Task**: Compare the following two outputs.
 
-```
+```python
 print_closest_words(glove['engineer'] - glove['man'] + glove['woman'])
 ```
 
-```
+```python
 print_closest_words(glove['engineer'] - glove['woman'] + glove['man'])
 ```
 
@@ -788,9 +787,7 @@ print_closest_words(glove['engineer'] - glove['woman'] + glove['man'])
 Would you expect our word embeddings (trained on tweets) to be similarly
 problematic? Why or why not?
 
-```
+```python
 # TODO: Your explanation goes here
 ```
-
-
 

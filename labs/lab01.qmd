@@ -69,7 +69,7 @@ Here are some basic functionalities and features that you might find useful.
 
 Now, we are ready to import the necessary packages and begin our lab.
 
-```         
+``` python
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
@@ -79,7 +79,7 @@ import numpy as np
 
 We will use the MNIST data set, which consists of hand-written digits. This dataset is available within the `torchvision.datasets` library. The dataset creators divided the MNIST imgages into a training and test set, so that different researchers report test accuracy on a consistent set of images. (Recall that the test set is to be set aside and **not** used during training or to make any model decisions, and that it is used to estimate *how well your models generalize* to new data that it has never seen before.)
 
-```         
+``` python
 from torchvision.datasets import MNIST
 
 mnist_train = MNIST(root=".",      # where on the disk to store the data
@@ -89,31 +89,31 @@ mnist_train = MNIST(root=".",      # where on the disk to store the data
 
 **Task:** If different practitioners are exploring machine learning models for the same task and data set, why is it important that they use these practitioners report their test performance (e.g., accuracy) on the same test set?
 
-```         
+``` python
 # TODO: Write your answer here
 ```
 
 It is always a good idea to visually inspect our data before working with it. First, let's take a look at the first element of the training set:
 
-```         
+``` python         
 print(mnist_train[0]) # a tuple consisting of the image, and the label (5)
 ```
 
 The image can be displayed on Google Colab using matplotlib:
 
-```         
+``` python        
 plt.imshow(mnist_train[0][0], cmap='gray') # display the image
 ```
 
 It is important to note that images are represented using numbers on your machine. Converting this image into a numpy array shows a representation of the image using 28x28 numbers, each representing a pixel value.
 
-```         
+``` python         
 np.array(mnist_train[0][0])
 ```
 
 **Task:** What does the numerical value 0 (smallest possible value) mean in the image? What about the largest possible value, 255?
 
-```         
+``` python        
 # TODO: Write your answer here
 ```
 
@@ -121,7 +121,7 @@ For our purposes, we will only use the first 5000 elements of the training set. 
 
 PyTorch also makes it easy to apply pre-processing transformations to the data, for example to normalize the data prior to using for training. We will use the standard preprocessing functions to *transform the images into tensors* for PyTorch to be able to use. This transformation also changes the values to be floating-point numbers between 0 and 1. Performing this transformation to PyTorch tensors now makes it easier to use PyTorch functionalities to help us create minibatches with this data.
 
-```         
+``` python        
 import torchvision.transforms as transforms
 
 mnist_data = MNIST(root=".",      # where on the disk to store the data
@@ -135,7 +135,7 @@ print(mnist_data[0]) # a tuple consisting of a PyTorch tensor of shape (1, 28, 2
 
 We will split the data set into 3000 for training, 1000 for validation, and 1000 for test:
 
-```         
+``` python        
 train_data = mnist_data[:3000]
 val_data   = mnist_data[3000:4000]
 test_data  = mnist_data[4000:]
@@ -143,7 +143,7 @@ test_data  = mnist_data[4000:]
 
 **Graded Task**: We described, above, that the purpose of the **test set** is to estimate how well our models would generalize to new data that it has never seen before. What are the purposes of the training and validation sets?
 
-```         
+``` python        
 # TODO: Write your answer here
 ```
 
@@ -159,7 +159,7 @@ Where the $${\bf x}$$ vector represents the input (i.e., the vector representati
 
 **Task**: In the MNIST image classification tas, what are the shapes of the quantities $${\bf x}$$, $${\bf W}$$, $${\bf b}$$ and $${\bf y}$$?
 
-```         
+``` python        
 # TODO: Write your answer here
 ```
 
@@ -169,7 +169,7 @@ Notice that there are two parts to the computation $$\textrm{softmax}({\bf W} {\
 
 The **linear transformation** is modeled as a Python class in PyTorch. Since the parameters $${\bf W}$$ and $${\bf b}$$ are parameters of the linear transformation portion of the computation, the weights and biases are class attributes. The output of the linear transformation step is typically denoted using the symbol $${\bf z}$$, and is called the **logit** (or unnormalized logits).
 
-```         
+``` python        
 import torch.nn as nn
 
 model = nn.Linear(in_features=784,
@@ -181,7 +181,7 @@ print(model.bias)   # the bias parameter, initialized to random values
 
 This `model` object can be called like a function to perform the computation $${\bf W}{\bf x} + {\bf b}$$:
 
-```         
+```python         
 # reshape the input image into the shape [1, 784]
 # PyTorch always expects inputs of shape [batch_size, num_features]
 x = train_data[0][0].reshape(1, 784)
@@ -193,21 +193,21 @@ print(z)
 
 The **softmax operation** has no trainable parameters (i.e., no numbers that we tune that would effect the predictions of our model). Torch ahs a function `torch.softmax` that performs this operation, which normalizes the prediction so that the prediction represents a probability distribution. The `dim` parameter to the function tells PyTorch which dimension represent the different label classes (as opposed to, say, the dimension that represents different images in a batch).
 
-```         
+``` python         
 y = torch.softmax(z, dim=1)
 print(y) # notice that this represents a probability distribution!
 ```
 
 If we are looking for a discrete/point prediction rather than a probability distribution, we will typically choose the label that the model believes to be **most probable**:
 
-```         
+``` python        
 pred = torch.argmax(y, axis=1)
 print(pred) # a prediction of which class/digit the image belong to
 ```
 
 Note that if all we wanted was a discrete prediction, we need not compute the softmax! (Why is that? How can we prove this property mathematically, using the definition of the softmax operation?)
 
-```         
+``` python        
 pred = torch.argmax(z, axis=1)
 print(pred)
 ```
@@ -216,7 +216,7 @@ print(pred)
 
 $$\frac{\textrm{the number of correct predictions}}{\textrm{total number of predictions made}}$$
 
-```         
+``` python        
 def accuracy_basic(model, dataset):
     """
     Compute the accuracy of `model` over the `dataset`.
@@ -255,13 +255,13 @@ print(accuracy_basic(model, train_data))
 
 **Task**: Explain why we would expect the training accuracy above to be poor.
 
-```         
+``` python        
 # TODO: Your explanation goes here.
 ```
 
 One other nice thing about our `nn.Linear` model is that PyTorch **vectorizes** computations for us: we can make predictions for *many* images at the same time. Here is a rudimentary example where we make predictions for the first three images of our training set.
 
-```         
+``` python        
 x1 = train_data[0][0].reshape(1, 784)
 x2 = train_data[1][0].reshape(1, 784)
 x3 = train_data[2][0].reshape(1, 784)
@@ -274,7 +274,7 @@ The above code uses a features of PyTorch's `reshape()` method that allows you t
 
 Now, we can make predictions for all 3 images simultaneously
 
-```         
+``` python        
 z = model(X)
 y = torch.softmax(z, dim=1)
 print(y)
@@ -282,7 +282,7 @@ print(y)
 
 **Task** Complete the function `accuracy_vectorized` that outputs the same result as `accuracy_basic`, but uses vectorization to compute predictions for **all** inputs in the `dataset` simultaneously.
 
-```         
+``` python         
 def accuracy_vectorized(model, dataset):
     """
     Same signature as the `accuracy_basic()` function, but the call to model() is vectorized
@@ -300,7 +300,7 @@ def accuracy_vectorized(model, dataset):
 
 **Task**: Compare the runtime of `accuracy_basic` and `accuracy_vectorized` by running the two cells below. The line `%%time` prints the amount of time that Colab takes to run the code in the cell. The function call is repeated 100 times so that we can more clearly see the difference in runtime. Using what you learned from CSC311, explain why `accuracy_vectorized` is faster.
 
-```         
+``` python         
 import time
 
 start_time = time.time()
@@ -311,7 +311,7 @@ elapsed_time = end_time - start_time
 print(f"Elapsed time: {elapsed_time:.4f} seconds")
 ```
 
-```         
+``` python         
 import time
 
 start_time = time.time()
@@ -323,13 +323,13 @@ elapsed_time = end_time - start_time
 print(f"Elapsed time: {elapsed_time:.4f} seconds")
 ```
 
-```         
+``` python         
 # TODO: Your explanation goes here
 ```
 
 If our data set is large, feeding all inputs into the model at the same time may result in an out of memory error. Thus, we may find PyTorch's `DataLoader` useful. This class takes our data set and the desired batch size, and splits the data into mini-batches of that size. We can use a loop to iterate over the minibatches:
 
-```         
+``` python         
 train_loader = torch.utils.data.DataLoader(train_data, batch_size=100)
 for X, t in train_loader:
     print(X.shape)
@@ -339,7 +339,7 @@ for X, t in train_loader:
 
 **Task**: Complete the definition of the `accuracy` function below:
 
-```         
+``` python        
 def accuracy(model, dataset):
     """
     Same signature as the `accuracy_basic()` function, but we will use a DataLoader and process
@@ -370,13 +370,13 @@ $$\mathcal{L}(y, t) = - t \log(y) - (1-t) \log(1-y)$$
 
 You can read more about PyTorch's implementation of the Cross-entropy loss here: <https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html> One key thing to note is that the cross entropy loss takes as input the **unnormalized logits** (the z's) and *not* the post-softmax, normalized probabilities (the y's).
 
-```         
+``` python         
 criterion = nn.CrossEntropyLoss()
 ```
 
 Before we go further, let's get some more intuition about the cross-entropy loss. We first demonstrate the cross entropy loss in action by computing hte "badness"
 
-```         
+``` python         
 x = train_data[0][0].reshape(1, 784)        # input
 t = torch.Tensor([train_data[0][1]]).long() # target label, represented as an integer index
 z = model(x.reshape(-1, 784))               # prediction logit
@@ -388,7 +388,7 @@ print(loss)
 
 **Graded Task**: Consider the code below. What value of `label` would produce the lowest cross-entropy loss? Why? To answer this question, start by exploring the arguments passed to the call to `criterion`, and form an understanding of what those arugments represent. (Why are there 3 possible values of `label`? What do the 3 floating-point values in the first argument to `criterion` represent?)
 
-```         
+``` python         
 label = None # 0, 1, or 2?
 label = 2 # SOLUTION
 
@@ -397,7 +397,7 @@ loss = criterion(torch.Tensor([[1.5, 2.2, 3.2]]),
 print(loss)
 ```
 
-```         
+``` python         
 # TODO: Explain why the label choice produces the lowest loss.
 ```
 
@@ -405,7 +405,7 @@ Now that we have an understanding of the cross-entropy loss, we can begin to und
 
 Under the hood, PyTorch *performs backpropagation*, which we discussed in CSC311 and will review again in the coming weeks. After `loss.backward()` is computed, tensors like `model.bias` and `model.weights` will have gradients.
 
-```         
+``` python         
 # recreate the model to clean up some hidden variables
 model = nn.Linear(in_features=784, out_features=10)
 
@@ -419,17 +419,17 @@ print(loss)
 loss.backward() # propagate the gradients with respect to the loss
 ```
 
-```         
+``` python         
 print(model.bias.grad) # the gradient of the loss with respect to the bias vector
 ```
 
-```         
+``` python         
 print(model.weight.grad) # the gradient of the loss with respect to the weight matrix
 ```
 
 **Graded Task**: Verify that `model.bias.grad` is correct by computing this gradient explicitly in PyTorch. You may wish to begin by reviewing your past CSC311 notes, or by using calculus to find an expression to represent this quantity.
 
-```         
+``` python         
 t_onehot = torch.eye(10)[t] # You may find this useful. (Why? What does this quantity represent)
 model_bias_grad = None      # TODO
 model_bias_grad = (torch.softmax(z, dim=1) - t_onehot)   # SOLUTION
@@ -439,7 +439,7 @@ print(model_bias_grad) # should be the same as model.bias.grad
 
 The gradient computation works in a vectorized setting as well.
 
-```         
+``` python         
 # create a data set with 3 inputs, 3 targets
 
 x1 = train_data[0][0].reshape(1, 784)
@@ -454,7 +454,7 @@ print(t)
 
 The average loss (mean) across the data points are shown:
 
-```         
+``` python         
 model = nn.Linear(in_features=784, out_features=10)
 z = model(X)
 loss = criterion(z, t)
@@ -465,7 +465,7 @@ loss.backward() # propagate the gradients with respect to the loss
 
 **Graded Task**: Verify that `model.bias.grad` is correct when using vectorized input by computing this gradient explicitly in PyTorch. Again, we recommend working this out by hand first. After you have done so, you may find the function `torch.sum()` or `torch.mean()` helpful.
 
-```         
+``` python         
 t_onehot = torch.eye(10)[t] # TODO: understand the shape of this quantity before using it
 model_bias_grad = None      # TODO
 model_bias_grad = torch.mean((torch.softmax(z, dim=1) - t_onehot), axis=0) # SOLUTION
@@ -486,7 +486,7 @@ When we use the entire training data set to compute the gradient of the mean los
 
 PyTorch has built-in classes inside the package `torch.optim` to perform these gradient update steps. We will use the `SGD` class. Initializing this class requires a few things, including the list of model parameters that we want to optimize. For us, the list of parameters to optimize include `model.weight` and `model.bias`, which we can obtain by calling `model.parameters()`.
 
-```         
+``` python         
 import torch.optim as optim
 
 optimizer = optim.SGD(model.parameters(), # the parameters to optimize
@@ -495,7 +495,7 @@ optimizer = optim.SGD(model.parameters(), # the parameters to optimize
 
 There are two important optimizer methods that we will use. First is the `optimizer.zero_grad()` method, which clears the `.grad` attribute of the parameters. Let's see how it works:
 
-```         
+``` python         
 print(model.bias.grad) # should be a nonzero value from above
 
 optimizer.zero_grad()
@@ -505,7 +505,7 @@ print(model.bias.grad) # should be cleared
 
 The other method is the `step()` method, which performs the actual gradient descent update.
 
-```         
+``` python         
 model = nn.Linear(in_features=784, out_features=10)
 optimizer = optim.SGD(model.parameters(), lr=0.005)
 
@@ -527,7 +527,7 @@ Now that we have everything in place, we are ready to write the training loop:
 
 **Graded Task**: Complete the function below, which trains the model.
 
-```         
+``` python        
 def train_model(model,
                 train_data,
                 val_data,
@@ -597,13 +597,13 @@ Our training process is not yet complete. In general, the performance of machine
 
 **Graded Task**: What are some examples of hyperparameters that affect the model architecture of a model? You may consider some hyperparameters that you learned about in CSC311. List at least 3 examples.
 
-```         
+``` python         
 # TODO: List at least 3 examples
 ```
 
 **Task**: What are some examples of hyperparameters that affect the optimization process?
 
-```         
+``` python         
 # TODO: List at least 2 examples
 ```
 
@@ -611,13 +611,13 @@ Model architecture related hyperparameters are important to tune and should *not
 
 **Task**: What happens if the learning rate is too small? Provide an example training curve by calling `train_model` with a low learning rate, and describe the features of the training curve that you see.
 
-```         
+``` python         
 # TODO
 ```
 
 **Graded Task**: What happens if the learning rate is too large? Provide an example training curve by calling `train_model` with a large learning rate, and describe the features of the training curve that you see.
 
-```         
+``` python         
 # TODO
 ```
 
@@ -625,6 +625,6 @@ Hyperparameter choices interact with one another. Thus, practitioners use a stra
 
 **Task**: Choose the best model that you have trained. Typically we make this choice using the validation accuracy. To understand how well the model you choose would generalize to unseen data, we use the *test data*. Compute the test accuracy for this model by calling the function `accuracy()` on the model and the test data.
 
-```         
+``` python         
 # TODO: Compute the test accuracy
 ```

@@ -65,7 +65,7 @@ biomedical images.
 
 Let's begin by printing some information about the PneumoniaMNIST  data set:
 
-```
+``` python
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -78,13 +78,13 @@ medmnist.INFO['pneumoniamnist']
 **Task**: The dataset providers already split the data into training, validation, and test sets.
 How many samples are there in the training, validation, and test sets?
 
-```
+``` python
 # TODO: Write your answer here.
 ```
 
 Let's visually inspect the first element of the training data:
 
-```
+``` python
 train_data_imgs = PneumoniaMNIST(split='train', download=True)
 
 for img, target in train_data_imgs:
@@ -96,7 +96,7 @@ for img, target in train_data_imgs:
 
 **Task**: Based on the code above, what is the type of the data structure `train_data`?
 
-```
+``` python
 # TODO: Write your answer here.
 ```
 
@@ -108,7 +108,7 @@ Understanding your data also helps to estimate how challenging the classificatio
 may be and identify incorrect implementations (e.g., a surprisingly high model accuracy could
 indicate issues with training set leakage into the test set).
 
-```
+```python
 # normal images
 plt.figure()
 n = 0
@@ -133,7 +133,7 @@ for img, target in train_data_imgs:
       break
 ```
 
-```
+```python
 # TODO: Write your explanation here.
 ```
 
@@ -142,7 +142,7 @@ the data prior to using for training. We will use the standard preprocessing fun
 *transform the images into tensors* for PyTorch to be able to use. This transformation also
 changes the values to be floating-point numbers between 0 and 1.
 
-```
+```python
 import torchvision.transforms as transforms # contains a collection of transformations
 
 train_data = PneumoniaMNIST(split='train', download=True, transform=transforms.ToTensor())
@@ -159,7 +159,7 @@ for img, target in train_data:
 What about the validation/test sets?
 What does your answer say about the data balance?
 
-```
+```python
 # TODO: Write code to find the answer here.
 
 from collections import Counter # SOLUTION
@@ -179,7 +179,7 @@ the backward pass.
 Our model will be a three-layer MLP with the following architecture:
 ACTUALTODO---the model architecture may change!
 
-```
+```python
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -205,7 +205,7 @@ class MLPModel(nn.Module):
 **Graded Task**: How many trainable parameters are in this model?
 Express your answer in terms of `input_dim` and `num_hidden`.
 
-```
+```python
 # TODO: Compute the number of trainable parameters in MLPModel
 ```
 
@@ -219,7 +219,7 @@ function in lab 1, since we are working on a binary classification
 problem and prediction here is a single logit value (rather than
 a vector).
 
-```
+```python
 def accuracy(model, dataset):
     """
     Compute the accuracy of `model` over the `dataset`.
@@ -265,7 +265,7 @@ and the ground-truth label.
 The use of pre-softmax logits rather than prediction probabilities is
 due to numerical stability reasons.
 
-```
+```python
 print(criterion(torch.tensor([2.5]),  # predicted
                 torch.tensor([1.])))  # actual
 
@@ -278,13 +278,13 @@ value above is *larger* than the first. In other words,
 why does it make sense that we think of the second prediction
 (logit of z=-2.5) as "worse" than the first (logit of z=2.5)?
 
-```
+```python
 # TODO: Your explanation goes here.
 ```
 
 **Graded Task**: Complete the following code to be used for training.
 
-```
+```python
 def train_model(model,                # an instance of MLPModel
                 train_data,           # training data
                 val_data,             # validation data
@@ -353,7 +353,7 @@ train_model(model, train_data, val_data)
 binary classification task. Why would this model be considered a very bad model?
 Your answer should illustrate why accuracy may not be an excellent tool to use.
 
-```
+```python
 # TODO: Write your explanation here
 # SOLUTION: Data imbalance!
 ```
@@ -386,7 +386,7 @@ We can then use the metrics above to calculate:
 
 **Graded Task**: Complete the functions `precision` and `recall`:
 
-```
+```python
 def precision(model, dataset):
     """
     Compute the precision of `model` over the `dataset`.  We will take the
@@ -458,7 +458,7 @@ why a model makes the mistake that it makes.
 **Task** Run the code below to display the confusion matrix for your model
 for the validation data.
 
-```
+```python
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 def get_prediction(model, data, sample=1000):
@@ -483,7 +483,7 @@ plt.title("Confusion Matrix (Val Data)")
 of iterations. You should see that this model achieves a 74% accuracy.
 Display the confusion matrix for this model by running the code below.
 
-```
+```python 
 m_once = MLPModel()
 train_model(m_once, train_data, val_data, learning_rate=0.5, batch_size=500, num_epochs=1)
 print("Training Accuracy:", accuracy(m_once, train_data))
@@ -498,7 +498,7 @@ plt.title("Confusion Matrix (Val Data)")
 **Graded Task**: What does the confusion matrix tell you about how
 the `m_once` model is achieving 74% accuracy?
 
-```
+```python
 # TODO: Your explanation goes here.
 ```
 
@@ -510,7 +510,7 @@ arbitrary choice.
 threshold value. In what situation might you want the threshold to be set
 very high in order to make a positive prediction? What about a negative prediction?
 
-```
+```python
 # TODO: Your explanation goes here.
 ```
 
@@ -523,13 +523,13 @@ measurement.
 
 **Task**: Is it better for the AUC to be larger or smaller? Explain why.
 
-```
+```python
 # TODO: Your explanation goes here
 ```
 
 The code below plots the ROC curve for a model.
 
-```
+```python 
 from sklearn.metrics import roc_curve, RocCurveDisplay, auc
 
 y, t = get_prediction(model, val_data)
@@ -552,7 +552,7 @@ plt.title("Training ROC Curve")
 
 Here is a function you can use to estimate the auc:
 
-```
+```python
 def get_auc(model, data):
     y, t = get_prediction(model, data)
     fpr, tpr, thresholds = roc_curve(t, y)
@@ -575,7 +575,7 @@ will explore.
 Finally, optimization parameters like the batch size and the learning rate can
 also significantly affect the learning process.
 
-```
+```python
 class MLPModelSigmoid(nn.Module):
     """A three-layer MLP model for binary classification"""
     def __init__(self, input_dim=28*28, num_hidden=100):
@@ -615,7 +615,7 @@ Please include all your output in your submission.
 (There is one more graded task below that you can complete while the 
 hyperparameter tuning is running.)
 
-```
+```python
 gridsearch = {}
 for num_hidden in [25, 100, 250]:
     for act in ["relu", "sigmoid"]:
@@ -660,7 +660,7 @@ for num_hidden in [25, 100, 250]:
 
 Please include the below output in your submission
 
-```
+```python
 print(gridsearch)
 ```
 
@@ -669,13 +669,13 @@ validation AUC. Use the other metrics as a guide to understand the kinds of pred
 that your model is likely make. 
 Train a final model with those hyperparameter values.
 
-```
+```python
 # TODO
 ```
 
 **Task**: Report the test accuracy and AUC for this model, and plot the confusion matrix over the test set.
 
-```
+```python
 # TODO
 ```
 
@@ -684,7 +684,7 @@ produce consistently poor predictions for a subset of the population.
 You might find this article interesting: [Gender imbalance in medical imaging datasets produces biased classifiers for computer-aided diagnosis](https://www.pnas.org/doi/10.1073/pnas.1919012117); in particular, 
 Figure 1 shows how test AUC differs male/female patients depending on the training set used.
 
-```
+```python
 # TODO
 ```
 

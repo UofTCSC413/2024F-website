@@ -63,7 +63,7 @@ For this lab, you should submit the following:
 - Part 4. Your explanation for how to mitigate an issue we notice by visually inspecting misclassified images. (1 point)
 
 
-```
+```python 
 import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
@@ -80,7 +80,7 @@ import torchvision.models, torchvision.datasets
 
 We will begin by downloading the data onto Google Colab.
 
-```
+```python 
 # Download lab data file
 !wget https://www.cs.toronto.edu/~lczhang/413/asl_data.zip
 !unzip asl_data.zip
@@ -118,7 +118,7 @@ for x, t in train_data:
 What are our labels? Based on what you learned in Part (a), how were the
 labels generated from the folder structure?
 
-```
+```python 
 # Your explanation goes here
 ```
 
@@ -136,13 +136,13 @@ for x, t in train_loader:
 **Task**: What do the variables `x` and `t` contain? What are their shapes?
 What data do they contain?
 
-```
+```python 
 # Your explanation goes here
 ```
 
 **Task**: How many images are there in the training, validation, and test sets?
 
-```
+```python 
 # Your explanation goes here
 ```
 
@@ -156,7 +156,7 @@ a student all belongs in a single data set. In other words, we avoid cases where
 some students' images are in the training set and others end up in the test set. 
 Why do you think this important for obtaining a representative test accuracy?
 
-```
+```python 
 # Your explanation goes here
 ```
 
@@ -337,7 +337,7 @@ train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num
 batch normalization. What is the effect of batch normalization on the training loss and accuracy?
 What about the validation accuracy?
 
-```
+```python 
 # TODO: Include your analysis here
 # SOLUTION - training loss/acc improves a lot more quickly with BN
 # SOLUTION   but final val loss is about the same for this task
@@ -349,7 +349,7 @@ What do you think is the difference between `BatchNorm2d` and `BatchNorm1d`?
 Why are we using `BatchNorm2d` in our CNN? Why would we use `BatchNorm1d` in an MLP?
 You may wish to consult the PyTorch documentation. (How can you find it?)
 
-```
+```python 
 # Explain your answer here
 ```
 
@@ -383,17 +383,17 @@ The final validation accuracy?
 
 **Task**: Run the training code below to explore the effect of weight decay when training a large model.
 
-```
+```python 
 cnn = CNN(width=16, bn=False)
 train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.001)
 ```
 
-```
+```python 
 cnn = CNN(width=16, bn=True) # try with batch norm on
 train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.001)
 ```
 
-```
+```python 
 cnn = CNN(width=16, bn=True) # try decreasing weight decay parameter
 train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.0001)
 ```
@@ -438,7 +438,7 @@ model capacity does *not* result in a decrease in validation accuracy.
 **Optional Task**: To illustrate that validation accuracy is unlikely to decrease
 with increased model parameter, train the below network. 
 
-```
+```python 
 # Uncomment to run. 
 # cnn = CNN(width=40, bn=True)
 # train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=50)
@@ -473,7 +473,7 @@ So, a training curve is also provided for you to analyze.
 This code will take a while to run, so you may wish to continue with the remaining questions
 while it runs.
 
-```
+```python 
 # use a subset of the training data
 # uncomment to train
 
@@ -501,7 +501,7 @@ so it is totally reasonable for your figure to look different!
 during which iterations do the validation accuracy initially increase
 (i.e. validation error decrease)?
 
-```
+```python 
 # TODO: Include your answer here
 ```
 
@@ -509,7 +509,7 @@ during which iterations do the validation accuracy initially increase
 during which iterations do the validation accuracy decrease slightly?
 Approximately what training accuracy is achieved at this piont?
 
-```
+```python 
 # TODO: Include your answer here
 ```
 
@@ -517,7 +517,7 @@ Approximately what training accuracy is achieved at this piont?
 during which iterations do the validation accuracy increase for a second time
 (i.e. validation error descends for a second time)?
 
-```
+```python 
 # TODO: Include your answer here
 ```
 
@@ -645,7 +645,7 @@ train_model(m_linear, train_data_fets, valid_data_fets) # SOLUTION
 earlier. How does this model perform in terms of validation accuracy?
 What about in terms of the time it took to train this model?
 
-```
+```python 
 # TODO: Your observation goes here
 ```
 
@@ -655,7 +655,7 @@ weights. However, we could have considered AlexNet to be a part of our model, an
 continue to tune AlexNet weights to improve our model performance. What are the
 advantages and disadvantages of continuing to tune AlexNet weights?
 
-```
+```python 
 # TODO
 ```
 
@@ -663,7 +663,7 @@ advantages and disadvantages of continuing to tune AlexNet weights?
 
 **Task**: Report the test accuracy on this transfer learning model.
 
-```
+```python 
 # TODO
 get_accuracy(m_linear, test_data_fets) # SOLUTION
 ```
@@ -671,7 +671,7 @@ get_accuracy(m_linear, test_data_fets) # SOLUTION
 **Task**: Use this code below to construct the confusion matrix for this model
 over the test set.
 
-```
+```python 
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 import sklearn
@@ -697,7 +697,7 @@ plot_confusion(m_linear, test_data_fets)
 Is this reasonable? (i.e. is that class particularly challenging, or 
 very similar to another class?)
 
-```
+```python 
 # TODO: Include your analysis here
 ```
 
@@ -708,7 +708,7 @@ to prevent/fix errors before our models are deployed.
 
 Run the below code to display images in the test set that our model *misclassifies*:
 
-```
+```python 
 for i, (x, t) in enumerate(test_data_fets):
     y = int(torch.argmax(m_linear(x)))
     if not (y == t):
@@ -720,7 +720,7 @@ for i, (x, t) in enumerate(test_data_fets):
 two main reasons for misclassification. What reason for misclassification is
 due to a mistake in the formatting of the test set images?
 
-```
+```python 
 # TODO
 ```
 
@@ -729,7 +729,7 @@ individuals with darker skin tones may be more frequently misclasified.
 This result suggests that errors in the model may impact some groups more than
 others. What steps should we take to mitigate this issue?
 
-```
+```python 
 # TODO
 ```
 

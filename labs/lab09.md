@@ -92,7 +92,7 @@ We will use the pre-trained convolutional neural network **ResNet**,
 chosen because this model's architecture uses global average pooling (GAP).
 ResNet is trained on the ImageNet data set.
 
-```
+```python 
 from torchvision import models, transforms
 import torch.nn.functional as F
 import torch
@@ -119,7 +119,7 @@ labels from here:
 !wget https://raw.githubusercontent.com/anishathalye/imagenet-simple-labels/master/imagenet-simple-labels.json
 ```
 
-```
+```python 
 # Load the imagenet category list
 with open('imagenet-simple-labels.json') as f:
     classes = json.load(f)
@@ -135,7 +135,7 @@ To remind ourselves of how ResNet works, let's predict what class these images b
 !wget https://www.cs.toronto.edu/~lczhang/413/boat.jpg
 ```
 
-```
+```python 
 from PIL import Image
 
 def process_input(image_file):
@@ -156,7 +156,7 @@ def process_input(image_file):
 **Graded Task**: Write a function that takes a model and an image file and produces a list of the
 top 5 predictions with the corresponding probability score.
 
-```
+```python 
 def predict(model, image_file):
     """
     Return the top 5 class predictions with the corresponding probability score.
@@ -191,7 +191,7 @@ def predict(model, image_file):
 
 Please include the output of the below cell in your submission.
 
-```
+```python 
 predict(resnet, 'cat.jpg')
 ```
 
@@ -211,12 +211,12 @@ You may find the `named_children()` method of resnet helpful, as it produces a
 sequence of (named) layers. We would like the feature map directly before the
 global average pooling layer.
 
-```
+```python 
 for (name, model) in resnet.named_children():
     print(name)
 ```
 
-```
+```python 
 def get_resnet_features(image_file):
     """
     Return the final CNN layer (layer4) feature map in resnet
@@ -239,7 +239,7 @@ def get_resnet_features(image_file):
     return result
 ```
 
-```
+```python 
 fets = get_resnet_features('cat.jpg')
 print(fets.shape) # should be [1, 512, 7, 7]
 ```
@@ -248,7 +248,7 @@ print(fets.shape) # should be [1, 512, 7, 7]
 weights of the final fully-connected layer in resnet.
 
 
-```
+```python 
 weights = None # TODO
 weights = resnet.fc.weight # SOLUTIONS
 print(weights.shape) # should be [1000, 512]
@@ -290,7 +290,7 @@ this term indicates how much the value in location $(i, j)$ of
 the feature map ${\bf X}$ attributes to class $k$.
 
 
-```
+```python 
 def compute_cam(features, label):
     """
     Computes the contribution of each location in `features` towards 
@@ -314,7 +314,7 @@ def compute_cam(features, label):
 **Task**: Run the below code, which superimposes the result of the `compute_cam`
 operation on the image.
 
-```
+```python 
 def visualize_cam(image_file, label):
     # open the image
     img = Image.open(image_file)
@@ -338,7 +338,7 @@ def visualize_cam(image_file, label):
     plt.show()
 ```
 
-```
+```python 
 visualize_cam('cat.jpg', 743)
 visualize_cam('cat.jpg', 383)
 ```
@@ -347,7 +347,7 @@ visualize_cam('cat.jpg', 383)
 may be able to draw about the contribution of the pixel locations to those
 two classes. Why do you think the model misclassified the image?
 
-```
+```python 
 # TODO: your explanation goes here
 ```
 
@@ -390,13 +390,13 @@ in a captioning network) flowing into the final convolutional layer to produce a
 
 Let's explore GradCAM with the VGG network:
 
-```
+```python 
 vgg19 = models.vgg19(pretrained=True)
 vgg19.eval()
 vgg19
 ```
 
-```
+```python 
 predict(vgg19, 'cat.jpg')
 ```
 
@@ -404,7 +404,7 @@ predict(vgg19, 'cat.jpg')
 convolutional layer. This step is actually very straightforward with VGG since `vgg19` splits the
 network into a `features` network and a `classifier` network.
 
-```
+```python 
 def get_vgg_features(image_file):
     """
     Return the output of `vgg19.features` network for the image
@@ -421,14 +421,14 @@ def get_vgg_features(image_file):
     return result
 ```
 
-```
+```python 
 get_vgg_features('cat.jpg').shape
 ```
 
 **Task**: Read the forward method of the VGG model here. https://github.com/pytorch/vision/blob/main/torchvision/models/vgg.py
 What other steps are remaining in the forward pass?
 
-```
+```python 
 # TODO: Explain the remaining steps here
 ```
 
@@ -438,7 +438,7 @@ interest, and produces a heat map of the features that contribute to the
 label score according to the GradCAM approach described at the beginning of
 Part 2.
 
-```
+```python 
 def compute_gradcam(image_file, label):
     """
     Computes the contribution of each location in `features` towards 
@@ -491,7 +491,7 @@ def compute_gradcam(image_file, label):
 **Task**: Run the below code, which superimposes the result of the `compute_gradcam`
 operation on the image.
 
-```
+```python 
 def visualize_gradcam(image_file, label):
     # open the image
     img = Image.open(image_file)
@@ -514,15 +514,15 @@ def visualize_gradcam(image_file, label):
     plt.show()
 ```
 
-```
+```python 
 visualize_cam('cat.jpg', 743)
 ```
 
-```
+```python 
 visualize_cam('cat.jpg', 383)
 ```
 
-```
+```python 
 visualize_cam('boat.jpg', 536)
 ```
 

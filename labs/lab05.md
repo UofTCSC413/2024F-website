@@ -75,7 +75,7 @@ training, validation, and test sets are split. These modifications are necessary
 showcase differential privacy issues using a small model and limited data set size to ensure
 that models do not take an overwhelming amount of time to train.
 
-```
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
@@ -94,7 +94,7 @@ medmnist.INFO['pneumoniamnist']
 What do the inputs look like? What about the targets? What is the distribution
 of the targets? Intuitively, how difficult is the classification problem?
 
-```
+```python
 # TODO: Run/revise the data exploration code from lab 3 so
 # that you can describe the dataset and the difference between
 # the two classes
@@ -104,7 +104,7 @@ of the targets? Intuitively, how difficult is the classification problem?
 by the dataset, what percentage of the training set had the label `0`?
 What about the validation set?
 
-```
+```python
 # TODO: Write code to compute the figures here
 ```
 
@@ -123,7 +123,7 @@ used for training.
 
 **Task**: Run the following code to obtain the four datasets.
 
-```
+```python
 # Load the training, validation, and test sets
 # We will normalize each data set to mean 0.5 and std 0.5: this
 # improves training speed
@@ -144,13 +144,13 @@ train_dataset, mem_asses_dataset, valid_dataset = torch.utils.data.random_split(
 What about the memorization assessment set?
 What about the validation set?
 
-```
+```python
 # TODO: Run code to complete your solution here.
 ```
 
 Now that our data is ready, we can set up the model and training code similar to lab 3.
 
-```
+```python
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -178,7 +178,7 @@ the following code is written for you:
 it produces both the predictions and ground-truth labels across a dataset.
 There is also another utility function that can be used to measure the accuracy.
 
-```
+```python
 def get_predictions(model, data):
     """
     Return the ground truth and predicted value across a dataset.
@@ -227,7 +227,7 @@ to train our model to a suitable accuracy with much fewer iterations.
 
 **Task**: Run the code below to train our (non-private) model.
 
-```
+```python
 def train_model(model,                # a PyTorch model
                 train_data,           # training data
                 val_data,             # validation data
@@ -303,7 +303,7 @@ of certain diseases (i.e., strain A or B of the same disease).
 Explain why you might *not* want it be known that your data was used to build the
 model.
 
-```
+```python
 # TODO: Your explanation goes here.
 ```
 
@@ -318,7 +318,7 @@ true label=1). The predictions for data point in the training set is shown in bl
 The predictions for data points *not* in the training set (in the memorization assessment set)
 is in red.
 
-```
+```python
 def plot_hist(model, in_dataset, out_dataset):
     """
     Plots the histogram (cumulative, in the log space) of the predicted
@@ -377,7 +377,7 @@ plot_hist(model_np, train_dataset, mem_asses_dataset)
 data points *in* the training set, vs those *not in* the training set?
 Explain how this difference is indicative of *overfitting*.
 
-```
+```python
 # TODO: Your answer goes here
 ```
 
@@ -431,7 +431,7 @@ CSC413while preserving their privacy. Consider a **deterministic** algorithm tha
 
 **Graded Task**: Explain why the algorithm that reports the average height of the students is not $\epsilon$-DP for any finite $\epsilon>0$.
 
-```
+```python
 # TODO: Include your explanation here
 ```
 
@@ -467,7 +467,7 @@ $\frac{1}{N} \sum_i \mathcal{L}\left(\theta, x_i\right)$.
 what it represents. Pay particular attention to the symbol $\mathbf{g}_t\left(x_i\right)$
 and its various modifications.
 
-```
+```python
 # TODO: Make sure you understand the notation before moving on to the
 # detailed descriptions.
 ```
@@ -494,7 +494,7 @@ Now, let's discuss the algorithm line by line.
 Does the amount of the noise added *increase* or *decrease* if we allow a larger maximum norm $C$ during clipping? 
 (Reasoning about these differences is one way to make sense of mathematical equations like these.)
 
-```
+```python
 # TODO: Your answer goes here
 ```
 
@@ -503,7 +503,7 @@ In the next few tasks, we will describe the pieces of code that we will need to 
 **Task**: Run the following code to compare the batches produced by the usual Dataloader vs. via Poisson Sampling.
 What do you noitce?
 
-```
+```python
 # Create a dataset with 20 numbers
 x = torch.arange(20)
 print(x)
@@ -530,7 +530,7 @@ You need to understand how this learning rate scheduler works and how it can be 
 **Graded Task** Read the PyTorch documentation on [CosineAnnealingLR](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html)
 and explain what the parameter `T_max` represent.
 
-```
+```python
 # TODO: Write your explanation here.
 ```
 
@@ -541,7 +541,7 @@ that we saw in lab 1: each parameter in a model stores its own gradient as an at
 In particular, consider the following snippet which can be used to print the name and gradient of the
 parameters in a model.
 
-```
+```python
 for name, param in model_np.named_parameters(): 
     print(name)
     print(param.grad)
@@ -555,7 +555,7 @@ override the default gradient descent behaviour.
 
 **Task**: Run the below code, which demonstrates how the `.grad` attribute can be modified.
 
-```
+```python
 model = nn.Linear(5, 1) # linear model with input dim = 5, and a single output
 print(list(model.parameters())) # print the current parameters
 
@@ -576,7 +576,7 @@ an implementation of gradient clipping through the function `torch.nn.utils.clip
 **Task**: Run this code to see how gradient clipping works. Notice that the gradient
 *direction* is unchanged, only the magnitude.
 
-```
+```python
 model = nn.Linear(5, 1) # linear model with input dim = 5, and a single output
 model.weight.grad = torch.Tensor([[1, 2, 3, 4, 5.]])
 model.bias.grad = torch.Tensor([1.])
@@ -589,7 +589,7 @@ print(model.weight.grad, model.bias.grad)
 gradient will be unchanged. Your explanation should demonstrate the calculation
 of where the number 7.49 comes from.
 
-```
+```python
 # TODO: Include your explanation and calculation here.
 ```
 
@@ -600,7 +600,7 @@ of data. You may wish to look ahead to see how this function will be used in DP-
 
 
 
-```
+```python
 def dp_grads(model, batch_data, criterion, max_grad_norm, noise_multiplier):
     """
     Compute gradients for an iteration of DP-SGD training by setting the
@@ -661,7 +661,7 @@ def dp_grads(model, batch_data, criterion, max_grad_norm, noise_multiplier):
 
 Please include the output of the tests below in your submission. (What should the output of the test be?)
 
-```
+```python
 model = nn.Linear(5, 1)
 model.weight = nn.Parameter(torch.Tensor([[1, 1, 0, 0, 0.]]))
 model.bias = nn.Parameter(torch.Tensor([0.]))
@@ -684,7 +684,7 @@ for i in range(10):
 
 **Task** Now that we have DP-SGD in place, run the below code to train a differentially private model.
 
-```
+```python
 def train_model_private(model, traindata, valdata, learning_rate=2e-1,
                         batch_size=500, num_epochs=25, plot_every=20,
                         epsilon=0.5, max_grad_norm=6):
@@ -756,7 +756,7 @@ def train_model_private(model, traindata, valdata, learning_rate=2e-1,
     plt.legend(["Train", "Validation"])
 ```
 
-```
+```python
 model_priv = MLPModel()
 train_model_private(model_priv, train_dataset, valid_dataset)
 ```
@@ -764,17 +764,17 @@ train_model_private(model_priv, train_dataset, valid_dataset)
 **Graded Task**: Plot the histogram of the model prediction for this differentially private model.
 How does this histogram differ from that of `model_np` from above?
 
-```
+```python
 plot_hist(model_priv, train_dataset, mem_asses_dataset)
 ```
 
-```
+```python
 # TODO: Explain how the histogram differs from that of model_np
 ```
 
 **Task** How does the accuracy differ from that of model_no mentioned above? Explain what you observe.
 
-```
+```python
 # TODO: Your answer goes here
 ```
 
@@ -782,7 +782,7 @@ plot_hist(model_priv, train_dataset, mem_asses_dataset)
 and that Taylor provided researchers consent to be included in the study dataset. If this information is sold to a third-party (e.g., a credit reporting agency, an employer,
 or a landlord), how might this affect Taylor?
 
-```
+```python
 # TODO: Your answer goes here
 ```
 
