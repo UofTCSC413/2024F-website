@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -350,222 +385,221 @@ window.Quarto = {
 <section id="part-1.-data-and-model" class="level2">
 <h2 class="anchored" data-anchor-id="part-1.-data-and-model">Part 1. Data and Model</h2>
 <p>We will be using the same data and model as in lab 3, with modifications in the way that the training, validation, and test sets are split. These modifications are necessary to be able to showcase differential privacy issues using a small model and limited data set size to ensure that models do not take an overwhelming amount of time to train.</p>
-<pre><code>import numpy as np
-import matplotlib.pyplot as plt
-import torch
-import opacus
-import medmnist
-from medmnist import PneumoniaMNIST
-import torchvision.transforms as transforms
-
-import torch.utils.data as data_utils
-
-medmnist.INFO['pneumoniamnist']
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> opacus</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> medmnist</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> medmnist <span class="im">import</span> PneumoniaMNIST</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.utils.data <span class="im">as</span> data_utils</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>medmnist.INFO[<span class="st">'pneumoniamnist'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong> Use code from lab 3 to re-acquaint yourself with the training data. What do the inputs look like? What about the targets? What is the distribution of the targets? Intuitively, how difficult is the classification problem?</p>
-<pre><code># TODO: Run/revise the data exploration code from lab 3 so
-# that you can describe the dataset and the difference between
-# the two classes</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Run/revise the data exploration code from lab 3 so</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># that you can describe the dataset and the difference between</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the two classes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Using the standard train/validation/test split provided by the dataset, what percentage of the training set had the label <code>0</code>? What about the validation set?</p>
-<pre><code># TODO: Write code to compute the figures here</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write code to compute the figures here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These statistics differ significantly between the training, validation and test sets for our DP demonstration to work well with our small MLP model. Thus, we will perform our own split of the training, validation, and test sets.</p>
 <p>In addition, we will split the data into four sets: training, validation, test, and a <strong>memorization assessment set</strong>. This data set will be the same size as our training set. Practitioners sometimes call this set a <em>second</em> or <em>unused</em> training set, even though this data set is not used for training. The idea is that we want to see if there is a difference between data that we actually used for training, vs another data that we <em>could have</em> used for training.</p>
 <p><strong>Task</strong>: Run the following code to obtain the four datasets.</p>
-<pre><code># Load the training, validation, and test sets
-# We will normalize each data set to mean 0.5 and std 0.5: this
-# improves training speed
-data_transform = transforms.Compose([transforms.ToTensor(),
-                                     transforms.Normalize(mean=[.5], std=[.5])])
-train_dataset = PneumoniaMNIST(split='train', transform=data_transform, download=True)
-valid_dataset = PneumoniaMNIST(split='val', transform=data_transform, download=True)
-test_dataset = PneumoniaMNIST(split='test', transform=data_transform, download=True)
-
-# Combine the training and validation
-combined_data = train_dataset + valid_dataset
-
-# Re-split the data into training,  memory assessment
-train_dataset, mem_asses_dataset, valid_dataset = torch.utils.data.random_split(combined_data, [0.4, 0.4, 0.2])</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the training, validation, and test sets</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We will normalize each data set to mean 0.5 and std 0.5: this</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># improves training speed</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data_transform <span class="op">=</span> transforms.Compose([transforms.ToTensor(),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                     transforms.Normalize(mean<span class="op">=</span>[<span class="fl">.5</span>], std<span class="op">=</span>[<span class="fl">.5</span>])])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>train_dataset <span class="op">=</span> PneumoniaMNIST(split<span class="op">=</span><span class="st">'train'</span>, transform<span class="op">=</span>data_transform, download<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>valid_dataset <span class="op">=</span> PneumoniaMNIST(split<span class="op">=</span><span class="st">'val'</span>, transform<span class="op">=</span>data_transform, download<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>test_dataset <span class="op">=</span> PneumoniaMNIST(split<span class="op">=</span><span class="st">'test'</span>, transform<span class="op">=</span>data_transform, download<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the training and validation</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>combined_data <span class="op">=</span> train_dataset <span class="op">+</span> valid_dataset</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-split the data into training,  memory assessment</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>train_dataset, mem_asses_dataset, valid_dataset <span class="op">=</span> torch.utils.data.random_split(combined_data, [<span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: What percentage of the training set had the label <code>0</code>? What about the memorization assessment set? What about the validation set?</p>
-<pre><code># TODO: Run code to complete your solution here.</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Run code to complete your solution here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now that our data is ready, we can set up the model and training code similar to lab 3.</p>
-<pre><code>import torch
-import torch.nn as nn
-import torch.optim as optim
-
-class MLPModel(nn.Module):
-    """A three-layer MLP model for binary classification"""
-    def __init__(self, input_dim=28*28, num_hidden=600):
-        super(MLPModel, self).__init__()
-        self.fc1 = nn.Linear(input_dim, num_hidden)
-        self.fc2 = nn.Linear(num_hidden, num_hidden)
-        self.fc3 = nn.Linear(num_hidden, 1)
-        self.sigmoid = nn.Sigmoid()
-
-    def forward(self, x):
-        out = self.fc1(x)
-        out = self.sigmoid(out)
-        out = self.fc2(out)
-        out = self.sigmoid(out)
-        out = self.fc3(out)
-        return out</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MLPModel(nn.Module):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A three-layer MLP model for binary classification"""</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_dim<span class="op">=</span><span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, num_hidden<span class="op">=</span><span class="dv">600</span>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(MLPModel, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc1 <span class="op">=</span> nn.Linear(input_dim, num_hidden)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc2 <span class="op">=</span> nn.Linear(num_hidden, num_hidden)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc3 <span class="op">=</span> nn.Linear(num_hidden, <span class="dv">1</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigmoid <span class="op">=</span> nn.Sigmoid()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.fc1(x)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.sigmoid(out)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.fc2(out)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.sigmoid(out)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> <span class="va">self</span>.fc3(out)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To explore the distribution of predicted logits, the following code is written for you: it produces both the predictions and ground-truth labels across a dataset. There is also another utility function that can be used to measure the accuracy.</p>
-<pre><code>def get_predictions(model, data):
-    """
-    Return the ground truth and predicted value across a dataset.
-    Unlike the get_prediction function in lab 3, this dataset
-    will produce the predictions for the *entire* dataset (no sampling)
-
-    Parameters:
-        `model` - A PyTorch model
-        `data` - A PyTorch dataset of MedMNIST images
-
-    Returns: A tuple `(ys, ts)` where:
-        `ys` is a list of prediction probabilities, same length as `data`
-        `ts` is a list of ground-truth labels, same length as `data`
-    """
-    ys, ts = [], []
-    loader = torch.utils.data.DataLoader(data, batch_size=100)
-    for X, t in loader:
-        z = model(X.reshape(-1, 784))
-        ys += [float(y) for y in torch.sigmoid(z)]
-        ts += [float(t_) for t_ in t]
-    return ys, ts
-
-def accuracy(model, dataset):
-    """
-    Compute the accuracy of `model` over the `dataset`.
-    We will take the **most probable class**
-    as the class predicted by the model.
-
-    Parameters:
-        `model` - A PyTorch model
-        `dataset` - A PyTorch dataset of MedMNIST images
-
-    Returns: a floating-point value between 0 and 1.
-    """
-
-    ys, ts = get_predictions(model, dataset)
-    predicted = np.ndarray.round(np.array(ys))
-    return np.mean(predicted == ts)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_predictions(model, data):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Return the ground truth and predicted value across a dataset.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Unlike the get_prediction function in lab 3, this dataset</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    will produce the predictions for the *entire* dataset (no sampling)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">        `model` - A PyTorch model</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">        `data` - A PyTorch dataset of MedMNIST images</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: A tuple `(ys, ts)` where:</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">        `ys` is a list of prediction probabilities, same length as `data`</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">        `ts` is a list of ground-truth labels, same length as `data`</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    ys, ts <span class="op">=</span> [], []</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    loader <span class="op">=</span> torch.utils.data.DataLoader(data, batch_size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> X, t <span class="kw">in</span> loader:</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> model(X.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        ys <span class="op">+=</span> [<span class="bu">float</span>(y) <span class="cf">for</span> y <span class="kw">in</span> torch.sigmoid(z)]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        ts <span class="op">+=</span> [<span class="bu">float</span>(t_) <span class="cf">for</span> t_ <span class="kw">in</span> t]</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ys, ts</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(model, dataset):</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the accuracy of `model` over the `dataset`.</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">    We will take the **most probable class**</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">    as the class predicted by the model.</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">        `model` - A PyTorch model</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">        `dataset` - A PyTorch dataset of MedMNIST images</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: a floating-point value between 0 and 1.</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    ys, ts <span class="op">=</span> get_predictions(model, dataset)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    predicted <span class="op">=</span> np.ndarray.<span class="bu">round</span>(np.array(ys))</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(predicted <span class="op">==</span> ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The training code below is analogues to the training code used in lab 3, with some differences. One difference is that we use the <strong>Adam</strong> optimizer rather than SGD. The Adam optimizer combines ideas from momentum and RMSProp and is able to train our model to a suitable accuracy with much fewer iterations.</p>
 <p><strong>Task</strong>: Run the code below to train our (non-private) model.</p>
-<pre><code>def train_model(model,                # a PyTorch model
-                train_data,           # training data
-                val_data,             # validation data
-                learning_rate=1e-2,
-                batch_size=100,
-                num_epochs=45,
-                plot_every=20,        # how often (in # iterations) to track metrics
-                plot=True):           # whether to plot the training curve
-    train_loader = torch.utils.data.DataLoader(train_data,
-                                               batch_size=batch_size,
-                                               shuffle=True) # reshuffle minibatches every epoch
-    criterion = nn.BCEWithLogitsLoss()
-    optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)
-
-    # these lists will be used to track the training progress
-    # and to plot the training curve
-    iters, train_loss, train_acc, val_acc = [], [], [], []
-    iter_count = 0 # count the number of iterations that has passed
-
-    for e in range(num_epochs):
-        for i, (images, labels) in enumerate(train_loader):
-              z = model(images.reshape(-1, 784))
-              loss = criterion(z, labels.to(torch.float))
-              loss.backward()
-              optimizer.step()
-              optimizer.zero_grad()
-
-              iter_count += 1
-              if iter_count % plot_every == 0:
-                  iters.append(iter_count)
-                  ta = accuracy(model, train_data)
-                  va = accuracy(model, val_data)
-                  train_loss.append(float(loss))
-                  train_acc.append(ta)
-                  val_acc.append(va)
-                  print(iter_count, "Loss:", float(loss), "Train Acc:", ta, "Val Acc:", va)
-
-    if plot:
-        plt.figure()
-        plt.plot(iters[:len(train_loss)], train_loss)
-        plt.title("Loss over iterations")
-        plt.xlabel("Iterations")
-        plt.ylabel("Loss")
- 
-        plt.figure()
-        plt.plot(iters[:len(train_acc)], train_acc)
-        plt.plot(iters[:len(val_acc)], val_acc)
-        plt.title("Accuracy over iterations")
-        plt.xlabel("Iterations")
-        plt.ylabel("Loss")
-        plt.legend(["Train", "Validation"])
-
-model_np = MLPModel()
-train_model(model_np, train_dataset, valid_dataset)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_model(model,                <span class="co"># a PyTorch model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                train_data,           <span class="co"># training data</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                val_data,             <span class="co"># validation data</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                learning_rate<span class="op">=</span><span class="fl">1e-2</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                batch_size<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                num_epochs<span class="op">=</span><span class="dv">45</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                plot_every<span class="op">=</span><span class="dv">20</span>,        <span class="co"># how often (in # iterations) to track metrics</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                plot<span class="op">=</span><span class="va">True</span>):           <span class="co"># whether to plot the training curve</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    train_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                               batch_size<span class="op">=</span>batch_size,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                                               shuffle<span class="op">=</span><span class="va">True</span>) <span class="co"># reshuffle minibatches every epoch</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    criterion <span class="op">=</span> nn.BCEWithLogitsLoss()</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(),lr<span class="op">=</span>learning_rate)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># these lists will be used to track the training progress</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and to plot the training curve</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    iters, train_loss, train_acc, val_acc <span class="op">=</span> [], [], [], []</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    iter_count <span class="op">=</span> <span class="dv">0</span> <span class="co"># count the number of iterations that has passed</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, (images, labels) <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader):</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>              z <span class="op">=</span> model(images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>))</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>              loss <span class="op">=</span> criterion(z, labels.to(torch.<span class="bu">float</span>))</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>              loss.backward()</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>              optimizer.step()</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>              optimizer.zero_grad()</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>              iter_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>              <span class="cf">if</span> iter_count <span class="op">%</span> plot_every <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                  iters.append(iter_count)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>                  ta <span class="op">=</span> accuracy(model, train_data)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                  va <span class="op">=</span> accuracy(model, val_data)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                  train_loss.append(<span class="bu">float</span>(loss))</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                  train_acc.append(ta)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                  val_acc.append(va)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                  <span class="bu">print</span>(iter_count, <span class="st">"Loss:"</span>, <span class="bu">float</span>(loss), <span class="st">"Train Acc:"</span>, ta, <span class="st">"Val Acc:"</span>, va)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> plot:</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_loss)], train_loss)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Loss over iterations"</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_acc)], train_acc)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(val_acc)], val_acc)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Accuracy over iterations"</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>        plt.legend([<span class="st">"Train"</span>, <span class="st">"Validation"</span>])</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>model_np <span class="op">=</span> MLPModel()</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>train_model(model_np, train_dataset, valid_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="part-2.-privacy-issues-in-our-model" class="level2">
 <h2 class="anchored" data-anchor-id="part-2.-privacy-issues-in-our-model">Part 2. Privacy issues in our model</h2>
 <p>In this part of the lab, we will show that our trained model captures more information about the training data than we might intend. In particular, we show that the model predictions have different patterns for images used in training (compared to images that are not used in training). Specifically, the prediction logits follow a different distribution for training images and images not used for training.</p>
 <p>In more general applications, the patterns in the logit distributions can be used to build classifiers that can predict <strong>whether an image was used in training</strong> a neural network.</p>
 <p><strong>Task</strong>: Suppose that you are a patient in a medical study, who consented for their data to be used to train a machine learning model to detect the strains of certain diseases (i.e., strain A or B of the same disease). Explain why you might <em>not</em> want it be known that your data was used to build the model.</p>
-<pre><code># TODO: Your explanation goes here.</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Recall that we used <code>train_dataset</code> to train our model, but did not use the <code>mem_asses_dataset</code>. To show that our model behaves differently for data used in training (vs not), we will plot the histogram of prediction probabilities across these two datasets.</p>
 <p><strong>Task</strong>: Run the code below, which produces <em>cumulative</em> histogram plots showing showing the <em>log</em> model predictions of negative and positive samples (truth label=0 vs true label=1). The predictions for data point in the training set is shown in blue. The predictions for data points <em>not</em> in the training set (in the memorization assessment set) is in red.</p>
-<pre><code>def plot_hist(model, in_dataset, out_dataset):
-    """
-    Plots the histogram (cumulative, in the log space) of the predicted
-    probabilities for datasets that is in the training set vs out. The
-    histograms are separated by the true labels.
-
-    Parameters:
-        `model` - A PyTorch model
-        `in_dataset` - A PyTorch dataset used for training 
-                       (i.e. *in* the training set)
-        `out_dataset` - A PyTorch dataset not used for training 
-                       (i.e. *out* the training set)
-    """
-    # Obtain the prediction for data points in both data sets
-    ys_in, ts_in  = get_predictions(model, in_dataset)
-    ys_out, ts_out = get_predictions(model, out_dataset)
-
-    # Compute the negative log() of these predictions, separated by the
-    # ground truth labels. An epsilon is added to the prediction for
-    # numerical stability
-    epsilon = 1e-10
-    conf_in_0 = [-np.log(y + epsilon) for t, y in zip(ts_in, ys_in) if t == 0]
-    conf_in_1 = [-np.log(1 - y + epsilon) for t, y in zip(ts_in, ys_in) if t == 1]
-    conf_out_0 = [-np.log(y + epsilon) for t, y in zip(ts_out, ys_out) if t == 0]
-    conf_out_1 = [-np.log(1 - y + epsilon) for t, y in zip(ts_out, ys_out) if t == 1]
-
-    # Bins used for the density/histogram
-    bins_0 = np.linspace(0,max(max(conf_in_0),max(conf_out_0)),500)
-    bins_1 = np.linspace(0,max(max(conf_in_1),max(conf_out_1)),500)
-
-    # Plot the histogram for the predicted probabilities for true label = 0
-    plt.subplot(2, 1, 1)
-    plt.hist(conf_out_0, bins_0, color='r', label='out', alpha=0.5,cumulative=True, density=True)
-    plt.hist(conf_in_0, bins_0, color='b', label='in', alpha=0.5,cumulative=True, density=True)
-    plt.legend()
-    plt.ylabel('CDF')
-    plt.xlabel('-log(Pr(pred=1))')
-    plt.title("True label=0")
-
-    # Plot the histogram for the predicted probabilities for true label = 1
-    plt.subplot(2, 1, 2)
-    plt.hist(conf_out_1, bins_1, color='r', label='out', alpha=0.5,cumulative=True, density=True)
-    plt.hist(conf_in_1, bins_1, color='b', label='in', alpha=0.5,cumulative=True, density=True)
-    plt.legend()
-    plt.title("True label=1")
-    plt.ylabel('CDF')
-    plt.xlabel('-log(Pr(pred=0))')
-
-    plt.subplots_adjust(hspace=1)
-    plt.show()
-
-plot_hist(model_np, train_dataset, mem_asses_dataset)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_hist(model, in_dataset, out_dataset):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots the histogram (cumulative, in the log space) of the predicted</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">    probabilities for datasets that is in the training set vs out. The</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">    histograms are separated by the true labels.</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">        `model` - A PyTorch model</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">        `in_dataset` - A PyTorch dataset used for training </span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">                       (i.e. *in* the training set)</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">        `out_dataset` - A PyTorch dataset not used for training </span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">                       (i.e. *out* the training set)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obtain the prediction for data points in both data sets</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    ys_in, ts_in  <span class="op">=</span> get_predictions(model, in_dataset)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    ys_out, ts_out <span class="op">=</span> get_predictions(model, out_dataset)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute the negative log() of these predictions, separated by the</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ground truth labels. An epsilon is added to the prediction for</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># numerical stability</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    epsilon <span class="op">=</span> <span class="fl">1e-10</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    conf_in_0 <span class="op">=</span> [<span class="op">-</span>np.log(y <span class="op">+</span> epsilon) <span class="cf">for</span> t, y <span class="kw">in</span> <span class="bu">zip</span>(ts_in, ys_in) <span class="cf">if</span> t <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    conf_in_1 <span class="op">=</span> [<span class="op">-</span>np.log(<span class="dv">1</span> <span class="op">-</span> y <span class="op">+</span> epsilon) <span class="cf">for</span> t, y <span class="kw">in</span> <span class="bu">zip</span>(ts_in, ys_in) <span class="cf">if</span> t <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    conf_out_0 <span class="op">=</span> [<span class="op">-</span>np.log(y <span class="op">+</span> epsilon) <span class="cf">for</span> t, y <span class="kw">in</span> <span class="bu">zip</span>(ts_out, ys_out) <span class="cf">if</span> t <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    conf_out_1 <span class="op">=</span> [<span class="op">-</span>np.log(<span class="dv">1</span> <span class="op">-</span> y <span class="op">+</span> epsilon) <span class="cf">for</span> t, y <span class="kw">in</span> <span class="bu">zip</span>(ts_out, ys_out) <span class="cf">if</span> t <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bins used for the density/histogram</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    bins_0 <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="bu">max</span>(<span class="bu">max</span>(conf_in_0),<span class="bu">max</span>(conf_out_0)),<span class="dv">500</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    bins_1 <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="bu">max</span>(<span class="bu">max</span>(conf_in_1),<span class="bu">max</span>(conf_out_1)),<span class="dv">500</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the histogram for the predicted probabilities for true label = 0</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    plt.hist(conf_out_0, bins_0, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'out'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>,cumulative<span class="op">=</span><span class="va">True</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    plt.hist(conf_in_0, bins_0, color<span class="op">=</span><span class="st">'b'</span>, label<span class="op">=</span><span class="st">'in'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>,cumulative<span class="op">=</span><span class="va">True</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'CDF'</span>)</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'-log(Pr(pred=1))'</span>)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"True label=0"</span>)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the histogram for the predicted probabilities for true label = 1</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    plt.hist(conf_out_1, bins_1, color<span class="op">=</span><span class="st">'r'</span>, label<span class="op">=</span><span class="st">'out'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>,cumulative<span class="op">=</span><span class="va">True</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    plt.hist(conf_in_1, bins_1, color<span class="op">=</span><span class="st">'b'</span>, label<span class="op">=</span><span class="st">'in'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>,cumulative<span class="op">=</span><span class="va">True</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"True label=1"</span>)</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'CDF'</span>)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'-log(Pr(pred=0))'</span>)</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    plt.subplots_adjust(hspace<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>plot_hist(model_np, train_dataset, mem_asses_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: What difference do you notice between the histograms of the data points <em>in</em> the training set, vs those <em>not in</em> the training set? Explain how this difference is indicative of <em>overfitting</em>.</p>
-<pre><code># TODO: Your answer goes here</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your answer goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="part-3.-differential-privacy" class="level2">
 <h2 class="anchored" data-anchor-id="part-3.-differential-privacy">Part 3. Differential Privacy</h2>
@@ -581,7 +615,7 @@ plot_hist(model_np, train_dataset, mem_asses_dataset)</code></pre>
 <p><span class="math inline">\(\epsilon\)</span> is called the privacy budget. Privacy budget captures how strong our privacy guarantees are, by showing that the outcome is indistinguishable in two neighboring datasets. This can be shown by setting <span class="math inline">\(\epsilon = 0\)</span>, the probability the analysis having an outcome is the same with or without you in the database. So if we set <span class="math inline">\(\epsilon\)</span> to some small value, we can get good guarantees that the output will not differ much.</p>
 <p>A common property of privacy-preserving algorithms is randomness. To see why it is the case assume we are interested in the average height of the students enrolled in CSC413while preserving their privacy. Consider a <strong>deterministic</strong> algorithm that reports the average height of the students. We argue that there exists no finite <span class="math inline">\(\epsilon\)</span> for which this algorithm is DP. For this example, it can be shown that by adding a Gaussian noise to the average height we can preserve privacy of the individuals.</p>
 <p><strong>Graded Task</strong>: Explain why the algorithm that reports the average height of the students is not <span class="math inline">\(\epsilon\)</span>-DP for any finite <span class="math inline">\(\epsilon&gt;0\)</span>.</p>
-<pre><code># TODO: Include your explanation here</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We hope that the basic intuition behind differential privacy is now clear. DP is now a widely-used method to preserve privacy. It has been used in companies like Google and Apple to gather the user’s data. It is also recently used for the US Census. See the following [video]{https://www.youtube.com/watch?v=nVPE1dbA394} to get more information.</p>
 </section>
 <section id="part-4.-differentially-private-sgd" class="level2">
@@ -594,8 +628,8 @@ plot_hist(model_np, train_dataset, mem_asses_dataset)</code></pre>
 <p><strong>for</strong> <span class="math inline">\(t \in[T]\)</span> do * Take a random sample <span class="math inline">\(L_t\)</span> with sampling probability <span class="math inline">\(L / N\)</span> * <strong>Compute gradient</strong> <span class="math inline">\(\quad\)</span> For each <span class="math inline">\(i \in L_t\)</span>, compute <span class="math inline">\(\mathbf{g}_t\left(x_i\right) \leftarrow \nabla_{\theta_t} \mathcal{L}\left(\theta_t, x_i\right)\)</span> * <strong>Clip gradient</strong> <span class="math inline">\(\overline{\mathbf{g}}_t\left(x_i\right) \leftarrow \mathbf{g}_t\left(x_i\right) / \max \left(1, \frac{\left\|\mathbf{g}_t\left(x_i\right)\right\|_2}{C}\right)\)</span> * <strong>Add noise</strong> <span class="math inline">\(\tilde{\mathbf{g}}_t \leftarrow \frac{1}{L}\left(\sum_i \overline{\mathbf{g}}_t\left(x_i\right)+\mathcal{N}\left(0, \sigma^2 C^2 \mathbf{I}\right)\right)\)</span> \ * <strong>Descent</strong> <span class="math inline">\(\theta_{t+1} \leftarrow \theta_t-\eta_t \tilde{\mathbf{g}}_t\)</span></p>
 <p><strong>Output</strong> <span class="math inline">\(\theta_T\)</span> and compute the overall privacy cost <span class="math inline">\((\varepsilon, \delta)\)</span> using a privacy accounting method.</p>
 <p><strong>Task</strong>: Read the algorithm above. Write down, for each symbol/notation used in the algorithm, what it represents. Pay particular attention to the symbol <span class="math inline">\(\mathbf{g}_t\left(x_i\right)\)</span> and its various modifications.</p>
-<pre><code># TODO: Make sure you understand the notation before moving on to the
-# detailed descriptions.</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Make sure you understand the notation before moving on to the</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># detailed descriptions.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, let’s discuss the algorithm line by line.</p>
 <ul>
 <li><strong>Sampling</strong>: The sampling mechanism used in DP-SGD is different from SGD. In non-private SGD, we choose a random permutation at the beginning of each epoch. However, in DP-SGD at each iteration we select a sample with probability (batchsize/number of samples) to be a member of the batch at the current iteration. This sampling mechanism is also called <em>Poisson subsampling</em>. We will not implement this sampling ourselves; we will use <a href="https://opacus.ai/api/data_loader.html">Opacus software package implement</a> of it.</li>
@@ -604,213 +638,213 @@ plot_hist(model_np, train_dataset, mem_asses_dataset)</code></pre>
 <li><strong>Adding Noise</strong>: In order to achieve a specific level of privacy determined by <span class="math inline">\(\epsilon\)</span>, we need to select the minimum amount of noise to be added in each iteration (<span class="math inline">\(\sigma\)</span> in the algorithm description). Since determining the exact amount requires a very technical calculation, there are software packages which can be used. Here, we use the Opacus software package from Meta research. It provides a function which takes as input the privacy level <span class="math inline">\(\epsilon\)</span>, batchsize and the number of training points, and outputs the variance of the noise. There is another input, i.e., <span class="math inline">\(\delta\)</span>. Do not make any changes to it. If you are interested to know what it means please read the following <a href="http://www.gautamkamath.com/CS860notes/lec5.pdf">lecture note</a>.</li>
 </ul>
 <p><strong>Task</strong>: Notice that the scale of the noise added to the gradient is related to the clipping parameter. Does the amount of the noise added <em>increase</em> or <em>decrease</em> if we allow a larger maximum norm <span class="math inline">\(C\)</span> during clipping? (Reasoning about these differences is one way to make sense of mathematical equations like these.)</p>
-<pre><code># TODO: Your answer goes here</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your answer goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the next few tasks, we will describe the pieces of code that we will need to implement DP-SGD.</p>
 <p><strong>Task</strong>: Run the following code to compare the batches produced by the usual Dataloader vs.&nbsp;via Poisson Sampling. What do you noitce?</p>
-<pre><code># Create a dataset with 20 numbers
-x = torch.arange(20)
-print(x)
-dataset = torch.utils.data.TensorDataset(x)
-
-print('PyTorch DataLoader')
-data_loader = torch.utils.data.DataLoader(dataset, batch_size=4,shuffle=True)
-for _ in range(2): # run for 2 epochs
-    for x_b in data_loader:
-        print(x_b)
-    print('-------------------')
-
-print('Poisson Sampling')
-dp_data_loader = opacus.data_loader.DPDataLoader(dataset, sample_rate = 5/20)
-for _ in range(2): # run for 2 epochs
-    for x_b in dp_data_loader:
-        print(x_b)
-    print('-------------------')</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataset with 20 numbers</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.arange(<span class="dv">20</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> torch.utils.data.TensorDataset(x)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'PyTorch DataLoader'</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>data_loader <span class="op">=</span> torch.utils.data.DataLoader(dataset, batch_size<span class="op">=</span><span class="dv">4</span>,shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>): <span class="co"># run for 2 epochs</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x_b <span class="kw">in</span> data_loader:</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(x_b)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'-------------------'</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Poisson Sampling'</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>dp_data_loader <span class="op">=</span> opacus.data_loader.DPDataLoader(dataset, sample_rate <span class="op">=</span> <span class="dv">5</span><span class="op">/</span><span class="dv">20</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>): <span class="co"># run for 2 epochs</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x_b <span class="kw">in</span> dp_data_loader:</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(x_b)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'-------------------'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In addition to using a different sampling method, we will use <code>CosineAnnealingLR</code> learning rate scheduler in pytorch. You need to understand how this learning rate scheduler works and how it can be updated.</p>
 <p><strong>Graded Task</strong> Read the PyTorch documentation on <a href="https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html">CosineAnnealingLR</a> and explain what the parameter <code>T_max</code> represent.</p>
-<pre><code># TODO: Write your explanation here.</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your explanation here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The most challenging part of implementing DP-SGD is that we will need to implement our own optimization process to modify the default gradient descent behaviour. However, Pytorch has a nice feature that we saw in lab 1: each parameter in a model stores its own gradient as an attribute. In particular, consider the following snippet which can be used to print the name and gradient of the parameters in a model.</p>
-<pre><code>for name, param in model_np.named_parameters(): 
-    print(name)
-    print(param.grad)</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, param <span class="kw">in</span> model_np.named_parameters(): </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(param.grad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>What we didn’t see in lab 1 is that we can anually change the gradient of each parameter!</p>
 <p>This is powerful, because the optimizers in PyTorch uses the <code>.grad</code> attributes of each parameter to perform model updates. Thus, changing the <code>.grad</code> attributes provides a way to override the default gradient descent behaviour.</p>
 <p><strong>Task</strong>: Run the below code, which demonstrates how the <code>.grad</code> attribute can be modified.</p>
-<pre><code>model = nn.Linear(5, 1) # linear model with input dim = 5, and a single output
-print(list(model.parameters())) # print the current parameters
-
-# manually set the optimizers
-optimizer = torch.optim.SGD(model.parameters(), 0.1)
-model.weight.grad = torch.nn.parameter.Parameter(torch.Tensor([[1, 2, 3, 4, 5.]]))
-model.bias.grad = torch.nn.parameter.Parameter(torch.Tensor([1.]))
-optimizer.step()
-
-# what would you expect the output to be?
-print(list(model.parameters()))</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(<span class="dv">5</span>, <span class="dv">1</span>) <span class="co"># linear model with input dim = 5, and a single output</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(model.parameters())) <span class="co"># print the current parameters</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># manually set the optimizers</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.SGD(model.parameters(), <span class="fl">0.1</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>model.weight.grad <span class="op">=</span> torch.nn.parameter.Parameter(torch.Tensor([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="fl">5.</span>]]))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>model.bias.grad <span class="op">=</span> torch.nn.parameter.Parameter(torch.Tensor([<span class="fl">1.</span>]))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># what would you expect the output to be?</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(model.parameters()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To implement DP-SGD, We will need to manually modify the <code>.grad</code> attribute in a few ways. One of the steps to DP-SGD is gradient clipping. Fortunately, PyTorch actually comes with an implementation of gradient clipping through the function <code>torch.nn.utils.clip_grad_norm_</code>.</p>
 <p><strong>Task</strong>: Run this code to see how gradient clipping works. Notice that the gradient <em>direction</em> is unchanged, only the magnitude.</p>
-<pre><code>model = nn.Linear(5, 1) # linear model with input dim = 5, and a single output
-model.weight.grad = torch.Tensor([[1, 2, 3, 4, 5.]])
-model.bias.grad = torch.Tensor([1.])
-max_grad_norm = 0.5
-torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
-print(model.weight.grad, model.bias.grad)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(<span class="dv">5</span>, <span class="dv">1</span>) <span class="co"># linear model with input dim = 5, and a single output</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>model.weight.grad <span class="op">=</span> torch.Tensor([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="fl">5.</span>]])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>model.bias.grad <span class="op">=</span> torch.Tensor([<span class="fl">1.</span>])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>max_grad_norm <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.weight.grad, model.bias.grad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Explain why if we set <code>max_grad_norm &gt;= 7.49</code> above, the gradient will be unchanged. Your explanation should demonstrate the calculation of where the number 7.49 comes from.</p>
-<pre><code># TODO: Include your explanation and calculation here.</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation and calculation here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Now that we have the pieces we need to implement our DP-SGD gradient computation, Complete the code below, which performs one iteration of DP-SGD update for a batch of data. You may wish to look ahead to see how this function will be used in DP-SGD training.</p>
-<pre><code>def dp_grads(model, batch_data, criterion, max_grad_norm, noise_multiplier):
-    """
-    Compute gradients for an iteration of DP-SGD training by setting the
-    .grad attribute of each parameter in model.named_parameters()
-    according to the DP-SGD algorithm.
-
-    Parameters:
-        - `model` - A PyTorch model
-        - `batch_data` - A list of tuples (x, t) representing a batch of data
-        - `criterion` - A PyTorch loss function
-        - `max_grad_norm` - The maximum gradient norm, used for gradient clipping
-                            (C in the algorithm description)
-        - `noise_multiplier` - The noise multiplier, used for adding noise
-                               (sigma in the algorithm description)
-
-    Returns: A dictionary `clipped_noisy_grads` that maps the names of each
-             parameter in `model.named_parameters()` to its modified gradient
-             computed according to DP-SGD
-    """
-    # Create the mapping of each parameter in our model to
-    # what will evetually be the noisy gradients
-    clipped_noisy_grads = {name: torch.zeros_like(param) for name, param in model.named_parameters()}
-
-    # Iterate over the data points in each batch. This is unfortunately
-    # necessary so that we can perform gradient clipping separtely for each
-    # data point
-    for xi, ti in batch_data:
-        zi = None # TODO: compute the model prediction (logit)
-        zi = model(xi) # SOLUTION
-        lossi = None # TODO: compute the loss for this data point
-        lossi = criterion(zi.reshape(1), ti.to(torch.float).reshape(1))  # SOLUTION
-
-        # TODO: perform the backward pass
-        lossi.backward(retain_graph=True)  # SOLUTION
-
-        # TODO: perform gradient clipping
-        torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm) # SOLUTION
-
-        # accumulate the clipped gradients in `clipped_noisy_grads`
-        for name, param in model.named_parameters():
-            clipped_noisy_grads[name] += param.grad
-
-        # TODO: clear the gradients in the model's computation graph
-        model.zero_grad() # SOLUTION
-
-    # Now, we iterate over the name parameters to add noise
-    for name, param in model.named_parameters():
-        # TODO: Read the equation in the "Add Noise" section of the
-        #      algorithm description, and implement it. You may find
-        #      the function `torch.normal` helpful.
-        clipped_noisy_grads[name] += 0 # TODO
-
-        clipped_noisy_grads[name] += torch.normal(mean=0.0, std=noise_multiplier * max_grad_norm, size=param.size()) # SOLUTION
-        clipped_noisy_grads[name] /= len(batch_data) # SOLUTION
-
-    return clipped_noisy_grads</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dp_grads(model, batch_data, criterion, max_grad_norm, noise_multiplier):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute gradients for an iteration of DP-SGD training by setting the</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">    .grad attribute of each parameter in model.named_parameters()</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">    according to the DP-SGD algorithm.</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">        - `model` - A PyTorch model</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">        - `batch_data` - A list of tuples (x, t) representing a batch of data</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">        - `criterion` - A PyTorch loss function</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">        - `max_grad_norm` - The maximum gradient norm, used for gradient clipping</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">                            (C in the algorithm description)</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">        - `noise_multiplier` - The noise multiplier, used for adding noise</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">                               (sigma in the algorithm description)</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: A dictionary `clipped_noisy_grads` that maps the names of each</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">             parameter in `model.named_parameters()` to its modified gradient</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">             computed according to DP-SGD</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the mapping of each parameter in our model to</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># what will evetually be the noisy gradients</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    clipped_noisy_grads <span class="op">=</span> {name: torch.zeros_like(param) <span class="cf">for</span> name, param <span class="kw">in</span> model.named_parameters()}</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Iterate over the data points in each batch. This is unfortunately</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># necessary so that we can perform gradient clipping separtely for each</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># data point</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xi, ti <span class="kw">in</span> batch_data:</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>        zi <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: compute the model prediction (logit)</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>        zi <span class="op">=</span> model(xi) <span class="co"># SOLUTION</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>        lossi <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: compute the loss for this data point</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>        lossi <span class="op">=</span> criterion(zi.reshape(<span class="dv">1</span>), ti.to(torch.<span class="bu">float</span>).reshape(<span class="dv">1</span>))  <span class="co"># SOLUTION</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: perform the backward pass</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>        lossi.backward(retain_graph<span class="op">=</span><span class="va">True</span>)  <span class="co"># SOLUTION</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: perform gradient clipping</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>        torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm) <span class="co"># SOLUTION</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># accumulate the clipped gradients in `clipped_noisy_grads`</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> name, param <span class="kw">in</span> model.named_parameters():</span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>            clipped_noisy_grads[name] <span class="op">+=</span> param.grad</span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: clear the gradients in the model's computation graph</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>        model.zero_grad() <span class="co"># SOLUTION</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Now, we iterate over the name parameters to add noise</span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, param <span class="kw">in</span> model.named_parameters():</span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: Read the equation in the "Add Noise" section of the</span></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>        <span class="co">#      algorithm description, and implement it. You may find</span></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>        <span class="co">#      the function `torch.normal` helpful.</span></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>        clipped_noisy_grads[name] <span class="op">+=</span> <span class="dv">0</span> <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a>        clipped_noisy_grads[name] <span class="op">+=</span> torch.normal(mean<span class="op">=</span><span class="fl">0.0</span>, std<span class="op">=</span>noise_multiplier <span class="op">*</span> max_grad_norm, size<span class="op">=</span>param.size()) <span class="co"># SOLUTION</span></span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a>        clipped_noisy_grads[name] <span class="op">/=</span> <span class="bu">len</span>(batch_data) <span class="co"># SOLUTION</span></span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> clipped_noisy_grads</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Please include the output of the tests below in your submission. (What should the output of the test be?)</p>
-<pre><code>model = nn.Linear(5, 1)
-model.weight = nn.Parameter(torch.Tensor([[1, 1, 0, 0, 0.]]))
-model.bias = nn.Parameter(torch.Tensor([0.]))
-batch_data = [(torch.Tensor([[1, 1, 1, 0, 0.]]), torch.Tensor([1.])),
-              (torch.Tensor([[1, 0, 1, 0, 0.]]), torch.Tensor([0.]))]
-criterion = nn.BCEWithLogitsLoss()
-
-# no noise and a large max_grad_norm
-print(dp_grads(model, batch_data, criterion, max_grad_norm=1000, noise_multiplier=0))
-print('-----------')
-
-# no noise and a small max_grad_norm
-print(dp_grads(model, batch_data, criterion, max_grad_norm=0.5, noise_multiplier=3))
-print('-----------')
-
-# small max_grad_norm and some noise (STD should be ~0.5x3/2)
-for i in range(10):
-    print(dp_grads(model, batch_data, criterion, max_grad_norm=0.5, noise_multiplier=3))</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(<span class="dv">5</span>, <span class="dv">1</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>model.weight <span class="op">=</span> nn.Parameter(torch.Tensor([[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.</span>]]))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>model.bias <span class="op">=</span> nn.Parameter(torch.Tensor([<span class="fl">0.</span>]))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>batch_data <span class="op">=</span> [(torch.Tensor([[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.</span>]]), torch.Tensor([<span class="fl">1.</span>])),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>              (torch.Tensor([[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.</span>]]), torch.Tensor([<span class="fl">0.</span>]))]</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.BCEWithLogitsLoss()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># no noise and a large max_grad_norm</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dp_grads(model, batch_data, criterion, max_grad_norm<span class="op">=</span><span class="dv">1000</span>, noise_multiplier<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-----------'</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># no noise and a small max_grad_norm</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dp_grads(model, batch_data, criterion, max_grad_norm<span class="op">=</span><span class="fl">0.5</span>, noise_multiplier<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-----------'</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># small max_grad_norm and some noise (STD should be ~0.5x3/2)</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(dp_grads(model, batch_data, criterion, max_grad_norm<span class="op">=</span><span class="fl">0.5</span>, noise_multiplier<span class="op">=</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong> Now that we have DP-SGD in place, run the below code to train a differentially private model.</p>
-<pre><code>def train_model_private(model, traindata, valdata, learning_rate=2e-1,
-                        batch_size=500, num_epochs=25, plot_every=20,
-                        epsilon=0.5, max_grad_norm=6):
-    # Compute the noise multiplier
-    N = len(traindata)
-    noise_multiplier = opacus.accountants.utils.get_noise_multiplier(
-        target_epsilon=epsilon,
-        target_delta=1/N,
-        sample_rate=batch_size/N,
-        epochs=num_epochs)
-
-    # Use the differentially private data loader
-    train_loader = opacus.data_loader.DPDataLoader(
-        dataset=traindata,
-        sample_rate=batch_size/N)
-
-    criterion = nn.BCEWithLogitsLoss()
-    optimizer = optim.SGD(model.parameters(), lr=learning_rate)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=N//batch_size * num_epochs)
-
-    # these lists will be used to track the training progress
-    # and to plot the training curve
-    iters, train_loss, train_acc, val_acc = [], [], [], []
-    iter_count = 0 # count the number of iterations that has passed
- 
-    for e in range(num_epochs):
-        for i, (images, labels) in enumerate(train_loader):
-            images = images.reshape(-1, 28*28)
-            # get the clipped noisy gradients from the function you wrote
-            clipped_noisy_grads = dp_grads(model,
-                                           batch_data=list(zip(images,labels)),
-                                           criterion=criterion,
-                                           max_grad_norm=max_grad_norm,
-                                           noise_multiplier=noise_multiplier)
-            # manually update the gradients
-            for name, param in model.named_parameters():
-                param.grad = clipped_noisy_grads[name]
-            optimizer.step() # update the parameters
-            scheduler.step() # update the learning rate scheduler
-            optimizer.zero_grad() # clean up accumualted gradients
-
-            iter_count += 1
-            if iter_count % plot_every == 0:
-                # forward pass to compute the loss
-                z = model(images.reshape(-1, 784))
-                loss = criterion(z, labels.to(torch.float))
-                optimizer.zero_grad()
-
-                iters.append(iter_count)
-                ta = accuracy(model, traindata)
-                va = accuracy(model, valdata)
-                train_loss.append(float(loss))
-                train_acc.append(ta)
-                val_acc.append(va)
-                print(iter_count, "Loss:", float(loss), "Train Acc:", ta, "Val Acc:", va)
-   
-    plt.figure()
-    plt.plot(iters[:len(train_loss)], train_loss)
-    plt.title("Loss over iterations")
-    plt.xlabel("Iterations")
-    plt.ylabel("Loss")
-
-    plt.figure()
-    plt.plot(iters[:len(train_acc)], train_acc)
-    plt.plot(iters[:len(val_acc)], val_acc)
-    plt.title("Accuracy over iterations")
-    plt.xlabel("Iterations")
-    plt.ylabel("Loss")
-    plt.legend(["Train", "Validation"])</code></pre>
-<pre><code>model_priv = MLPModel()
-train_model_private(model_priv, train_dataset, valid_dataset)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_model_private(model, traindata, valdata, learning_rate<span class="op">=</span><span class="fl">2e-1</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                        batch_size<span class="op">=</span><span class="dv">500</span>, num_epochs<span class="op">=</span><span class="dv">25</span>, plot_every<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                        epsilon<span class="op">=</span><span class="fl">0.5</span>, max_grad_norm<span class="op">=</span><span class="dv">6</span>):</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute the noise multiplier</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(traindata)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    noise_multiplier <span class="op">=</span> opacus.accountants.utils.get_noise_multiplier(</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        target_epsilon<span class="op">=</span>epsilon,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        target_delta<span class="op">=</span><span class="dv">1</span><span class="op">/</span>N,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        sample_rate<span class="op">=</span>batch_size<span class="op">/</span>N,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        epochs<span class="op">=</span>num_epochs)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use the differentially private data loader</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    train_loader <span class="op">=</span> opacus.data_loader.DPDataLoader(</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        dataset<span class="op">=</span>traindata,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        sample_rate<span class="op">=</span>batch_size<span class="op">/</span>N)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    criterion <span class="op">=</span> nn.BCEWithLogitsLoss()</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    optimizer <span class="op">=</span> optim.SGD(model.parameters(), lr<span class="op">=</span>learning_rate)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    scheduler <span class="op">=</span> torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max<span class="op">=</span>N<span class="op">//</span>batch_size <span class="op">*</span> num_epochs)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># these lists will be used to track the training progress</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and to plot the training curve</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    iters, train_loss, train_acc, val_acc <span class="op">=</span> [], [], [], []</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    iter_count <span class="op">=</span> <span class="dv">0</span> <span class="co"># count the number of iterations that has passed</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, (images, labels) <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader):</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>            images <span class="op">=</span> images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>            <span class="co"># get the clipped noisy gradients from the function you wrote</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>            clipped_noisy_grads <span class="op">=</span> dp_grads(model,</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>                                           batch_data<span class="op">=</span><span class="bu">list</span>(<span class="bu">zip</span>(images,labels)),</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>                                           criterion<span class="op">=</span>criterion,</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>                                           max_grad_norm<span class="op">=</span>max_grad_norm,</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>                                           noise_multiplier<span class="op">=</span>noise_multiplier)</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>            <span class="co"># manually update the gradients</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> name, param <span class="kw">in</span> model.named_parameters():</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>                param.grad <span class="op">=</span> clipped_noisy_grads[name]</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>            optimizer.step() <span class="co"># update the parameters</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>            scheduler.step() <span class="co"># update the learning rate scheduler</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>            optimizer.zero_grad() <span class="co"># clean up accumualted gradients</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>            iter_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> iter_count <span class="op">%</span> plot_every <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>                <span class="co"># forward pass to compute the loss</span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>                z <span class="op">=</span> model(images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>))</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> criterion(z, labels.to(torch.<span class="bu">float</span>))</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>                optimizer.zero_grad()</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>                iters.append(iter_count)</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>                ta <span class="op">=</span> accuracy(model, traindata)</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>                va <span class="op">=</span> accuracy(model, valdata)</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>                train_loss.append(<span class="bu">float</span>(loss))</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>                train_acc.append(ta)</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>                val_acc.append(va)</span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(iter_count, <span class="st">"Loss:"</span>, <span class="bu">float</span>(loss), <span class="st">"Train Acc:"</span>, ta, <span class="st">"Val Acc:"</span>, va)</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>    plt.figure()</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>    plt.plot(iters[:<span class="bu">len</span>(train_loss)], train_loss)</span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Loss over iterations"</span>)</span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a>    plt.figure()</span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a>    plt.plot(iters[:<span class="bu">len</span>(train_acc)], train_acc)</span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>    plt.plot(iters[:<span class="bu">len</span>(val_acc)], val_acc)</span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Accuracy over iterations"</span>)</span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>    plt.legend([<span class="st">"Train"</span>, <span class="st">"Validation"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model_priv <span class="op">=</span> MLPModel()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>train_model_private(model_priv, train_dataset, valid_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Plot the histogram of the model prediction for this differentially private model. How does this histogram differ from that of <code>model_np</code> from above?</p>
-<pre><code>plot_hist(model_priv, train_dataset, mem_asses_dataset)</code></pre>
-<pre><code># TODO: Explain how the histogram differs from that of model_np</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plot_hist(model_priv, train_dataset, mem_asses_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Explain how the histogram differs from that of model_np</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong> How does the accuracy differ from that of model_no mentioned above? Explain what you observe.</p>
-<pre><code># TODO: Your answer goes here</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your answer goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Suppose that an attacker recognizes that your friend Taylor is in this data set, means that their X-ray was taken at some point during a hospitalization, and that Taylor provided researchers consent to be included in the study dataset. If this information is sold to a third-party (e.g., a credit reporting agency, an employer, or a landlord), how might this affect Taylor?</p>
-<pre><code># TODO: Your answer goes here</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your answer goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you are interested in DP, we suggest performing hyperparameter tuning over batch size and max grad norm. In, DP-SGD usually larger batch size would help. So, for instance for two values of <span class="math inline">\(\varepsilon \in \{0.5,1,5\}\)</span>, try to find the best model for <span class="math inline">\(\text{batchsize}\in \{100,500\}\)</span> and <span class="math inline">\(\text{gradnorm}\in\{4,8,16\}\)</span>.</p>
 </section>
 <section id="appendix" class="level2">

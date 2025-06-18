@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -312,108 +347,108 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
 <p>The “Friends Corpus” can be downloaded through the ConvKit package on Python. You can read more about the data <a href="https://convokit.cornell.edu/documentation/friends.html">here</a>.</p>
 <p>Let’s install this package, and explore the data set.</p>
-<pre><code>%pip install convokit</code></pre>
-<pre><code>import convokit</code></pre>
-<pre><code>corpus = convokit.Corpus(convokit.download('friends-corpus'))</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install convokit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> convokit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> convokit.Corpus(convokit.download(<span class="st">'friends-corpus'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Run the code below, which iterates through the first 10 utterances of the show. How is each utterance formatted? What do the <code>speaker</code> and <code>text</code> field mean?</p>
-<pre><code>for i, utterance in enumerate(corpus.iter_utterances()):
-    print(utterance)
-    if (i &gt;= 9): 
-        break</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, utterance <span class="kw">in</span> <span class="bu">enumerate</span>(corpus.iter_utterances()):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(utterance)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">&gt;=</span> <span class="dv">9</span>): </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Create a list of strings called <code>uts</code> that contains all utterances made by your favourite (of the 6) main character of the show.</p>
-<pre><code>character = 'Monica Geller' # OR 'Chandler Bing' OR 'Phoebe Buffay' OR ...
-
-uts = []
-
-for utterance in corpus.iter_utterances():
-    pass # TODO
-    uts.append(utterance.text) # SOLUTION - this needs to be changed to account for the character chosen</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>character <span class="op">=</span> <span class="st">'Monica Geller'</span> <span class="co"># OR 'Chandler Bing' OR 'Phoebe Buffay' OR ...</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>uts <span class="op">=</span> []</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> utterance <span class="kw">in</span> corpus.iter_utterances():</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span> <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    uts.append(utterance.text) <span class="co"># SOLUTION - this needs to be changed to account for the character chosen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Please include the output of this next line in your solution</p>
-<pre><code>print(len(uts)) 
-# {'Monica Geller': 8498, 'Ross Geller': 9161, 'Phoebe Buffay': 7539, 'Chandler Bing': 8568, 'Joey Tribbiani': 8215, 'Rachel Green': 9331} # SOLUTION</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(uts)) </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># {'Monica Geller': 8498, 'Ross Geller': 9161, 'Phoebe Buffay': 7539, 'Chandler Bing': 8568, 'Joey Tribbiani': 8215, 'Rachel Green': 9331} # SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Run the below code. This code combines these lines into a large string for training, and a large string for validation. We will index ranges in this large string for use in a minibatch—i.e. a minibatch of data will consist of a substring in this large string. This substring may start in the middle of an utterance and may contain multiple utterances—and that turns out to be okay! Our neural network still manages to learn what an utterance looks like and emulate it.</p>
 <p>Since this approach is simpler to implement than the batching approach seen in the previous lab, it is more often used.</p>
 <p>We will use 90% of the data for training, and 10% of the data for validation.</p>
-<pre><code>train_split = 0.9
-n = len(uts)
-
-train_data_str = '\n'.join(uts[:int(n*train_split)])
-val_data_str = '\n'.join(uts[int(n*train_split):])</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>train_split <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(uts)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>train_data_str <span class="op">=</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join(uts[:<span class="bu">int</span>(n<span class="op">*</span>train_split)])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>val_data_str <span class="op">=</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join(uts[<span class="bu">int</span>(n<span class="op">*</span>train_split):])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Notice that we split the utterances so that the earlier utterances are in the training set, and the later utterances (i.e., later in the TV show) are in the validation set. Why is this method preferable to randomly splitting the utterances into training and validation?</p>
 <pre><code># Include your explanation here</code></pre>
 <p><strong>Task</strong>: Why do we not set aside a test set?</p>
 <pre><code># Include your explanation here</code></pre>
 <p>Just like in the previous lab, we will <em>tokenize</em> our text. Modern models use a tokenization strategy called <a href="https://en.wikipedia.org/wiki/Byte_pair_encoding">Byte Pair Encoding</a>, which tokenize text into common into <strong>sub-word tokens</strong>. Sub-word tokens split words into commonly occuring (and thus meaningful) parts. For example, the word “utterance” could be split into “utter” and “ance”. The model would learn about these constinuent tokens in different contexts, helping the model generalize better.</p>
 <p>We will use the Byte Pair Encoding (BPE) tokenizer from the <code>tiktoken</code> library. Let’s install and import this library.</p>
-<pre><code>%pip install tiktoken</code></pre>
-<pre><code>import tiktoken</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install tiktoken</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tiktoken</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: We will be fine-tuning a pre-trained GPT2 model. Explain why it is important for us to use the same tokenization method as is used in the original GPT2 model whose weights we will be using.</p>
 <pre><code># Your explanation goes here</code></pre>
 <p>Now, let’s retrieve the original GPT2 model.</p>
-<pre><code>enc = tiktoken.get_encoding("gpt2")
-
-train_ids = enc.encode_ordinary(train_data_str)
-val_ids = enc.encode_ordinary(val_data_str)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>enc <span class="op">=</span> tiktoken.get_encoding(<span class="st">"gpt2"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>train_ids <span class="op">=</span> enc.encode_ordinary(train_data_str)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>val_ids <span class="op">=</span> enc.encode_ordinary(val_data_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: How many tokens are in the training and validation sets? How does this compare with the number of <em>words</em> in each data set (computed using the <code>str.split()</code> method)? What about the number of <em>characters</em>?</p>
-<pre><code># TODO
-print("training data:")              # SOLUTION
-print("tokens: ", len(train_ids))   # SOLUTION
-print("words: ", len(train_data_str.split()))   # SOLUTION
-print("chars: ", len(train_data_str))   # SOLUTION
-print() # SOLUTION
-print("valdiation data:")              # SOLUTION
-print("tokens: ", len(val_ids))   # SOLUTION
-print("words: ", len(val_data_str.split()))   # SOLUTION
-print("chars: ", len(val_data_str))   # SOLUTION
-
-# SOLUTION: There are about 1.5 tokens per word, and 3.4 characters per token</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"training data:"</span>)              <span class="co"># SOLUTION</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tokens: "</span>, <span class="bu">len</span>(train_ids))   <span class="co"># SOLUTION</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"words: "</span>, <span class="bu">len</span>(train_data_str.split()))   <span class="co"># SOLUTION</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"chars: "</span>, <span class="bu">len</span>(train_data_str))   <span class="co"># SOLUTION</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>() <span class="co"># SOLUTION</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"valdiation data:"</span>)              <span class="co"># SOLUTION</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tokens: "</span>, <span class="bu">len</span>(val_ids))   <span class="co"># SOLUTION</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"words: "</span>, <span class="bu">len</span>(val_data_str.split()))   <span class="co"># SOLUTION</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"chars: "</span>, <span class="bu">len</span>(val_data_str))   <span class="co"># SOLUTION</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># SOLUTION: There are about 1.5 tokens per word, and 3.4 characters per token</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Run the below code, which will save the above numpy arrays in a file. This way, we can use the <code>np.memmap</code> function, which creates a memory-map to an array stored in a binary file on disk. This approach is useful for accessing segments of a large file on disk, which we will be doing.</p>
-<pre><code>import numpy as np
-import os
-
-data_dir = 'friends_gpt2'
-os.makedirs(data_dir, exist_ok=True)
-
-# export to bin files
-train_ids = np.array(train_ids, dtype=np.uint16)
-val_ids = np.array(val_ids, dtype=np.uint16)
-train_ids.tofile(os.path.join(data_dir, 'train.bin'))
-val_ids.tofile(os.path.join(data_dir, 'val.bin'))</code></pre>
-<pre><code># create a memory map
-train_data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
-val_data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">'friends_gpt2'</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>os.makedirs(data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># export to bin files</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>train_ids <span class="op">=</span> np.array(train_ids, dtype<span class="op">=</span>np.uint16)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>val_ids <span class="op">=</span> np.array(val_ids, dtype<span class="op">=</span>np.uint16)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>train_ids.tofile(os.path.join(data_dir, <span class="st">'train.bin'</span>))</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>val_ids.tofile(os.path.join(data_dir, <span class="st">'val.bin'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a memory map</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> np.memmap(os.path.join(data_dir, <span class="st">'train.bin'</span>), dtype<span class="op">=</span>np.uint16, mode<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>val_data <span class="op">=</span> np.memmap(os.path.join(data_dir, <span class="st">'val.bin'</span>), dtype<span class="op">=</span>np.uint16, mode<span class="op">=</span><span class="st">'r'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Use the <code>get_batch</code> function below to extract a sample input/output from this data set. Here, we will be using the approach shown in the generative RNN lecture, where the model generates the next token given the previous context.</p>
-<pre><code>import torch
-
-def get_batch(data, block_size, batch_size, device):
-    """
-    Return a minibatch of data. This function is not deterministic.
-    Calling this function multiple times will result in multiple different
-    return values.
-
-    Parameters:
-        `data` - a numpy array (e.g., created via a call to np.memmap)
-        `block_size` - the length of each sequence
-        `batch_size` - the number of sequences in the batch
-        `device` - the device to place the returned PyTorch tensor
-
-    Returns: A tuple of PyTorch tensors (x, t), where
-        `x` - represents the input tokens, with shape (batch_size, block_size)
-        `y` - represents the target output tokens, with shape (batch_size, block_size)
-    """
-    ix = torch.randint(len(data) - block_size, (batch_size,))
-    x = torch.stack([torch.from_numpy((data[i:i+block_size]).astype(np.int64)) for i in ix])
-    t = torch.stack([torch.from_numpy((data[i+1:i+1+block_size]).astype(np.int64)) for i in ix])
-    if 'cuda' in device:
-        # pin arrays x,t, which allows us to move them to GPU asynchronously
-        #  (non_blocking=True)
-        x, t = x.pin_memory().to(device, non_blocking=True), t.pin_memory().to(device, non_blocking=True)
-    else:
-        x, t = x.to(device), t.to(device)
-    return x, t</code></pre>
-<pre><code>device = 'cuda' if torch.cuda.is_available()  else 'cpu'
-# TODO: get and print a single batch from the training set
-get_batch(train_data, 10, 12, device) # SOLUTION</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_batch(data, block_size, batch_size, device):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Return a minibatch of data. This function is not deterministic.</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Calling this function multiple times will result in multiple different</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    return values.</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">        `data` - a numpy array (e.g., created via a call to np.memmap)</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">        `block_size` - the length of each sequence</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">        `batch_size` - the number of sequences in the batch</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">        `device` - the device to place the returned PyTorch tensor</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns: A tuple of PyTorch tensors (x, t), where</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">        `x` - represents the input tokens, with shape (batch_size, block_size)</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">        `y` - represents the target output tokens, with shape (batch_size, block_size)</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    ix <span class="op">=</span> torch.randint(<span class="bu">len</span>(data) <span class="op">-</span> block_size, (batch_size,))</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> torch.stack([torch.from_numpy((data[i:i<span class="op">+</span>block_size]).astype(np.int64)) <span class="cf">for</span> i <span class="kw">in</span> ix])</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> torch.stack([torch.from_numpy((data[i<span class="op">+</span><span class="dv">1</span>:i<span class="op">+</span><span class="dv">1</span><span class="op">+</span>block_size]).astype(np.int64)) <span class="cf">for</span> i <span class="kw">in</span> ix])</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'cuda'</span> <span class="kw">in</span> device:</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pin arrays x,t, which allows us to move them to GPU asynchronously</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">#  (non_blocking=True)</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>        x, t <span class="op">=</span> x.pin_memory().to(device, non_blocking<span class="op">=</span><span class="va">True</span>), t.pin_memory().to(device, non_blocking<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>        x, t <span class="op">=</span> x.to(device), t.to(device)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> <span class="st">'cuda'</span> <span class="cf">if</span> torch.cuda.is_available()  <span class="cf">else</span> <span class="st">'cpu'</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: get and print a single batch from the training set</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>get_batch(train_data, <span class="dv">10</span>, <span class="dv">12</span>, device) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Once again, we will be using the approach shown in the generative RNN lecture, where the model’s goal is to generate the next token given the previous context. With that in mind, explain why the target output tokens is very similar to the input tokens, just offset by 1 along the <code>block_size</code> dimension.</p>
 <pre><code># TODO: Your explanation goes here.</code></pre>
 </section>
@@ -421,11 +456,11 @@ get_batch(train_data, 10, 12, device) # SOLUTION</code></pre>
 <h2 class="anchored" data-anchor-id="part-2.-model">Part 2. Model</h2>
 <p>Now that we have our data set in mind, it is time to set up our GPT2 model. We will use the code provided in the <a href="https://github.com/karpathy/nanoGPT">nanoGPT repository</a>, slightly modified here for succinctness. Thus, we will not re-implement the GPT2 model. Instead, let’s use the nanoGPT implementation to understand, step-by-step, what happens in a GPT model.</p>
 <p>We will explore the components of the GPT2 model first in a <em>top-down</em> manner, to get an intuition as to how the pieces connect. Then, we will explore the same components in a <em>bottom-up</em> manner, so that we can fully understand the role of each component.</p>
-<pre><code>from dataclasses import dataclass
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import inspect</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inspect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We begin with the <code>GPTConfig</code> class, which contains model architecture settings for our GPT2 model. The settings specify:</p>
 <ul>
 <li><code>block_size</code>: the input sequence length. Shorter sequences can be padded (with a padding token as seen in the previous lab), and longer sequences must be cut shorter. During training, we will generate batches with sequences that are exactly the block size</li>
@@ -436,234 +471,234 @@ import inspect</code></pre>
 <li><code>dropout</code>: for dropout.</li>
 <li><code>bias</code>: A boolean to determine whether to use a bias parameter in certain layers or not.</li>
 </ul>
-<pre><code>@dataclass
-class GPTConfig:
-    block_size: int = 1024
-    vocab_size: int = 50304 # GPT-2 vocab_size of 50257, padded up to nearest multiple of 64 for efficiency
-    n_layer: int = 12
-    n_head: int = 12
-    n_embd: int = 768
-    dropout: float = 0.0
-    bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GPTConfig:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    block_size: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1024</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    vocab_size: <span class="bu">int</span> <span class="op">=</span> <span class="dv">50304</span> <span class="co"># GPT-2 vocab_size of 50257, padded up to nearest multiple of 64 for efficiency</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    n_layer: <span class="bu">int</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    n_head: <span class="bu">int</span> <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    n_embd: <span class="bu">int</span> <span class="op">=</span> <span class="dv">768</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    dropout: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    bias: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span> <span class="co"># True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Which of these settings do you think would affect the total number of trainable parameters in a GPT model? Which of them do you think have the <strong>largest impact</strong> on the number of trainable parameters? Please write down your guess before continuing, and we will check back here later.</p>
 <pre><code># TODO: Write down your thoughts here.</code></pre>
 <p>With the setting in mind, we can set up a GPT model. A GPT model will take a GPTConfig object as a parameter. Pay particular attention to the <code>__init__()</code> and <code>forward()</code> methods. These are the methods that we will study in more detail.</p>
 <p>The code uses a more PyTorch features that we have not discussed, but these features are mostly cosmetic and do not provide significantly different functionality: the use of <code>nn.ModuleDict</code> allows us to access modules in the <code>GPT</code> class in a straightforward way, and <code>nn.ModuleList</code> allows us to create a list of modules. We have not yet defined the PyTorch neural network modules <code>Block</code> and <code>LayerNorm</code>, but we will do so soon.</p>
 <p>If you see a PyTorch feature used that you don’t understand, you can always look it up in the PyTorch documentation. However, you don’t try to understand everything at one go. It is normal to read code in multiple “passes”, and focus on the big picture in the first pass.</p>
 <p><strong>Task</strong>: Begin with a first pass read of the <code>__init__()</code> and <code>forward()</code> methods of the <code>GPT</code> module.</p>
-<pre><code>class GPT(nn.Module):
-
-    def __init__(self, config):
-        super().__init__()
-        assert config.vocab_size is not None
-        assert config.block_size is not None
-        self.config = config
-
-        self.transformer = nn.ModuleDict(dict(
-            wte = nn.Embedding(config.vocab_size, config.n_embd),
-            wpe = nn.Embedding(config.block_size, config.n_embd),
-            drop = nn.Dropout(config.dropout),
-            h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
-            ln_f = LayerNorm(config.n_embd, bias=config.bias),
-        ))
-        self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
-        # with weight tying when using torch.compile() some warnings get generated:
-        # "UserWarning: functional_call was passed multiple values for tied weights.
-        # This behavior is deprecated and will be an error in future versions"
-        # not 100% sure what this is, so far seems to be harmless. TODO investigate
-        self.transformer.wte.weight = self.lm_head.weight # https://paperswithcode.com/method/weight-tying
-
-        # init all weights
-        self.apply(self._init_weights)
-        # apply special scaled init to the residual projections, per GPT-2 paper
-        for pn, p in self.named_parameters():
-            if pn.endswith('c_proj.weight'):
-                torch.nn.init.normal_(p, mean=0.0, std=0.02/math.sqrt(2 * config.n_layer))
-
-        # report number of parameters
-        print("number of parameters: %.2fM" % (self.get_num_params()/1e6,))
-
-    def get_num_params(self, non_embedding=True):
-        """
-        Return the number of parameters in the model.
-        For non-embedding count (default), the position embeddings get subtracted.
-        The token embeddings would too, except due to the parameter sharing these
-        params are actually used as weights in the final layer, so we include them.
-        """
-        n_params = sum(p.numel() for p in self.parameters())
-        if non_embedding:
-            n_params -= self.transformer.wpe.weight.numel()
-        return n_params
-
-    def _init_weights(self, module):
-        if isinstance(module, nn.Linear):
-            torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
-            if module.bias is not None:
-                torch.nn.init.zeros_(module.bias)
-        elif isinstance(module, nn.Embedding):
-            torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
-
-    def forward(self, idx, targets=None):
-        device = idx.device
-        b, t = idx.size()
-        assert t &lt;= self.config.block_size, f"Cannot forward sequence of length {t}, block size is only {self.config.block_size}"
-        pos = torch.arange(0, t, dtype=torch.long, device=device) # shape (t)
-
-        # forward the GPT model itself
-        tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, t, n_embd)
-        pos_emb = self.transformer.wpe(pos) # position embeddings of shape (t, n_embd)
-        x = self.transformer.drop(tok_emb + pos_emb)
-        for block in self.transformer.h:
-            x = block(x)
-        x = self.transformer.ln_f(x)
-
-        if targets is not None:
-            # if we are given some desired targets also calculate the loss
-            logits = self.lm_head(x)
-            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
-        else:
-            # inference-time mini-optimization: only forward the lm_head on the very last position
-            logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim
-            loss = None
-
-        return logits, loss
-
-    def crop_block_size(self, block_size):
-        # model surgery to decrease the block size if necessary
-        # e.g. we may load the GPT2 pretrained model checkpoint (block size 1024)
-        # but want to use a smaller block size for some smaller, simpler model
-        assert block_size &lt;= self.config.block_size
-        self.config.block_size = block_size
-        self.transformer.wpe.weight = nn.Parameter(self.transformer.wpe.weight[:block_size])
-        for block in self.transformer.h:
-            if hasattr(block.attn, 'bias'):
-                block.attn.bias = block.attn.bias[:,:,:block_size,:block_size]
-
-    @classmethod
-    def from_pretrained(cls, model_type, override_args=None):
-        assert model_type in {'gpt2', 'gpt2-medium', 'gpt2-large', 'gpt2-xl'}
-        override_args = override_args or {} # default to empty dict
-        # only dropout can be overridden see more notes below
-        assert all(k == 'dropout' for k in override_args)
-        from transformers import GPT2LMHeadModel
-        print("loading weights from pretrained gpt: %s" % model_type)
-
-        # n_layer, n_head and n_embd are determined from model_type
-        config_args = {
-            'gpt2':         dict(n_layer=12, n_head=12, n_embd=768),  # 124M params
-            'gpt2-medium':  dict(n_layer=24, n_head=16, n_embd=1024), # 350M params
-            'gpt2-large':   dict(n_layer=36, n_head=20, n_embd=1280), # 774M params
-            'gpt2-xl':      dict(n_layer=48, n_head=25, n_embd=1600), # 1558M params
-        }[model_type]
-        print("forcing vocab_size=50257, block_size=1024, bias=True")
-        config_args['vocab_size'] = 50257 # always 50257 for GPT model checkpoints
-        config_args['block_size'] = 1024 # always 1024 for GPT model checkpoints
-        config_args['bias'] = True # always True for GPT model checkpoints
-        # we can override the dropout rate, if desired
-        if 'dropout' in override_args:
-            print(f"overriding dropout rate to {override_args['dropout']}")
-            config_args['dropout'] = override_args['dropout']
-        # create a from-scratch initialized minGPT model
-        config = GPTConfig(**config_args)
-        model = GPT(config)
-        sd = model.state_dict()
-        sd_keys = sd.keys()
-        sd_keys = [k for k in sd_keys if not k.endswith('.attn.bias')] # discard this mask / buffer, not a param
-
-        # init a huggingface/transformers model
-        model_hf = GPT2LMHeadModel.from_pretrained(model_type)
-        sd_hf = model_hf.state_dict()
-
-        # copy while ensuring all of the parameters are aligned and match in names and shapes
-        sd_keys_hf = sd_hf.keys()
-        sd_keys_hf = [k for k in sd_keys_hf if not k.endswith('.attn.masked_bias')] # ignore these, just a buffer
-        sd_keys_hf = [k for k in sd_keys_hf if not k.endswith('.attn.bias')] # same, just the mask (buffer)
-        transposed = ['attn.c_attn.weight', 'attn.c_proj.weight', 'mlp.c_fc.weight', 'mlp.c_proj.weight']
-        # basically the openai checkpoints use a "Conv1D" module, but we only want to use a vanilla Linear
-        # this means that we have to transpose these weights when we import them
-        assert len(sd_keys_hf) == len(sd_keys), f"mismatched keys: {len(sd_keys_hf)} != {len(sd_keys)}"
-        for k in sd_keys_hf:
-            if any(k.endswith(w) for w in transposed):
-                # special treatment for the Conv1D weights we need to transpose
-                assert sd_hf[k].shape[::-1] == sd[k].shape
-                with torch.no_grad():
-                    sd[k].copy_(sd_hf[k].t())
-            else:
-                # vanilla copy over the other parameters
-                assert sd_hf[k].shape == sd[k].shape
-                with torch.no_grad():
-                    sd[k].copy_(sd_hf[k])
-
-        return model
-
-    def configure_optimizers(self, weight_decay, learning_rate, betas, device_type):
-        # start with all of the candidate parameters
-        param_dict = {pn: p for pn, p in self.named_parameters()}
-        # filter out those that do not require grad
-        param_dict = {pn: p for pn, p in param_dict.items() if p.requires_grad}
-        # create optim groups. Any parameters that is 2D will be weight decayed, otherwise no.
-        # i.e. all weight tensors in matmuls + embeddings decay, all biases and layernorms don't.
-        decay_params = [p for n, p in param_dict.items() if p.dim() &gt;= 2]
-        nodecay_params = [p for n, p in param_dict.items() if p.dim() &lt; 2]
-        optim_groups = [
-            {'params': decay_params, 'weight_decay': weight_decay},
-            {'params': nodecay_params, 'weight_decay': 0.0}
-        ]
-        num_decay_params = sum(p.numel() for p in decay_params)
-        num_nodecay_params = sum(p.numel() for p in nodecay_params)
-        print(f"num decayed parameter tensors: {len(decay_params)}, with {num_decay_params:,} parameters")
-        print(f"num non-decayed parameter tensors: {len(nodecay_params)}, with {num_nodecay_params:,} parameters")
-        # Create AdamW optimizer and use the fused version if it is available
-        fused_available = 'fused' in inspect.signature(torch.optim.AdamW).parameters
-        use_fused = fused_available and device_type == 'cuda'
-        extra_args = dict(fused=True) if use_fused else dict()
-        optimizer = torch.optim.AdamW(optim_groups, lr=learning_rate, betas=betas, **extra_args)
-        print(f"using fused AdamW: {use_fused}")
-
-        return optimizer
-
-    def estimate_mfu(self, fwdbwd_per_iter, dt):
-        """ estimate model flops utilization (MFU) in units of A100 bfloat16 peak FLOPS """
-        # first estimate the number of flops we do per iteration.
-        # see PaLM paper Appendix B as ref: https://arxiv.org/abs/2204.02311
-        N = self.get_num_params()
-        cfg = self.config
-        L, H, Q, T = cfg.n_layer, cfg.n_head, cfg.n_embd//cfg.n_head, cfg.block_size
-        flops_per_token = 6*N + 12*L*H*Q*T
-        flops_per_fwdbwd = flops_per_token * T
-        flops_per_iter = flops_per_fwdbwd * fwdbwd_per_iter
-        # express our flops throughput as ratio of A100 bfloat16 peak flops
-        flops_achieved = flops_per_iter * (1.0/dt) # per second
-        flops_promised = 312e12 # A100 GPU bfloat16 peak flops is 312 TFLOPS
-        mfu = flops_achieved / flops_promised
-        return mfu
-
-    @torch.no_grad()
-    def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None):
-        """
-        Take a conditioning sequence of indices idx (LongTensor of shape (b,t)) and complete
-        the sequence max_new_tokens times, feeding the predictions back into the model each time.
-        Most likely you'll want to make sure to be in model.eval() mode of operation for this.
-        """
-        for _ in range(max_new_tokens):
-            # if the sequence context is growing too long we must crop it at block_size
-            idx_cond = idx if idx.size(1) &lt;= self.config.block_size else idx[:, -self.config.block_size:]
-            # forward the model to get the logits for the index in the sequence
-            logits, _ = self(idx_cond)
-            # pluck the logits at the final step and scale by desired temperature
-            logits = logits[:, -1, :] / temperature
-            # optionally crop the logits to only the top k options
-            if top_k is not None:
-                v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
-                logits[logits &lt; v[:, [-1]]] = -float('Inf')
-            # apply softmax to convert logits to (normalized) probabilities
-            probs = F.softmax(logits, dim=-1)
-            # sample from the distribution
-            idx_next = torch.multinomial(probs, num_samples=1)
-            # append sampled index to the running sequence and continue
-            idx = torch.cat((idx, idx_next), dim=1)
-
-        return idx</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GPT(nn.Module):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> config.vocab_size <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> config.block_size <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.config <span class="op">=</span> config</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.transformer <span class="op">=</span> nn.ModuleDict(<span class="bu">dict</span>(</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            wte <span class="op">=</span> nn.Embedding(config.vocab_size, config.n_embd),</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            wpe <span class="op">=</span> nn.Embedding(config.block_size, config.n_embd),</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>            drop <span class="op">=</span> nn.Dropout(config.dropout),</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> nn.ModuleList([Block(config) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(config.n_layer)]),</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>            ln_f <span class="op">=</span> LayerNorm(config.n_embd, bias<span class="op">=</span>config.bias),</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        ))</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lm_head <span class="op">=</span> nn.Linear(config.n_embd, config.vocab_size, bias<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># with weight tying when using torch.compile() some warnings get generated:</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># "UserWarning: functional_call was passed multiple values for tied weights.</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This behavior is deprecated and will be an error in future versions"</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># not 100% sure what this is, so far seems to be harmless. </span><span class="al">TODO</span><span class="co"> investigate</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.transformer.wte.weight <span class="op">=</span> <span class="va">self</span>.lm_head.weight <span class="co"># https://paperswithcode.com/method/weight-tying</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># init all weights</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">apply</span>(<span class="va">self</span>._init_weights)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># apply special scaled init to the residual projections, per GPT-2 paper</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> pn, p <span class="kw">in</span> <span class="va">self</span>.named_parameters():</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pn.endswith(<span class="st">'c_proj.weight'</span>):</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>                torch.nn.init.normal_(p, mean<span class="op">=</span><span class="fl">0.0</span>, std<span class="op">=</span><span class="fl">0.02</span><span class="op">/</span>math.sqrt(<span class="dv">2</span> <span class="op">*</span> config.n_layer))</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># report number of parameters</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"number of parameters: </span><span class="sc">%.2f</span><span class="st">M"</span> <span class="op">%</span> (<span class="va">self</span>.get_num_params()<span class="op">/</span><span class="fl">1e6</span>,))</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_num_params(<span class="va">self</span>, non_embedding<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="co">        Return the number of parameters in the model.</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="co">        For non-embedding count (default), the position embeddings get subtracted.</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co">        The token embeddings would too, except due to the parameter sharing these</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co">        params are actually used as weights in the final layer, so we include them.</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>        n_params <span class="op">=</span> <span class="bu">sum</span>(p.numel() <span class="cf">for</span> p <span class="kw">in</span> <span class="va">self</span>.parameters())</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> non_embedding:</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>            n_params <span class="op">-=</span> <span class="va">self</span>.transformer.wpe.weight.numel()</span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n_params</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _init_weights(<span class="va">self</span>, module):</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">isinstance</span>(module, nn.Linear):</span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>            torch.nn.init.normal_(module.weight, mean<span class="op">=</span><span class="fl">0.0</span>, std<span class="op">=</span><span class="fl">0.02</span>)</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> module.bias <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>                torch.nn.init.zeros_(module.bias)</span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="bu">isinstance</span>(module, nn.Embedding):</span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>            torch.nn.init.normal_(module.weight, mean<span class="op">=</span><span class="fl">0.0</span>, std<span class="op">=</span><span class="fl">0.02</span>)</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, idx, targets<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> idx.device</span>
+<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>        b, t <span class="op">=</span> idx.size()</span>
+<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> t <span class="op">&lt;=</span> <span class="va">self</span>.config.block_size, <span class="ss">f"Cannot forward sequence of length </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">, block size is only </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>config<span class="sc">.</span>block_size<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>        pos <span class="op">=</span> torch.arange(<span class="dv">0</span>, t, dtype<span class="op">=</span>torch.<span class="bu">long</span>, device<span class="op">=</span>device) <span class="co"># shape (t)</span></span>
+<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># forward the GPT model itself</span></span>
+<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>        tok_emb <span class="op">=</span> <span class="va">self</span>.transformer.wte(idx) <span class="co"># token embeddings of shape (b, t, n_embd)</span></span>
+<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a>        pos_emb <span class="op">=</span> <span class="va">self</span>.transformer.wpe(pos) <span class="co"># position embeddings of shape (t, n_embd)</span></span>
+<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.transformer.drop(tok_emb <span class="op">+</span> pos_emb)</span>
+<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> block <span class="kw">in</span> <span class="va">self</span>.transformer.h:</span>
+<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> block(x)</span>
+<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.transformer.ln_f(x)</span>
+<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> targets <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a>            <span class="co"># if we are given some desired targets also calculate the loss</span></span>
+<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>            logits <span class="op">=</span> <span class="va">self</span>.lm_head(x)</span>
+<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> F.cross_entropy(logits.view(<span class="op">-</span><span class="dv">1</span>, logits.size(<span class="op">-</span><span class="dv">1</span>)), targets.view(<span class="op">-</span><span class="dv">1</span>), ignore_index<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a>            <span class="co"># inference-time mini-optimization: only forward the lm_head on the very last position</span></span>
+<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a>            logits <span class="op">=</span> <span class="va">self</span>.lm_head(x[:, [<span class="op">-</span><span class="dv">1</span>], :]) <span class="co"># note: using list [-1] to preserve the time dim</span></span>
+<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits, loss</span>
+<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> crop_block_size(<span class="va">self</span>, block_size):</span>
+<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># model surgery to decrease the block size if necessary</span></span>
+<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a>        <span class="co"># e.g. we may load the GPT2 pretrained model checkpoint (block size 1024)</span></span>
+<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a>        <span class="co"># but want to use a smaller block size for some smaller, simpler model</span></span>
+<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> block_size <span class="op">&lt;=</span> <span class="va">self</span>.config.block_size</span>
+<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.config.block_size <span class="op">=</span> block_size</span>
+<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.transformer.wpe.weight <span class="op">=</span> nn.Parameter(<span class="va">self</span>.transformer.wpe.weight[:block_size])</span>
+<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> block <span class="kw">in</span> <span class="va">self</span>.transformer.h:</span>
+<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">hasattr</span>(block.attn, <span class="st">'bias'</span>):</span>
+<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a>                block.attn.bias <span class="op">=</span> block.attn.bias[:,:,:block_size,:block_size]</span>
+<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">@classmethod</span></span>
+<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> from_pretrained(cls, model_type, override_args<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> model_type <span class="kw">in</span> {<span class="st">'gpt2'</span>, <span class="st">'gpt2-medium'</span>, <span class="st">'gpt2-large'</span>, <span class="st">'gpt2-xl'</span>}</span>
+<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a>        override_args <span class="op">=</span> override_args <span class="kw">or</span> {} <span class="co"># default to empty dict</span></span>
+<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a>        <span class="co"># only dropout can be overridden see more notes below</span></span>
+<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">all</span>(k <span class="op">==</span> <span class="st">'dropout'</span> <span class="cf">for</span> k <span class="kw">in</span> override_args)</span>
+<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> transformers <span class="im">import</span> GPT2LMHeadModel</span>
+<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"loading weights from pretrained gpt: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> model_type)</span>
+<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a>        <span class="co"># n_layer, n_head and n_embd are determined from model_type</span></span>
+<span id="cb23-99"><a href="#cb23-99" aria-hidden="true" tabindex="-1"></a>        config_args <span class="op">=</span> {</span>
+<span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a>            <span class="st">'gpt2'</span>:         <span class="bu">dict</span>(n_layer<span class="op">=</span><span class="dv">12</span>, n_head<span class="op">=</span><span class="dv">12</span>, n_embd<span class="op">=</span><span class="dv">768</span>),  <span class="co"># 124M params</span></span>
+<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a>            <span class="st">'gpt2-medium'</span>:  <span class="bu">dict</span>(n_layer<span class="op">=</span><span class="dv">24</span>, n_head<span class="op">=</span><span class="dv">16</span>, n_embd<span class="op">=</span><span class="dv">1024</span>), <span class="co"># 350M params</span></span>
+<span id="cb23-102"><a href="#cb23-102" aria-hidden="true" tabindex="-1"></a>            <span class="st">'gpt2-large'</span>:   <span class="bu">dict</span>(n_layer<span class="op">=</span><span class="dv">36</span>, n_head<span class="op">=</span><span class="dv">20</span>, n_embd<span class="op">=</span><span class="dv">1280</span>), <span class="co"># 774M params</span></span>
+<span id="cb23-103"><a href="#cb23-103" aria-hidden="true" tabindex="-1"></a>            <span class="st">'gpt2-xl'</span>:      <span class="bu">dict</span>(n_layer<span class="op">=</span><span class="dv">48</span>, n_head<span class="op">=</span><span class="dv">25</span>, n_embd<span class="op">=</span><span class="dv">1600</span>), <span class="co"># 1558M params</span></span>
+<span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a>        }[model_type]</span>
+<span id="cb23-105"><a href="#cb23-105" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"forcing vocab_size=50257, block_size=1024, bias=True"</span>)</span>
+<span id="cb23-106"><a href="#cb23-106" aria-hidden="true" tabindex="-1"></a>        config_args[<span class="st">'vocab_size'</span>] <span class="op">=</span> <span class="dv">50257</span> <span class="co"># always 50257 for GPT model checkpoints</span></span>
+<span id="cb23-107"><a href="#cb23-107" aria-hidden="true" tabindex="-1"></a>        config_args[<span class="st">'block_size'</span>] <span class="op">=</span> <span class="dv">1024</span> <span class="co"># always 1024 for GPT model checkpoints</span></span>
+<span id="cb23-108"><a href="#cb23-108" aria-hidden="true" tabindex="-1"></a>        config_args[<span class="st">'bias'</span>] <span class="op">=</span> <span class="va">True</span> <span class="co"># always True for GPT model checkpoints</span></span>
+<span id="cb23-109"><a href="#cb23-109" aria-hidden="true" tabindex="-1"></a>        <span class="co"># we can override the dropout rate, if desired</span></span>
+<span id="cb23-110"><a href="#cb23-110" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">'dropout'</span> <span class="kw">in</span> override_args:</span>
+<span id="cb23-111"><a href="#cb23-111" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"overriding dropout rate to </span><span class="sc">{</span>override_args[<span class="st">'dropout'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb23-112"><a href="#cb23-112" aria-hidden="true" tabindex="-1"></a>            config_args[<span class="st">'dropout'</span>] <span class="op">=</span> override_args[<span class="st">'dropout'</span>]</span>
+<span id="cb23-113"><a href="#cb23-113" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create a from-scratch initialized minGPT model</span></span>
+<span id="cb23-114"><a href="#cb23-114" aria-hidden="true" tabindex="-1"></a>        config <span class="op">=</span> GPTConfig(<span class="op">**</span>config_args)</span>
+<span id="cb23-115"><a href="#cb23-115" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> GPT(config)</span>
+<span id="cb23-116"><a href="#cb23-116" aria-hidden="true" tabindex="-1"></a>        sd <span class="op">=</span> model.state_dict()</span>
+<span id="cb23-117"><a href="#cb23-117" aria-hidden="true" tabindex="-1"></a>        sd_keys <span class="op">=</span> sd.keys()</span>
+<span id="cb23-118"><a href="#cb23-118" aria-hidden="true" tabindex="-1"></a>        sd_keys <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> sd_keys <span class="cf">if</span> <span class="kw">not</span> k.endswith(<span class="st">'.attn.bias'</span>)] <span class="co"># discard this mask / buffer, not a param</span></span>
+<span id="cb23-119"><a href="#cb23-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-120"><a href="#cb23-120" aria-hidden="true" tabindex="-1"></a>        <span class="co"># init a huggingface/transformers model</span></span>
+<span id="cb23-121"><a href="#cb23-121" aria-hidden="true" tabindex="-1"></a>        model_hf <span class="op">=</span> GPT2LMHeadModel.from_pretrained(model_type)</span>
+<span id="cb23-122"><a href="#cb23-122" aria-hidden="true" tabindex="-1"></a>        sd_hf <span class="op">=</span> model_hf.state_dict()</span>
+<span id="cb23-123"><a href="#cb23-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-124"><a href="#cb23-124" aria-hidden="true" tabindex="-1"></a>        <span class="co"># copy while ensuring all of the parameters are aligned and match in names and shapes</span></span>
+<span id="cb23-125"><a href="#cb23-125" aria-hidden="true" tabindex="-1"></a>        sd_keys_hf <span class="op">=</span> sd_hf.keys()</span>
+<span id="cb23-126"><a href="#cb23-126" aria-hidden="true" tabindex="-1"></a>        sd_keys_hf <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> sd_keys_hf <span class="cf">if</span> <span class="kw">not</span> k.endswith(<span class="st">'.attn.masked_bias'</span>)] <span class="co"># ignore these, just a buffer</span></span>
+<span id="cb23-127"><a href="#cb23-127" aria-hidden="true" tabindex="-1"></a>        sd_keys_hf <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> sd_keys_hf <span class="cf">if</span> <span class="kw">not</span> k.endswith(<span class="st">'.attn.bias'</span>)] <span class="co"># same, just the mask (buffer)</span></span>
+<span id="cb23-128"><a href="#cb23-128" aria-hidden="true" tabindex="-1"></a>        transposed <span class="op">=</span> [<span class="st">'attn.c_attn.weight'</span>, <span class="st">'attn.c_proj.weight'</span>, <span class="st">'mlp.c_fc.weight'</span>, <span class="st">'mlp.c_proj.weight'</span>]</span>
+<span id="cb23-129"><a href="#cb23-129" aria-hidden="true" tabindex="-1"></a>        <span class="co"># basically the openai checkpoints use a "Conv1D" module, but we only want to use a vanilla Linear</span></span>
+<span id="cb23-130"><a href="#cb23-130" aria-hidden="true" tabindex="-1"></a>        <span class="co"># this means that we have to transpose these weights when we import them</span></span>
+<span id="cb23-131"><a href="#cb23-131" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="bu">len</span>(sd_keys_hf) <span class="op">==</span> <span class="bu">len</span>(sd_keys), <span class="ss">f"mismatched keys: </span><span class="sc">{</span><span class="bu">len</span>(sd_keys_hf)<span class="sc">}</span><span class="ss"> != </span><span class="sc">{</span><span class="bu">len</span>(sd_keys)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb23-132"><a href="#cb23-132" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> sd_keys_hf:</span>
+<span id="cb23-133"><a href="#cb23-133" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">any</span>(k.endswith(w) <span class="cf">for</span> w <span class="kw">in</span> transposed):</span>
+<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a>                <span class="co"># special treatment for the Conv1D weights we need to transpose</span></span>
+<span id="cb23-135"><a href="#cb23-135" aria-hidden="true" tabindex="-1"></a>                <span class="cf">assert</span> sd_hf[k].shape[::<span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> sd[k].shape</span>
+<span id="cb23-136"><a href="#cb23-136" aria-hidden="true" tabindex="-1"></a>                <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb23-137"><a href="#cb23-137" aria-hidden="true" tabindex="-1"></a>                    sd[k].copy_(sd_hf[k].t())</span>
+<span id="cb23-138"><a href="#cb23-138" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb23-139"><a href="#cb23-139" aria-hidden="true" tabindex="-1"></a>                <span class="co"># vanilla copy over the other parameters</span></span>
+<span id="cb23-140"><a href="#cb23-140" aria-hidden="true" tabindex="-1"></a>                <span class="cf">assert</span> sd_hf[k].shape <span class="op">==</span> sd[k].shape</span>
+<span id="cb23-141"><a href="#cb23-141" aria-hidden="true" tabindex="-1"></a>                <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb23-142"><a href="#cb23-142" aria-hidden="true" tabindex="-1"></a>                    sd[k].copy_(sd_hf[k])</span>
+<span id="cb23-143"><a href="#cb23-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-144"><a href="#cb23-144" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> model</span>
+<span id="cb23-145"><a href="#cb23-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-146"><a href="#cb23-146" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> configure_optimizers(<span class="va">self</span>, weight_decay, learning_rate, betas, device_type):</span>
+<span id="cb23-147"><a href="#cb23-147" aria-hidden="true" tabindex="-1"></a>        <span class="co"># start with all of the candidate parameters</span></span>
+<span id="cb23-148"><a href="#cb23-148" aria-hidden="true" tabindex="-1"></a>        param_dict <span class="op">=</span> {pn: p <span class="cf">for</span> pn, p <span class="kw">in</span> <span class="va">self</span>.named_parameters()}</span>
+<span id="cb23-149"><a href="#cb23-149" aria-hidden="true" tabindex="-1"></a>        <span class="co"># filter out those that do not require grad</span></span>
+<span id="cb23-150"><a href="#cb23-150" aria-hidden="true" tabindex="-1"></a>        param_dict <span class="op">=</span> {pn: p <span class="cf">for</span> pn, p <span class="kw">in</span> param_dict.items() <span class="cf">if</span> p.requires_grad}</span>
+<span id="cb23-151"><a href="#cb23-151" aria-hidden="true" tabindex="-1"></a>        <span class="co"># create optim groups. Any parameters that is 2D will be weight decayed, otherwise no.</span></span>
+<span id="cb23-152"><a href="#cb23-152" aria-hidden="true" tabindex="-1"></a>        <span class="co"># i.e. all weight tensors in matmuls + embeddings decay, all biases and layernorms don't.</span></span>
+<span id="cb23-153"><a href="#cb23-153" aria-hidden="true" tabindex="-1"></a>        decay_params <span class="op">=</span> [p <span class="cf">for</span> n, p <span class="kw">in</span> param_dict.items() <span class="cf">if</span> p.dim() <span class="op">&gt;=</span> <span class="dv">2</span>]</span>
+<span id="cb23-154"><a href="#cb23-154" aria-hidden="true" tabindex="-1"></a>        nodecay_params <span class="op">=</span> [p <span class="cf">for</span> n, p <span class="kw">in</span> param_dict.items() <span class="cf">if</span> p.dim() <span class="op">&lt;</span> <span class="dv">2</span>]</span>
+<span id="cb23-155"><a href="#cb23-155" aria-hidden="true" tabindex="-1"></a>        optim_groups <span class="op">=</span> [</span>
+<span id="cb23-156"><a href="#cb23-156" aria-hidden="true" tabindex="-1"></a>            {<span class="st">'params'</span>: decay_params, <span class="st">'weight_decay'</span>: weight_decay},</span>
+<span id="cb23-157"><a href="#cb23-157" aria-hidden="true" tabindex="-1"></a>            {<span class="st">'params'</span>: nodecay_params, <span class="st">'weight_decay'</span>: <span class="fl">0.0</span>}</span>
+<span id="cb23-158"><a href="#cb23-158" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb23-159"><a href="#cb23-159" aria-hidden="true" tabindex="-1"></a>        num_decay_params <span class="op">=</span> <span class="bu">sum</span>(p.numel() <span class="cf">for</span> p <span class="kw">in</span> decay_params)</span>
+<span id="cb23-160"><a href="#cb23-160" aria-hidden="true" tabindex="-1"></a>        num_nodecay_params <span class="op">=</span> <span class="bu">sum</span>(p.numel() <span class="cf">for</span> p <span class="kw">in</span> nodecay_params)</span>
+<span id="cb23-161"><a href="#cb23-161" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"num decayed parameter tensors: </span><span class="sc">{</span><span class="bu">len</span>(decay_params)<span class="sc">}</span><span class="ss">, with </span><span class="sc">{</span>num_decay_params<span class="sc">:,}</span><span class="ss"> parameters"</span>)</span>
+<span id="cb23-162"><a href="#cb23-162" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"num non-decayed parameter tensors: </span><span class="sc">{</span><span class="bu">len</span>(nodecay_params)<span class="sc">}</span><span class="ss">, with </span><span class="sc">{</span>num_nodecay_params<span class="sc">:,}</span><span class="ss"> parameters"</span>)</span>
+<span id="cb23-163"><a href="#cb23-163" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create AdamW optimizer and use the fused version if it is available</span></span>
+<span id="cb23-164"><a href="#cb23-164" aria-hidden="true" tabindex="-1"></a>        fused_available <span class="op">=</span> <span class="st">'fused'</span> <span class="kw">in</span> inspect.signature(torch.optim.AdamW).parameters</span>
+<span id="cb23-165"><a href="#cb23-165" aria-hidden="true" tabindex="-1"></a>        use_fused <span class="op">=</span> fused_available <span class="kw">and</span> device_type <span class="op">==</span> <span class="st">'cuda'</span></span>
+<span id="cb23-166"><a href="#cb23-166" aria-hidden="true" tabindex="-1"></a>        extra_args <span class="op">=</span> <span class="bu">dict</span>(fused<span class="op">=</span><span class="va">True</span>) <span class="cf">if</span> use_fused <span class="cf">else</span> <span class="bu">dict</span>()</span>
+<span id="cb23-167"><a href="#cb23-167" aria-hidden="true" tabindex="-1"></a>        optimizer <span class="op">=</span> torch.optim.AdamW(optim_groups, lr<span class="op">=</span>learning_rate, betas<span class="op">=</span>betas, <span class="op">**</span>extra_args)</span>
+<span id="cb23-168"><a href="#cb23-168" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"using fused AdamW: </span><span class="sc">{</span>use_fused<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb23-169"><a href="#cb23-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-170"><a href="#cb23-170" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> optimizer</span>
+<span id="cb23-171"><a href="#cb23-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-172"><a href="#cb23-172" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> estimate_mfu(<span class="va">self</span>, fwdbwd_per_iter, dt):</span>
+<span id="cb23-173"><a href="#cb23-173" aria-hidden="true" tabindex="-1"></a>        <span class="co">""" estimate model flops utilization (MFU) in units of A100 bfloat16 peak FLOPS """</span></span>
+<span id="cb23-174"><a href="#cb23-174" aria-hidden="true" tabindex="-1"></a>        <span class="co"># first estimate the number of flops we do per iteration.</span></span>
+<span id="cb23-175"><a href="#cb23-175" aria-hidden="true" tabindex="-1"></a>        <span class="co"># see PaLM paper Appendix B as ref: https://arxiv.org/abs/2204.02311</span></span>
+<span id="cb23-176"><a href="#cb23-176" aria-hidden="true" tabindex="-1"></a>        N <span class="op">=</span> <span class="va">self</span>.get_num_params()</span>
+<span id="cb23-177"><a href="#cb23-177" aria-hidden="true" tabindex="-1"></a>        cfg <span class="op">=</span> <span class="va">self</span>.config</span>
+<span id="cb23-178"><a href="#cb23-178" aria-hidden="true" tabindex="-1"></a>        L, H, Q, T <span class="op">=</span> cfg.n_layer, cfg.n_head, cfg.n_embd<span class="op">//</span>cfg.n_head, cfg.block_size</span>
+<span id="cb23-179"><a href="#cb23-179" aria-hidden="true" tabindex="-1"></a>        flops_per_token <span class="op">=</span> <span class="dv">6</span><span class="op">*</span>N <span class="op">+</span> <span class="dv">12</span><span class="op">*</span>L<span class="op">*</span>H<span class="op">*</span>Q<span class="op">*</span>T</span>
+<span id="cb23-180"><a href="#cb23-180" aria-hidden="true" tabindex="-1"></a>        flops_per_fwdbwd <span class="op">=</span> flops_per_token <span class="op">*</span> T</span>
+<span id="cb23-181"><a href="#cb23-181" aria-hidden="true" tabindex="-1"></a>        flops_per_iter <span class="op">=</span> flops_per_fwdbwd <span class="op">*</span> fwdbwd_per_iter</span>
+<span id="cb23-182"><a href="#cb23-182" aria-hidden="true" tabindex="-1"></a>        <span class="co"># express our flops throughput as ratio of A100 bfloat16 peak flops</span></span>
+<span id="cb23-183"><a href="#cb23-183" aria-hidden="true" tabindex="-1"></a>        flops_achieved <span class="op">=</span> flops_per_iter <span class="op">*</span> (<span class="fl">1.0</span><span class="op">/</span>dt) <span class="co"># per second</span></span>
+<span id="cb23-184"><a href="#cb23-184" aria-hidden="true" tabindex="-1"></a>        flops_promised <span class="op">=</span> <span class="fl">312e12</span> <span class="co"># A100 GPU bfloat16 peak flops is 312 TFLOPS</span></span>
+<span id="cb23-185"><a href="#cb23-185" aria-hidden="true" tabindex="-1"></a>        mfu <span class="op">=</span> flops_achieved <span class="op">/</span> flops_promised</span>
+<span id="cb23-186"><a href="#cb23-186" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> mfu</span>
+<span id="cb23-187"><a href="#cb23-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-188"><a href="#cb23-188" aria-hidden="true" tabindex="-1"></a>    <span class="at">@torch.no_grad</span>()</span>
+<span id="cb23-189"><a href="#cb23-189" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> generate(<span class="va">self</span>, idx, max_new_tokens, temperature<span class="op">=</span><span class="fl">1.0</span>, top_k<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb23-190"><a href="#cb23-190" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb23-191"><a href="#cb23-191" aria-hidden="true" tabindex="-1"></a><span class="co">        Take a conditioning sequence of indices idx (LongTensor of shape (b,t)) and complete</span></span>
+<span id="cb23-192"><a href="#cb23-192" aria-hidden="true" tabindex="-1"></a><span class="co">        the sequence max_new_tokens times, feeding the predictions back into the model each time.</span></span>
+<span id="cb23-193"><a href="#cb23-193" aria-hidden="true" tabindex="-1"></a><span class="co">        Most likely you'll want to make sure to be in model.eval() mode of operation for this.</span></span>
+<span id="cb23-194"><a href="#cb23-194" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb23-195"><a href="#cb23-195" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(max_new_tokens):</span>
+<span id="cb23-196"><a href="#cb23-196" aria-hidden="true" tabindex="-1"></a>            <span class="co"># if the sequence context is growing too long we must crop it at block_size</span></span>
+<span id="cb23-197"><a href="#cb23-197" aria-hidden="true" tabindex="-1"></a>            idx_cond <span class="op">=</span> idx <span class="cf">if</span> idx.size(<span class="dv">1</span>) <span class="op">&lt;=</span> <span class="va">self</span>.config.block_size <span class="cf">else</span> idx[:, <span class="op">-</span><span class="va">self</span>.config.block_size:]</span>
+<span id="cb23-198"><a href="#cb23-198" aria-hidden="true" tabindex="-1"></a>            <span class="co"># forward the model to get the logits for the index in the sequence</span></span>
+<span id="cb23-199"><a href="#cb23-199" aria-hidden="true" tabindex="-1"></a>            logits, _ <span class="op">=</span> <span class="va">self</span>(idx_cond)</span>
+<span id="cb23-200"><a href="#cb23-200" aria-hidden="true" tabindex="-1"></a>            <span class="co"># pluck the logits at the final step and scale by desired temperature</span></span>
+<span id="cb23-201"><a href="#cb23-201" aria-hidden="true" tabindex="-1"></a>            logits <span class="op">=</span> logits[:, <span class="op">-</span><span class="dv">1</span>, :] <span class="op">/</span> temperature</span>
+<span id="cb23-202"><a href="#cb23-202" aria-hidden="true" tabindex="-1"></a>            <span class="co"># optionally crop the logits to only the top k options</span></span>
+<span id="cb23-203"><a href="#cb23-203" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> top_k <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb23-204"><a href="#cb23-204" aria-hidden="true" tabindex="-1"></a>                v, _ <span class="op">=</span> torch.topk(logits, <span class="bu">min</span>(top_k, logits.size(<span class="op">-</span><span class="dv">1</span>)))</span>
+<span id="cb23-205"><a href="#cb23-205" aria-hidden="true" tabindex="-1"></a>                logits[logits <span class="op">&lt;</span> v[:, [<span class="op">-</span><span class="dv">1</span>]]] <span class="op">=</span> <span class="op">-</span><span class="bu">float</span>(<span class="st">'Inf'</span>)</span>
+<span id="cb23-206"><a href="#cb23-206" aria-hidden="true" tabindex="-1"></a>            <span class="co"># apply softmax to convert logits to (normalized) probabilities</span></span>
+<span id="cb23-207"><a href="#cb23-207" aria-hidden="true" tabindex="-1"></a>            probs <span class="op">=</span> F.softmax(logits, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb23-208"><a href="#cb23-208" aria-hidden="true" tabindex="-1"></a>            <span class="co"># sample from the distribution</span></span>
+<span id="cb23-209"><a href="#cb23-209" aria-hidden="true" tabindex="-1"></a>            idx_next <span class="op">=</span> torch.multinomial(probs, num_samples<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb23-210"><a href="#cb23-210" aria-hidden="true" tabindex="-1"></a>            <span class="co"># append sampled index to the running sequence and continue</span></span>
+<span id="cb23-211"><a href="#cb23-211" aria-hidden="true" tabindex="-1"></a>            idx <span class="op">=</span> torch.cat((idx, idx_next), dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb23-212"><a href="#cb23-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-213"><a href="#cb23-213" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> idx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Doing a first-pass read on both the <code>__init__()</code> and <code>forward()</code> methods, you should see that the GPT model has the following components (ignoring dropout):</p>
 <ul>
 <li><code>transformer.wte</code>, which is an embedding layer that maps tokens to a vector embedding.</li>
@@ -690,34 +725,34 @@ class GPTConfig:
 <pre><code># TODO: Perform this computation by hand.</code></pre>
 <p>These questions above should give you a clear idea of the main components of the transformer model, the expected input and output tensor shapes, and the shapes of intermediate tensors. With this in mind, let’s explore the two modules referenced by <code>GPT</code>.</p>
 <p>We’ll start with the simple one. The LayerNorm layer is intended to be similar to <a href="https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html#torch.nn.LayerNorm">PyTorch’s LayerNorm layer</a>.</p>
-<pre><code>class LayerNorm(nn.Module):
-    """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
-
-    def __init__(self, ndim, bias):
-        super().__init__()
-        self.weight = nn.Parameter(torch.ones(ndim))
-        self.bias = nn.Parameter(torch.zeros(ndim)) if bias else None
-
-    def forward(self, input):
-        return F.layer_norm(input, self.weight.shape, self.weight, self.bias, 1e-5)</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LayerNorm(nn.Module):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ndim, bias):</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weight <span class="op">=</span> nn.Parameter(torch.ones(ndim))</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bias <span class="op">=</span> nn.Parameter(torch.zeros(ndim)) <span class="cf">if</span> bias <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, <span class="bu">input</span>):</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> F.layer_norm(<span class="bu">input</span>, <span class="va">self</span>.weight.shape, <span class="va">self</span>.weight, <span class="va">self</span>.bias, <span class="fl">1e-5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: How many parameters are in a LayerNorm layer?</p>
 <pre><code># TODO: Perform this computation by hand.</code></pre>
 <p><strong>Task</strong>: Read the description of the LayerNorm layer in PyTorch at <a href="https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html#torch.nn.LayerNorm">https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html#torch.nn.LayerNorm</a>. Then, explain how layer normalization differs from batch normalization.</p>
 <pre><code># TODO: Perform this computation by hand.</code></pre>
 <p>Let’s move on to the <code>Block</code> module. Recall that here are several <code>Block</code> modules in a GPT model, and the output of one module is the input of the next.</p>
-<pre><code>class Block(nn.Module):
-
-    def __init__(self, config):
-        super().__init__()
-        self.ln_1 = LayerNorm(config.n_embd, bias=config.bias)
-        self.attn = CausalSelfAttention(config)
-        self.ln_2 = LayerNorm(config.n_embd, bias=config.bias)
-        self.mlp = MLP(config)
-
-    def forward(self, x):
-        x = x + self.attn(self.ln_1(x))
-        x = x + self.mlp(self.ln_2(x))
-        return x</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Block(nn.Module):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ln_1 <span class="op">=</span> LayerNorm(config.n_embd, bias<span class="op">=</span>config.bias)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.attn <span class="op">=</span> CausalSelfAttention(config)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ln_2 <span class="op">=</span> LayerNorm(config.n_embd, bias<span class="op">=</span>config.bias)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mlp <span class="op">=</span> MLP(config)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">+</span> <span class="va">self</span>.attn(<span class="va">self</span>.ln_1(x))</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">+</span> <span class="va">self</span>.mlp(<span class="va">self</span>.ln_2(x))</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This module is actually quite succinct, but it also refers to modules that are yet to be defined. It consists of:</p>
 <ul>
 <li>A layer normalization layer.</li>
@@ -730,21 +765,21 @@ class GPTConfig:
 <p><strong>Task</strong>: How might the <em>skip-connections</em> in the <code>Block.forward()</code> method help with gradient flow? An intuitive explanation is sufficient here.</p>
 <pre><code># TODO: Include your explanation here.</code></pre>
 <p>With the GPT2 <code>Block</code> in mind, we will define the <code>MLP</code> module next.</p>
-<pre><code>class MLP(nn.Module):
-
-    def __init__(self, config):
-        super().__init__()
-        self.c_fc    = nn.Linear(config.n_embd, 4 * config.n_embd, bias=config.bias)
-        self.gelu    = nn.GELU()
-        self.c_proj  = nn.Linear(4 * config.n_embd, config.n_embd, bias=config.bias)
-        self.dropout = nn.Dropout(config.dropout)
-
-    def forward(self, x):
-        x = self.c_fc(x)
-        x = self.gelu(x)
-        x = self.c_proj(x)
-        x = self.dropout(x)
-        return x</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MLP(nn.Module):</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.c_fc    <span class="op">=</span> nn.Linear(config.n_embd, <span class="dv">4</span> <span class="op">*</span> config.n_embd, bias<span class="op">=</span>config.bias)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gelu    <span class="op">=</span> nn.GELU()</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.c_proj  <span class="op">=</span> nn.Linear(<span class="dv">4</span> <span class="op">*</span> config.n_embd, config.n_embd, bias<span class="op">=</span>config.bias)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dropout <span class="op">=</span> nn.Dropout(config.dropout)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.c_fc(x)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.gelu(x)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.c_proj(x)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.dropout(x)</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Immediately, we see that this MLP consists of two linear layers. The activation function used between these two layers is the <a href="https://pytorch.org/docs/stable/generated/torch.nn.GELU.html">Gaussian Error Linear Units function</a>. You can read more about it in <a href="https://arxiv.org/pdf/1606.08415.pdf">this paper</a>.</p>
 <p><strong>Task</strong>: Compute the number of parameters in a <code>MLP</code> layer in a GPT2 model.</p>
 <pre><code># TODO: Perform this computation by hand</code></pre>
@@ -754,54 +789,54 @@ class GPTConfig:
 <pre><code># TODO: Include your explanation here.</code></pre>
 <p>Finally, let’s study the definition of the <code>CausalSelfAttention</code> layer. This is the heart of the GPT model and is also the most complex module.</p>
 <p><strong>Task</strong>: Begin with a first pass read of the <code>__init__()</code> and <code>forward()</code> methods of <code>CausalSelfAttention</code> module. We will then trace through the case where <code>self.flash</code> is <code>False</code>, since the code provides more detailed explanation for the computation steps.</p>
-<pre><code>class CausalSelfAttention(nn.Module):
-
-    def __init__(self, config):
-        super().__init__()
-        assert config.n_embd % config.n_head == 0
-        # key, query, value projections for all heads, but in a batch
-        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_embd, bias=config.bias)
-        # output projection
-        self.c_proj = nn.Linear(config.n_embd, config.n_embd, bias=config.bias)
-        # regularization
-        self.attn_dropout = nn.Dropout(config.dropout)
-        self.resid_dropout = nn.Dropout(config.dropout)
-        self.n_head = config.n_head
-        self.n_embd = config.n_embd
-        self.dropout = config.dropout
-        # flash attention make GPU go brrrrr but support is only in PyTorch &gt;= 2.0
-        self.flash = hasattr(torch.nn.functional, 'scaled_dot_product_attention')
-        if not self.flash:
-            print("WARNING: using slow attention. Flash Attention requires PyTorch &gt;= 2.0")
-            # causal mask to ensure that attention is only applied to the left in the input sequence
-            self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
-                                        .view(1, 1, config.block_size, config.block_size))
-
-    def forward(self, x):
-        B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
-
-        # calculate query, key, values for all heads in batch and move head forward to be the batch dim
-        q, k, v  = self.c_attn(x).split(self.n_embd, dim=2)
-        k = k.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-        q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-        v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
-
-        # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -&gt; (B, nh, T, T)
-        if self.flash:
-            # efficient attention using Flash Attention CUDA kernels
-            y = torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask=None, dropout_p=self.dropout if self.training else 0, is_causal=True)
-        else:
-            # manual implementation of attention
-            att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
-            att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
-            att = F.softmax(att, dim=-1)
-            att = self.attn_dropout(att)
-            y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -&gt; (B, nh, T, hs)
-        y = y.transpose(1, 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side
-
-        # output projection
-        y = self.resid_dropout(self.c_proj(y))
-        return y</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CausalSelfAttention(nn.Module):</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, config):</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> config.n_embd <span class="op">%</span> config.n_head <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># key, query, value projections for all heads, but in a batch</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.c_attn <span class="op">=</span> nn.Linear(config.n_embd, <span class="dv">3</span> <span class="op">*</span> config.n_embd, bias<span class="op">=</span>config.bias)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># output projection</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.c_proj <span class="op">=</span> nn.Linear(config.n_embd, config.n_embd, bias<span class="op">=</span>config.bias)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># regularization</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.attn_dropout <span class="op">=</span> nn.Dropout(config.dropout)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.resid_dropout <span class="op">=</span> nn.Dropout(config.dropout)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_head <span class="op">=</span> config.n_head</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_embd <span class="op">=</span> config.n_embd</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dropout <span class="op">=</span> config.dropout</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># flash attention make GPU go brrrrr but support is only in PyTorch &gt;= 2.0</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flash <span class="op">=</span> <span class="bu">hasattr</span>(torch.nn.functional, <span class="st">'scaled_dot_product_attention'</span>)</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.flash:</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"WARNING: using slow attention. Flash Attention requires PyTorch &gt;= 2.0"</span>)</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># causal mask to ensure that attention is only applied to the left in the input sequence</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.register_buffer(<span class="st">"bias"</span>, torch.tril(torch.ones(config.block_size, config.block_size))</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>                                        .view(<span class="dv">1</span>, <span class="dv">1</span>, config.block_size, config.block_size))</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>        B, T, C <span class="op">=</span> x.size() <span class="co"># batch size, sequence length, embedding dimensionality (n_embd)</span></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># calculate query, key, values for all heads in batch and move head forward to be the batch dim</span></span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>        q, k, v  <span class="op">=</span> <span class="va">self</span>.c_attn(x).split(<span class="va">self</span>.n_embd, dim<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> k.view(B, T, <span class="va">self</span>.n_head, C <span class="op">//</span> <span class="va">self</span>.n_head).transpose(<span class="dv">1</span>, <span class="dv">2</span>) <span class="co"># (B, nh, T, hs)</span></span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>        q <span class="op">=</span> q.view(B, T, <span class="va">self</span>.n_head, C <span class="op">//</span> <span class="va">self</span>.n_head).transpose(<span class="dv">1</span>, <span class="dv">2</span>) <span class="co"># (B, nh, T, hs)</span></span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> v.view(B, T, <span class="va">self</span>.n_head, C <span class="op">//</span> <span class="va">self</span>.n_head).transpose(<span class="dv">1</span>, <span class="dv">2</span>) <span class="co"># (B, nh, T, hs)</span></span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -&gt; (B, nh, T, T)</span></span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.flash:</span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>            <span class="co"># efficient attention using Flash Attention CUDA kernels</span></span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask<span class="op">=</span><span class="va">None</span>, dropout_p<span class="op">=</span><span class="va">self</span>.dropout <span class="cf">if</span> <span class="va">self</span>.training <span class="cf">else</span> <span class="dv">0</span>, is_causal<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>            <span class="co"># manual implementation of attention</span></span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>            att <span class="op">=</span> (q <span class="op">@</span> k.transpose(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">/</span> math.sqrt(k.size(<span class="op">-</span><span class="dv">1</span>)))</span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>            att <span class="op">=</span> att.masked_fill(<span class="va">self</span>.bias[:,:,:T,:T] <span class="op">==</span> <span class="dv">0</span>, <span class="bu">float</span>(<span class="st">'-inf'</span>))</span>
+<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a>            att <span class="op">=</span> F.softmax(att, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>            att <span class="op">=</span> <span class="va">self</span>.attn_dropout(att)</span>
+<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> att <span class="op">@</span> v <span class="co"># (B, nh, T, T) x (B, nh, T, hs) -&gt; (B, nh, T, hs)</span></span>
+<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> y.transpose(<span class="dv">1</span>, <span class="dv">2</span>).contiguous().view(B, T, C) <span class="co"># re-assemble all head outputs side by side</span></span>
+<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># output projection</span></span>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="va">self</span>.resid_dropout(<span class="va">self</span>.c_proj(y))</span>
+<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Compute the number of parameters in the <code>c_attn</code> layer in a GPT2 model.</p>
 <pre><code># TODO: Perform this computation by hand</code></pre>
 <p><strong>Task</strong>: Like the comment in the <code>__init__()</code> method suggests, we can think of the <code>c_attn</code> layer as a combination of three <code>nn.Linear(config.n_embd, config.n_embd, bias=config.bias)</code> modules. These three networks projects the input embedding into three parts: <code>q</code> (for <em>query</em>), <code>k</code> (for <em>key</em>), and <code>v</code> (for *value).</p>
@@ -826,17 +861,17 @@ class GPTConfig:
 <p><strong>Task</strong>: Argue that the line <code>att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))</code> is computing a “distance” or “similarity” metric between the query at each token position and the key at each token position.</p>
 <pre><code># TODO: Your explanation goes here</code></pre>
 <p>The following line of code references a <code>self.bias</code> parameter, which is defined in the last line of the <code>__init__()</code> method. Since <code>block_size</code> is quite large, we can understand what <code>self.bias</code> looks like by running a similar piece of code below with a smaller <code>block_size</code> value.</p>
-<pre><code>bias = torch.tril(torch.ones(5, 5)).view(1, 1, 5, 5)
-bias</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>bias <span class="op">=</span> torch.tril(torch.ones(<span class="dv">5</span>, <span class="dv">5</span>)).view(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>bias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Explain what the above code returns. Explain how PyTorch broadcasting may be useful for computations involving this tensor—i.e., why is it okay that the first two dimensions of this tensor are 1, thus assuming that batch size = 1 and num heads = 1?</p>
 <pre><code># TODO: Your explanation goes here</code></pre>
 <p><strong>Task</strong>: We will use a similar technique of running a modified version of the next two lines of code in the <code>forward()</code> method to better understand what it does. Run the below code, and explain what the <code>masked_fill</code> function does.</p>
-<pre><code>attn = torch.rand(1, 1, 5, 5)
-attn</code></pre>
-<pre><code>masked = attn.masked_fill(bias[:,:,:5, :5] == 0, float('-inf'))
-masked</code></pre>
-<pre><code>out = F.softmax(masked, dim=-1)
-out</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>attn <span class="op">=</span> torch.rand(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>attn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>masked <span class="op">=</span> attn.masked_fill(bias[:,:,:<span class="dv">5</span>, :<span class="dv">5</span>] <span class="op">==</span> <span class="dv">0</span>, <span class="bu">float</span>(<span class="st">'-inf'</span>))</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>masked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> F.softmax(masked, dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code># Your explanation goes here</code></pre>
 <p><strong>Graded Task</strong>: This masking is in place so that query tokens cannot “look up” key/values that are at a position with a larger index. Explain why this limitation means our GPT model cannot use information in subsequent/later tokens to form an understand of what what is in the current token. (Note: this masking is the “Causal” part of Causal Self-Attention!)</p>
 <pre><code># Your explanation goes here</code></pre>
@@ -874,172 +909,172 @@ out</code></pre>
 <p>We are ready to finetune our GPT2 model on the “Friends” data set! There is no graded task in this section since training this model can take some time to achieve reasonable performance.</p>
 <p>To run this part of the lab, you will need to use a GPU. On Google Colab, you can select a session with a GPU by navigating to the “Runtime” menu, selecting “Change runtime type”, and then selecting the “T4 GPU” option.</p>
 <p>We will set up a <code>config</code> object to make it easier to store and use configs.</p>
-<pre><code>import easydict
-import math
-import time
-
-finetune_config_dict = {
-  'gradient_accumulation_steps': 32,
-  'block_size': 256,
-  'dropout': 0.2,
-  'bias': False,
-  'learning_rate': 3e-5,
-  'weight_decay': 0.1,
-  'beta1': 0.9,
-  'beta2': 0.99,
-  'grad_clip': 1.0,
-  'decay_lr': False,
-  'warmup_iters': 100,
-  'lr_decay_iters': 5000,
-  'min_lr': 0.0001}
-config = easydict.EasyDict(finetune_config_dict)</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> easydict</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>finetune_config_dict <span class="op">=</span> {</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'gradient_accumulation_steps'</span>: <span class="dv">32</span>,</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'block_size'</span>: <span class="dv">256</span>,</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'dropout'</span>: <span class="fl">0.2</span>,</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'bias'</span>: <span class="va">False</span>,</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'learning_rate'</span>: <span class="fl">3e-5</span>,</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'weight_decay'</span>: <span class="fl">0.1</span>,</span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'beta1'</span>: <span class="fl">0.9</span>,</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'beta2'</span>: <span class="fl">0.99</span>,</span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'grad_clip'</span>: <span class="fl">1.0</span>,</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'decay_lr'</span>: <span class="va">False</span>,</span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'warmup_iters'</span>: <span class="dv">100</span>,</span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'lr_decay_iters'</span>: <span class="dv">5000</span>,</span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'min_lr'</span>: <span class="fl">0.0001</span>}</span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> easydict.EasyDict(finetune_config_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>First, we need to load the GPT2 weights.</p>
-<pre><code># initialize from OpenAI GPT-2 weights
-override_args = dict(dropout=config.dropout)
-model = GPT.from_pretrained('gpt2', override_args)
-
-# crop down the model block size using model surgery
-if config.block_size &lt; model.config.block_size:
-    model.crop_block_size(config.block_size)
-
-device = 'cuda' if torch.cuda.is_available()  else 'cpu'
-model.to(device)</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize from OpenAI GPT-2 weights</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>override_args <span class="op">=</span> <span class="bu">dict</span>(dropout<span class="op">=</span>config.dropout)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GPT.from_pretrained(<span class="st">'gpt2'</span>, override_args)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co"># crop down the model block size using model surgery</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> config.block_size <span class="op">&lt;</span> model.config.block_size:</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>    model.crop_block_size(config.block_size)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> <span class="st">'cuda'</span> <span class="cf">if</span> torch.cuda.is_available()  <span class="cf">else</span> <span class="st">'cpu'</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>model.to(device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Explain why reducing the <code>block_size</code> do not significantly reduce the number of parameters, but <em>does</em> significantly reduce memory usage.</p>
 <pre><code># TODO: Include your explanation here</code></pre>
 <p>There are some additional helpers to improve training.</p>
-<pre><code># initialize a GradScaler. If enabled=False scaler is a no-op
-dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16'
-ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torch.float16}[dtype]
-ctx = nullcontext() if device == 'cpu' else torch.amp.autocast(device_type=device, dtype=ptdtype)
-scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
-
-# learning rate decay scheduler (cosine with warmup)
-def get_lr(config, it):
-    # 1) linear warmup for warmup_iters steps
-    if it &lt; config.warmup_iters:
-        return config.learning_rate * it / config.warmup_iters
-    # 2) if it &gt; lr_decay_iters, return min learning rate
-    if it &gt; config.lr_decay_iters:
-        return config.min_lr
-    # 3) in between, use cosine decay down to min learning rate
-    decay_ratio = (it - config.warmup_iters) / (config.lr_decay_iters - config.warmup_iters)
-    assert 0 &lt;= decay_ratio &lt;= 1
-    coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio)) # coeff ranges 0..1
-    return config.min_lr + coeff * (config.learning_rate - config.min_lr)
-
-# helps estimate an arbitrarily accurate loss over either split using many batches
-@torch.no_grad()
-def estimate_loss(model, train_dataset, val_dataset, block_size):
-    out = {}
-    model.eval()
-    for split in ['train', 'val']:
-        losses = torch.zeros(eval_iters)
-        dataset = train_dataset if split == 'train' else val_dataset
-        for k in range(eval_iters):
-            X, Y = get_batch(dataset, block_size, batch_size, device)
-            with ctx:
-                logits, loss = model(X, Y)
-            losses[k] = loss.item()
-        out[split] = losses.mean()
-    model.train()
-    return out</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize a GradScaler. If enabled=False scaler is a no-op</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>dtype <span class="op">=</span> <span class="st">'bfloat16'</span> <span class="cf">if</span> torch.cuda.is_available() <span class="kw">and</span> torch.cuda.is_bf16_supported() <span class="cf">else</span> <span class="st">'float16'</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>ptdtype <span class="op">=</span> {<span class="st">'float32'</span>: torch.float32, <span class="st">'bfloat16'</span>: torch.bfloat16, <span class="st">'float16'</span>: torch.float16}[dtype]</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> nullcontext() <span class="cf">if</span> device <span class="op">==</span> <span class="st">'cpu'</span> <span class="cf">else</span> torch.amp.autocast(device_type<span class="op">=</span>device, dtype<span class="op">=</span>ptdtype)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> torch.cuda.amp.GradScaler(enabled<span class="op">=</span>(dtype <span class="op">==</span> <span class="st">'float16'</span>))</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># learning rate decay scheduler (cosine with warmup)</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_lr(config, it):</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1) linear warmup for warmup_iters steps</span></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> it <span class="op">&lt;</span> config.warmup_iters:</span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> config.learning_rate <span class="op">*</span> it <span class="op">/</span> config.warmup_iters</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2) if it &gt; lr_decay_iters, return min learning rate</span></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> it <span class="op">&gt;</span> config.lr_decay_iters:</span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> config.min_lr</span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3) in between, use cosine decay down to min learning rate</span></span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>    decay_ratio <span class="op">=</span> (it <span class="op">-</span> config.warmup_iters) <span class="op">/</span> (config.lr_decay_iters <span class="op">-</span> config.warmup_iters)</span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="dv">0</span> <span class="op">&lt;=</span> decay_ratio <span class="op">&lt;=</span> <span class="dv">1</span></span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a>    coeff <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">+</span> math.cos(math.pi <span class="op">*</span> decay_ratio)) <span class="co"># coeff ranges 0..1</span></span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> config.min_lr <span class="op">+</span> coeff <span class="op">*</span> (config.learning_rate <span class="op">-</span> config.min_lr)</span>
+<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-21"><a href="#cb64-21" aria-hidden="true" tabindex="-1"></a><span class="co"># helps estimate an arbitrarily accurate loss over either split using many batches</span></span>
+<span id="cb64-22"><a href="#cb64-22" aria-hidden="true" tabindex="-1"></a><span class="at">@torch.no_grad</span>()</span>
+<span id="cb64-23"><a href="#cb64-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_loss(model, train_dataset, val_dataset, block_size):</span>
+<span id="cb64-24"><a href="#cb64-24" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> {}</span>
+<span id="cb64-25"><a href="#cb64-25" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">eval</span>()</span>
+<span id="cb64-26"><a href="#cb64-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> split <span class="kw">in</span> [<span class="st">'train'</span>, <span class="st">'val'</span>]:</span>
+<span id="cb64-27"><a href="#cb64-27" aria-hidden="true" tabindex="-1"></a>        losses <span class="op">=</span> torch.zeros(eval_iters)</span>
+<span id="cb64-28"><a href="#cb64-28" aria-hidden="true" tabindex="-1"></a>        dataset <span class="op">=</span> train_dataset <span class="cf">if</span> split <span class="op">==</span> <span class="st">'train'</span> <span class="cf">else</span> val_dataset</span>
+<span id="cb64-29"><a href="#cb64-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(eval_iters):</span>
+<span id="cb64-30"><a href="#cb64-30" aria-hidden="true" tabindex="-1"></a>            X, Y <span class="op">=</span> get_batch(dataset, block_size, batch_size, device)</span>
+<span id="cb64-31"><a href="#cb64-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> ctx:</span>
+<span id="cb64-32"><a href="#cb64-32" aria-hidden="true" tabindex="-1"></a>                logits, loss <span class="op">=</span> model(X, Y)</span>
+<span id="cb64-33"><a href="#cb64-33" aria-hidden="true" tabindex="-1"></a>            losses[k] <span class="op">=</span> loss.item()</span>
+<span id="cb64-34"><a href="#cb64-34" aria-hidden="true" tabindex="-1"></a>        out[split] <span class="op">=</span> losses.mean()</span>
+<span id="cb64-35"><a href="#cb64-35" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
+<span id="cb64-36"><a href="#cb64-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now we can begin the training loop. You may need to increase <code>max_iter</code> to obtain good results.</p>
-<pre><code>iter_num = 0
-best_val_loss = 1e9
-eval_interval = 10
-log_interval = 10
-eval_iters = 40
-max_iters = 500
-batch_size = 1
-
-# optimizer
-optimizer = model.configure_optimizers(config.weight_decay, config.learning_rate,
-   (config.beta1, config.beta2), device)
-
-# training loop
-X, Y = get_batch(train_data, config.block_size, batch_size, device) # fetch the very first batch
-t0 = time.time()
-local_iter_num = 0 # number of iterations in the lifetime of this process
-raw_model = model # unwrap DDP container if needed
-running_mfu = -1.0
-while True:
-    # determine and set the learning rate for this iteration
-    lr = get_lr(config, iter_num) if config.decay_lr else config.learning_rate
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = lr
-
-    # evaluate the loss on train/val sets and write checkpoints
-    if iter_num % eval_interval == 0:
-        losses = estimate_loss(model, train_data, val_data, config.block_size)
-        print(f"step {iter_num}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
-
-    # forward backward update, with optional gradient accumulation to simulate larger batch size
-    # and using the GradScaler if data type is float16
-    for micro_step in range(config.gradient_accumulation_steps):
-        with ctx:
-            logits, loss = model(X, Y)
-            loss = loss / config.gradient_accumulation_steps # scale the loss to account for gradient accumulation
-        # immediately async prefetch next batch while model is doing the forward pass on the GPU
-        X, Y = get_batch(train_data, config.block_size, batch_size, device)
-        # backward pass, with gradient scaling if training in fp16
-        scaler.scale(loss).backward()
-
-    # clip the gradient
-    if config.grad_clip != 0.0:
-        scaler.unscale_(optimizer)
-        torch.nn.utils.clip_grad_norm_(model.parameters(), config.grad_clip)
-
-    # step the optimizer and scaler if training in fp16
-    scaler.step(optimizer)
-    scaler.update()
-
-    # flush the gradients as soon as we can, no need for this memory anymore
-    optimizer.zero_grad(set_to_none=True)
-
-    # timing and logging
-    t1 = time.time()
-    dt = t1 - t0
-    t0 = t1
-    if iter_num % log_interval == 0:
-        # get loss as float. note: this is a CPU-GPU sync point
-        # scale up to undo the division above, approximating the true total loss (exact would have been a sum)
-        lossf = loss.item() * config.gradient_accumulation_steps
-        if local_iter_num &gt;= 5: # let the training loop settle a bit
-            mfu = raw_model.estimate_mfu(batch_size * config.gradient_accumulation_steps, dt)
-            running_mfu = mfu if running_mfu == -1.0 else 0.9*running_mfu + 0.1*mfu
-        print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms, mfu {running_mfu*100:.2f}%")
-
-    iter_num += 1
-    local_iter_num += 1
-
-    # termination conditions
-    if iter_num &gt; max_iters:
-        break</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>iter_num <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>best_val_loss <span class="op">=</span> <span class="fl">1e9</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>eval_interval <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>log_interval <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>eval_iters <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>max_iters <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a><span class="co"># optimizer</span></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> model.configure_optimizers(config.weight_decay, config.learning_rate,</span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>   (config.beta1, config.beta2), device)</span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a><span class="co"># training loop</span></span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> get_batch(train_data, config.block_size, batch_size, device) <span class="co"># fetch the very first batch</span></span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
+<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a>local_iter_num <span class="op">=</span> <span class="dv">0</span> <span class="co"># number of iterations in the lifetime of this process</span></span>
+<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a>raw_model <span class="op">=</span> model <span class="co"># unwrap DDP container if needed</span></span>
+<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>running_mfu <span class="op">=</span> <span class="op">-</span><span class="fl">1.0</span></span>
+<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># determine and set the learning rate for this iteration</span></span>
+<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>    lr <span class="op">=</span> get_lr(config, iter_num) <span class="cf">if</span> config.decay_lr <span class="cf">else</span> config.learning_rate</span>
+<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> param_group <span class="kw">in</span> optimizer.param_groups:</span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a>        param_group[<span class="st">'lr'</span>] <span class="op">=</span> lr</span>
+<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># evaluate the loss on train/val sets and write checkpoints</span></span>
+<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> iter_num <span class="op">%</span> eval_interval <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a>        losses <span class="op">=</span> estimate_loss(model, train_data, val_data, config.block_size)</span>
+<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>iter_num<span class="sc">}</span><span class="ss">: train loss </span><span class="sc">{</span>losses[<span class="st">'train'</span>]<span class="sc">:.4f}</span><span class="ss">, val loss </span><span class="sc">{</span>losses[<span class="st">'val'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># forward backward update, with optional gradient accumulation to simulate larger batch size</span></span>
+<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and using the GradScaler if data type is float16</span></span>
+<span id="cb65-32"><a href="#cb65-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> micro_step <span class="kw">in</span> <span class="bu">range</span>(config.gradient_accumulation_steps):</span>
+<span id="cb65-33"><a href="#cb65-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> ctx:</span>
+<span id="cb65-34"><a href="#cb65-34" aria-hidden="true" tabindex="-1"></a>            logits, loss <span class="op">=</span> model(X, Y)</span>
+<span id="cb65-35"><a href="#cb65-35" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> loss <span class="op">/</span> config.gradient_accumulation_steps <span class="co"># scale the loss to account for gradient accumulation</span></span>
+<span id="cb65-36"><a href="#cb65-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># immediately async prefetch next batch while model is doing the forward pass on the GPU</span></span>
+<span id="cb65-37"><a href="#cb65-37" aria-hidden="true" tabindex="-1"></a>        X, Y <span class="op">=</span> get_batch(train_data, config.block_size, batch_size, device)</span>
+<span id="cb65-38"><a href="#cb65-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># backward pass, with gradient scaling if training in fp16</span></span>
+<span id="cb65-39"><a href="#cb65-39" aria-hidden="true" tabindex="-1"></a>        scaler.scale(loss).backward()</span>
+<span id="cb65-40"><a href="#cb65-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-41"><a href="#cb65-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clip the gradient</span></span>
+<span id="cb65-42"><a href="#cb65-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> config.grad_clip <span class="op">!=</span> <span class="fl">0.0</span>:</span>
+<span id="cb65-43"><a href="#cb65-43" aria-hidden="true" tabindex="-1"></a>        scaler.unscale_(optimizer)</span>
+<span id="cb65-44"><a href="#cb65-44" aria-hidden="true" tabindex="-1"></a>        torch.nn.utils.clip_grad_norm_(model.parameters(), config.grad_clip)</span>
+<span id="cb65-45"><a href="#cb65-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-46"><a href="#cb65-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step the optimizer and scaler if training in fp16</span></span>
+<span id="cb65-47"><a href="#cb65-47" aria-hidden="true" tabindex="-1"></a>    scaler.step(optimizer)</span>
+<span id="cb65-48"><a href="#cb65-48" aria-hidden="true" tabindex="-1"></a>    scaler.update()</span>
+<span id="cb65-49"><a href="#cb65-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-50"><a href="#cb65-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># flush the gradients as soon as we can, no need for this memory anymore</span></span>
+<span id="cb65-51"><a href="#cb65-51" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad(set_to_none<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb65-52"><a href="#cb65-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-53"><a href="#cb65-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># timing and logging</span></span>
+<span id="cb65-54"><a href="#cb65-54" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> time.time()</span>
+<span id="cb65-55"><a href="#cb65-55" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> t1 <span class="op">-</span> t0</span>
+<span id="cb65-56"><a href="#cb65-56" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> t1</span>
+<span id="cb65-57"><a href="#cb65-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> iter_num <span class="op">%</span> log_interval <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb65-58"><a href="#cb65-58" aria-hidden="true" tabindex="-1"></a>        <span class="co"># get loss as float. note: this is a CPU-GPU sync point</span></span>
+<span id="cb65-59"><a href="#cb65-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># scale up to undo the division above, approximating the true total loss (exact would have been a sum)</span></span>
+<span id="cb65-60"><a href="#cb65-60" aria-hidden="true" tabindex="-1"></a>        lossf <span class="op">=</span> loss.item() <span class="op">*</span> config.gradient_accumulation_steps</span>
+<span id="cb65-61"><a href="#cb65-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> local_iter_num <span class="op">&gt;=</span> <span class="dv">5</span>: <span class="co"># let the training loop settle a bit</span></span>
+<span id="cb65-62"><a href="#cb65-62" aria-hidden="true" tabindex="-1"></a>            mfu <span class="op">=</span> raw_model.estimate_mfu(batch_size <span class="op">*</span> config.gradient_accumulation_steps, dt)</span>
+<span id="cb65-63"><a href="#cb65-63" aria-hidden="true" tabindex="-1"></a>            running_mfu <span class="op">=</span> mfu <span class="cf">if</span> running_mfu <span class="op">==</span> <span class="op">-</span><span class="fl">1.0</span> <span class="cf">else</span> <span class="fl">0.9</span><span class="op">*</span>running_mfu <span class="op">+</span> <span class="fl">0.1</span><span class="op">*</span>mfu</span>
+<span id="cb65-64"><a href="#cb65-64" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"iter </span><span class="sc">{</span>iter_num<span class="sc">}</span><span class="ss">: loss </span><span class="sc">{</span>lossf<span class="sc">:.4f}</span><span class="ss">, time </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:.2f}</span><span class="ss">ms, mfu </span><span class="sc">{</span>running_mfu<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb65-65"><a href="#cb65-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-66"><a href="#cb65-66" aria-hidden="true" tabindex="-1"></a>    iter_num <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb65-67"><a href="#cb65-67" aria-hidden="true" tabindex="-1"></a>    local_iter_num <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb65-68"><a href="#cb65-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-69"><a href="#cb65-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># termination conditions</span></span>
+<span id="cb65-70"><a href="#cb65-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> iter_num <span class="op">&gt;</span> max_iters:</span>
+<span id="cb65-71"><a href="#cb65-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here is some code you can use to generate a sequence using the fine-tuned GPT2 model.</p>
-<pre><code>init_from = 'resume' # either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')
-out_dir = 'out' # ignored if init_from is not 'resume'
-start = "\n" # or "&lt;|endoftext|&gt;" or etc. Can also specify a file, use as: "FILE:prompt.txt"
-num_samples = 10 # number of samples to draw
-max_new_tokens = 500 # number of tokens generated in each sample
-temperature = 0.8 # 1.0 = no change, &lt; 1.0 = less random, &gt; 1.0 = more random, in predictions
-top_k = 200 # retain only the top_k most likely tokens, clamp others to have 0 probability
-
-
-enc = tiktoken.get_encoding("gpt2")
-encode = lambda s: enc.encode(s, allowed_special={"&lt;|endoftext|&gt;"})
-decode = lambda l: enc.decode(l)
-
-start_ids = encode(start)
-x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
-
-# model = finetuned_model
-# run generation
-with torch.no_grad():
-    with ctx:
-        for k in range(num_samples):
-            y = model.generate(x, max_new_tokens, temperature=temperature, top_k=top_k)
-            print(decode(y[0].tolist()))
-            print('---------------')</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>init_from <span class="op">=</span> <span class="st">'resume'</span> <span class="co"># either 'resume' (from an out_dir) or a gpt2 variant (e.g. 'gpt2-xl')</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>out_dir <span class="op">=</span> <span class="st">'out'</span> <span class="co"># ignored if init_from is not 'resume'</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="co"># or "&lt;|endoftext|&gt;" or etc. Can also specify a file, use as: "FILE:prompt.txt"</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="dv">10</span> <span class="co"># number of samples to draw</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>max_new_tokens <span class="op">=</span> <span class="dv">500</span> <span class="co"># number of tokens generated in each sample</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="fl">0.8</span> <span class="co"># 1.0 = no change, &lt; 1.0 = less random, &gt; 1.0 = more random, in predictions</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>top_k <span class="op">=</span> <span class="dv">200</span> <span class="co"># retain only the top_k most likely tokens, clamp others to have 0 probability</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>enc <span class="op">=</span> tiktoken.get_encoding(<span class="st">"gpt2"</span>)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>encode <span class="op">=</span> <span class="kw">lambda</span> s: enc.encode(s, allowed_special<span class="op">=</span>{<span class="st">"&lt;|endoftext|&gt;"</span>})</span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>decode <span class="op">=</span> <span class="kw">lambda</span> l: enc.decode(l)</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>start_ids <span class="op">=</span> encode(start)</span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (torch.tensor(start_ids, dtype<span class="op">=</span>torch.<span class="bu">long</span>, device<span class="op">=</span>device)[<span class="va">None</span>, ...])</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a><span class="co"># model = finetuned_model</span></span>
+<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a><span class="co"># run generation</span></span>
+<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> ctx:</span>
+<span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(num_samples):</span>
+<span id="cb66-22"><a href="#cb66-22" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> model.generate(x, max_new_tokens, temperature<span class="op">=</span>temperature, top_k<span class="op">=</span>top_k)</span>
+<span id="cb66-23"><a href="#cb66-23" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(decode(y[<span class="dv">0</span>].tolist()))</span>
+<span id="cb66-24"><a href="#cb66-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'---------------'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

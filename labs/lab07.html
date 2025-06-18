@@ -347,23 +347,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Part 4. Your analysis of the confusion matrix. (1 point)</li>
 <li>Part 4. Your explanation for how to mitigate an issue we notice by visually inspecting misclassified images. (1 point)</li>
 </ul>
-<pre><code>import matplotlib
-import numpy as np
-import matplotlib.pyplot as plt
-
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import torchvision.models, torchvision.datasets
-
-%matplotlib inline</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.models, torchvision.datasets</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="part-1.-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
 <p>We will begin by downloading the data onto Google Colab.</p>
-<pre><code># Download lab data file
-!wget https://www.cs.toronto.edu/~lczhang/413/asl_data.zip
-!unzip asl_data.zip</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download lab data file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>www.cs.toronto.edu<span class="op">/~</span>lczhang<span class="op">/</span><span class="dv">413</span><span class="op">/</span>asl_data.<span class="bu">zip</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>unzip asl_data.<span class="bu">zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The file structure we use is intentional, so that we can use <code>torchvision.datasets.ImageFolder</code> to help load our data and create labels.</p>
 <p>You can read what <code>torchvision.datasets.ImageFolder</code> does for us here https://pytorch.org/docs/stable/torchvision/datasets.html#imagefolder</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train_path <span class="op">=</span> <span class="st">"asl_data/train/"</span> <span class="co"># edit me</span></span>
@@ -379,7 +379,7 @@ import torchvision.models, torchvision.datasets
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    plt.imshow(x.transpose(<span class="dv">2</span>, <span class="dv">0</span>).transpose(<span class="dv">0</span>, <span class="dv">1</span>).numpy()) <span class="co"># display an image</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span> <span class="co"># uncomment if you'd like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: What do the variables <code>x</code> and <code>t</code> contain? What is the shape of our images? What are our labels? Based on what you learned in Part (a), how were the labels generated from the folder structure?</p>
-<pre><code># Your explanation goes here</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We saw in the earlier tutorials that PyTorch has a utility to help us creat minibatches with our data. We can use the same DataLoader helper here:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -387,12 +387,12 @@ import torchvision.models, torchvision.datasets
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x, t)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span> <span class="co"># uncomment if you'd like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: What do the variables <code>x</code> and <code>t</code> contain? What are their shapes? What data do they contain?</p>
-<pre><code># Your explanation goes here</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: How many images are there in the training, validation, and test sets?</p>
-<pre><code># Your explanation goes here</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice that there are <em>fewer</em> images in the training set, compared to the validation and test sets. This is so that we can explore the effect of having a limited training set.</p>
 <p><strong>Graded Task</strong>: The data set is generated by students taking pictures of their hand while making the corresponding gestures. We therefor split the training, validation, and test sets were split so that images generated by a student all belongs in a single data set. In other words, we avoid cases where some students’ images are in the training set and others end up in the test set. Why do you think this important for obtaining a representative test accuracy?</p>
-<pre><code># Your explanation goes here</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="part-2.-training-a-cnn-model" class="level2">
 <h2 class="anchored" data-anchor-id="part-2.-training-a-cnn-model">Part 2. Training a CNN Model</h2>
@@ -544,11 +544,11 @@ import torchvision.models, torchvision.datasets
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(bn<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Compare the two sets of training curves above for the CNN model with and without batch normalization. What is the effect of batch normalization on the training loss and accuracy? What about the validation accuracy?</p>
-<pre><code># TODO: Include your analysis here
-# SOLUTION - training loss/acc improves a lot more quickly with BN
-# SOLUTION   but final val loss is about the same for this task</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your analysis here</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SOLUTION - training loss/acc improves a lot more quickly with BN</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SOLUTION   but final val loss is about the same for this task</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: We used the layer called <code>BatchNorm2d</code> in our CNN. What do you think is the difference between <code>BatchNorm2d</code> and <code>BatchNorm1d</code>? Why are we using <code>BatchNorm2d</code> in our CNN? Why would we use <code>BatchNorm1d</code> in an MLP? You may wish to consult the PyTorch documentation. (How can you find it?)</p>
-<pre><code># Explain your answer here</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explain your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Run the training code below to explore the effect of varying the model width for this particular data set.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">2</span>, bn<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -559,12 +559,12 @@ import torchvision.models, torchvision.datasets
 <p><strong>Graded Task</strong>: What is the effect of varying the model width above for this particular data set? Do you notice an effect on the training loss? What about the training/validation accuracy? The final validation accuracy? (Your answer may or may not match your expectations. Please answer based on the actual results above.)</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your analysis here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Run the training code below to explore the effect of weight decay when training a large model.</p>
-<pre><code>cnn = CNN(width=16, bn=False)
-train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.001)</code></pre>
-<pre><code>cnn = CNN(width=16, bn=True) # try with batch norm on
-train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.001)</code></pre>
-<pre><code>cnn = CNN(width=16, bn=True) # try decreasing weight decay parameter
-train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=25, weight_decay=0.0001)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">16</span>, bn<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>, weight_decay<span class="op">=</span><span class="fl">0.001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">16</span>, bn<span class="op">=</span><span class="va">True</span>) <span class="co"># try with batch norm on</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>, weight_decay<span class="op">=</span><span class="fl">0.001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN(width<span class="op">=</span><span class="dv">16</span>, bn<span class="op">=</span><span class="va">True</span>) <span class="co"># try decreasing weight decay parameter</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>train_model(cnn, train_data, valid_data, batch_size<span class="op">=</span><span class="dv">64</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>, num_epochs<span class="op">=</span><span class="dv">50</span>, plot_every<span class="op">=</span><span class="dv">25</span>, weight_decay<span class="op">=</span><span class="fl">0.0001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: What is the effect of setting weight decay to the above value? Do you notice an effect on the training loss? What about the training/validation accuracy? The final validation accuracy? (Again, your answer may or may not match your expectations. Please answer based on the actual results above.)</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your analysis here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Note that there is quite a bit of noise in the results that we might obtain above. That is, if you run the same code twice, you may obtain different answers. Why might that be? What are two sources of noise/randomness?</p>
@@ -575,35 +575,35 @@ train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num
 <p>One interesting phenomenon is called <strong>double descent</strong>. In statistical learning theory, we expect validation error to <em>decrease</em> with increase model capacity, and then <em>increase</em> as the model overfits to the number of data points available for training. In practise, in neural networks, we often see that as model capacity increases, validation error first decreases, then increase, and then <strong>decrease again</strong>—hence the name “double descent”.</p>
 <p>In fact, the increase in validation error is actually quite subtle. However, what is readily apparent is that in most cases, increasing model capacity does <em>not</em> result in a decrease in validation accuracy.</p>
 <p><strong>Optional Task</strong>: To illustrate that validation accuracy is unlikely to decrease with increased model parameter, train the below network.</p>
-<pre><code># Uncomment to run. 
-# cnn = CNN(width=40, bn=True)
-# train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=50)</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment to run. </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cnn = CNN(width=40, bn=True)</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num_epochs=50, plot_every=50)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Double descent is actually not that mysterious. It comes from the fact that when capacity is large enough there are many parameter choices that achieves 100% training accuracy, the neural network optimization procedure is effectively choosing a <em>best parameters</em> out of the many that can achieve this perfect training accuracy. This differs from when capacity is low, where the optimization process needs to find a set of parameter choices that best fits the training data—since no choice of parameters fits the training data perfectly. When the capacity is just large enough to be able to find parameters that fit the data, but too small for there be a range of parameter choices available to be able to select a “best” one.</p>
 <p>This twitter thread written by biostatistics professor Daniela Witten also provides an intuitive explanation, using polynomial curve fitting as an example: <a href="https://twitter.com/daniela_witten/status/1292293102103748609">https://twitter.com/daniela_witten/status/1292293102103748609</a></p>
 <p>Double descent explored in depth in this paper here: <a href="https://openreview.net/pdf?id=B1g5sA4twr">https://openreview.net/pdf?id=B1g5sA4twr</a> This paper highlights that the increase in validation/test error occurs when the training accuracy approximates 100%. Moreover, the double descent phenomena is noticable when varying model capacity (e.g.&nbsp;number of parameters) and when varying the number of iterations/epochs of training.</p>
 <p>We will attempt to explore the latter effect—i.e.&nbsp;we will train a large model, use a small numer of training data points, and explore how each iteration of training impacts validation accuracy. The effect is subtle and, depending on your neural network initialization, you may not see an effect. So, a training curve is also provided for you to analyze.</p>
 <p><strong>Optional Task</strong>: Run the code below to try and reproduce the “double descent” phenomena. This code will take a while to run, so you may wish to continue with the remaining questions while it runs.</p>
-<pre><code># use a subset of the training data
-# uncomment to train
-
-# train_data_subset, _ =  random_split(train_data, [50, len(train_data)-50])
-# cnn = CNN(width=20)
-# train_model(cnn,
-#             train_data_subset,
-#             valid_data,
-#             batch_size=50, # set batch_size=len(train_data_subset) to minimize training noise
-#             num_epochs=200,
-#             plot_every=1,  # plot every epoch (this is slow)
-#             learning_rate=0.0001)  # choose a low learning rate</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use a subset of the training data</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># uncomment to train</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># train_data_subset, _ =  random_split(train_data, [50, len(train_data)-50])</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># cnn = CNN(width=20)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># train_model(cnn,</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#             train_data_subset,</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#             valid_data,</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#             batch_size=50, # set batch_size=len(train_data_subset) to minimize training noise</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#             num_epochs=200,</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#             plot_every=1,  # plot every epoch (this is slow)</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#             learning_rate=0.0001)  # choose a low learning rate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For reference, here is the our training curve showing the loss and accuracy over 200 iterations:</p>
 <p><img src="https://www.cs.toronto.edu/~lczhang/413/double_descent_loss.png" width="400"> <img src="https://www.cs.toronto.edu/~lczhang/413/double_descent.png" width="400"></p>
 <p>We are not able to consistently reproduce this result (e.g., due to initialization), so it is totally reasonable for your figure to look different!</p>
 <p><strong>Task</strong>: In the provided training curve, during which iterations do the validation accuracy initially increase (i.e.&nbsp;validation error decrease)?</p>
-<pre><code># TODO: Include your answer here</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: In the provided training curve, during which iterations do the validation accuracy decrease slightly? Approximately what training accuracy is achieved at this piont?</p>
-<pre><code># TODO: Include your answer here</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: In the provided training curve, during which iterations do the validation accuracy increase for a second time (i.e.&nbsp;validation error descends for a second time)?</p>
-<pre><code># TODO: Include your answer here</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="part-3.-transfer-learning" class="level2">
 <h2 class="anchored" data-anchor-id="part-3.-transfer-learning">Part 3. Transfer Learning</h2>
@@ -656,49 +656,49 @@ train_model(cnn, train_data, valid_data, batch_size=64, learning_rate=0.001, num
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Train the linear model. Include your output in your submission</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>train_model(m_linear, train_data_fets, valid_data_fets) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Compare this model with the CNN() models that we trained earlier. How does this model perform in terms of validation accuracy? What about in terms of the time it took to train this model?</p>
-<pre><code># TODO: Your observation goes here</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your observation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: We decide to use AlexNet features as input to our MLP, and avoided tuning AlexNet weights. However, we could have considered AlexNet to be a part of our model, and continue to tune AlexNet weights to improve our model performance. What are the advantages and disadvantages of continuing to tune AlexNet weights?</p>
-<pre><code># TODO</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="part-4.-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-4.-data">Part 4. Data</h2>
 <p><strong>Task</strong>: Report the test accuracy on this transfer learning model.</p>
-<pre><code># TODO
-get_accuracy(m_linear, test_data_fets) # SOLUTION</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>get_accuracy(m_linear, test_data_fets) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: Use this code below to construct the confusion matrix for this model over the test set.</p>
-<pre><code>from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-
-import sklearn
-label = "ABCDEFGHI"
-def plot_confusion(model, data):
-    n = 0
-    ts = []
-    ys = []
-    for x, t in data:
-        z = model(x.unsqueeze(0))
-        y = int(torch.argmax(z))
-        ts.append(t)
-        ys.append(y)
-
-    cm = confusion_matrix(ts, ys)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=label)
-    plt.figure()
-    disp.plot()
-
-plot_confusion(m_linear, test_data_fets)</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> <span class="st">"ABCDEFGHI"</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_confusion(model, data):</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    ts <span class="op">=</span> []</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    ys <span class="op">=</span> []</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x, t <span class="kw">in</span> data:</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> model(x.unsqueeze(<span class="dv">0</span>))</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="bu">int</span>(torch.argmax(z))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        ts.append(t)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>        ys.append(y)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    cm <span class="op">=</span> confusion_matrix(ts, ys)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm, display_labels<span class="op">=</span>label)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    plt.figure()</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>    disp.plot()</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>plot_confusion(m_linear, test_data_fets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: Which class is most likely mistaken as another? Is this reasonable? (i.e.&nbsp;is that class particularly challenging, or very similar to another class?)</p>
-<pre><code># TODO: Include your analysis here</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your analysis here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: In order to understand where errors come from, it is <em>crucial</em> that we explore why and how our models fail. A first step is to visually inspect the test data points where failure occurs. That way, we can identify what we can do to prevent/fix errors before our models are deployed.</p>
 <p>Run the below code to display images in the test set that our model <em>misclassifies</em>:</p>
-<pre><code>for i, (x, t) in enumerate(test_data_fets):
-    y = int(torch.argmax(m_linear(x)))
-    if not (y == t):
-        plt.figure()
-        plt.imshow(test_data[i][0].transpose(0,1).transpose(1,2).numpy())</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (x, t) <span class="kw">in</span> <span class="bu">enumerate</span>(test_data_fets):</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="bu">int</span>(torch.argmax(m_linear(x)))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> (y <span class="op">==</span> t):</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        plt.imshow(test_data[i][<span class="dv">0</span>].transpose(<span class="dv">0</span>,<span class="dv">1</span>).transpose(<span class="dv">1</span>,<span class="dv">2</span>).numpy())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Task</strong>: By visually inspecting these misclassified images, we see that there are two main reasons for misclassification. What reason for misclassification is due to a mistake in the formatting of the test set images?</p>
-<pre><code># TODO</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Graded Task</strong>: We also see a much more serious issue, where gestures made by individuals with darker skin tones may be more frequently misclasified. This result suggests that errors in the model may impact some groups more than others. What steps should we take to mitigate this issue?</p>
-<pre><code># TODO</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
