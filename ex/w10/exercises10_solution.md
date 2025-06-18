@@ -2,6 +2,7 @@
 solutions: true
 geometry: margin=0.75in
 format:
+  html: default
   pdf:
     header-includes: |
         \usepackage{../latex_packages/abbreviations}

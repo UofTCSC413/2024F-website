@@ -1,6 +1,7 @@
 ---
 solutions: true
-format:
+format: 
+  html: default
   pdf:
     geometry: margin=0.75in
     header-includes: |

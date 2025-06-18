@@ -1,6 +1,7 @@
 ---
 solutions: true
 format:
+  html: default
   pdf:
     geometry: margin=0.75in
     header-includes: |
@@ -16,7 +17,6 @@ format:
         \cfoot{{\thepage}}
         \rfoot{{}}
 ---
-
 
 ## Exercise 1 - Maximum Likelihood Estimation Refresher
 {{< include questions/prob-mle.md >}}
