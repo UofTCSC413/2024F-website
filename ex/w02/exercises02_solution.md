@@ -1,5 +1,6 @@
 ---
 solutions: true
+
 geometry: margin=0.75in
 header-includes: |
     \usepackage{../latex_packages/abbreviations}
@@ -13,29 +14,30 @@ header-includes: |
     \lfoot{{}}
     \cfoot{{\thepage}}
     \rfoot{{}}
-...
+---
 
 
 ## Exercise 1 - Eigenvectors and Eigenvalues
-!include questions/linalg-evs.md
+
+{{< include questions/linalg-evs.md >}}
 
 ### Solution 
-!include questions/linalg-evs-sol.md
+{{< include questions/linalg-evs-sol.md >}}
 
 ## Exercise 2 - Variance and Expectation
-!include questions/prob-evvar.md
+{{< include questions/prob-evvar.md >}}
 
 ### Solution
-!include questions/prob-evvar-sol.md
+{{< include questions/prob-evvar-sol.md >}}
 
 ## Exercise 3 - Linear Regression
-!include questions/linreg.md
+{{< include questions/linreg.md >}}
 
 ### Solution
-!include questions/linreg-sol.md
+{{< include questions/linreg-sol.md >}}
 
 ## Exercise 4 - Gradients and Computation Graphs
-!include questions/nn-compgraph.md
+{{< include questions/nn-compgraph.md >}}
 
 ### Solution
-!include questions/nn-compgraph-sol.md
+{{< include questions/nn-compgraph-sol.md >}}

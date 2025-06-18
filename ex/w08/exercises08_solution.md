@@ -1,5 +1,6 @@
 ---
 solutions: true
+
 geometry: margin=0.75in
 header-includes: |
     \usepackage{../latex_packages/abbreviations}
@@ -13,23 +14,22 @@ header-includes: |
     \lfoot{{}}
     \cfoot{{\thepage}}
     \rfoot{{}}
-...
-
+---
 
 ## Exercise 1 - RNN for Sentiment Analysis
-!include `questions/rnn-sentiment.md`
+{{< include questions/rnn-sentiment.md >}}
 
 ### Solution
-!include `questions/rnn-sentiment-sol.md`
+{{< include questions/rnn-sentiment-sol.md >}}
 
 ## Exercise 2 - Scalar RNN
-!include `questions/rnn-scalar.md`
+{{< include questions/rnn-scalar.md >}}
 
 ### Solution
-!include `questions/rnn-scalar-sol.md`
+{{< include questions/rnn-scalar-sol.md >}}
 
 ## Exercise 3 - RNN Addition
-!include `questions/rnn-addition.md`
+{{< include questions/rnn-addition.md >}}
 
 ### Solution
-!include `questions/rnn-addition-sol.md`
+{{< include questions/rnn-addition-sol.md >}}

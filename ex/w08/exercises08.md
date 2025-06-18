@@ -1,5 +1,6 @@
 ---
 solutions: true
+
 geometry: margin=0.75in
 header-includes: |
     \usepackage{../latex_packages/abbreviations}
@@ -13,7 +14,7 @@ header-includes: |
     \lfoot{{}}
     \cfoot{{\thepage}}
     \rfoot{{}}
-...
+---
 
 
 

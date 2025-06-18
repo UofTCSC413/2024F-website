@@ -13,19 +13,18 @@ header-includes: |
     \lfoot{{}}
     \cfoot{{\thepage}}
     \rfoot{{}}
-...
+---
 
 
 <!-- Gutman(2022), ex 1.3 -->
 ## Exercise 1 - Eigenvectors and Eigenvalues
-!include questions/linalg-evs.md
-
+{{< include questions/linalg-evs.md >}}
 
 ## Exercise 2 - Variance and Expectation
-!include questions/prob-evvar.md
+{{< include questions/prob-evvar.md >}}
 
 ## Exercise 3 - Linear Regression
-!include questions/linreg.md
+{{< include questions/linreg.md >}}
 
 ## Exercise 4 - Gradients and Computation Graphs
-!include questions/nn-compgraph.md
+{{< include questions/nn-compgraph.md >}}
