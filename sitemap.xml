@@ -94,7 +94,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w08/exercises08.html</loc>
-    <lastmod>2025-06-18T18:31:38.541Z</lastmod>
+    <lastmod>2025-06-18T21:00:58.206Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/questions/attn-transformers-sol.html</loc>
@@ -117,6 +117,10 @@
     <lastmod>2025-06-17T12:57:04.150Z</lastmod>
   </url>
   <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/exercises09.html</loc>
+    <lastmod>2025-06-18T20:55:40.777Z</lastmod>
+  </url>
+  <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/questions/cnn-by_hand.html</loc>
     <lastmod>2025-06-17T12:57:04.143Z</lastmod>
   </url>
@@ -131,6 +135,10 @@
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/questions/opt-influence_functions.html</loc>
     <lastmod>2025-06-17T12:57:04.144Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/exercises07_solution.html</loc>
+    <lastmod>2025-06-18T20:55:11.363Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/questions/tconv-params.html</loc>
@@ -151,6 +159,10 @@
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/questions/tcons-by_hand-notes.html</loc>
     <lastmod>2025-06-17T12:57:04.151Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/exercises10_solution.html</loc>
+    <lastmod>2025-06-18T20:55:46.237Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/questions/cnn-by_hand.html</loc>
@@ -177,6 +189,10 @@
     <lastmod>2025-06-17T12:57:04.155Z</lastmod>
   </url>
   <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/exercises11_solution.html</loc>
+    <lastmod>2025-06-18T20:55:55.800Z</lastmod>
+  </url>
+  <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/questions/linalg-evs.html</loc>
     <lastmod>2025-06-17T12:57:04.127Z</lastmod>
   </url>
@@ -194,7 +210,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/exercises02.html</loc>
-    <lastmod>2025-06-18T18:27:35.862Z</lastmod>
+    <lastmod>2025-06-18T21:00:18.367Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/questions/opt-momentum-sol.html</loc>
@@ -207,6 +223,10 @@
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/questions/calc-taylor-sol.html</loc>
     <lastmod>2025-06-17T12:57:04.137Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/exercises05_solution.html</loc>
+    <lastmod>2025-06-18T20:54:47.244Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w04/questions/cnn-sizes-sol.html</loc>
@@ -225,6 +245,14 @@
     <lastmod>2025-06-17T12:57:04.133Z</lastmod>
   </url>
   <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w04/exercises04.html</loc>
+    <lastmod>2025-06-18T20:54:39.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w04/exercises04_solution.html</loc>
+    <lastmod>2025-06-18T20:54:33.214Z</lastmod>
+  </url>
+  <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/questions/autodiff-modes.html</loc>
     <lastmod>2025-06-17T12:57:04.131Z</lastmod>
   </url>
@@ -235,6 +263,10 @@
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/questions/prob-mle-sol.html</loc>
     <lastmod>2025-06-17T12:57:04.132Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/exercises03.html</loc>
+    <lastmod>2025-06-18T20:53:44.888Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/weeks/week-15.html</loc>
@@ -345,6 +377,10 @@
     <lastmod>2025-06-17T21:04:23.226Z</lastmod>
   </url>
   <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/exercises03_solution.html</loc>
+    <lastmod>2025-06-18T20:54:19.499Z</lastmod>
+  </url>
+  <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w03/questions/autodiff-modes-sol.html</loc>
     <lastmod>2025-06-17T12:57:04.130Z</lastmod>
   </url>
@@ -381,6 +417,10 @@
     <lastmod>2025-06-17T12:57:04.136Z</lastmod>
   </url>
   <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/exercises05.html</loc>
+    <lastmod>2025-06-18T20:54:54.066Z</lastmod>
+  </url>
+  <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w05/questions/calc-taylor.html</loc>
     <lastmod>2025-06-17T12:57:04.137Z</lastmod>
   </url>
@@ -394,7 +434,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/exercises02_solution.html</loc>
-    <lastmod>2025-06-18T18:27:41.880Z</lastmod>
+    <lastmod>2025-06-18T21:00:29.397Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/questions/nn-compgraph.html</loc>
@@ -411,6 +451,10 @@
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w02/questions/prob-evvar.html</loc>
     <lastmod>2025-06-17T12:57:04.130Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/exercises11.html</loc>
+    <lastmod>2025-06-18T20:56:00.207Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w11/questions/pytorch-parameter_count.html</loc>
@@ -437,6 +481,10 @@
     <lastmod>2025-06-17T12:57:04.155Z</lastmod>
   </url>
   <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/exercises10.html</loc>
+    <lastmod>2025-06-18T20:55:50.360Z</lastmod>
+  </url>
+  <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/questions/tconv-by_hand.html</loc>
     <lastmod>2025-06-17T12:57:04.152Z</lastmod>
   </url>
@@ -451,6 +499,10 @@
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w10/questions/tconv-sizes.html</loc>
     <lastmod>2025-06-17T12:57:04.153Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/exercises07.html</loc>
+    <lastmod>2025-06-18T20:55:15.858Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w07/exercises07-notes.html</loc>
@@ -473,6 +525,10 @@
     <lastmod>2025-06-17T12:57:04.144Z</lastmod>
   </url>
   <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/exercises09_solution.html</loc>
+    <lastmod>2025-06-18T20:55:36.947Z</lastmod>
+  </url>
+  <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w09/questions/attn-transformers_by_hand-sol.html</loc>
     <lastmod>2025-06-17T12:57:04.150Z</lastmod>
   </url>
@@ -490,7 +546,7 @@
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w08/exercises08_solution.html</loc>
-    <lastmod>2025-06-18T18:31:25.031Z</lastmod>
+    <lastmod>2025-06-18T21:01:04.746Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w08/questions/rnn-sentiment.html</loc>
@@ -503,6 +559,14 @@
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w08/questions/rnn-addition-sol.html</loc>
     <lastmod>2025-06-17T12:57:04.146Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w06/exercises06.html</loc>
+    <lastmod>2025-06-18T20:55:06.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://uoftcsc413.github.io/2024F-website/ex/w06/exercises06_solution.html</loc>
+    <lastmod>2025-06-18T20:55:00.697Z</lastmod>
   </url>
   <url>
     <loc>https://uoftcsc413.github.io/2024F-website/ex/w06/questions/prob-variance.html</loc>

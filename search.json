@@ -3163,6 +3163,34 @@
     "text": "Transformers use a scaled dot product attention mechanism given by \\[\nC\n= \\text{attention}(Q, K, V)\n= \\text{softmax}\\left(\\fr{QK^\\top}{\\sqrt{d}}\\right) V,\n\\] where \\(Q\\in\\R^{n_q\\times d_k}\\), \\(K\\in\\R^{n_k\\times d_k}\\), \\(V\\in\\R^{n_k\\times d_v}\\).\n\nIs the softmax function here applied row-wise or column-wise? What is the shape of the result?\nWhat is the value of \\(d\\)? Why is it needed?\nWhat is the computational complexity of this attention mechanism? How many additions and multiplications are required? Assume the canonical matrix multiplcation and not counting \\(\\exp(x)\\) towards computational cost.\nIn the masked variant of the module, a masking matrix is added before the softmax function is applied. What are its values and its shape? For simplicity, assume \\(n_q=n_k\\)."
   },
   {
+    "objectID": "ex/w09/exercises09.html",
+    "href": "ex/w09/exercises09.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given a set of vectors \\[\n\\fh_1 = (1,2,3)^\\top,\\quad\n\\fh_2 = (1,2,1)^\\top,\\quad\n\\fh_3 = (0,1,-1)^\\top\n\\] and an alignment source vector \\(\\fs=(1,2,1)^\\top\\). Compute the resulting dot-product attention weights \\(\\alpha_i\\) for \\(i=1,2,3\\) and the resulting context vector \\(\\fc\\)."
+  },
+  {
+    "objectID": "ex/w09/exercises09.html#exercise-1---dot-product-attention",
+    "href": "ex/w09/exercises09.html#exercise-1---dot-product-attention",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given a set of vectors \\[\n\\fh_1 = (1,2,3)^\\top,\\quad\n\\fh_2 = (1,2,1)^\\top,\\quad\n\\fh_3 = (0,1,-1)^\\top\n\\] and an alignment source vector \\(\\fs=(1,2,1)^\\top\\). Compute the resulting dot-product attention weights \\(\\alpha_i\\) for \\(i=1,2,3\\) and the resulting context vector \\(\\fc\\)."
+  },
+  {
+    "objectID": "ex/w09/exercises09.html#exercise-2---attention-in-transformers",
+    "href": "ex/w09/exercises09.html#exercise-2---attention-in-transformers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Attention in Transformers",
+    "text": "Exercise 2 - Attention in Transformers\nTransformers use a scaled dot product attention mechanism given by \\[\nC\n= \\text{attention}(Q, K, V)\n= \\text{softmax}\\left(\\fr{QK^\\top}{\\sqrt{d}}\\right) V,\n\\] where \\(Q\\in\\R^{n_q\\times d_k}\\), \\(K\\in\\R^{n_k\\times d_k}\\), \\(V\\in\\R^{n_k\\times d_v}\\).\n\nIs the softmax function here applied row-wise or column-wise? What is the shape of the result?\nWhat is the value of \\(d\\)? Why is it needed?\nWhat is the computational complexity of this attention mechanism? How many additions and multiplications are required? Assume the canonical matrix multiplcation and not counting \\(\\exp(x)\\) towards computational cost.\nIn the masked variant of the module, a masking matrix is added before the softmax function is applied. What are its values and its shape? For simplicity, assume \\(n_q=n_k\\)."
+  },
+  {
+    "objectID": "ex/w09/exercises09.html#exercise-3---scaled-dot-product-attention-by-hand",
+    "href": "ex/w09/exercises09.html#exercise-3---scaled-dot-product-attention-by-hand",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Scaled Dot-Product Attention by Hand",
+    "text": "Exercise 3 - Scaled Dot-Product Attention by Hand\nConsider the matrices \\(Q\\), \\(K\\), \\(V\\) given by \\[\nQ = \\bpmat\n1 & 2\\\\\n3 & 1\n\\epmat,\\quad\nK = \\bpmat\n2 & 1\\\\\n1 & 1\\\\\n0 & 1\n\\epmat,\\quad\nV=\\bpmat\n1 & 2 & -2\\\\\n1 & 1 & 2 \\\\\n0 & 1 & -1\n\\epmat.\n\\] Compute the context matrix \\(C\\) using the scaled dot product attention."
+  },
+  {
     "objectID": "ex/w07/questions/cnn-by_hand.html",
     "href": "ex/w07/questions/cnn-by_hand.html",
     "title": "CSC413 - Fall 2024",
@@ -3189,6 +3217,41 @@
     "title": "CSC413 - Fall 2024",
     "section": "",
     "text": "Let \\(\\hte\\) and \\(\\hte(\\ve)\\) be as defined in class. Show that the first order Taylor expansion of \\(\\hte(\\ve)\\) around \\(\\ve=0\\) is given by the equation given in class, i.e. by \\[\\begin{align*}\n\\hat{\\theta}({\\epsilon}) \\approx \\hat{\\theta} + \\epsilon\\frac{d\\hat{\\theta}(\\epsilon)}{d\\epsilon} {\\Bigr |}_{\\epsilon=0} .\n\\end{align*}\\]"
+  },
+  {
+    "objectID": "ex/w07/exercises07_solution.html",
+    "href": "ex/w07/exercises07_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "The exercises this week involve some old material so you can check your learning and understanding."
+  },
+  {
+    "objectID": "ex/w07/exercises07_solution.html#exercise-1---maximum-likelihood-estimator",
+    "href": "ex/w07/exercises07_solution.html#exercise-1---maximum-likelihood-estimator",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 1 - Maximum Likelihood Estimator",
+    "text": "Exercise 1 - Maximum Likelihood Estimator\nAssume you are given datapoints \\((x_i)_{i=1}^N\\) with \\(x_i\\in\\R\\) coming from a Exponential distribution. The probability density function of a exponential distribution is given by \\(f(x) = \\la \\exp(-\\la x)\\) with \\(x\\in\\R\\). Derive the maximum likelihood estimator of the parameter \\(\\la\\).\n\nSolution\nFirst, let’s quickly remember that the maximum likelihood estimator (MLE) of a probability distribution from dataapoints \\(\\fx_1, \\ldots, \\fx_N\\) is given by \\[\n\\hte_{\\mathrm{MLE}} = \\argmax_{\\te \\in \\Te} \\prod_{i=1}^N f(\\fx_i | \\te),\n\\] where \\(f\\) is the probability density function of the considered probability distribution family, \\(\\te\\) are the parameters of the distribution, and \\(\\Te\\) is the parameter space (a set containing all possible parameters).\nAs mentioned in our previous exercise, we usually work with the log-likelihood in practice. In this particular case, the log likelihood is given by \\[\\begin{aligned}\nl(\\la | x_1, \\ldots, x_N)\n  & := \\sum_{i=1}^N \\ln f(\\fx_i | \\la) \\\\\n  & = \\sum_{i=1}^N \\ln\\li(\\la \\exp(-\\la x_i) \\ri) \\\\\n  & = \\sum_{i=1}^N \\ln(\\la) + \\ln\\li( \\exp(-\\la x_i) \\ri) \\\\\n  & =  N \\ln(\\la) - \\sum_{i=1}^N \\la x_i .\n\\end{aligned}\\] The derivative with respect to \\(\\la\\) is \\[\n\\fr{\\partial l(\\la | x_1, \\ldots, x_N)}{\\partial \\la}\n  = \\fr{N}{\\la} - \\sum_{i=1}^N x_i .\n\\] The MLE is obtained by setting it to 0 and solving for \\(\\la\\) as \\[\n\\hla_{MLE} = N \\li( \\sum_{i=1}^N x_i\\ri)^{-1}.\n\\]"
+  },
+  {
+    "objectID": "ex/w07/exercises07_solution.html#exercise-2---convolutional-layers",
+    "href": "ex/w07/exercises07_solution.html#exercise-2---convolutional-layers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Convolutional Layers",
+    "text": "Exercise 2 - Convolutional Layers\nConsider the following \\(4\\times 4 \\times 1\\) input X and a \\(2\\times 2 \\times 1\\) convolutional kernel K with no bias term\n\\[\nX =\n\\bpmat\n1 & 2 & -1 & 1 \\\\\n1 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 2 \\\\\n2 & 1 & 0 & -1\n\\epmat, \\qquad\n%\nK = \\bpmat\n1, & 0 \\\\\n2, & 1 \\\\\n\\epmat\n\\]\n\nWhat is the output of the convolutional layer for the case of stride 1 and no padding?\nWhat if we have stride 2 and no padding?\nWhat if we have stride 2 and zero-padding of size 1?\n\n\nSolution\n\nHere, we simply apply the convolutional kernel over each \\(2\\times 2\\) patch of the input. There are 9 such patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n3 &  3 &  1 \\\\\n2 &  2 &  3 \\\\\n5 &  3 & -1\n\\epmat\n\\]\n\nSame idea except that we skip every other patch resulting in only 4 patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n3 & 1 \\\\\n5 & -1\n\\epmat\n\\]\n\nNow, we have added zeros on each side of the input. The resulting \\(6\\times 6\\) padded input \\(X_\\mathrm{padded}\\) and corresponding output \\(Y\\) are\n\n\\[\nX_\\mathrm{padded} =\n\\bpmat\n0 & 0 & 0 &  0 &  0 & 0 \\\\\n0 & 1 & 2 & -1 &  1 & 0 \\\\\n0 & 1 & 0 &  1 &  0 & 0 \\\\\n0 & 0 & 1 &  0 &  2 & 0 \\\\\n0 & 2 & 1 &  0 & -1 & 0 \\\\\n0 & 0 & 0 &  0 &  0 & 0\n\\epmat,\n\\qquad\nY = \\bpmat\n1 & 3 & 2 \\\\\n0 & 2 & 4 \\\\\n0 & 1 & -1\n\\epmat\n\\]"
+  },
+  {
+    "objectID": "ex/w07/exercises07_solution.html#exercise-3---computational-parameter-counting",
+    "href": "ex/w07/exercises07_solution.html#exercise-3---computational-parameter-counting",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Computational Parameter Counting",
+    "text": "Exercise 3 - Computational Parameter Counting\nUse PyTorch to load the vgg11 model and automatically compute its number of parameters. Output the number of parameters for each layer and the total number of parameters in the model.\n\nSolution\nFirst, we hvae to load the vgg11 model which is part of torchvision as has been shown in the lecture:\nimport torchvision\nvgg11 = torchvision.models.vgg.vgg11(pretrained=False)\nThe number of parameters for the entire model, is the easier part: We can simply use the parameters() iterator which returns the set of parameters for each module. Those can then be counted using the numel() method resulting in\nsum(p.numel() for p in vgg11.parameters())\nObtaining the number of parameters for each of the layer requires looking into the source code of the vgg11 model. All VGG models are ultimately instantiated by using the VGG class. Its forward pass looks like this:\nx = self.features(x)\nx = self.avgpool(x)\nx = torch.flatten(x, 1)\nx = self.classifier(x)\nA closer look at the implementation reveals that we can obtain the individual layers parameter by simply iterating over the self.features and self.classifier modules. The self.avgpool module does not have any parameters. The following code snippet shows how to obtain the number of parameters for each layer of the convolutional backbone:\nfor layer in vgg11.features:\n    print(layer, sum(p.numel() for p in layer.parameters()))\nTo get the number of paramers in the cnn head, simply update the code snippet to iterate over vgg11.classifier instead of vgg11.features."
+  },
+  {
+    "objectID": "ex/w07/exercises07_solution.html#exercise-4---influence-functions",
+    "href": "ex/w07/exercises07_solution.html#exercise-4---influence-functions",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - Influence Functions",
+    "text": "Exercise 4 - Influence Functions\nLet \\(\\hte\\) and \\(\\hte(\\ve)\\) be as defined in class. Show that the first order Taylor expansion of \\(\\hte(\\ve)\\) around \\(\\ve=0\\) is given by the equation given in class, i.e. by \\[\\begin{align*}\n\\hat{\\theta}({\\epsilon}) \\approx \\hat{\\theta} + \\epsilon\\frac{d\\hat{\\theta}(\\epsilon)}{d\\epsilon} {\\Bigr |}_{\\epsilon=0} .\n\\end{align*}\\]\n\nSolution\nFirst, let’s recall the definitions of \\(\\te\\) and \\(\\hte(\\epsilon)\\): \\[\\begin{align*}\n\\hat{\\theta}\n&= \\text{argmin}_{\\theta} \\frac{1}{N} \\left[ \\sum_{i=1}^{N} L(x_i, y_i; \\theta) \\right] \\\\\n\\hte({\\epsilon})\n  &= \\text{argmin}_{\\theta} \\frac{1}{N} \\left[ \\sum_{i=1}^{N} L(x_i, y_i; \\theta) \\right] + \\epsilon L(x,y; \\theta)\n\\end{align*}\\] The first order taylor series expansion around \\(\\epsilon = 0\\) is given by \\[\n\\hte(0) + \\epsilon \\fr{d\\hte(\\epsilon)}{d\\epsilon} {\\Bigr |}_{\\epsilon=0}\n\\] From the definitions above, it can directly be seen that \\(\\hte(0) = \\hte\\) which completes the proof."
   },
   {
     "objectID": "ex/w10/questions/tconv-params.html",
@@ -3233,6 +3296,34 @@
     "text": "Solution to (d)\nBelow are some computations for verification.\n\ndef conv_transpose2d(input, weight, stride=1):\n  # input - input of shape (C_in, H, W)\n  # weight - kernel of shape (C_in, C_out, K, K)\n  # stride - stride of the transposed convolutio\n  # RETURNS\n  # output - output of shape (C_out, H_out, W_out)\n  (c_in, h_in, w_in) = X.size()\n  (c2_in, c_out, k, k2) = K.size()\n\n  assert c_in == c2_in, \"Number of input channels must match\"\n  assert k == k2, \"Kernel must be square\"\n\n  h_out = (h_in - 1) * stride + k\n  w_out = (w_in - 1) * stride + k\n  output = torch.zeros((c_out, h_out, w_out))\n\n  for c_cur_in in range(c_in):\n    for c_cur_out in range(c_out):\n      for h in range(0, h_in):\n        for w in range(0, w_in):\n          output[c_cur_out, h*stride:h*stride+k, w*stride:w*stride+k] \\\n              += weight[c_cur_in, c_cur_out,:,:] * input[c_cur_in,h,w]\n\n  return output\n\n\nconv_transpose2d(X, K, stride=2)\n\ntensor([[[ 1.,  0.,  0.,  0.,  2.,  0.],\n         [ 1.,  2.,  0.,  0.,  2.,  4.],\n         [ 2.,  0.,  3.,  0.,  0.,  0.],\n         [ 2.,  4.,  3.,  6.,  0.,  0.],\n         [-1.,  0.,  0.,  0.,  3.,  0.],\n         [-1., -2.,  0.,  0.,  3.,  6.]]])\n\n\n\nconv_transpose2d(X, K, stride=1)\n\ntensor([[[ 1.,  0.,  2.,  0.],\n         [ 3.,  5.,  2.,  4.],\n         [ 1.,  7.,  9.,  0.],\n         [-1., -2.,  3.,  6.]]])\n\n\n\nX = torch.randn((2,3,3))\nK = torch.randn((2,1,2,2))\n\n\nconv_transpose2d(X, K, stride=1)\n\ntensor([[[ 2.5196, -3.0373, -1.7501,  1.1531],\n         [-0.2329, -1.2616, -1.2943,  0.5111],\n         [-1.0364, -0.8051, -2.0395, -1.4085],\n         [ 1.9276,  0.1688, -3.1863, -1.4459]]])\n\n\n\nnn.functional.conv_transpose2d(X.unsqueeze(0), K, stride=1)\n\ntensor([[[[ 2.5196, -3.0373, -1.7501,  1.1531],\n          [-0.2329, -1.2616, -1.2943,  0.5111],\n          [-1.0364, -0.8051, -2.0395, -1.4085],\n          [ 1.9276,  0.1688, -3.1863, -1.4459]]]])"
   },
   {
+    "objectID": "ex/w10/exercises10_solution.html",
+    "href": "ex/w10/exercises10_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "What is the size of the output for a input tensor and a transposed convolutional layer if the parameters are given as follows (assume the number of channels is given in the first dimension).\n\nInput tensor size: \\(3\\times 2\\times 2\\)\nTransposed convolution: \\(3\\times 3\\) kernel, stride 1, output channels: 2\nInput tensor size: \\(3\\times 5\\times 5\\)\nTransposed convolutional: \\(2\\times 2\\) kernel, stride 2, output channels: 4\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(3\\times 3\\) kernel, stride 2, output channels: 2\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(h_k\\times w_k\\) kernel, stride \\(s\\), output channels: \\(c_{out}\\)\n\n\n\n\nOutput tensor size: \\(2\\times 4\\times 4\\)\nOutput tensor size: \\(4\\times 10\\times 10\\)\nThe first dimension is always the number of input channels, i.e. \\(c_{out}\\). The output for the first value of the input tensor is of size \\(3\\times 3\\). For all remaining values, the stride determines the additional values of the ouput. Stride 2 means, that we need two values for each additional value. Thus, the output height \\(h_{out}\\) and width are \\(w_{out}\\): \\[\n\\begin{aligned}\nh_{out} &= 3 + (h-1)\\cdot 2 = 2h+1\\\\\nw_{out} &= 3 + (w-1)\\cdot 2 = 2w+1\\\\\n\\end{aligned}\n\\] Thus, the resulting size is \\(2\\times (2h+1) \\times (2w+1)\\).\nThis generalization requires a similar consideration and we can basically reuse the equations from above: \\[\n\\begin{aligned}\nh_{out} &= h_k + (h-1)\\cdot s\\\\\nw_{out} &= w_k + (w-1)\\cdot s\\\\\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ex/w10/exercises10_solution.html#exercise-1---transposed-convolution-output-sizes",
+    "href": "ex/w10/exercises10_solution.html#exercise-1---transposed-convolution-output-sizes",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "What is the size of the output for a input tensor and a transposed convolutional layer if the parameters are given as follows (assume the number of channels is given in the first dimension).\n\nInput tensor size: \\(3\\times 2\\times 2\\)\nTransposed convolution: \\(3\\times 3\\) kernel, stride 1, output channels: 2\nInput tensor size: \\(3\\times 5\\times 5\\)\nTransposed convolutional: \\(2\\times 2\\) kernel, stride 2, output channels: 4\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(3\\times 3\\) kernel, stride 2, output channels: 2\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(h_k\\times w_k\\) kernel, stride \\(s\\), output channels: \\(c_{out}\\)\n\n\n\n\nOutput tensor size: \\(2\\times 4\\times 4\\)\nOutput tensor size: \\(4\\times 10\\times 10\\)\nThe first dimension is always the number of input channels, i.e. \\(c_{out}\\). The output for the first value of the input tensor is of size \\(3\\times 3\\). For all remaining values, the stride determines the additional values of the ouput. Stride 2 means, that we need two values for each additional value. Thus, the output height \\(h_{out}\\) and width are \\(w_{out}\\): \\[\n\\begin{aligned}\nh_{out} &= 3 + (h-1)\\cdot 2 = 2h+1\\\\\nw_{out} &= 3 + (w-1)\\cdot 2 = 2w+1\\\\\n\\end{aligned}\n\\] Thus, the resulting size is \\(2\\times (2h+1) \\times (2w+1)\\).\nThis generalization requires a similar consideration and we can basically reuse the equations from above: \\[\n\\begin{aligned}\nh_{out} &= h_k + (h-1)\\cdot s\\\\\nw_{out} &= w_k + (w-1)\\cdot s\\\\\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ex/w10/exercises10_solution.html#exercise-2---transposed-convolution-parameter-sizes",
+    "href": "ex/w10/exercises10_solution.html#exercise-2---transposed-convolution-parameter-sizes",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Transposed Convolution Parameter Sizes",
+    "text": "Exercise 2 - Transposed Convolution Parameter Sizes\nWhat is the number of learnable parameters for each of the following transposed convolution layers defined in PyTorch. Try to calculate those by hand first and use pytorch later to verify your results.\n\nnn.ConvTranspose2d(in_channels=3, out_channels=2, kernel_size=3, stride=1)\nnn.ConvTranspose2d(in_channels=3, out_channels=10, kernel_size=3, stride=2)\nnn.ConvTranspose2d(in_channels=3, out_channels=2, kernel_size=4, stride=5)\nnn.ConvTranspose2d(in_channels=3, out_channels=4, kernel_size=3, stride=23)\n\n\nSolution\nThe number of parameters is the product of input channels, output channels and kernel size. For each output channel, there is one bias parameter (if bias=True which is default in PyTorch). The stride does not matter for the number of paramters.\n\n\\(3\\cdot 2 \\cdot 9 + 2=56\\)\n\\(3\\cdot 10 \\cdot 9 + 10=280\\)\n\\(3\\cdot 2 \\cdot 16 + 2=98\\)\n\\(3\\cdot 4 \\cdot 9 + 4=112\\)"
+  },
+  {
+    "objectID": "ex/w10/exercises10_solution.html#exercise-3---transposed-convolution-by-hand",
+    "href": "ex/w10/exercises10_solution.html#exercise-3---transposed-convolution-by-hand",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Transposed Convolution by Hand",
+    "text": "Exercise 3 - Transposed Convolution by Hand\nYou are given an input matrix \\(X\\) (consisting of a single channel) and a kernel \\(K\\) as follows: \\[\nX = \\bpmat\n1 & 0 & 2 \\\\\n2 & 3 & 0 \\\\\n-1 & 0 & 3\n\\epmat, \\quad\nK = \\bpmat\n1 & 0 \\\\\n1 & 2\n\\epmat\n\\]\n\nCompute the transposed convolution by hand assuming stride 2.\nCompute the transposed convolution by hand assuming stride 1.\nUse PyTorch to verify your answers.\nImplement the transposed convolution in PyTorch without using its own implementaiton. You can assume no bias term a square kernel and no separate batch dimension. I.e. your task is to implement the following function\n\ndef conv_transpose2d(inp, weight, stride=1):\n    # inp - input of shape (C_in, H, W)\n    # weight - kernel of shape (C_in, C_out, K, K)\n    # stride - stride of the transposed convolution\n    # RETURNS\n    # output - output of shape (C_out, H_out, W_out)\n    #\n    # YOUR CODE HERE\n    return output\n\nSolution\n\nThe resulting output tensor is of shape \\(6 \\times 6\\) and is given by: \\[\nY = \\bpmat\n1 &  0 &  0 &  0 &  2 &  0\\\\\n1 &  2 &  0 &  0 &  2 &  4\\\\\n2 &  0 &  3 &  0 &  0 &  0\\\\\n2 &  4 &  3 &  6 &  0 &  0\\\\\n-1 &  0 &  0 &  0 &  3 &  0\\\\\n-1 & -2 &  0 &  0 &  3 &  6\n\\epmat\n\\]\nThe resulting output tensor is of shape \\(4 \\times 4\\) and is given by: \\[\nY = \\bpmat\n1 &  0 &  2 &  0 \\\\\n3 &  5 &  2 &  4 \\\\\n1 &  7 &  9 &  0 \\\\\n-1 & -2 &  3 &  6\n\\epmat\n\\]\nWe can verify our answers with PyTorch with the following commands:\nnn.functional.conv_transpose2d(X.unsqueeze(0), K, stride=2)\n\nnn.functional.conv_transpose2d(X.unsqueeze(0), K)\nThe call to .unsqueeze(0) can be left out if X has a batch dimension and is already a 4D tensor.\nA potential implementaiton (that isn’t optimized in any way) of transposed convolutions looks like this:\n\n\ndef conv_transpose2d(input, weight, stride=1):\n  # input - input of shape (C_in, H, W)\n  # weight - kernel of shape (C_in, C_out, K, K)\n  # stride - stride of the transposed convolutio\n  # RETURNS\n  # output - output of shape (C_out, H_out, W_out)\n  (c_in, h_in, w_in) = X.size()\n  (c2_in, c_out, k, k2) = K.size()\n\n  assert c_in == c2_in, \"Number of input channels must match\"\n  assert k == k2, \"Kernel must be square\"\n\n  h_out = (h_in - 1) * stride + k\n  w_out = (w_in - 1) * stride + k\n  output = torch.zeros((c_out, h_out, w_out))\n\n  for c_cur_in in range(c_in):\n    for c_cur_out in range(c_out):\n      for h in range(0, h_in):\n        for w in range(0, w_in):\n          output[c_cur_out, h*stride:h*stride+k, w*stride:w*stride+k] \\\n              += weight[c_cur_in, c_cur_out,:,:] * input[c_cur_in,h,w]\n\n  return output"
+  },
+  {
     "objectID": "ex/w11/questions/cnn-by_hand.html",
     "href": "ex/w11/questions/cnn-by_hand.html",
     "title": "CSC413 - Fall 2024",
@@ -3273,6 +3364,41 @@
     "title": "CSC413 - Fall 2024",
     "section": "",
     "text": "Here, we simply apply the convolutional kernel over each \\(2\\times 2\\) patch of the input. There are 9 such patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n1 &  3 &  -1 \\\\\n4 &  2 &  2 \\\\\n5 &  3 & 3\n\\epmat\n\\]\n\nSame idea except that we skip every other patch resulting in only 4 patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n1 & -1 \\\\\n5 & 3\n\\epmat\n\\]\n\nNow, we have added zeros on each side of the input. The resulting \\(6\\times 6\\) padded input \\(X_\\mathrm{padded}\\) and corresponding output \\(Y\\) are\n\n\\[\nX_\\mathrm{padded} =\n\\bpmat\n0 & 0 &  0 & 0 &  0 & 0 \\\\\n0 & 1 &  0 & 1 & -1 & 0 \\\\\n0 & 1 &  0 & 1 &  0 & 0 \\\\\n0 & 0 &  3 & 0 &  1 & 0 \\\\\n0 & 1 & -1 & 0 &  1 & 0 \\\\\n0 & 0 &  0 & 0 &  0 & 0\n\\epmat,\n\\qquad\nY = \\bpmat\n1 & 1 & 0 \\\\\n2 & 2 & 0 \\\\\n2 & -1 & 1\n\\epmat\n\\]"
+  },
+  {
+    "objectID": "ex/w11/exercises11_solution.html",
+    "href": "ex/w11/exercises11_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given the following set of eigevalues and eigenvectors. Compute the corresponding matrix.\n\\(\\la_1 = 1\\), \\(\\la_2 = 2\\), \\(\\fv_1 = (\\sqrt{0.5}, \\sqrt{0.5})^\\top\\), \\(\\fv_2 = (\\sqrt{0.5},-\\sqrt{0.5})^\\top\\).\n\n\nFirst, remember that the normalized eigenvectors of a symmetric matrix are orthogonal. Thus, we have \\[\n\\fe_i^\\top \\fe_j = \\begin{cases} 1 & i=j \\\\ 0 & i\\neq j \\end{cases}.\n\\]\nSecond, for symmetric \\(\\fA\\), its spectral decomposition is given by \\(\\fA = \\fQ \\fLa \\fQ^\\top\\), where \\(\\fQ\\) is a matrix where each column is an (orthogonal) eigenvector of unit length.\nIn our case, the eigenvectors are already normalized and orthogonal, so we can simply write \\(\\fQ = (\\fe_1, \\fe_2)\\) and \\(\\fLa = \\diag(\\lambda_1, \\lambda_2)\\). Then, we have \\[\n  \\fA = \\bpmat 1.5 & -0.5 \\\\\n    -0.5 & 1.5\n    \\epmat\n  \\]"
+  },
+  {
+    "objectID": "ex/w11/exercises11_solution.html#exercise-1---eigenvalues-and-eigenvectors",
+    "href": "ex/w11/exercises11_solution.html#exercise-1---eigenvalues-and-eigenvectors",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given the following set of eigevalues and eigenvectors. Compute the corresponding matrix.\n\\(\\la_1 = 1\\), \\(\\la_2 = 2\\), \\(\\fv_1 = (\\sqrt{0.5}, \\sqrt{0.5})^\\top\\), \\(\\fv_2 = (\\sqrt{0.5},-\\sqrt{0.5})^\\top\\).\n\n\nFirst, remember that the normalized eigenvectors of a symmetric matrix are orthogonal. Thus, we have \\[\n\\fe_i^\\top \\fe_j = \\begin{cases} 1 & i=j \\\\ 0 & i\\neq j \\end{cases}.\n\\]\nSecond, for symmetric \\(\\fA\\), its spectral decomposition is given by \\(\\fA = \\fQ \\fLa \\fQ^\\top\\), where \\(\\fQ\\) is a matrix where each column is an (orthogonal) eigenvector of unit length.\nIn our case, the eigenvectors are already normalized and orthogonal, so we can simply write \\(\\fQ = (\\fe_1, \\fe_2)\\) and \\(\\fLa = \\diag(\\lambda_1, \\lambda_2)\\). Then, we have \\[\n  \\fA = \\bpmat 1.5 & -0.5 \\\\\n    -0.5 & 1.5\n    \\epmat\n  \\]"
+  },
+  {
+    "objectID": "ex/w11/exercises11_solution.html#exercise-2---parameter-counting",
+    "href": "ex/w11/exercises11_solution.html#exercise-2---parameter-counting",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Parameter Counting",
+    "text": "Exercise 2 - Parameter Counting\nUse PyTorch to load the alexnet model and automatically compute its number of parameters. Output the number of parameters for each layer and the total number of parameters in the model.\n\nSolution\nFirst, we hvae to load the alexnet model which is part of torchvision:\nimport torchvision\nalexnet = torchvision.models.alexnet()\nThe number of parameters for the entire model, is the easier part: We can simply use the parameters() iterator which returns the set of parameters for each module. Those can then be counted using the numel() method resulting in\nsum(p.numel() for p in alexnet.parameters())\nObtaining the number of parameters for each of the layer requires looking into the source code of the alexnet model. The structure is similar to vgg and the forward pass looks like this:\nx = self.features(x)\nx = self.avgpool(x)\nx = torch.flatten(x, 1)\nx = self.classifier(x)\nA closer look at the implementation reveals that we can obtain the individual layers parameter by simply iterating over the self.features and self.classifier modules. The self.avgpool module does not have any parameters. The following code snippet shows how to obtain the number of parameters for each layer of the convolutional backbone:\nfor layer in alexnet.features:\n    print(layer, sum(p.numel() for p in layer.parameters()))\nTo get the number of paramers in the cnn head, simply update the code snippet to iterate over alexnet.classifier instead of alexnet.features."
+  },
+  {
+    "objectID": "ex/w11/exercises11_solution.html#exercise-3---convolutional-layers",
+    "href": "ex/w11/exercises11_solution.html#exercise-3---convolutional-layers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Convolutional Layers",
+    "text": "Exercise 3 - Convolutional Layers\nConsider the following \\(4\\times 4 \\times 1\\) input X and a \\(2\\times 2 \\times 1\\) convolutional kernel K with no bias term\n\\[\nX =\n\\bpmat\n1 & 0 & 1 & -1 \\\\\n1 & 0 & 1 & 0 \\\\\n0 & 3 & 0 & 1 \\\\\n1 & -1 & 0 & 1\n\\epmat, \\qquad\n%\nK = \\bpmat\n1, & 2 \\\\\n0, & 1 \\\\\n\\epmat\n\\]\n\nWhat is the output of the convolutional layer for the case of stride 1 and no padding?\nWhat if we have stride 2 and no padding?\nWhat if we have stride 2 and zero-padding of size 1?\n\n\nSolution\n\nHere, we simply apply the convolutional kernel over each \\(2\\times 2\\) patch of the input. There are 9 such patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n1 &  3 &  -1 \\\\\n4 &  2 &  2 \\\\\n5 &  3 & 3\n\\epmat\n\\]\n\nSame idea except that we skip every other patch resulting in only 4 patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n1 & -1 \\\\\n5 & 3\n\\epmat\n\\]\n\nNow, we have added zeros on each side of the input. The resulting \\(6\\times 6\\) padded input \\(X_\\mathrm{padded}\\) and corresponding output \\(Y\\) are\n\n\\[\nX_\\mathrm{padded} =\n\\bpmat\n0 & 0 &  0 & 0 &  0 & 0 \\\\\n0 & 1 &  0 & 1 & -1 & 0 \\\\\n0 & 1 &  0 & 1 &  0 & 0 \\\\\n0 & 0 &  3 & 0 &  1 & 0 \\\\\n0 & 1 & -1 & 0 &  1 & 0 \\\\\n0 & 0 &  0 & 0 &  0 & 0\n\\epmat,\n\\qquad\nY = \\bpmat\n1 & 1 & 0 \\\\\n2 & 2 & 0 \\\\\n2 & -1 & 1\n\\epmat\n\\]"
+  },
+  {
+    "objectID": "ex/w11/exercises11_solution.html#exercise-4---scaled-dot-product-attention",
+    "href": "ex/w11/exercises11_solution.html#exercise-4---scaled-dot-product-attention",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - Scaled Dot-Product Attention",
+    "text": "Exercise 4 - Scaled Dot-Product Attention\nConsider the matrices \\(Q\\), \\(K\\), \\(V\\) given by \\[\nQ = \\bpmat\n1 & 3\\\\\n0 & 1\n\\epmat,\\quad\nK = \\bpmat\n1 & 1\\\\\n1 & 2\\\\\n0 & 1\n\\epmat,\\quad\nV=\\bpmat\n1 & 0 & -2\\\\\n2 & 1 & 2 \\\\\n0 & 3 & -1\n\\epmat.\n\\] Compute the context matrix \\(C\\) using the scaled dot product attention.\n\nSolution\nThe resulting context matrix is given by: \\[\nC\\approx\n\\bpmat\n1.80 & 1.00 & 1.44\\\\\n1.26 & 1.25 & 0.26\n\\epmat\n\\] A simple implementation would look as follows:\nimport torch\nQ = torch.tensor([[1, 2], [3, 1]]).float()\nK = torch.tensor([[2, 1], [1, 1], [0, 1]]).float()\nV = torch.tensor([[1, 2, -2], [1, 1, 2], [0, 1, -1]]).float()\nd_k = torch.tensor(K.shape[1])\nM = torch.matmul(Q, K.transpose(0, 1)) / torch.sqrt(d_k)\nS = torch.exp(M) / torch.sum(torch.exp(M), dim=1).view(-1,1)\ntorch.matmul(S, V)\nPytorch also provides a function for scaled dot product attention:\nimport torch.nn.functional as F\nF.scaled_dot_product_attention(Q, K, V)"
   },
   {
     "objectID": "ex/w02/questions/linalg-evs.html",
@@ -3359,6 +3485,34 @@
     "text": "There are different ways to write the second order taylor series expansion a at a point \\(\\fa\\) for multivariate functions \\(f\\). We will use the following form\n\\[T(x) = f(\\fa) + \\nabla f(\\fa)^\\top (\\fx-\\fa) + \\frac{1}{2}(\\fx-\\fa)^\\top \\fH (\\fx-\\fa)\\]\nwhere \\(\\nabla f(\\fa)\\) is the gradient of \\(f\\) at \\(\\fa\\) and \\(\\fH\\) is the Hessian of \\(f\\) at \\(\\fa\\). As a reminder, the Hessian is the matrix of second order partial derivatives. So, all we need to do for all of the exercises is evaluate \\(f(\\fa)\\) and compute its gradient and Hessian.\n\n\\(T(x) = 5 + 15 (x-1) + 15 (x-1)^2\\)\nFirst, we simplify \\(f(x,y)=x^2 (y^3+1)\\) and compute \\(f(3,2)=81\\) and then we compute the gradient and Hessian of \\(f\\) resulting in \\[\n\\nabla f(x,y) = \\bpmat 2x (y^3-1) \\\\ x^2(3y^2-1) \\epmat,\\quad\n\\fH = \\bpmat 2(y^3-1) & 6 xy^2 \\\\ 6xy^2 & 6x^2y \\epmat.\n\\]\nThis one is similar to (b) but we have to be careful with the logarithm. First, we have \\(f(\\fx_0)=0\\) because \\(\\log(1)=0\\). Then, we compute the gradient and Hessian of \\(f\\) resulting in \\[\n    \\nabla f(\\fx) = \\bpmat\n   3x_1^2 x_2 \\log(x_2) \\\\ x_1^3 (1+\\log(x_2))\n   \\epmat,\\quad\n    \\fH = \\bpmat\n   6x_1 x_2 \\log(x_2)   & 3x_1^2 (1+\\log(x_2)) \\\\\n   3x_1^2 (1+\\log(x_2)) & x_1^3 x_2^{-1}\n    \\epmat\n    \\]\nEvaluating the trigonometric functions here is simpler than it seems because they are evaluated at \\(\\pi\\) and \\(-\\pi\\). We get \\(f(\\fx_0) = \\sin(-\\pi) + \\cos(\\pi) = 0 - 1 = -1\\) and \\[\n\\nabla f(\\fx) = \\bpmat \\cos(x_1) \\\\ -\\sin(x_2) \\epmat, \\quad\n\\fH = \\bpmat -\\sin(x_1) & 0 \\\\ 0 & -\\cos(x_2) \\epmat.\n\\]"
   },
   {
+    "objectID": "ex/w05/exercises05_solution.html",
+    "href": "ex/w05/exercises05_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Compute the Taylor series expansion up to the second order term for the following multivariate functions around a given point:\n\n\\(f(x) = 5x^3\\) around \\(x_0=1\\).\n\\(f(x,y) = x^2 \\cdot y^3 + x^2\\) around \\(x_0=3\\), \\(y_0=2\\).\n\\(f(\\fx) = x_1^3 \\cdot x_2 \\cdot \\log(x_2)\\) around \\(\\fx_0=(2,1)^\\top\\).\n\\(f(\\fx) = \\sin(x_1) + \\cos(x_2)\\) around \\(\\fx_0=(-\\pi,\\pi)^\\top\\).\n\n\n\nThere are different ways to write the second order taylor series expansion a at a point \\(\\fa\\) for multivariate functions \\(f\\). We will use the following form\n\\[T(x) = f(\\fa) + \\nabla f(\\fa)^\\top (\\fx-\\fa) + \\frac{1}{2}(\\fx-\\fa)^\\top \\fH (\\fx-\\fa)\\]\nwhere \\(\\nabla f(\\fa)\\) is the gradient of \\(f\\) at \\(\\fa\\) and \\(\\fH\\) is the Hessian of \\(f\\) at \\(\\fa\\). As a reminder, the Hessian is the matrix of second order partial derivatives. So, all we need to do for all of the exercises is evaluate \\(f(\\fa)\\) and compute its gradient and Hessian.\n\n\\(T(x) = 5 + 15 (x-1) + 15 (x-1)^2\\)\nFirst, we simplify \\(f(x,y)=x^2 (y^3+1)\\) and compute \\(f(3,2)=81\\) and then we compute the gradient and Hessian of \\(f\\) resulting in \\[\n\\nabla f(x,y) = \\bpmat 2x (y^3-1) \\\\ x^2(3y^2-1) \\epmat,\\quad\n\\fH = \\bpmat 2(y^3-1) & 6 xy^2 \\\\ 6xy^2 & 6x^2y \\epmat.\n\\]\nThis one is similar to (b) but we have to be careful with the logarithm. First, we have \\(f(\\fx_0)=0\\) because \\(\\log(1)=0\\). Then, we compute the gradient and Hessian of \\(f\\) resulting in \\[\n    \\nabla f(\\fx) = \\bpmat\n   3x_1^2 x_2 \\log(x_2) \\\\ x_1^3 (1+\\log(x_2))\n   \\epmat,\\quad\n    \\fH = \\bpmat\n   6x_1 x_2 \\log(x_2)   & 3x_1^2 (1+\\log(x_2)) \\\\\n   3x_1^2 (1+\\log(x_2)) & x_1^3 x_2^{-1}\n    \\epmat\n    \\]\nEvaluating the trigonometric functions here is simpler than it seems because they are evaluated at \\(\\pi\\) and \\(-\\pi\\). We get \\(f(\\fx_0) = \\sin(-\\pi) + \\cos(\\pi) = 0 - 1 = -1\\) and \\[\n\\nabla f(\\fx) = \\bpmat \\cos(x_1) \\\\ -\\sin(x_2) \\epmat, \\quad\n\\fH = \\bpmat -\\sin(x_1) & 0 \\\\ 0 & -\\cos(x_2) \\epmat.\n\\]"
+  },
+  {
+    "objectID": "ex/w05/exercises05_solution.html#exercise-1---taylor-series",
+    "href": "ex/w05/exercises05_solution.html#exercise-1---taylor-series",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Compute the Taylor series expansion up to the second order term for the following multivariate functions around a given point:\n\n\\(f(x) = 5x^3\\) around \\(x_0=1\\).\n\\(f(x,y) = x^2 \\cdot y^3 + x^2\\) around \\(x_0=3\\), \\(y_0=2\\).\n\\(f(\\fx) = x_1^3 \\cdot x_2 \\cdot \\log(x_2)\\) around \\(\\fx_0=(2,1)^\\top\\).\n\\(f(\\fx) = \\sin(x_1) + \\cos(x_2)\\) around \\(\\fx_0=(-\\pi,\\pi)^\\top\\).\n\n\n\nThere are different ways to write the second order taylor series expansion a at a point \\(\\fa\\) for multivariate functions \\(f\\). We will use the following form\n\\[T(x) = f(\\fa) + \\nabla f(\\fa)^\\top (\\fx-\\fa) + \\frac{1}{2}(\\fx-\\fa)^\\top \\fH (\\fx-\\fa)\\]\nwhere \\(\\nabla f(\\fa)\\) is the gradient of \\(f\\) at \\(\\fa\\) and \\(\\fH\\) is the Hessian of \\(f\\) at \\(\\fa\\). As a reminder, the Hessian is the matrix of second order partial derivatives. So, all we need to do for all of the exercises is evaluate \\(f(\\fa)\\) and compute its gradient and Hessian.\n\n\\(T(x) = 5 + 15 (x-1) + 15 (x-1)^2\\)\nFirst, we simplify \\(f(x,y)=x^2 (y^3+1)\\) and compute \\(f(3,2)=81\\) and then we compute the gradient and Hessian of \\(f\\) resulting in \\[\n\\nabla f(x,y) = \\bpmat 2x (y^3-1) \\\\ x^2(3y^2-1) \\epmat,\\quad\n\\fH = \\bpmat 2(y^3-1) & 6 xy^2 \\\\ 6xy^2 & 6x^2y \\epmat.\n\\]\nThis one is similar to (b) but we have to be careful with the logarithm. First, we have \\(f(\\fx_0)=0\\) because \\(\\log(1)=0\\). Then, we compute the gradient and Hessian of \\(f\\) resulting in \\[\n    \\nabla f(\\fx) = \\bpmat\n   3x_1^2 x_2 \\log(x_2) \\\\ x_1^3 (1+\\log(x_2))\n   \\epmat,\\quad\n    \\fH = \\bpmat\n   6x_1 x_2 \\log(x_2)   & 3x_1^2 (1+\\log(x_2)) \\\\\n   3x_1^2 (1+\\log(x_2)) & x_1^3 x_2^{-1}\n    \\epmat\n    \\]\nEvaluating the trigonometric functions here is simpler than it seems because they are evaluated at \\(\\pi\\) and \\(-\\pi\\). We get \\(f(\\fx_0) = \\sin(-\\pi) + \\cos(\\pi) = 0 - 1 = -1\\) and \\[\n\\nabla f(\\fx) = \\bpmat \\cos(x_1) \\\\ -\\sin(x_2) \\epmat, \\quad\n\\fH = \\bpmat -\\sin(x_1) & 0 \\\\ 0 & -\\cos(x_2) \\epmat.\n\\]"
+  },
+  {
+    "objectID": "ex/w05/exercises05_solution.html#exercise-2---eigenvalues-eigenvectors",
+    "href": "ex/w05/exercises05_solution.html#exercise-2---eigenvalues-eigenvectors",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Eigenvalues, Eigenvectors",
+    "text": "Exercise 2 - Eigenvalues, Eigenvectors\nYou are given the sets of eigevalues and eigenvectors. Compute the corresponding matrix.\n\n\\(\\la_1 = 2\\), \\(\\la_2 = 3\\), \\(\\fv_1 = (1,0)^\\top\\), \\(\\fv_2 = (0,1)^\\top\\).\n\\(\\la_1 = 2\\), \\(\\la_2 = 3\\), \\(\\fv_1 = (1,1)^\\top\\), \\(\\fv_2 = (1,-1)^\\top\\).\n\n\nSolution\nFirst, remember that the normalized eigenvectors of a symmetric matrix are orthogonal. Thus, we have \\[\n\\fe_i^\\top \\fe_j = \\begin{cases} 1 & i=j \\\\ 0 & i\\neq j \\end{cases}.\n\\]\nSecond, for symmetric \\(\\fA\\), its spectral decomposition is given by \\(\\fA = \\fQ \\fLa \\fQ^\\top\\), where \\(\\fQ\\) is a matrix where each column is an (orthogonal) eigenvector of unit length.\n\nHere, the eigenvectors are already normalized and orthogonal, so we can simply write \\(\\fQ = (\\fe_1, \\fe_2)\\) and \\(\\fLa = \\diag(\\lambda_1, \\lambda_2)\\). Then, we have \\[\n  \\fA = \\bpmat 2 & 0 \\\\\n0 & 3\n\\epmat\n  \\]\nHere, we have to normalize the eigenvectors first. Each has length \\(\\sqrt{2}\\), so we have to divide each of them by \\(\\sqrt{2}\\), i.e. we set \\(\\fte_i:=\\fe_i/\\sqrt{2}\\). With this, we can construct an orthogonal matrix of eigenvalues as \\(\\fQ = (\\fte_1, \\fte_2)\\). The resulting matrix \\(\\fA\\) is \\[\n  \\fA = \\bpmat\n2.5 & -0.5 \\\\\n-0.5 & 2.5\n\\epmat\n  \\]"
+  },
+  {
+    "objectID": "ex/w05/exercises05_solution.html#exercise-3---sgd-with-momentum",
+    "href": "ex/w05/exercises05_solution.html#exercise-3---sgd-with-momentum",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - SGD with Momentum",
+    "text": "Exercise 3 - SGD with Momentum\nImplement stochastic gradient descent with momentum and apply it to optimize some elementary functions in 1d and 2d.\n\nSolution\nAn example implementation could look like this. First we deinfe the objective function and its gradient:\ndef objective(x):\n    return x**2\n\ndef obj_grad(x):\n    return 2*x\nThen, we implement the momentum optimizer itself:\ndef sgd_with_momentum(obj, grad, x_init, learning_rate, momentum, max_iter):\n  x = x_init\n  update = 0\n  for i in range(max_iter):\n    update = momentum * update - learning_rate * grad(x)\n    x = x + update\n\n    print('&gt;%d f(%s) = %.5f' % (i, x, obj(x)))\n  return x\nIt can now be invoked directly via:\nsgd_with_momentum(\n    objective, obj_grad, x_init=3.0, learning_rate=0.1, momentum=0.5, \n    max_iter=20\n    )"
+  },
+  {
     "objectID": "ex/w04/questions/cnn-sizes-sol.html",
     "href": "ex/w04/questions/cnn-sizes-sol.html",
     "title": "CSC413 - Fall 2024",
@@ -3387,6 +3541,76 @@
     "text": "Here, we simply apply the convolutional kernel over each \\(2\\times 2\\) patch of the input. There are 9 such patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n3 & -1 & -3 \\\\\n2 & 3 &  3 \\\\\n5 & 2 &  1\n\\epmat\n\\]\n\nSame idea except that we skip every other patch resulting in only 4 patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n3 & -3 \\\\\n5 &  1\n\\epmat\n\\]\n\nNow, we have added zeros on each side of the input. The resulting \\(6\\times 6\\) padded input \\(X_\\mathrm{padded}\\) and corresponding output \\(Y\\) are\n\n\\[\nX_\\mathrm{padded} =\n\\bpmat\n0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & -2 & 1 & 0\\\\\n0 & 0 & 1 & 1 & 0 & 0\\\\\n0 & 0 & 1 & 0 & 1 & 0\\\\\n0 & -3 & 4 & 0 & 0 & 0\\\\\n0 & 0 & 0 & 0 & 0 & 0\n\\epmat,\n\\qquad\nY = \\bpmat\n1 & -2 & 0 \\\\\n0 & 3  &  0 \\\\\n-3 & 8 & 0\n\\epmat\n\\]"
   },
   {
+    "objectID": "ex/w04/exercises04.html",
+    "href": "ex/w04/exercises04.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Write a co-occurrence matrix for the following sentence:\n\n“A bird in the hand is worth two in the bush.”\n\nCount each word only if it appears directly after the reference word. Is the co-occurrence matrix unique?"
+  },
+  {
+    "objectID": "ex/w04/exercises04.html#exercise-1---co-occurrence-matrix",
+    "href": "ex/w04/exercises04.html#exercise-1---co-occurrence-matrix",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Write a co-occurrence matrix for the following sentence:\n\n“A bird in the hand is worth two in the bush.”\n\nCount each word only if it appears directly after the reference word. Is the co-occurrence matrix unique?"
+  },
+  {
+    "objectID": "ex/w04/exercises04.html#exercise-2---convolutional-layers",
+    "href": "ex/w04/exercises04.html#exercise-2---convolutional-layers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Convolutional Layers",
+    "text": "Exercise 2 - Convolutional Layers\nConsider the following \\(4\\times 4 \\times 1\\) input X and a \\(2\\times 2 \\times 1\\) convolutional kernel K with no bias term\n\\[\nX =\n\\bpmat\n1 & 0 & -2 & 1 \\\\\n0 & 1 & 1 & 0 \\\\\n0 & 1 & 0 & 1 \\\\\n-3 & 4 & 0 & 0\n\\epmat, \\qquad\n%\nK = \\bpmat\n2, & 1 \\\\\n0, & 1 \\\\\n\\epmat\n\\]\n\nWhat is the output of the convolutional layer for the case of stride 1 and no padding?\nWhat if we have stride 2 and no padding?\nWhat if we have stride 2 and zero-padding of size 1?"
+  },
+  {
+    "objectID": "ex/w04/exercises04.html#exercise-3---sizes-in-mlps-refresher",
+    "href": "ex/w04/exercises04.html#exercise-3---sizes-in-mlps-refresher",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Sizes in MLPs Refresher",
+    "text": "Exercise 3 - Sizes in MLPs Refresher\nYou are given an MLP with ReLU activations. It has 3 layers consisting of 5, 10, and 5 neurons respectively. The input is a vector of size 10. How many parameters does this network have?"
+  },
+  {
+    "objectID": "ex/w04/exercises04.html#exercise-4---sizes-in-cnns",
+    "href": "ex/w04/exercises04.html#exercise-4---sizes-in-cnns",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - Sizes in CNNs",
+    "text": "Exercise 4 - Sizes in CNNs\nYou are givne a neural network with the following architecture:\nInput: 100 x 100 x 3 Image\n\nLayers:\n1. Conv(in_channels=3, out_channels=5, kernel_size=3, stride=1, padding=0)\n2. MaxPool2d(kernel_size=2, stride=2, padding=0)\n3. Conv(in_channels=5, out_channels=10, kernel_size=3, stride=1, padding=0)\n4. MaxPool2d(kernel_size=2, stride=2, padding=0)\n5. Conv(in_channels=10, out_channels=5, kernel_size=3, stride=1, padding=0)\n6. Flatten()\n7. MLP(neurons=20)\n8. MLP(neurons=10)\n\nWhat is the dimensionality of the activations after each layer.\nHow many parameters does this network have?"
+  },
+  {
+    "objectID": "ex/w04/exercises04_solution.html",
+    "href": "ex/w04/exercises04_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Write a co-occurrence matrix for the following sentence:\n\n“A bird in the hand is worth two in the bush.”\n\nCount each word only if it appears directly after the reference word. Is the co-occurrence matrix unique?\n\n\nThe solution is not unique because we can change the order of the reference entries. In our case we will simply follow the intuitive ordering resulting in the following co-occurence matrix:\n\n\n\nReference\nA\nbird\nin\nthe\nhand\nis\nworth\ntwo\nbush\n\n\n\n\nA\n0\n1\n0\n0\n0\n0\n0\n0\n0\n\n\nbird\n0\n0\n1\n0\n0\n0\n0\n0\n0\n\n\nin\n0\n0\n0\n2\n0\n0\n0\n0\n0\n\n\nthe\n0\n0\n0\n0\n1\n0\n0\n0\n1\n\n\nhand\n0\n0\n0\n0\n0\n1\n0\n0\n0\n\n\nis\n0\n0\n0\n0\n0\n0\n1\n0\n0\n\n\nworth\n0\n0\n0\n0\n0\n0\n0\n1\n0\n\n\ntwo\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\nbush\n0\n0\n0\n0\n0\n0\n0\n0\n0"
+  },
+  {
+    "objectID": "ex/w04/exercises04_solution.html#exercise-1---co-occurrence-matrix",
+    "href": "ex/w04/exercises04_solution.html#exercise-1---co-occurrence-matrix",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Write a co-occurrence matrix for the following sentence:\n\n“A bird in the hand is worth two in the bush.”\n\nCount each word only if it appears directly after the reference word. Is the co-occurrence matrix unique?\n\n\nThe solution is not unique because we can change the order of the reference entries. In our case we will simply follow the intuitive ordering resulting in the following co-occurence matrix:\n\n\n\nReference\nA\nbird\nin\nthe\nhand\nis\nworth\ntwo\nbush\n\n\n\n\nA\n0\n1\n0\n0\n0\n0\n0\n0\n0\n\n\nbird\n0\n0\n1\n0\n0\n0\n0\n0\n0\n\n\nin\n0\n0\n0\n2\n0\n0\n0\n0\n0\n\n\nthe\n0\n0\n0\n0\n1\n0\n0\n0\n1\n\n\nhand\n0\n0\n0\n0\n0\n1\n0\n0\n0\n\n\nis\n0\n0\n0\n0\n0\n0\n1\n0\n0\n\n\nworth\n0\n0\n0\n0\n0\n0\n0\n1\n0\n\n\ntwo\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\nbush\n0\n0\n0\n0\n0\n0\n0\n0\n0"
+  },
+  {
+    "objectID": "ex/w04/exercises04_solution.html#exercise-2---convolutional-layers",
+    "href": "ex/w04/exercises04_solution.html#exercise-2---convolutional-layers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Convolutional Layers",
+    "text": "Exercise 2 - Convolutional Layers\nConsider the following \\(4\\times 4 \\times 1\\) input X and a \\(2\\times 2 \\times 1\\) convolutional kernel K with no bias term\n\\[\nX =\n\\bpmat\n1 & 0 & -2 & 1 \\\\\n0 & 1 & 1 & 0 \\\\\n0 & 1 & 0 & 1 \\\\\n-3 & 4 & 0 & 0\n\\epmat, \\qquad\n%\nK = \\bpmat\n2, & 1 \\\\\n0, & 1 \\\\\n\\epmat\n\\]\n\nWhat is the output of the convolutional layer for the case of stride 1 and no padding?\nWhat if we have stride 2 and no padding?\nWhat if we have stride 2 and zero-padding of size 1?\n\n\nSolution\n\nHere, we simply apply the convolutional kernel over each \\(2\\times 2\\) patch of the input. There are 9 such patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n3 & -1 & -3 \\\\\n2 & 3 &  3 \\\\\n5 & 2 &  1\n\\epmat\n\\]\n\nSame idea except that we skip every other patch resulting in only 4 patches. The output \\(Y\\) is then\n\n\\[\nY = \\bpmat\n3 & -3 \\\\\n5 &  1\n\\epmat\n\\]\n\nNow, we have added zeros on each side of the input. The resulting \\(6\\times 6\\) padded input \\(X_\\mathrm{padded}\\) and corresponding output \\(Y\\) are\n\n\\[\nX_\\mathrm{padded} =\n\\bpmat\n0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & -2 & 1 & 0\\\\\n0 & 0 & 1 & 1 & 0 & 0\\\\\n0 & 0 & 1 & 0 & 1 & 0\\\\\n0 & -3 & 4 & 0 & 0 & 0\\\\\n0 & 0 & 0 & 0 & 0 & 0\n\\epmat,\n\\qquad\nY = \\bpmat\n1 & -2 & 0 \\\\\n0 & 3  &  0 \\\\\n-3 & 8 & 0\n\\epmat\n\\]"
+  },
+  {
+    "objectID": "ex/w04/exercises04_solution.html#exercise-3---sizes-in-mlps-refresher",
+    "href": "ex/w04/exercises04_solution.html#exercise-3---sizes-in-mlps-refresher",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Sizes in MLPs Refresher",
+    "text": "Exercise 3 - Sizes in MLPs Refresher\nYou are given an MLP with ReLU activations. It has 3 layers consisting of 5, 10, and 5 neurons respectively. The input is a vector of size 10. How many parameters does this network have?\n\nSolution\nThe number of parameters for each neuron is the number of weights plus one for the biaas term. The number of weights corresponds to the number of inputs / activations from the previous layer. So for the first layer, we have 10 inputs and thus 11 parameters per neuron resulting in 55 parameters total per layer.\nA similar computation gives 60 and 55 as the number of parameters for the next two layers. Thus, the network has a total of 170 parameters."
+  },
+  {
+    "objectID": "ex/w04/exercises04_solution.html#exercise-4---sizes-in-cnns",
+    "href": "ex/w04/exercises04_solution.html#exercise-4---sizes-in-cnns",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - Sizes in CNNs",
+    "text": "Exercise 4 - Sizes in CNNs\nYou are givne a neural network with the following architecture:\nInput: 100 x 100 x 3 Image\n\nLayers:\n1. Conv(in_channels=3, out_channels=5, kernel_size=3, stride=1, padding=0)\n2. MaxPool2d(kernel_size=2, stride=2, padding=0)\n3. Conv(in_channels=5, out_channels=10, kernel_size=3, stride=1, padding=0)\n4. MaxPool2d(kernel_size=2, stride=2, padding=0)\n5. Conv(in_channels=10, out_channels=5, kernel_size=3, stride=1, padding=0)\n6. Flatten()\n7. MLP(neurons=20)\n8. MLP(neurons=10)\n\nWhat is the dimensionality of the activations after each layer.\nHow many parameters does this network have?\n\n\nSolution\n\nThe outputs dimensions after each layer are:\n\n1. 98 x 98 x 5 \n2. 49 x 49 x 5\n3. 47 x 47 x 10\n4. 23 x 23 x 10\n5. 21 x 21 x 5 \n6. 2205\n7. 20\n8. 10\n\nThe number of parameters for each layer is:\n\n1. 140\n2. 0\n3. 460\n4. 0\n5. 455\n6. 0\n7. 44120\n8. 210"
+  },
+  {
     "objectID": "ex/w03/questions/autodiff-modes.html",
     "href": "ex/w03/questions/autodiff-modes.html",
     "title": "CSC413 - Fall 2024",
@@ -3406,6 +3630,41 @@
     "title": "CSC413 - Fall 2024",
     "section": "",
     "text": "First, let’s quickly remember that the maximum likelihood estimator (MLE) of a probability distribution from dataapoints \\(\\fx_1, \\ldots, \\fx_N\\) is given by \\[\n\\hte_{\\mathrm{MLE}} = \\argmax_{\\te \\in \\Te} \\prod_{i=1}^N f(\\fx_i | \\te),\n\\] where \\(f\\) is the probability density function of the considered probability distribution family, \\(\\te\\) are the parameters of the distribution, and \\(\\Te\\) is the parameter space (a set containing all possible parameters). The product on the right hand side is also known as the likelihood function. In practice, we usually work with the log-likelihood function instead. Because the logarithm is monotonously increasing, the resulting estimators are the same, i.e. \\[\n\\hte_{\\mathrm{MLE}}\n= \\argmax_{\\te \\in \\Te} \\prod_{i=1}^N f(\\fx_i | \\te),\n= \\argmax_{\\te \\in \\Te} \\sum_{i=1}^N \\log \\li( f(\\fx_i | \\te)\\ri).\n\\]\nSecond, let’s remember that the probability density function of a multivariate Gaussian distribution is given by \\[\nf(\\fx_i | \\mu, \\Si)\n= \\frac{1}{(2 \\pi)^{n/2} |\\Si|^{1/2}}\n   \\exp \\li(\n     - \\frac{1}{2}\n     (\\fx_i - \\mu)^\\top\n     \\Si^{-1}\n     (\\fx_i - \\mu)\n   \\ri)\n\\] with parameters \\(\\te=(\\mu, \\Si)\\), where \\(\\mu\\in\\R^n\\) is the mean vector and \\(\\Si\\in\\R^{n\\times n}\\) is the covariance matrix. Moreover, the notation \\(|\\Si|\\) denotes the determinant of \\(\\Si\\).\nOur goal is to maximize the log-likelihood function which in this case is \\[\\begin{aligned}\nl(\\mu, \\Si| \\fx_1, \\ldots, \\fx_N)\n  & := \\sum_{i=1}^N \\log f(\\fx_i | \\mu, \\Si) \\\\\n  & = \\sum_{i=1}^N \\li(\n    - \\frac{n}{2} \\log (2 \\pi)\n    - \\frac{1}{2} \\log |\\Si|  \n    - \\frac{1}{2}  (\\fx_i - \\mu)^\\top \\Si^{-1} (\\fx_i - \\mu)\n  \\ri).\n\\end{aligned}\\] For obtaining the MLE of \\(\\mu\\), we can simply take the gradient of \\(l\\) with respect to \\(\\mu\\) and set it to zero resulting in: \\[\n\\nabla_\\mu l(\\mu, \\Si| \\fx_1, \\ldots, \\fx_N)\n= \\sum_{i=1}^N  \\Si^{-1} ( \\fx_i - \\mu )\n= 0\n\\] Since \\(\\Si\\) is a covariance matrix, it is positive definite. Thus, we can multiply both sides of the equation by \\(\\Si\\) and obtain \\[\n\\begin{aligned}\n0 & = N \\mu - \\sum_{i=1}^N  \\fx_i,\n\\\\\n\\Rightarrow \\hmu_{\\mathrm{MLE}} &=  \\frac{1}{N} \\sum_{i=1}^N \\fx_i .\n\\end{aligned}\n\\] Conveniently, \\(\\Si\\) disappears and thus we do not have to worry about it."
+  },
+  {
+    "objectID": "ex/w03/exercises03.html",
+    "href": "ex/w03/exercises03.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Assume you are given datapoints \\((\\fx_i)_{i=1}^N\\) with \\(\\fx_i\\in\\R^n\\) coming from a Gaussian distribution. Derive the maximum likelihood estimator of its mean."
+  },
+  {
+    "objectID": "ex/w03/exercises03.html#exercise-1---maximum-likelihood-estimation-refresher",
+    "href": "ex/w03/exercises03.html#exercise-1---maximum-likelihood-estimation-refresher",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Assume you are given datapoints \\((\\fx_i)_{i=1}^N\\) with \\(\\fx_i\\in\\R^n\\) coming from a Gaussian distribution. Derive the maximum likelihood estimator of its mean."
+  },
+  {
+    "objectID": "ex/w03/exercises03.html#exercise-2---more-gradients",
+    "href": "ex/w03/exercises03.html#exercise-2---more-gradients",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - More Gradients",
+    "text": "Exercise 2 - More Gradients\nYou are an ML Engineer at Googlezon where you are working on an internal ML framework called TorchsorFlow. You are tasked with implementing a new layer known as BatchNormalization. The idea of this layer is as follows:\nDuring training, consider the outputs of the previous layer \\(\\fa_i=(a_i^{(1)}, \\ldots, a_i^{(N)})\\) for each element \\(i\\in \\{1, \\ldots, M\\}\\) of the input batch. Compute the mean \\(\\mu_j\\) and variance \\(\\si_j^2\\) over each input dimension \\(j\\). Use the resulting statistics to normalize the output of the previous layer. Finally, rescale the resulting vector with a learned constant \\(\\gm\\) and shift it by another learned constant \\(\\be\\).\n\nWrite down the mathematical expression for the BatchNormalization layer. What are its learnable parameters?\nCompute the gradient of the loss \\(\\mcL\\) with respect to the input of the BatchNormalization \\(\\fa_i\\) layer.\nAt test time, the batch size is usually 1. So, it is not meaningful (or even possible) to compute mean / variance. How would you implement a layer like this?"
+  },
+  {
+    "objectID": "ex/w03/exercises03.html#exercise-3---autodiff-modes",
+    "href": "ex/w03/exercises03.html#exercise-3---autodiff-modes",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Autodiff Modes",
+    "text": "Exercise 3 - Autodiff Modes\nConsider the function \\(F(x) = f_3(f_2(f_1(x))\\) and assume you also know the derivatives \\(f_i'\\) for all \\(f_i\\).\n\nApply the chain rule to express \\(F'(x)\\) in terms of \\(f_i'\\)s and \\(f_i\\).\nWrite down the pseudocode for computing \\(F'(x)\\) using the forward mode and the reverse mode respectively. Assume all functions to be scalar functions of a scalar variable, i.e. \\(f_i: \\R \\rightarrow \\R\\).\nIf you simply ask your interpreter / compiler to evaluate the expression in (a), will the computation be in forward mode, reverse mode, or neither of the modes? Why? You can assume that your interpreter / compiler does not do any caching or optimization and simply evaluates the expression from left to right. Does anything change if you assume that your interpreter caches results that have been computed before?"
+  },
+  {
+    "objectID": "ex/w03/exercises03.html#exercise-4---glove-embeddings",
+    "href": "ex/w03/exercises03.html#exercise-4---glove-embeddings",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - GloVe Embeddings",
+    "text": "Exercise 4 - GloVe Embeddings\nOpen the notebook presented in class and work through it by trying some of the ideas presented therein for different word combinations."
   },
   {
     "objectID": "weeks/week-15.html",
@@ -4475,6 +4734,41 @@
     "text": "Additional resources\n\nR for Data Science\nQuarto Documentation\nData visualization\n\nggplot2 Reference\nggplot2: Elegant Graphics for Data Analysis\nData Visualization: A Practice Introduction\nPatchwork R Package"
   },
   {
+    "objectID": "ex/w03/exercises03_solution.html",
+    "href": "ex/w03/exercises03_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Assume you are given datapoints \\((\\fx_i)_{i=1}^N\\) with \\(\\fx_i\\in\\R^n\\) coming from a Gaussian distribution. Derive the maximum likelihood estimator of its mean.\n\n\nFirst, let’s quickly remember that the maximum likelihood estimator (MLE) of a probability distribution from dataapoints \\(\\fx_1, \\ldots, \\fx_N\\) is given by \\[\n\\hte_{\\mathrm{MLE}} = \\argmax_{\\te \\in \\Te} \\prod_{i=1}^N f(\\fx_i | \\te),\n\\] where \\(f\\) is the probability density function of the considered probability distribution family, \\(\\te\\) are the parameters of the distribution, and \\(\\Te\\) is the parameter space (a set containing all possible parameters). The product on the right hand side is also known as the likelihood function. In practice, we usually work with the log-likelihood function instead. Because the logarithm is monotonously increasing, the resulting estimators are the same, i.e. \\[\n\\hte_{\\mathrm{MLE}}\n= \\argmax_{\\te \\in \\Te} \\prod_{i=1}^N f(\\fx_i | \\te),\n= \\argmax_{\\te \\in \\Te} \\sum_{i=1}^N \\log \\li( f(\\fx_i | \\te)\\ri).\n\\]\nSecond, let’s remember that the probability density function of a multivariate Gaussian distribution is given by \\[\nf(\\fx_i | \\mu, \\Si)\n= \\frac{1}{(2 \\pi)^{n/2} |\\Si|^{1/2}}\n   \\exp \\li(\n     - \\frac{1}{2}\n     (\\fx_i - \\mu)^\\top\n     \\Si^{-1}\n     (\\fx_i - \\mu)\n   \\ri)\n\\] with parameters \\(\\te=(\\mu, \\Si)\\), where \\(\\mu\\in\\R^n\\) is the mean vector and \\(\\Si\\in\\R^{n\\times n}\\) is the covariance matrix. Moreover, the notation \\(|\\Si|\\) denotes the determinant of \\(\\Si\\).\nOur goal is to maximize the log-likelihood function which in this case is \\[\\begin{aligned}\nl(\\mu, \\Si| \\fx_1, \\ldots, \\fx_N)\n  & := \\sum_{i=1}^N \\log f(\\fx_i | \\mu, \\Si) \\\\\n  & = \\sum_{i=1}^N \\li(\n    - \\frac{n}{2} \\log (2 \\pi)\n    - \\frac{1}{2} \\log |\\Si|  \n    - \\frac{1}{2}  (\\fx_i - \\mu)^\\top \\Si^{-1} (\\fx_i - \\mu)\n  \\ri).\n\\end{aligned}\\] For obtaining the MLE of \\(\\mu\\), we can simply take the gradient of \\(l\\) with respect to \\(\\mu\\) and set it to zero resulting in: \\[\n\\nabla_\\mu l(\\mu, \\Si| \\fx_1, \\ldots, \\fx_N)\n= \\sum_{i=1}^N  \\Si^{-1} ( \\fx_i - \\mu )\n= 0\n\\] Since \\(\\Si\\) is a covariance matrix, it is positive definite. Thus, we can multiply both sides of the equation by \\(\\Si\\) and obtain \\[\n\\begin{aligned}\n0 & = N \\mu - \\sum_{i=1}^N  \\fx_i,\n\\\\\n\\Rightarrow \\hmu_{\\mathrm{MLE}} &=  \\frac{1}{N} \\sum_{i=1}^N \\fx_i .\n\\end{aligned}\n\\] Conveniently, \\(\\Si\\) disappears and thus we do not have to worry about it."
+  },
+  {
+    "objectID": "ex/w03/exercises03_solution.html#exercise-1---maximum-likelihood-estimation-refresher",
+    "href": "ex/w03/exercises03_solution.html#exercise-1---maximum-likelihood-estimation-refresher",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Assume you are given datapoints \\((\\fx_i)_{i=1}^N\\) with \\(\\fx_i\\in\\R^n\\) coming from a Gaussian distribution. Derive the maximum likelihood estimator of its mean.\n\n\nFirst, let’s quickly remember that the maximum likelihood estimator (MLE) of a probability distribution from dataapoints \\(\\fx_1, \\ldots, \\fx_N\\) is given by \\[\n\\hte_{\\mathrm{MLE}} = \\argmax_{\\te \\in \\Te} \\prod_{i=1}^N f(\\fx_i | \\te),\n\\] where \\(f\\) is the probability density function of the considered probability distribution family, \\(\\te\\) are the parameters of the distribution, and \\(\\Te\\) is the parameter space (a set containing all possible parameters). The product on the right hand side is also known as the likelihood function. In practice, we usually work with the log-likelihood function instead. Because the logarithm is monotonously increasing, the resulting estimators are the same, i.e. \\[\n\\hte_{\\mathrm{MLE}}\n= \\argmax_{\\te \\in \\Te} \\prod_{i=1}^N f(\\fx_i | \\te),\n= \\argmax_{\\te \\in \\Te} \\sum_{i=1}^N \\log \\li( f(\\fx_i | \\te)\\ri).\n\\]\nSecond, let’s remember that the probability density function of a multivariate Gaussian distribution is given by \\[\nf(\\fx_i | \\mu, \\Si)\n= \\frac{1}{(2 \\pi)^{n/2} |\\Si|^{1/2}}\n   \\exp \\li(\n     - \\frac{1}{2}\n     (\\fx_i - \\mu)^\\top\n     \\Si^{-1}\n     (\\fx_i - \\mu)\n   \\ri)\n\\] with parameters \\(\\te=(\\mu, \\Si)\\), where \\(\\mu\\in\\R^n\\) is the mean vector and \\(\\Si\\in\\R^{n\\times n}\\) is the covariance matrix. Moreover, the notation \\(|\\Si|\\) denotes the determinant of \\(\\Si\\).\nOur goal is to maximize the log-likelihood function which in this case is \\[\\begin{aligned}\nl(\\mu, \\Si| \\fx_1, \\ldots, \\fx_N)\n  & := \\sum_{i=1}^N \\log f(\\fx_i | \\mu, \\Si) \\\\\n  & = \\sum_{i=1}^N \\li(\n    - \\frac{n}{2} \\log (2 \\pi)\n    - \\frac{1}{2} \\log |\\Si|  \n    - \\frac{1}{2}  (\\fx_i - \\mu)^\\top \\Si^{-1} (\\fx_i - \\mu)\n  \\ri).\n\\end{aligned}\\] For obtaining the MLE of \\(\\mu\\), we can simply take the gradient of \\(l\\) with respect to \\(\\mu\\) and set it to zero resulting in: \\[\n\\nabla_\\mu l(\\mu, \\Si| \\fx_1, \\ldots, \\fx_N)\n= \\sum_{i=1}^N  \\Si^{-1} ( \\fx_i - \\mu )\n= 0\n\\] Since \\(\\Si\\) is a covariance matrix, it is positive definite. Thus, we can multiply both sides of the equation by \\(\\Si\\) and obtain \\[\n\\begin{aligned}\n0 & = N \\mu - \\sum_{i=1}^N  \\fx_i,\n\\\\\n\\Rightarrow \\hmu_{\\mathrm{MLE}} &=  \\frac{1}{N} \\sum_{i=1}^N \\fx_i .\n\\end{aligned}\n\\] Conveniently, \\(\\Si\\) disappears and thus we do not have to worry about it."
+  },
+  {
+    "objectID": "ex/w03/exercises03_solution.html#exercise-2---more-gradients",
+    "href": "ex/w03/exercises03_solution.html#exercise-2---more-gradients",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - More Gradients",
+    "text": "Exercise 2 - More Gradients\nYou are an ML Engineer at Googlezon where you are working on an internal ML framework called TorchsorFlow. You are tasked with implementing a new layer known as BatchNormalization. The idea of this layer is as follows:\nDuring training, consider the outputs of the previous layer \\(\\fa_i=(a_i^{(1)}, \\ldots, a_i^{(N)})\\) for each element \\(i\\in \\{1, \\ldots, M\\}\\) of the input batch. Compute the mean \\(\\mu_j\\) and variance \\(\\si_j^2\\) over each input dimension \\(j\\). Use the resulting statistics to normalize the output of the previous layer. Finally, rescale the resulting vector with a learned constant \\(\\gm\\) and shift it by another learned constant \\(\\be\\).\n\nWrite down the mathematical expression for the BatchNormalization layer. What are its learnable parameters?\nCompute the gradient of the loss \\(\\mcL\\) with respect to the input of the BatchNormalization \\(\\fa_i\\) layer.\nAt test time, the batch size is usually 1. So, it is not meaningful (or even possible) to compute mean / variance. How would you implement a layer like this?\n\n\nSolution\nFor the purpose of batch normalization, we can consider each output neuron individually. Thus, we will simplify our notation and write \\(a_i\\), \\(y_i\\), … instead of \\(a_i^{(j)}\\), \\(y_i^{(j)}\\), … respectively.\n\nThe forward pass is given by the following equations \\[\n\\begin{aligned}\n\\mu_B\n  &:= \\frac{1}{M}\\sum_{i=1}^m a_i,\n  &\\text{(mini-batch mean)}  \\\\\n\\sigma_B^2\n  &:=\\frac{1}{M}\\sum_{i=1}^M (a_i-\\mu_B)^2,\n  &\\text{(mini-batch variance)}\\\\\n\\ha_i\n  &:= \\frac{a_i-\\mu_B}{\\sqrt{\\si_B^2+\\epsilon}},   \n&\\text{(normalize)}\\\\\n  y_i\n  &:= BN_{\\gamma, \\beta}((a_i)_{i=1}^M)\n  := \\gamma\\ha_i + \\beta.\n  &\\text{(scale and shift)}\n\\end{aligned}\n\\] The entire layer is defined as \\[\nBN(\\fa_1, \\ldots \\fa_M)=\\big(\n  BN_{\\gm^{(1)}, \\be^{(1)}}\\big((a_i^{(1)})_{i=1}^M\\big),\n  \\ldots,\n  BN_{\\gm^{(N)}, \\be^{(N)}}\\big((a_i^{(N)})_{i=1}^M\\big)\n  \\big)\n\\] where \\(\\gm^{(1)}, \\ldots, \\gm^{(N)}\\) and \\(\\be^{(1)}, \\ldots, \\be^{(N)}\\) are learnable parameters.\nThe derivatives can be expressed using the chain rule where we obtain \\(\\mu_B\\), \\(\\si_B\\), \\(\\ha_i\\), and \\(y_i\\) during the forward pass while \\(\\partial \\mcL/\\partial y_i\\) is obtained from earlier steps of the backward pass. The remaining derivatives are: \\[\n\\begin{aligned}\n\\frac{\\partial\\mcL}{\\partial \\ha_i} &= \\fr{\\partial \\mcL}{y_i}\\cdot \\gm, \\\\\n\\frac{\\partial\\mcL}{\\partial \\si_B^2}\n  &=\n  \\sum_{i=1}^M \\fr{\\partial\\mcL}{\\partial\\ha_i}\\cdot(a_i-\\mu_B)\\cdot\n  \\frac{-1}{2}(\\si_B^2+\\epsilon)^{-3/2}, \\\\\n\\fr{\\partial\\mcL}{\\partial\\mu_B}\n  &=\n  \\bigg(\\sum_{i=1}^M \\fr{\\partial\\mcL}{\\partial\\ha_i}\n  \\cdot\\frac{-1}{\\sqrt{\\sigma_B^2+\\epsilon}}\\bigg)\n  +\\fr{\\partial\\mcL}{ \\partial \\si_B^2}\n  \\cdot\\frac{\\sum_{i=1}^M  -2(a_i-\\mu_B)}{M},\\\\\n\\fr{\\partial\\mcL}{\\partial a_i}\n  &=\n  \\fr{\\partial\\mcL}{\\partial\\ha_i}\n  \\cdot \\frac{1}{\\sqrt{\\sigma_B^2+\\epsilon}}  + \\fr{\\partial \\mcL}{\\partial \\sigma_B^2} \\cdot \\frac{2(a_i-\\mu_B)}{M} + \\fr{\\partial \\mcL}{\\partial \\mu_B}\\cdot \\frac{1}{M},\\\\\n\\fr{\\partial\\mcL}{\\partial\\gamma}&= \\sum_{i=1}^M \\fr{\\partial\\mcL}{\\partial y_i} \\cdot \\ha_i, \\\\\n\\fr{\\partial\\mcL}{\\partial\\beta} &= \\sum_{i=1}^M \\fr{\\partial\\mcL}{\\partial y_i}.\n\\end{aligned}\n\\] Here \\(\\epsilon\\) is a small constant which is added in practice to the variance to avoid division by zero. It is actually not part of the derivative."
+  },
+  {
+    "objectID": "ex/w03/exercises03_solution.html#exercise-3---autodiff-modes",
+    "href": "ex/w03/exercises03_solution.html#exercise-3---autodiff-modes",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Autodiff Modes",
+    "text": "Exercise 3 - Autodiff Modes\nConsider the function \\(F(x) = f_3(f_2(f_1(x))\\) and assume you also know the derivatives \\(f_i'\\) for all \\(f_i\\).\n\nApply the chain rule to express \\(F'(x)\\) in terms of \\(f_i'\\)s and \\(f_i\\).\nWrite down the pseudocode for computing \\(F'(x)\\) using the forward mode and the reverse mode respectively. Assume all functions to be scalar functions of a scalar variable, i.e. \\(f_i: \\R \\rightarrow \\R\\).\nIf you simply ask your interpreter / compiler to evaluate the expression in (a), will the computation be in forward mode, reverse mode, or neither of the modes? Why? You can assume that your interpreter / compiler does not do any caching or optimization and simply evaluates the expression from left to right. Does anything change if you assume that your interpreter caches results that have been computed before?\n\n\nSolution\n\nFor better readability we will write \\((g\\circ h)(x)\\) for \\(g(h(x))\\). By applying the chain rule, we obtain \\[\n\\begin{aligned}\nF'(x)\n&= (f_3 \\circ f_2 \\circ f_1)' (x) \\\\\n&= (f_2 \\circ f_1)'(x)\n\\cdot (f_3' \\circ f_2 \\circ f_1)(x)\\\\\n&= f_1'(x) \\cdot (f_2' \\circ f_1)(x)\n\\cdot (f_3' \\circ f_2 \\circ f_1)(x)\n\\end{aligned}\n\\]\nFirst, let’s start with the forward mode\nd = f1'(x)\nv = f1(x)\nd = f2'(x) * d\nv = f2(v)\nd = f3'(v) * d\nNow, for the reverse mode, we first do a “forward pass” before computing gradients:\nv1 = f1(x)\nv2 = f2(v1)\nd = f3'(v2)\nd = d*f2'(v1)\nd = d*f1'(x)\nSimply evaluating the expression in (a) is not in line with any of the modes. It also involves repeated computations because \\(f_1(x)\\) will be computed twice. Now, if we allow for caching of ingtermediate results, this doubling of compugtaiton disappears. The order written above will then be in line with forward move automatic differentiation. However, this is specific to our example and in general not true."
+  },
+  {
+    "objectID": "ex/w03/exercises03_solution.html#exercise-4---glove-embeddings",
+    "href": "ex/w03/exercises03_solution.html#exercise-4---glove-embeddings",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - GloVe Embeddings",
+    "text": "Exercise 4 - GloVe Embeddings\nOpen the notebook presented in class and work through it by trying some of the ideas presented therein for different word combinations."
+  },
+  {
     "objectID": "ex/w03/questions/autodiff-modes-sol.html",
     "href": "ex/w03/questions/autodiff-modes-sol.html",
     "title": "CSC413 - Fall 2024",
@@ -4557,6 +4851,34 @@
     "title": "Ex 2: Eigenvalues and Eigenvectors to matrices",
     "section": "",
     "text": "Part (a) is straightforward. One needs to simply concatenate the given eigenvalues in a matrix.\n\nimport numpy as np\n\nla1 = 2\nla2 = 3\nev1 = np.array([1, 0])\nev2 = np.array([0, -1])\n\nLa = np.diag([la1, la2])\nO = np.array([ev1, ev2])\n\nnp.matmul(np.matmul(O, La), O.T)\n\narray([[2, 0],\n       [0, 3]])\n\n\nPart (b) has a catch. The eigenvectors are not normalized. So, we need to normalize them first before concatenating them in a matrix.\n\nla1 = 2\nla2 = 3\nev1 = np.array([1, 1])\nev2 = np.array([1, -1])\n\nLa = np.diag([la1, la2])\nO = np.array([ev1, ev2])\n\nprint(np.matmul(np.matmul(O, La), np.linalg.inv(O)))\nprint(np.matmul(np.matmul(O, La), (O).T)/2) # Sanity check\n\n[[ 2.5 -0.5]\n [-0.5  2.5]]\n[[ 2.5 -0.5]\n [-0.5  2.5]]\n1.4142135623730951\n\n\n\nnp.linalg.norm(ev2)\n\n2.8284271247461903\n\n\n\nEx 3: SGD w. Momentum Implementation\nFirst, let’s define an objective function, its gradient, and a starting point for the optimizer. In our case, this is simply \\(f(x) = x^2\\) and \\(x_{init}\\)=1.\n\ndef objective(x):\n    return x**2\n\ndef obj_grad(x):\n    return 2*x\n\nNow, we implement the actual optimizer.\n\ndef sgd_with_momentum(obj, grad, x_init, learning_rate, momentum, max_iter):\n  x = x_init\n  update = 0\n  for i in range(max_iter):\n    update = momentum * update - learning_rate * grad(x)\n    x = x + update\n\n    print('&gt;%d f(%s) = %.5f' % (i, x, obj(x)))\n  return x\n\n\nsgd_with_momentum(\n    objective, obj_grad, x_init=3.0, learning_rate=0.1, momentum=0.5, \n    max_iter=20\n    )\n\n&gt;0 f(2.4) = 5.76000\n&gt;1 f(1.6199999999999999) = 2.62440\n&gt;2 f(0.9059999999999999) = 0.82084\n&gt;3 f(0.3677999999999999) = 0.13528\n&gt;4 f(0.02513999999999994) = 0.00063\n&gt;5 f(-0.15121800000000002) = 0.02287\n&gt;6 f(-0.2091534) = 0.04375\n&gt;7 f(-0.19629041999999997) = 0.03853\n&gt;8 f(-0.15060084599999995) = 0.02268\n&gt;9 f(-0.09763588979999996) = 0.00953\n&gt;10 f(-0.05162623373999997) = 0.00267\n&gt;11 f(-0.018296158961999986) = 0.00033\n&gt;12 f(0.0020281102194000047) = 0.00000\n&gt;13 f(0.011784622766219999) = 0.00014\n&gt;14 f(0.014305954486385997) = 0.00020\n&gt;15 f(0.012705429449191796) = 0.00016\n&gt;16 f(0.009364081040756336) = 0.00009\n&gt;17 f(0.005820590628387338) = 0.00003\n&gt;18 f(0.002884727296525372) = 0.00001\n&gt;19 f(0.0008398501712893144) = 0.00000\n\n\n0.0008398501712893144"
+  },
+  {
+    "objectID": "ex/w05/exercises05.html",
+    "href": "ex/w05/exercises05.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Compute the Taylor series expansion up to the second order term for the following multivariate functions around a given point:\n\n\\(f(x) = 5x^3\\) around \\(x_0=1\\).\n\\(f(x,y) = x^2 \\cdot y^3 + x^2\\) around \\(x_0=3\\), \\(y_0=2\\).\n\\(f(\\fx) = x_1^3 \\cdot x_2 \\cdot \\log(x_2)\\) around \\(\\fx_0=(2,1)^\\top\\).\n\\(f(\\fx) = \\sin(x_1) + \\cos(x_2)\\) around \\(\\fx_0=(-\\pi,\\pi)^\\top\\)."
+  },
+  {
+    "objectID": "ex/w05/exercises05.html#exercise-1---taylor-series",
+    "href": "ex/w05/exercises05.html#exercise-1---taylor-series",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Compute the Taylor series expansion up to the second order term for the following multivariate functions around a given point:\n\n\\(f(x) = 5x^3\\) around \\(x_0=1\\).\n\\(f(x,y) = x^2 \\cdot y^3 + x^2\\) around \\(x_0=3\\), \\(y_0=2\\).\n\\(f(\\fx) = x_1^3 \\cdot x_2 \\cdot \\log(x_2)\\) around \\(\\fx_0=(2,1)^\\top\\).\n\\(f(\\fx) = \\sin(x_1) + \\cos(x_2)\\) around \\(\\fx_0=(-\\pi,\\pi)^\\top\\)."
+  },
+  {
+    "objectID": "ex/w05/exercises05.html#exercise-2---eigenvalues-eigenvectors",
+    "href": "ex/w05/exercises05.html#exercise-2---eigenvalues-eigenvectors",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Eigenvalues, Eigenvectors",
+    "text": "Exercise 2 - Eigenvalues, Eigenvectors\nYou are given the sets of eigevalues and eigenvectors. Compute the corresponding matrix.\n\n\\(\\la_1 = 2\\), \\(\\la_2 = 3\\), \\(\\fv_1 = (1,0)^\\top\\), \\(\\fv_2 = (0,1)^\\top\\).\n\\(\\la_1 = 2\\), \\(\\la_2 = 3\\), \\(\\fv_1 = (1,1)^\\top\\), \\(\\fv_2 = (1,-1)^\\top\\)."
+  },
+  {
+    "objectID": "ex/w05/exercises05.html#exercise-3---sgd-with-momentum",
+    "href": "ex/w05/exercises05.html#exercise-3---sgd-with-momentum",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - SGD with Momentum",
+    "text": "Exercise 3 - SGD with Momentum\nImplement stochastic gradient descent with momentum and apply it to optimize some elementary functions in 1d and 2d."
   },
   {
     "objectID": "ex/w05/questions/calc-taylor.html",
@@ -4643,6 +4965,41 @@
     "text": "Given a set of vectors \\(\\{\\fx_i\\}_{i=1}^N\\). Show that their empirical mean is equivalent to \\[\\hmu=\\argmin_\\fmu \\sum_i \\|\\fx_i - \\fmu\\|^2.\\]\nThere are two equivalent definitons of variance of a random variable. The first one is \\(\\Var(X) := \\E[(X - \\E[X])^2]\\) and the second is \\(\\Var(X) = \\E[X^2] - \\E[X]^2\\). Show that these two definitions actually are equivalent."
   },
   {
+    "objectID": "ex/w11/exercises11.html",
+    "href": "ex/w11/exercises11.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given the following set of eigevalues and eigenvectors. Compute the corresponding matrix.\n\\(\\la_1 = 1\\), \\(\\la_2 = 2\\), \\(\\fv_1 = (\\sqrt{0.5}, \\sqrt{0.5})^\\top\\), \\(\\fv_2 = (\\sqrt{0.5},-\\sqrt{0.5})^\\top\\)."
+  },
+  {
+    "objectID": "ex/w11/exercises11.html#exercise-1---eigenvalues-and-eigenvectors",
+    "href": "ex/w11/exercises11.html#exercise-1---eigenvalues-and-eigenvectors",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given the following set of eigevalues and eigenvectors. Compute the corresponding matrix.\n\\(\\la_1 = 1\\), \\(\\la_2 = 2\\), \\(\\fv_1 = (\\sqrt{0.5}, \\sqrt{0.5})^\\top\\), \\(\\fv_2 = (\\sqrt{0.5},-\\sqrt{0.5})^\\top\\)."
+  },
+  {
+    "objectID": "ex/w11/exercises11.html#exercise-2---parameter-counting",
+    "href": "ex/w11/exercises11.html#exercise-2---parameter-counting",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Parameter Counting",
+    "text": "Exercise 2 - Parameter Counting\nUse PyTorch to load the alexnet model and automatically compute its number of parameters. Output the number of parameters for each layer and the total number of parameters in the model."
+  },
+  {
+    "objectID": "ex/w11/exercises11.html#exercise-3---convolutional-layers",
+    "href": "ex/w11/exercises11.html#exercise-3---convolutional-layers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Convolutional Layers",
+    "text": "Exercise 3 - Convolutional Layers\nConsider the following \\(4\\times 4 \\times 1\\) input X and a \\(2\\times 2 \\times 1\\) convolutional kernel K with no bias term\n\\[\nX =\n\\bpmat\n1 & 0 & 1 & -1 \\\\\n1 & 0 & 1 & 0 \\\\\n0 & 3 & 0 & 1 \\\\\n1 & -1 & 0 & 1\n\\epmat, \\qquad\n%\nK = \\bpmat\n1, & 2 \\\\\n0, & 1 \\\\\n\\epmat\n\\]\n\nWhat is the output of the convolutional layer for the case of stride 1 and no padding?\nWhat if we have stride 2 and no padding?\nWhat if we have stride 2 and zero-padding of size 1?"
+  },
+  {
+    "objectID": "ex/w11/exercises11.html#exercise-4---scaled-dot-product-attention",
+    "href": "ex/w11/exercises11.html#exercise-4---scaled-dot-product-attention",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - Scaled Dot-Product Attention",
+    "text": "Exercise 4 - Scaled Dot-Product Attention\nConsider the matrices \\(Q\\), \\(K\\), \\(V\\) given by \\[\nQ = \\bpmat\n1 & 3\\\\\n0 & 1\n\\epmat,\\quad\nK = \\bpmat\n1 & 1\\\\\n1 & 2\\\\\n0 & 1\n\\epmat,\\quad\nV=\\bpmat\n1 & 0 & -2\\\\\n2 & 1 & 2 \\\\\n0 & 3 & -1\n\\epmat.\n\\] Compute the context matrix \\(C\\) using the scaled dot product attention."
+  },
+  {
     "objectID": "ex/w11/questions/pytorch-parameter_count.html",
     "href": "ex/w11/questions/pytorch-parameter_count.html",
     "title": "CSC413 - Fall 2024",
@@ -4685,6 +5042,34 @@
     "text": "import torch\nimport torch.nn as nn\n\nconv = nn.Conv2d(1, 1, kernel_size=2, stride=1, padding=0, bias=False)\n\nx = torch.tensor([\n    [ 1, 0, 1, -1],\n    [ 1, 0, 1, 0],\n    [ 0, 3, 0, 1],\n    [ 1, -1, 0, 1]\n])\n\nk = torch.tensor([\n    [ 1, 2],\n    [ 0, 1]\n])\n\nconv.weight.data = k.view(1, 1, 2, 2).float()\n\nprint(conv(x.view(1, 1, 4, 4).float()))\n\ntensor([[[[ 1.,  3., -1.],\n          [ 4.,  2.,  2.],\n          [ 5.,  3.,  3.]]]], grad_fn=&lt;ConvolutionBackward0&gt;)\n\n\n\nconv = nn.Conv2d(1, 1, kernel_size=2, stride=2, padding=0, bias=False)\nconv.weight.data = k.view(1, 1, 2, 2).float()\nprint(conv(x.view(1, 1, 4, 4).float()))\n\ntensor([[[[ 1., -1.],\n          [ 5.,  3.]]]], grad_fn=&lt;ConvolutionBackward0&gt;)\n\n\n\n# PyTorch uses zero-padding by default\nconv = nn.Conv2d(1, 1, kernel_size=2, stride=2, padding=1, bias=False)\nconv.weight.data = k.view(1, 1, 2, 2).float()\nprint(conv(x.view(1, 1, 4, 4).float()))\n\ntensor([[[[ 1.,  1.,  0.],\n          [ 2.,  2.,  0.],\n          [ 2., -1.,  1.]]]], grad_fn=&lt;ConvolutionBackward0&gt;)"
   },
   {
+    "objectID": "ex/w10/exercises10.html",
+    "href": "ex/w10/exercises10.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "What is the size of the output for a input tensor and a transposed convolutional layer if the parameters are given as follows (assume the number of channels is given in the first dimension).\n\nInput tensor size: \\(3\\times 2\\times 2\\)\nTransposed convolution: \\(3\\times 3\\) kernel, stride 1, output channels: 2\nInput tensor size: \\(3\\times 5\\times 5\\)\nTransposed convolutional: \\(2\\times 2\\) kernel, stride 2, output channels: 4\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(3\\times 3\\) kernel, stride 2, output channels: 2\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(h_k\\times w_k\\) kernel, stride \\(s\\), output channels: \\(c_{out}\\)"
+  },
+  {
+    "objectID": "ex/w10/exercises10.html#exercise-1---transposed-convolution-output-sizes",
+    "href": "ex/w10/exercises10.html#exercise-1---transposed-convolution-output-sizes",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "What is the size of the output for a input tensor and a transposed convolutional layer if the parameters are given as follows (assume the number of channels is given in the first dimension).\n\nInput tensor size: \\(3\\times 2\\times 2\\)\nTransposed convolution: \\(3\\times 3\\) kernel, stride 1, output channels: 2\nInput tensor size: \\(3\\times 5\\times 5\\)\nTransposed convolutional: \\(2\\times 2\\) kernel, stride 2, output channels: 4\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(3\\times 3\\) kernel, stride 2, output channels: 2\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(h_k\\times w_k\\) kernel, stride \\(s\\), output channels: \\(c_{out}\\)"
+  },
+  {
+    "objectID": "ex/w10/exercises10.html#exercise-2---transposed-convolution-parameter-sizes",
+    "href": "ex/w10/exercises10.html#exercise-2---transposed-convolution-parameter-sizes",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Transposed Convolution Parameter Sizes",
+    "text": "Exercise 2 - Transposed Convolution Parameter Sizes\nWhat is the number of learnable parameters for each of the following transposed convolution layers defined in PyTorch. Try to calculate those by hand first and use pytorch later to verify your results.\n\nnn.ConvTranspose2d(in_channels=3, out_channels=2, kernel_size=3, stride=1)\nnn.ConvTranspose2d(in_channels=3, out_channels=10, kernel_size=3, stride=2)\nnn.ConvTranspose2d(in_channels=3, out_channels=2, kernel_size=4, stride=5)\nnn.ConvTranspose2d(in_channels=3, out_channels=4, kernel_size=3, stride=23)"
+  },
+  {
+    "objectID": "ex/w10/exercises10.html#exercise-3---transposed-convolution-by-hand",
+    "href": "ex/w10/exercises10.html#exercise-3---transposed-convolution-by-hand",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Transposed Convolution by Hand",
+    "text": "Exercise 3 - Transposed Convolution by Hand\nYou are given an input matrix \\(X\\) (consisting of a single channel) and a kernel \\(K\\) as follows: \\[\nX = \\bpmat\n1 & 0 & 2 \\\\\n2 & 3 & 0 \\\\\n-1 & 0 & 3\n\\epmat, \\quad\nK = \\bpmat\n1 & 0 \\\\\n1 & 2\n\\epmat\n\\]\n\nCompute the transposed convolution by hand assuming stride 2.\nCompute the transposed convolution by hand assuming stride 1.\nUse PyTorch to verify your answers.\nImplement the transposed convolution in PyTorch without using its own implementaiton. You can assume no bias term a square kernel and no separate batch dimension. I.e. your task is to implement the following function\n\ndef conv_transpose2d(inp, weight, stride=1):\n    # inp - input of shape (C_in, H, W)\n    # weight - kernel of shape (C_in, C_out, K, K)\n    # stride - stride of the transposed convolution\n    # RETURNS\n    # output - output of shape (C_out, H_out, W_out)\n    #\n    # YOUR CODE HERE\n    return output"
+  },
+  {
     "objectID": "ex/w10/questions/tconv-by_hand.html",
     "href": "ex/w10/questions/tconv-by_hand.html",
     "title": "CSC413 - Fall 2024",
@@ -4711,6 +5096,41 @@
     "title": "CSC413 - Fall 2024",
     "section": "",
     "text": "What is the size of the output for a input tensor and a transposed convolutional layer if the parameters are given as follows (assume the number of channels is given in the first dimension).\n\nInput tensor size: \\(3\\times 2\\times 2\\)\nTransposed convolution: \\(3\\times 3\\) kernel, stride 1, output channels: 2\nInput tensor size: \\(3\\times 5\\times 5\\)\nTransposed convolutional: \\(2\\times 2\\) kernel, stride 2, output channels: 4\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(3\\times 3\\) kernel, stride 2, output channels: 2\nInput tensor size: \\(c_{in}\\times h\\times w\\)\nTransposed convolutional: \\(h_k\\times w_k\\) kernel, stride \\(s\\), output channels: \\(c_{out}\\)"
+  },
+  {
+    "objectID": "ex/w07/exercises07.html",
+    "href": "ex/w07/exercises07.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "The exercises this week involve some old material so you can check your learning and understanding."
+  },
+  {
+    "objectID": "ex/w07/exercises07.html#exercise-1---maximum-likelihood-estimator",
+    "href": "ex/w07/exercises07.html#exercise-1---maximum-likelihood-estimator",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 1 - Maximum Likelihood Estimator",
+    "text": "Exercise 1 - Maximum Likelihood Estimator\nAssume you are given datapoints \\((x_i)_{i=1}^N\\) with \\(x_i\\in\\R\\) coming from a Exponential distribution. The probability density function of a exponential distribution is given by \\(f(x) = \\la \\exp(-\\la x)\\) with \\(x\\in\\R\\). Derive the maximum likelihood estimator of the parameter \\(\\la\\)."
+  },
+  {
+    "objectID": "ex/w07/exercises07.html#exercise-2---convolutional-layers",
+    "href": "ex/w07/exercises07.html#exercise-2---convolutional-layers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Convolutional Layers",
+    "text": "Exercise 2 - Convolutional Layers\nConsider the following \\(4\\times 4 \\times 1\\) input X and a \\(2\\times 2 \\times 1\\) convolutional kernel K with no bias term\n\\[\nX =\n\\bpmat\n1 & 2 & -1 & 1 \\\\\n1 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 2 \\\\\n2 & 1 & 0 & -1\n\\epmat, \\qquad\n%\nK = \\bpmat\n1, & 0 \\\\\n2, & 1 \\\\\n\\epmat\n\\]\n\nWhat is the output of the convolutional layer for the case of stride 1 and no padding?\nWhat if we have stride 2 and no padding?\nWhat if we have stride 2 and zero-padding of size 1?"
+  },
+  {
+    "objectID": "ex/w07/exercises07.html#exercise-3---computational-parameter-counting",
+    "href": "ex/w07/exercises07.html#exercise-3---computational-parameter-counting",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Computational Parameter Counting",
+    "text": "Exercise 3 - Computational Parameter Counting\nUse PyTorch to load the vgg11 model and automatically compute its number of parameters. Output the number of parameters for each layer and the total number of parameters in the model."
+  },
+  {
+    "objectID": "ex/w07/exercises07.html#exercise-4---influence-functions",
+    "href": "ex/w07/exercises07.html#exercise-4---influence-functions",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 4 - Influence Functions",
+    "text": "Exercise 4 - Influence Functions\nLet \\(\\hte\\) and \\(\\hte(\\ve)\\) be as defined in class. Show that the first order Taylor expansion of \\(\\hte(\\ve)\\) around \\(\\ve=0\\) is given by the equation given in class, i.e. by \\[\\begin{align*}\n\\hat{\\theta}({\\epsilon}) \\approx \\hat{\\theta} + \\epsilon\\frac{d\\hat{\\theta}(\\epsilon)}{d\\epsilon} {\\Bigr |}_{\\epsilon=0} .\n\\end{align*}\\]"
   },
   {
     "objectID": "ex/w07/exercises07-notes.html",
@@ -4760,6 +5180,34 @@
     "title": "CSC413 - Fall 2024",
     "section": "",
     "text": "Assume you are given datapoints \\((x_i)_{i=1}^N\\) with \\(x_i\\in\\R\\) coming from a Exponential distribution. The probability density function of a exponential distribution is given by \\(f(x) = \\la \\exp(-\\la x)\\) with \\(x\\in\\R\\). Derive the maximum likelihood estimator of the parameter \\(\\la\\)."
+  },
+  {
+    "objectID": "ex/w09/exercises09_solution.html",
+    "href": "ex/w09/exercises09_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given a set of vectors \\[\n\\fh_1 = (1,2,3)^\\top,\\quad\n\\fh_2 = (1,2,1)^\\top,\\quad\n\\fh_3 = (0,1,-1)^\\top\n\\] and an alignment source vector \\(\\fs=(1,2,1)^\\top\\). Compute the resulting dot-product attention weights \\(\\alpha_i\\) for \\(i=1,2,3\\) and the resulting context vector \\(\\fc\\).\n\n\nFirst we compute the dot products between \\(\\fs\\) and the \\(\\fh_i\\) and apply softmax resulting in: \\[\n\\fa = \\text{Softmax}\\li(\n\\bpmat\n1 & 1 & 0\\\\\n2 & 2 & 1\\\\\n3 & 1 & -1\n\\epmat^\\top\n\\cdot\n\\bpmat 1\\\\ 2\\\\ 1\\epmat\n\\ri)\n\\approx\n\\bpmat 0.88\\\\ 0.12\\\\ 0.00\\epmat\n\\] The resulting context vector is then computed as a weighted sum of the \\(\\fh_i\\): \\[\n\\fc\n  = a_1 \\fh_1 + a_2 \\fh_2 + a_3 \\fh_3\n  \\approx \\bpmat 1.00\\\\ 2.00\\\\ 2.76\\epmat\n\\]\nA simple implementation yielding the solution is as follows:\nimport torch\nh = torch.tensor([[1, 2, 3], [1,2,1], [0,1,-1]])\ns = torch.tensor([1,2,1])\na = torch.matmul(h,s).float()\na = torch.exp(a)/torch.sum(torch.exp(a)) # Softmax\nc = a[0] * h[0] + a[1] * h[1] + a[2] * h[2]\nprint(c)"
+  },
+  {
+    "objectID": "ex/w09/exercises09_solution.html#exercise-1---dot-product-attention",
+    "href": "ex/w09/exercises09_solution.html#exercise-1---dot-product-attention",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "You are given a set of vectors \\[\n\\fh_1 = (1,2,3)^\\top,\\quad\n\\fh_2 = (1,2,1)^\\top,\\quad\n\\fh_3 = (0,1,-1)^\\top\n\\] and an alignment source vector \\(\\fs=(1,2,1)^\\top\\). Compute the resulting dot-product attention weights \\(\\alpha_i\\) for \\(i=1,2,3\\) and the resulting context vector \\(\\fc\\).\n\n\nFirst we compute the dot products between \\(\\fs\\) and the \\(\\fh_i\\) and apply softmax resulting in: \\[\n\\fa = \\text{Softmax}\\li(\n\\bpmat\n1 & 1 & 0\\\\\n2 & 2 & 1\\\\\n3 & 1 & -1\n\\epmat^\\top\n\\cdot\n\\bpmat 1\\\\ 2\\\\ 1\\epmat\n\\ri)\n\\approx\n\\bpmat 0.88\\\\ 0.12\\\\ 0.00\\epmat\n\\] The resulting context vector is then computed as a weighted sum of the \\(\\fh_i\\): \\[\n\\fc\n  = a_1 \\fh_1 + a_2 \\fh_2 + a_3 \\fh_3\n  \\approx \\bpmat 1.00\\\\ 2.00\\\\ 2.76\\epmat\n\\]\nA simple implementation yielding the solution is as follows:\nimport torch\nh = torch.tensor([[1, 2, 3], [1,2,1], [0,1,-1]])\ns = torch.tensor([1,2,1])\na = torch.matmul(h,s).float()\na = torch.exp(a)/torch.sum(torch.exp(a)) # Softmax\nc = a[0] * h[0] + a[1] * h[1] + a[2] * h[2]\nprint(c)"
+  },
+  {
+    "objectID": "ex/w09/exercises09_solution.html#exercise-2---attention-in-transformers",
+    "href": "ex/w09/exercises09_solution.html#exercise-2---attention-in-transformers",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Attention in Transformers",
+    "text": "Exercise 2 - Attention in Transformers\nTransformers use a scaled dot product attention mechanism given by \\[\nC\n= \\text{attention}(Q, K, V)\n= \\text{softmax}\\left(\\fr{QK^\\top}{\\sqrt{d}}\\right) V,\n\\] where \\(Q\\in\\R^{n_q\\times d_k}\\), \\(K\\in\\R^{n_k\\times d_k}\\), \\(V\\in\\R^{n_k\\times d_v}\\).\n\nIs the softmax function here applied row-wise or column-wise? What is the shape of the result?\nWhat is the value of \\(d\\)? Why is it needed?\nWhat is the computational complexity of this attention mechanism? How many additions and multiplications are required? Assume the canonical matrix multiplcation and not counting \\(\\exp(x)\\) towards computational cost.\nIn the masked variant of the module, a masking matrix is added before the softmax function is applied. What are its values and its shape? For simplicity, assume \\(n_q=n_k\\).\n\n\nSolution\n\nThe softmax function is applied row-wise and the shape of the result is \\(n_q\\times n_k\\). One way to see this is by looking at the shape of the dot product \\(QK^\\top\\) which is \\(n_q\\times n_k\\). Each row represents the pre-softmax scores of all keys and a given query. Because we need to normalize our attention weights per query, the normalization happens along the rows.\nThe value of \\(d\\) is \\(d_k\\). It is needed to scale the dot product so that the gradient of the softmax function does not vanish.\nTo obtain the computational complexity, let’s look at all the operations individually:\n\n\\(QK^\\top\\) requires \\(n_q n_k d_k\\) multiplications and \\(n_qn_k(d_k-1)\\) additions.\nDividing by \\(\\sqrt{d_k}\\) needs to be carried out \\(n_q n_k\\) times.\nApplying the softmax function can be implemented in \\(n_q n_k\\) divisions and \\(n_q(n_k-1)\\) additions.\nThe final matrix multiplication requires \\(n_qd_vn_k\\) multiplications and \\(n_q d_v (n_k-1)\\) additions.\n\nThe masking matrix is a triangular matrix with \\(-\\infty\\) on its top right half. This results in softmax weights being \\(0\\) for all key-query combinations to which \\(-\\infty\\) is added."
+  },
+  {
+    "objectID": "ex/w09/exercises09_solution.html#exercise-3---scaled-dot-product-attention-by-hand",
+    "href": "ex/w09/exercises09_solution.html#exercise-3---scaled-dot-product-attention-by-hand",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Scaled Dot-Product Attention by Hand",
+    "text": "Exercise 3 - Scaled Dot-Product Attention by Hand\nConsider the matrices \\(Q\\), \\(K\\), \\(V\\) given by \\[\nQ = \\bpmat\n1 & 2\\\\\n3 & 1\n\\epmat,\\quad\nK = \\bpmat\n2 & 1\\\\\n1 & 1\\\\\n0 & 1\n\\epmat,\\quad\nV=\\bpmat\n1 & 2 & -2\\\\\n1 & 1 & 2 \\\\\n0 & 1 & -1\n\\epmat.\n\\] Compute the context matrix \\(C\\) using the scaled dot product attention.\n\nSolution\nThe resulting context matrix is given by: \\[\nC\\approx\n\\bpmat\n0.86 & 1.58 & -0.72\\\\\n0.99 & 1.88 & -1.56\n\\epmat\n\\] A simple implementation would look as follows:\nimport torch\nQ = torch.tensor([[1, 2], [3, 1]]).float()\nK = torch.tensor([[2, 1], [1, 1], [0, 1]]).float()\nV = torch.tensor([[1, 2, -2], [1, 1, 2], [0, 1, -1]]).float()\nd_k = torch.tensor(K.shape[1])\nM = torch.matmul(Q, K.transpose(0, 1)) / torch.sqrt(d_k)\nS = torch.exp(M) / torch.sum(torch.exp(M), dim=1).view(-1,1)\ntorch.matmul(S, V)\nPytorch also provides a function for scaled dot product attention:\nimport torch.nn.functional as F\nF.scaled_dot_product_attention(Q, K, V)"
   },
   {
     "objectID": "ex/w09/questions/attn-transformers_by_hand-sol.html",
@@ -4837,6 +5285,62 @@
     "title": "CSC413 - Fall 2024",
     "section": "",
     "text": "Since the inputs \\(\\bf{x}^{(t)}\\) are \\(2 \\times 1\\) and the hidden units \\(\\bf{h}^{(t)}\\) are \\(2 \\times 1\\), we should have:\n\n\\(\\bf{W}\\) is \\(3 \\times 3\\)\n\\(\\bf{U}\\) is \\(3 \\times 2\\)\n\\(\\bf{b}_h\\) is \\(3 \\times 1\\)\n\\(\\bf{v}\\) is \\(3 \\times 1\\)\n\nWe will follow the hint and implement the addition in our RNN such that:\n\nThe first of our hidden units \\(h_1^{(t)}\\) is 1 if and only if the sum \\(S^{(t)} \\doteq x_1^{(t)} + x_2^{(t)} + c^{(t-1)} \\geq 1\\), where by \\(c^{(t-1)}\\) we denote a carry (\\(\\bf{h_2}^{(t-1)}\\) from the previous addition). Note, these \\(S^{(t)}\\) and \\(c^{(t-1)}\\) are not variables of the model, merely our notation to help us to work out the solution.\nThe \\(h_2^{(t)}\\) is 1 iff the sum \\(S^{(t)} \\geq 2\\),\nand \\(h_3^{(t)}\\) is 1 iff the sum \\(S^{(t)}\\) is 3.\n\nNotice that the carry \\(c^{(t-1)}\\) is going to be 1 iff \\(h_2^{(t-1)}=1\\) and 0 otherwise, i.e. when the previous addition was 2 or 3. Therefore to compute \\(h_i^{(t)}\\) we need to first compute the sum \\(S^{(t)} = x_1^{(t)} + x_2^{(t)} + h_2^{(t-1)}\\) and then offset it by \\(-i+1\\) so that after applying the hard threshold function we get the desired value as specified above. This can be achieved with the following set of parameters: \\[\n\\mathbf{U}= \\begin{bmatrix}\n    1 & 1 \\\\\n    1 & 1 \\\\\n    1 & 1 \\end{bmatrix},\\quad\n\\mathbf{W}=\\begin{bmatrix}\n    0 & 1 & 0 \\\\\n    0 & 1 & 0 \\\\\n    0 & 1 & 0\\end{bmatrix},\\quad\n\\mathbf{b_h}= \\begin{bmatrix}\n    -0.5 \\\\\n    -1.5 \\\\\n    -2.5 \\end{bmatrix}.\n\\]\nTo compute the output \\(y^{(t)}\\) we need to check if the \\(S^{(t)}\\) is 1 or 3, that is, if either \\(h_1^{(t)} = 1\\) while all other hidden units are zero or all hidden units are 1. We can accomplish this by setting: \\(\\mathbf{v}=\\begin{bmatrix} 1, -1, 1 \\end{bmatrix}\\) and \\(b_y = -0.5\\)."
+  },
+  {
+    "objectID": "ex/w06/exercises06.html",
+    "href": "ex/w06/exercises06.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Show that for two independent random variables, \\(X,Y\\) and arbitraty \\(a,b\\in\\R\\), the following equality holds \\[\\Var(aX+bY) = a^2\\cdot\\Var(X) + b^2\\cdot\\Var(Y).\\]"
+  },
+  {
+    "objectID": "ex/w06/exercises06.html#exercise-1---variance",
+    "href": "ex/w06/exercises06.html#exercise-1---variance",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Show that for two independent random variables, \\(X,Y\\) and arbitraty \\(a,b\\in\\R\\), the following equality holds \\[\\Var(aX+bY) = a^2\\cdot\\Var(X) + b^2\\cdot\\Var(Y).\\]"
+  },
+  {
+    "objectID": "ex/w06/exercises06.html#exercise-2---variance-bias-decomposistion",
+    "href": "ex/w06/exercises06.html#exercise-2---variance-bias-decomposistion",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Variance / Bias Decomposistion",
+    "text": "Exercise 2 - Variance / Bias Decomposistion\nLet \\(D=\\lbrace (x_i,y_i) | i=1 \\ldots n\\rbrace\\) be a dataset obtained from the true underlying data distribution \\(P\\), i.e. \\(D\\sim P^n\\). And let \\(h_D(\\cdot)\\) be a classifier trained on \\(D\\). Show the variance bias decomposition \\[\n\\underbrace{\\mathbb{E}_{D,x,y} \\li[ (h_D(x) - y)^2 \\ri]}_{\\text{Expected test error}}  \n  = \\underbrace{\\mathbb{E}_{D,x} \\li[ (h_D(x) - \\hat{h}(x))^2 \\ri]}_{\\text{Variance}} +\n  \\underbrace{\\mathbb{E}_{x,y} \\li[ (\\hat{y}(x) - y)^2 \\ri]}_{\\text{Noise}}  +  \\underbrace{\\mathbb{E}_{x} \\li[ (\\hat{h}(x) - \\hat{y}(x))^2 \\ri]}_{\\text{Bias}^2}\n\\] where \\(\\hat{h}(x) = \\mathbb{E}_{D \\sim P^n}[h_D(x)]\\) is the expected regressor over possible training sets, given the learning algorithm \\(\\mathcal{A}\\) and \\(\\hat{y}(x) = \\mathbb{E}_{y|x}[y]\\) is the expected label given \\(x\\). As mentioned in the lecture, labels might not be deterministic given x. To carry out the proof, proceed in the following steps:\n\nShow that the following identity holds \\[\\begin{align}\n\\E_{D,x,y}\\li[\\li[h_{D}(x) - y\\ri]^{2}\\ri]\n= \\E_{D, x}\\li[(\\hh_{D}(x) - \\hh(x))^{2}\\ri] + \\E_{x, y} \\li[\\li(\\hh(x) - y\\ri)^{2}\\ri].\n   \\end{align}\\]\nNext, show \\[\\begin{align}\nE_{x, y} \\li[ \\li(\\hh(x) - y \\ri)^{2}\\ri]\n=E_{x, y} \\li[\\li(\\hy(x) - y\\ri)^{2}\\ri] + E_{x} \\li[\\li(\\hh(x) - \\hy(x)\\ri)^{2}\\ri]\n\\end{align}\\] which completes the proof by substituting (2) into (1)."
+  },
+  {
+    "objectID": "ex/w06/exercises06.html#exercise-3---ensembling",
+    "href": "ex/w06/exercises06.html#exercise-3---ensembling",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Ensembling",
+    "text": "Exercise 3 - Ensembling\nDownload the file exercises06-ensembling.ipynb from quercus. It contains basic Pytorch code training a classifier on MNIST. Modify that code such that it trains an ensemble of 5-10 neural networks and computes their average prediction once trained."
+  },
+  {
+    "objectID": "ex/w06/exercises06_solution.html",
+    "href": "ex/w06/exercises06_solution.html",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Show that for two independent random variables, \\(X,Y\\) and arbitraty \\(a,b\\in\\R\\), the following equality holds \\[\\Var(aX+bY) = a^2\\cdot\\Var(X) + b^2\\cdot\\Var(Y).\\]\n\n\nFirst, we use the definition of variance and rewrite the left hand side as \\[\n\\Var(aX+bY) = \\E\\li[ (aX+bY)^2 \\ri] - \\E[aX+bY]^2.\n\\] Next, we expand the squares for each of the terms on the right hand side: \\[\\begin{align*}\n\\E\\li[ (aX+bY)^2 \\ri]\n  &= \\E\\li[ a^2X^2 + 2abXY + b^2Y^2 \\ri] \\\\\n  &= a^2\\E\\li[ X^2 \\ri] + 2ab\\E[ XY ] + b^2\\E\\li[ Y^2 \\ri] \\\\\n  &= a^2\\E\\li[ X^2 \\ri] + 2ab\\E[ X]\\,\\E[Y] + b^2\\E\\li[ Y^2 \\ri] ,\\\\\n\\E[aX+bY]^2\n  &= \\li(a\\E[X] + b\\E[Y]\\ri)^2 \\\\\n  &= a^2\\E[X]^2 + 2ab\\E[X]\\,\\E[Y] + b^2\\E[Y]^2.\n\\end{align*}\\] Subtracting the two terms, we get \\[\\begin{align*}\n& \\E\\li[ (aX+bY)^2 \\ri] - \\E[aX+bY]^2 \\\\\n& \\quad = a^2\\E\\li[ X^2 \\ri] + 2ab\\E[ X]\\,\\E[Y] + b^2\\E\\li[ Y^2 \\ri]\n    - a^2\\E[X]^2 - 2ab\\E[X]\\,\\E[Y] - b^2\\E[Y]^2 \\\\\n& \\quad = a^2\\E\\li[ X^2 \\ri] - a^2\\E[X]^2\n   + b^2\\E\\li[ Y^2 \\ri] - b^2\\E[Y]^2 \\\\\n& \\quad = a^2(\\E\\li[ X^2 \\ri] - \\E[X]^2)\n   + b^2\\li(\\E\\li[ Y^2 \\ri] - \\E[Y]^2\\ri) \\\\\n& \\quad = a^2\\cdot\\Var(X) + b^2\\cdot\\Var(Y).\n\\end{align*}\\]"
+  },
+  {
+    "objectID": "ex/w06/exercises06_solution.html#exercise-1---variance",
+    "href": "ex/w06/exercises06_solution.html#exercise-1---variance",
+    "title": "CSC413 - Fall 2024",
+    "section": "",
+    "text": "Show that for two independent random variables, \\(X,Y\\) and arbitraty \\(a,b\\in\\R\\), the following equality holds \\[\\Var(aX+bY) = a^2\\cdot\\Var(X) + b^2\\cdot\\Var(Y).\\]\n\n\nFirst, we use the definition of variance and rewrite the left hand side as \\[\n\\Var(aX+bY) = \\E\\li[ (aX+bY)^2 \\ri] - \\E[aX+bY]^2.\n\\] Next, we expand the squares for each of the terms on the right hand side: \\[\\begin{align*}\n\\E\\li[ (aX+bY)^2 \\ri]\n  &= \\E\\li[ a^2X^2 + 2abXY + b^2Y^2 \\ri] \\\\\n  &= a^2\\E\\li[ X^2 \\ri] + 2ab\\E[ XY ] + b^2\\E\\li[ Y^2 \\ri] \\\\\n  &= a^2\\E\\li[ X^2 \\ri] + 2ab\\E[ X]\\,\\E[Y] + b^2\\E\\li[ Y^2 \\ri] ,\\\\\n\\E[aX+bY]^2\n  &= \\li(a\\E[X] + b\\E[Y]\\ri)^2 \\\\\n  &= a^2\\E[X]^2 + 2ab\\E[X]\\,\\E[Y] + b^2\\E[Y]^2.\n\\end{align*}\\] Subtracting the two terms, we get \\[\\begin{align*}\n& \\E\\li[ (aX+bY)^2 \\ri] - \\E[aX+bY]^2 \\\\\n& \\quad = a^2\\E\\li[ X^2 \\ri] + 2ab\\E[ X]\\,\\E[Y] + b^2\\E\\li[ Y^2 \\ri]\n    - a^2\\E[X]^2 - 2ab\\E[X]\\,\\E[Y] - b^2\\E[Y]^2 \\\\\n& \\quad = a^2\\E\\li[ X^2 \\ri] - a^2\\E[X]^2\n   + b^2\\E\\li[ Y^2 \\ri] - b^2\\E[Y]^2 \\\\\n& \\quad = a^2(\\E\\li[ X^2 \\ri] - \\E[X]^2)\n   + b^2\\li(\\E\\li[ Y^2 \\ri] - \\E[Y]^2\\ri) \\\\\n& \\quad = a^2\\cdot\\Var(X) + b^2\\cdot\\Var(Y).\n\\end{align*}\\]"
+  },
+  {
+    "objectID": "ex/w06/exercises06_solution.html#exercise-2---variance-bias-decomposistion",
+    "href": "ex/w06/exercises06_solution.html#exercise-2---variance-bias-decomposistion",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 2 - Variance / Bias Decomposistion",
+    "text": "Exercise 2 - Variance / Bias Decomposistion\nLet \\(D=\\lbrace (x_i,y_i) | i=1 \\ldots n\\rbrace\\) be a dataset obtained from the true underlying data distribution \\(P\\), i.e. \\(D\\sim P^n\\). And let \\(h_D(\\cdot)\\) be a classifier trained on \\(D\\). Show the variance bias decomposition \\[\n\\underbrace{\\mathbb{E}_{D,x,y} \\li[ (h_D(x) - y)^2 \\ri]}_{\\text{Expected test error}}  \n  = \\underbrace{\\mathbb{E}_{D,x} \\li[ (h_D(x) - \\hat{h}(x))^2 \\ri]}_{\\text{Variance}} +\n  \\underbrace{\\mathbb{E}_{x,y} \\li[ (\\hat{y}(x) - y)^2 \\ri]}_{\\text{Noise}}  +  \\underbrace{\\mathbb{E}_{x} \\li[ (\\hat{h}(x) - \\hat{y}(x))^2 \\ri]}_{\\text{Bias}^2}\n\\] where \\(\\hat{h}(x) = \\mathbb{E}_{D \\sim P^n}[h_D(x)]\\) is the expected regressor over possible training sets, given the learning algorithm \\(\\mathcal{A}\\) and \\(\\hat{y}(x) = \\mathbb{E}_{y|x}[y]\\) is the expected label given \\(x\\). As mentioned in the lecture, labels might not be deterministic given x. To carry out the proof, proceed in the following steps:\n\nShow that the following identity holds \\[\\begin{align}\n\\E_{D,x,y}\\li[\\li[h_{D}(x) - y\\ri]^{2}\\ri]\n= \\E_{D, x}\\li[(\\hh_{D}(x) - \\hh(x))^{2}\\ri] + \\E_{x, y} \\li[\\li(\\hh(x) - y\\ri)^{2}\\ri].\n   \\end{align}\\]\nNext, show \\[\\begin{align}\nE_{x, y} \\li[ \\li(\\hh(x) - y \\ri)^{2}\\ri]\n=E_{x, y} \\li[\\li(\\hy(x) - y\\ri)^{2}\\ri] + E_{x} \\li[\\li(\\hh(x) - \\hy(x)\\ri)^{2}\\ri]\n\\end{align}\\] which completes the proof by substituting (2) into (1).\n\n\nSolution\n\nFirst, we reformulate (1) as \\[\\begin{align*}\n  \\E_{D,x,y}\\li[\\li[h_{D}(x) - y\\ri]^{2}\\ri]\n&= \\E_{D,x,y}\\li[\\li[\\li(h_{D}(x) - \\hh(x)\\ri) + \\li(\\hh(x) - y\\ri)\\ri]^{2}\\ri] \\nonumber \\\\\n&= \\E_{x, D}\\li[(\\hh_{D}(x) - \\hh(x))^{2}\\ri] + 2 \\mathrm{\\;} \\E_{x, y, D} \\li[\\li(h_{D}(x) - \\hh(x)\\ri)\\li(\\hh(x) - y\\ri)\\ri] + \\E_{x, y} \\li[\\li(\\hh(x) - y\\ri)^{2}\\ri]\n\\end{align*}\\] Next, we note that the second term in the above equation is zero because \\[\\begin{align*}\n\\E_{D,x, y} \\li[\\li(h_{D}(x) - \\hh(x)\\ri) \\li(\\hh(x) - y\\ri)\\ri] &= \\E_{x, y} \\li[\\E_{D} \\li[ h_{D}(x) - \\hh(x)\\ri] \\li(\\hh(x) - y\\ri) \\ri] \\\\\n&= \\E_{x, y} \\li[ \\li( \\E_{D} \\li[ h_{D}(x) \\ri] - \\hh(x) \\ri) \\li(\\hh(x) - y \\ri)\\ri] \\\\\n&= \\E_{x, y} \\li[ \\li(\\hh(x) - \\hh(x) \\ri) \\li(\\hh(x) - y \\ri)\\ri] \\\\\n&= \\E_{x, y} \\li[ 0 \\ri] \\\\\n&= 0\\ .\n\\end{align*}\\]\nThe proof here, is similar. We start by reformulating the second term in (2) as \\[\\begin{align*}\n\\E_{x, y} \\li[ \\li(\\hh(x) - y \\ri)^{2}\\ri] &= \\E_{x, y} \\li[ \\li(\\hh(x) -\\bar y(x) )+(\\bar y(x) - y \\ri)^{2}\\ri]  \\\\\n  &=\\E_{x, y} \\li[\\li(\\hy(x) - y\\ri)^{2}\\ri] + \\E_{x} \\li[\\li(\\hh(x) - \\hy(x)\\ri)^{2}\\ri] + 2 \\mathrm{\\;} \\E_{x, y} \\li[ \\li(\\hh(x) - \\hy(x)\\ri)\\li(\\hy(x) - y\\ri)\\ri]\n  \\end{align*}\\] Here, the third term is zero which follows from an analogous derivation as in (a). Thus, we have \\[\\begin{align*}\n\\E_{x, y} \\li[\\li(\\hh(x) - \\hy(x)\\ri)\\li(\\hy(x) - y\\ri)\\ri] &= \\E_{x}\\li[\\E_{y \\mid x} \\li[\\hy(x) - y \\ri] \\li(\\hh(x) - \\hy(x) \\ri) \\ri] \\\\\n&= \\E_{x} \\li[ \\E_{y \\mid x} \\li[ \\hy(x) - y\\ri] \\li(\\hh(x) - \\hy(x)\\ri)\\ri] \\\\\n&= \\E_{x} \\li[ \\li( \\hy(x) - \\E_{y \\mid x} \\li [ y \\ri]\\ri) \\li(\\hh(x) - \\hy(x)\\ri)\\ri] \\\\\n&= \\E_{x} \\li[ \\li( \\hy(x) - \\hy(x) \\ri) \\li(\\hh(x) - \\hy(x)\\ri)\\ri] \\\\\n&= \\E_{x} \\li[ 0 \\ri] \\\\\n&= 0\n  \\end{align*}\\]"
+  },
+  {
+    "objectID": "ex/w06/exercises06_solution.html#exercise-3---ensembling",
+    "href": "ex/w06/exercises06_solution.html#exercise-3---ensembling",
+    "title": "CSC413 - Fall 2024",
+    "section": "Exercise 3 - Ensembling",
+    "text": "Exercise 3 - Ensembling\nDownload the file ex06-ensembling.ipynb from quercus. It contains basic Pytorch code training a classifier on MNIST. Modify that code such that it trains an ensemble of 5-10 neural networks and computes their average prediction once trained."
   },
   {
     "objectID": "ex/w06/questions/prob-variance.html",
