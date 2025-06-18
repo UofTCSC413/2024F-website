@@ -72,6 +72,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <meta property="og:title" content="CSC413 - Fall 2024">
 <meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
+<meta property="og:image" content="https://uoftcsc413.github.io/2024F-website/ex/w08/rnn-addition.png">
 <meta property="og:site_name" content="CSC413 - Fall 2024">
 <meta name="twitter:title" content="CSC413 - Fall 2024">
 <meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
@@ -252,6 +253,35 @@ ul.task-list li input[type="checkbox"] {
 \cfoot{{\thepage}}
 \rfoot{{}}
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 
 
@@ -291,26 +321,145 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="exercise-1---rnn-for-sentiment-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1---rnn-for-sentiment-analysis">Exercise 1 - RNN for Sentiment Analysis</h2>
-<p>!include <code>questions/rnn-sentiment.md</code></p>
+<!-- Based on Week8 Practice exercises -->
+<p>Suppose we are training a vanilla RNN like below to determine whether a sentence expresses positive or negative sentiment. This RNN will be a character-level RNN where <span class="math inline">\(x^{(1)}, \ldots, x^{(T)}\)</span> is the sequence of input characters. The RNN is given as follows: <span class="math display">\[\begin{align*}
+h^{(t)} &amp;= \tanh\li(U x^{(t)} + W h^{(t-1)} + b\ri) \\
+y &amp;= \sigma\li(V h^{(T)} + d\ri)
+\end{align*}\]</span></p>
+<ol type="a">
+<li><p>How many times do we need to apply the weight matrix <span class="math inline">\(U\)</span>, <span class="math inline">\(W\)</span>, and <span class="math inline">\(V\)</span>?</p></li>
+<li><p>What are the shapes of the matrices <span class="math inline">\(U\)</span>, <span class="math inline">\(W\)</span>, and <span class="math inline">\(V\)</span>?</p></li>
+<li><p>How many addition and multiplication operations are required to make a prediction? You can assume that no addition and multiplications are performed when applying the tanh and sigmoid activation functions.</p></li>
+</ol>
 <section id="solution" class="level3">
 <h3 class="anchored" data-anchor-id="solution">Solution</h3>
-<p>!include <code>questions/rnn-sentiment-sol.md</code></p>
+<ol type="a">
+<li><p>We will need to compute <span class="math inline">\(h^{(t)}\)</span> for <span class="math inline">\(t = 1, \ldots, T\)</span>. Each of this computation requires applying the weight matrices <span class="math inline">\(W\)</span> and <span class="math inline">\(T\)</span> once. The matrix <span class="math inline">\(V\)</span> is only applied once at the end. Therefore, we need to apply <span class="math inline">\(W\)</span> and <span class="math inline">\(U\)</span> <span class="math inline">\(T\)</span> times each and <span class="math inline">\(V\)</span> once.</p></li>
+<li><p>The shape of <span class="math inline">\(U\)</span> is <span class="math inline">\(d_h \times d_x\)</span>, the shape of <span class="math inline">\(W\)</span> is <span class="math inline">\(d_h \times d_h\)</span>, and the shape of <span class="math inline">\(V\)</span> is <span class="math inline">\(d_y \times d_h\)</span>, where <span class="math inline">\(d_h\)</span> is the dimensionality of the <span class="math inline">\(h^{(i)}\)</span> (i.e.&nbsp;<span class="math inline">\(h^{(i)}\in\R^{d_h}\)</span>), <span class="math inline">\(d_x\)</span> is the dimensionality of the inputs <span class="math inline">\(x^{(i)}\)</span>, and <span class="math inline">\(d_y\)</span> is the dimensionality of the ouput <span class="math inline">\(y\)</span>.</p></li>
+<li><p>For each of the <span class="math inline">\(T\)</span> steps, we need to perform two matrix-vector multiplications (one for <span class="math inline">\(Ux^{(i)}\)</span> and one for <span class="math inline">\(Uh^{(i)}\)</span>) and two vector additions. To compute the output, we need one additional matrix-vector multiplication and one vector addition.</p></li>
+</ol>
 </section>
 </section>
 <section id="exercise-2---scalar-rnn" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2---scalar-rnn">Exercise 2 - Scalar RNN</h2>
-<p>!include <code>questions/rnn-scalar.md</code></p>
+<!-- from Week8 Practice exercises -->
+<p>Suppose we have the following vanilla RNN network, where the inputs and hidden units are scalars. <span class="math display">\[\begin{align*}
+h^{(t)} &amp;= \tanh\li(w \cdot h^{(t-1)} + u \cdot x^{(t-1)} + b_h\ri) \\
+y &amp;= \sigma\li(v \cdot h^{(T)} + b_y\ri)
+\end{align*}\]</span></p>
+<ol type="a">
+<li><p>Show that if <span class="math inline">\(|w| &lt; 1\)</span>, and the number of time steps <span class="math inline">\(T\)</span> is large, then the gradient <span class="math inline">\(\frac{\partial y}{\partial x^{(0)}}\)</span> vanishes.</p></li>
+<li><p>Why is the result from Part (a) troubling?</p></li>
+</ol>
 <section id="solution-1" class="level3">
 <h3 class="anchored" data-anchor-id="solution-1">Solution</h3>
-<p>!include <code>questions/rnn-scalar-sol.md</code></p>
+<ol type="a">
+<li><p>To make the sequence length <span class="math inline">\(T\)</span> explicit in the notation, we will write <span class="math inline">\(y\)</span> instead of <span class="math inline">\(y_T\)</span>. Formally, what we have to show is <span class="math display">\[
+|w|&lt;1 \implies \lim_{T\to\infty} \fr{\partial y_T}{\partial x^{(0)}} = 0 .
+\]</span> For the proof, we expand the derivative of <span class="math inline">\(y_T\)</span> with respect to <span class="math inline">\(x^{(0)}\)</span> using the chain rule: <span class="math display">\[
+\begin{aligned}
+\fr{\partial y_T}{\partial x^{(0)}}
+  &amp; = \si'\li(v \cdot h^{(T)} + b_y\ri)
+    \cdot v \cdot \fr{\partial h^{(T)}}{\partial x^{(0)}} \\
+  &amp; =
+  \si'\li(v \cdot h^{(T)} + b_y\ri)
+    \cdot v
+    \cdot
+      \underbrace{
+        \tanh'\li(w \cdot h^{(T-1)} + u \cdot x^{(T-1)} + b_h\ri)
+      }_{A_{T-1}(x^{(0)})}
+    \cdot w \cdot \fr{\partial h^{(T-1)}}{\partial x^{(0)}} \\
+&amp; = \ldots \\
+&amp; = \si'\li(v \cdot h^{(T)} + b_y\ri)
+    \cdot v
+    \cdot \prod_{t=2}^{T-1} A_{t}(x^{(0)})
+    \cdot w^{T-1} \cdot \fr{\partial h^{(1)}}{\partial x^{(0)}} .\\
+\end{aligned}
+\]</span> Using this, we can analyze the absolute value of the derivative <span class="math inline">\(\partial y_T/\partial x^{(0)}\)</span>. For <span class="math inline">\(\tanh\)</span> and <span class="math inline">\(\si\)</span>, the absolute value of their respective derivatives is bounded by <span class="math inline">\(1\)</span>. Thus, we have <span class="math display">\[
+\begin{aligned}
+\li|\fr{\partial y_T}{\partial x^{(0)}} \ri|
+&amp; =
+\underbrace{
+  \li|\si'\li(v \cdot h^{(T)} + b_y\ri) \ri|
+}_{\leq 1}
+\cdot |v|
+\cdot \prod_{t=2}^{T-1}
+  \underbrace{\li| A_{t}(x^{(0)}) \ri|}_{\leq 1}
+\cdot \li|w^{T-1}\ri|
+\cdot \li|\fr{\partial h^{(1)}}{\partial x^{(0)}}\ri| \\
+&amp; \leq |v|
+\cdot \li|w^{T-1}\ri|
+\cdot \li|\fr{\partial h^{(1)}}{\partial x^{(0)}}\ri| \\
+\end{aligned}
+\]</span> Because <span class="math inline">\(|w|&lt;1\)</span>, this converges to <span class="math inline">\(0\)</span> as <span class="math inline">\(T\to\infty\)</span> and thus <span class="math inline">\(|\partial y_T/\partial x^{(0)}|\)</span> also converges to <span class="math inline">\(0\)</span>, i.e.&nbsp;the gradient vanishes.</p></li>
+<li><p>It implies that in the considered setting, the input has no impact on the output.</p></li>
+</ol>
 </section>
 </section>
 <section id="exercise-3---rnn-addition" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3---rnn-addition">Exercise 3 - RNN Addition</h2>
-<p>!include <code>questions/rnn-addition.md</code></p>
+<!-- From Tutorial 9 of past offering -->
+<p>In this problem, you will implement a recurrent neural network which implements binary addition. The inputs are given as binary sequences, starting with the significant binary digit. (It is easier to start from the least significant bit, just like how you did addition in grade school.) The sequences will be padded with at least one zero as the most significant digit, so that the output length is the same as the input length. For example, the problem <span class="math inline">\(100111 + 110010\)</span>, whose target output value is <span class="math inline">\(1011001\)</span>, will be represented as follows: <span class="math display">\[\begin{align*}
+\bf{x}^{(1)} = \begin{bmatrix}1 \\ 0\end{bmatrix},
+\bf{x}^{(2)} = \begin{bmatrix}1 \\ 1\end{bmatrix},
+\bf{x}^{(3)} = \begin{bmatrix}1 \\ 0\end{bmatrix},
+\bf{x}^{(4)} = \begin{bmatrix}0 \\ 0\end{bmatrix},
+\bf{x}^{(5)} = \begin{bmatrix}0 \\ 1\end{bmatrix},
+\bf{x}^{(6)} = \begin{bmatrix}1 \\ 1\end{bmatrix},
+\bf{x}^{(7)} = \begin{bmatrix}0 \\ 0\end{bmatrix}
+\end{align*}\]</span></p>
+<p>With the target output: <span class="math display">\[\begin{align*}
+y^{(1)} = 1,
+y^{(2)} = 0,
+y^{(3)} = 0,
+y^{(4)} = 1,
+y^{(5)} = 1,
+y^{(6)} = 0,
+y^{(7)} = 1,
+\end{align*}\]</span></p>
+<p>There are two input units corresponding to the two inputs, and one output unit. Therefore, the pattern of inputs and outputs for this example would be:</p>
+<p><img src="rnn-addition.png" class="img-fluid" style="width:3in"></p>
+<p>Design, by hand, the weights and biases for an RNN which has two input units, three hidden units, and one output unit, which implements binary addition as discussed above. All of the units use the hard threshold activation function (<span class="math inline">\(f(x) = 1\)</span> if <span class="math inline">\(x &gt; 0\)</span> and <span class="math inline">\(0\)</span> otherwise). In particular, specify weight matrices <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{v}\)</span>, and <span class="math inline">\(\mathbf{W}\)</span>, bias vector <span class="math inline">\(\mathbf{b}_{\mathbf{h}}\)</span>, and scalar bias <span class="math inline">\(b_y\)</span> for the following architecture: <span class="math display">\[\begin{align*}
+h^{(t)} &amp;= f(\bf{W}h^{(t-1)} + \bf{U}\bf{x}^{(t)} + \bf{b_h}) \\
+y^{(t)} &amp;= f(\bf{v}^T h^{(t)} + b_y)
+\end{align*}\]</span></p>
+<ol type="a">
+<li><p>What are the shapes of <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{v}\)</span>, <span class="math inline">\(\mathbf{W}\)</span>, and <span class="math inline">\(\mathbf{b}_{\mathbf{h}}\)</span>?</p></li>
+<li><p>Come up with values for <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{W}\)</span>, and <span class="math inline">\(\mathbf{b}_{\mathbf{h}}\)</span>. Justify your answer. <strong>Hint:</strong> When performing binary addition, in addition to adding up two digits in a column, we need to track whether there is a digit from the previous column. We will choose one of the three units in <span class="math inline">\(\bf{h}^{(t)}\)</span>, say <span class="math inline">\(\bf{h}_2^{(t)}\)</span>, to represent this carry digit. You may also find it helpful to set <span class="math inline">\(\bf{h}_1\)</span> to activate if the sum of the 3 digits is at least 1, <span class="math inline">\(\bf{h}_2\)</span> to activate if the sum is at least 2, and <span class="math inline">\(\bf{h}_3\)</span> to activate if the sum is at least 3.</p></li>
+<li><p>Come up with the values of <span class="math inline">\(\bf{v}\)</span> and <span class="math inline">\(b_y\)</span>. Justify your answer.</p></li>
+</ol>
 <section id="solution-2" class="level3">
 <h3 class="anchored" data-anchor-id="solution-2">Solution</h3>
-<p>!include <code>questions/rnn-addition-sol.md</code></p>
+<ol type="a">
+<li><p>Since the inputs <span class="math inline">\(\bf{x}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span> and the hidden units <span class="math inline">\(\bf{h}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span>, we should have:</p>
+<ul>
+<li><span class="math inline">\(\bf{W}\)</span> is <span class="math inline">\(3 \times 3\)</span></li>
+<li><span class="math inline">\(\bf{U}\)</span> is <span class="math inline">\(3 \times 2\)</span></li>
+<li><span class="math inline">\(\bf{b}_h\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
+<li><span class="math inline">\(\bf{v}\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
+</ul></li>
+<li><p>We will follow the hint and implement the addition in our RNN such that:</p>
+<ol type="1">
+<li>The first of our hidden units <span class="math inline">\(h_1^{(t)}\)</span> is 1 if and only if the sum <span class="math inline">\(S^{(t)} \doteq x_1^{(t)} + x_2^{(t)} + c^{(t-1)} \geq 1\)</span>, where by <span class="math inline">\(c^{(t-1)}\)</span> we denote a carry (<span class="math inline">\(\bf{h_2}^{(t-1)}\)</span> from the previous addition). Note, these <span class="math inline">\(S^{(t)}\)</span> and <span class="math inline">\(c^{(t-1)}\)</span> are not variables of the model, merely our notation to help us to work out the solution.</li>
+<li>The <span class="math inline">\(h_2^{(t)}\)</span> is 1 iff the sum <span class="math inline">\(S^{(t)} \geq 2\)</span>,</li>
+<li>and <span class="math inline">\(h_3^{(t)}\)</span> is 1 iff the sum <span class="math inline">\(S^{(t)}\)</span> is 3.</li>
+</ol>
+<p>Notice that the carry <span class="math inline">\(c^{(t-1)}\)</span> is going to be 1 iff <span class="math inline">\(h_2^{(t-1)}=1\)</span> and 0 otherwise, i.e.&nbsp;when the previous addition was 2 or 3. Therefore to compute <span class="math inline">\(h_i^{(t)}\)</span> we need to first compute the sum <span class="math inline">\(S^{(t)} = x_1^{(t)} + x_2^{(t)} + h_2^{(t-1)}\)</span> and then offset it by <span class="math inline">\(-i+1\)</span> so that after applying the hard threshold function we get the desired value as specified above. This can be achieved with the following set of parameters: <span class="math display">\[
+\mathbf{U}= \begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; 1 \\
+    1 &amp; 1 \end{bmatrix},\quad
+\mathbf{W}=\begin{bmatrix}
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 0\end{bmatrix},\quad
+\mathbf{b_h}= \begin{bmatrix}
+    -0.5 \\
+    -1.5 \\
+    -2.5 \end{bmatrix}.
+\]</span></p></li>
+<li><p>To compute the output <span class="math inline">\(y^{(t)}\)</span> we need to check if the <span class="math inline">\(S^{(t)}\)</span> is 1 or 3, that is, if either <span class="math inline">\(h_1^{(t)} = 1\)</span> while all other hidden units are zero or all hidden units are 1. We can accomplish this by setting: <span class="math inline">\(\mathbf{v}=\begin{bmatrix} 1, -1, 1 \end{bmatrix}\)</span> and <span class="math inline">\(b_y = -0.5\)</span>.</p></li>
+</ol>
 
 
 </section>

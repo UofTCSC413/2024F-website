@@ -70,6 +70,37 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <meta property="og:title" content="CSC413 - Fall 2024">
 <meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
 <meta property="og:site_name" content="CSC413 - Fall 2024">
@@ -78,7 +109,9 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/ex/w06/images/twitter-card.png">
 <meta name="twitter:creator" content="@minebocek">
 <meta name="twitter:card" content="summary_large_image">
-</head><body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+</head>
+
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -240,22 +273,7 @@ ul.task-list li input[type="checkbox"] {
     } else {
       toggleColorMode(false);
     }
-  </script>\usepackage{../latex_packages/abbreviations}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\let\headrule\empty
-\let\footrule\empty
-\lhead{{\bfseries CSC\,413}}
-\chead{{\bfseries Exercises - Week 6}}
-\rhead{{\bfseries Shkurti / Gilitschenski}}
-\lfoot{{}}
-\cfoot{{\thepage}}
-\rfoot{{}}
-
-
-
-
-
+  </script>
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -277,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#exercise-3---ensembling" id="toc-exercise-3---ensembling" class="nav-link" data-scroll-target="#exercise-3---ensembling">Exercise 3 - Ensembling</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/ex/w06/exercises06_solution.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/ex/w06/exercises06_solution.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="exercises06_solution.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -288,18 +306,74 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="exercise-1---variance" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1---variance">Exercise 1 - Variance</h2>
-<p>!include questions/prob-variance.md</p>
+<p>Show that for two independent random variables, <span class="math inline">\(X,Y\)</span> and arbitraty <span class="math inline">\(a,b\in\R\)</span>, the following equality holds <span class="math display">\[\Var(aX+bY) = a^2\cdot\Var(X) + b^2\cdot\Var(Y).\]</span></p>
 <section id="solution" class="level3">
 <h3 class="anchored" data-anchor-id="solution">Solution</h3>
-<p>!include questions/prob-variance-sol.md</p>
+<p>First, we use the definition of variance and rewrite the left hand side as <span class="math display">\[
+\Var(aX+bY) = \E\li[ (aX+bY)^2 \ri] - \E[aX+bY]^2.
+\]</span> Next, we expand the squares for each of the terms on the right hand side: <span class="math display">\[\begin{align*}
+\E\li[ (aX+bY)^2 \ri]
+  &amp;= \E\li[ a^2X^2 + 2abXY + b^2Y^2 \ri] \\
+  &amp;= a^2\E\li[ X^2 \ri] + 2ab\E[ XY ] + b^2\E\li[ Y^2 \ri] \\
+  &amp;= a^2\E\li[ X^2 \ri] + 2ab\E[ X]\,\E[Y] + b^2\E\li[ Y^2 \ri] ,\\
+\E[aX+bY]^2
+  &amp;= \li(a\E[X] + b\E[Y]\ri)^2 \\
+  &amp;= a^2\E[X]^2 + 2ab\E[X]\,\E[Y] + b^2\E[Y]^2.
+\end{align*}\]</span> Subtracting the two terms, we get <span class="math display">\[\begin{align*}
+&amp; \E\li[ (aX+bY)^2 \ri] - \E[aX+bY]^2 \\
+&amp; \quad = a^2\E\li[ X^2 \ri] + 2ab\E[ X]\,\E[Y] + b^2\E\li[ Y^2 \ri]
+    - a^2\E[X]^2 - 2ab\E[X]\,\E[Y] - b^2\E[Y]^2 \\
+&amp; \quad = a^2\E\li[ X^2 \ri] - a^2\E[X]^2
+   + b^2\E\li[ Y^2 \ri] - b^2\E[Y]^2 \\
+&amp; \quad = a^2(\E\li[ X^2 \ri] - \E[X]^2)
+   + b^2\li(\E\li[ Y^2 \ri] - \E[Y]^2\ri) \\
+&amp; \quad = a^2\cdot\Var(X) + b^2\cdot\Var(Y).
+\end{align*}\]</span></p>
 </section>
 </section>
 <section id="exercise-2---variance-bias-decomposistion" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2---variance-bias-decomposistion">Exercise 2 - Variance / Bias Decomposistion</h2>
-<p>!include questions/ml-variance_bias_decomposition.md</p>
+<p>Let <span class="math inline">\(D=\lbrace (x_i,y_i) | i=1 \ldots n\rbrace\)</span> be a dataset obtained from the true underlying data distribution <span class="math inline">\(P\)</span>, i.e.&nbsp;<span class="math inline">\(D\sim P^n\)</span>. And let <span class="math inline">\(h_D(\cdot)\)</span> be a classifier trained on <span class="math inline">\(D\)</span>. Show the variance bias decomposition <span class="math display">\[
+\underbrace{\mathbb{E}_{D,x,y} \li[ (h_D(x) - y)^2 \ri]}_{\text{Expected test error}}  
+  = \underbrace{\mathbb{E}_{D,x} \li[ (h_D(x) - \hat{h}(x))^2 \ri]}_{\text{Variance}} +
+  \underbrace{\mathbb{E}_{x,y} \li[ (\hat{y}(x) - y)^2 \ri]}_{\text{Noise}}  +  \underbrace{\mathbb{E}_{x} \li[ (\hat{h}(x) - \hat{y}(x))^2 \ri]}_{\text{Bias}^2}
+\]</span> where <span class="math inline">\(\hat{h}(x) = \mathbb{E}_{D \sim P^n}[h_D(x)]\)</span> is the expected regressor over possible training sets, given the learning algorithm <span class="math inline">\(\mathcal{A}\)</span> and <span class="math inline">\(\hat{y}(x) = \mathbb{E}_{y|x}[y]\)</span> is the expected label given <span class="math inline">\(x\)</span>. As mentioned in the lecture, labels might not be deterministic given x. To carry out the proof, proceed in the following steps:</p>
+<ol type="a">
+<li>Show that the following identity holds <span class="math display">\[\begin{align}
+\E_{D,x,y}\li[\li[h_{D}(x) - y\ri]^{2}\ri]
+= \E_{D, x}\li[(\hh_{D}(x) - \hh(x))^{2}\ri] + \E_{x, y} \li[\li(\hh(x) - y\ri)^{2}\ri].
+   \end{align}\]</span></li>
+<li>Next, show <span class="math display">\[\begin{align}
+E_{x, y} \li[ \li(\hh(x) - y \ri)^{2}\ri]
+=E_{x, y} \li[\li(\hy(x) - y\ri)^{2}\ri] + E_{x} \li[\li(\hh(x) - \hy(x)\ri)^{2}\ri]
+\end{align}\]</span> which completes the proof by substituting (2) into (1).</li>
+</ol>
 <section id="solution-1" class="level3">
 <h3 class="anchored" data-anchor-id="solution-1">Solution</h3>
-<p>!include questions/ml-variance_bias_decomposition-sol.md</p>
+<ol type="a">
+<li><p>First, we reformulate (1) as <span class="math display">\[\begin{align*}
+  \E_{D,x,y}\li[\li[h_{D}(x) - y\ri]^{2}\ri]
+&amp;= \E_{D,x,y}\li[\li[\li(h_{D}(x) - \hh(x)\ri) + \li(\hh(x) - y\ri)\ri]^{2}\ri] \nonumber \\
+&amp;= \E_{x, D}\li[(\hh_{D}(x) - \hh(x))^{2}\ri] + 2 \mathrm{\;} \E_{x, y, D} \li[\li(h_{D}(x) - \hh(x)\ri)\li(\hh(x) - y\ri)\ri] + \E_{x, y} \li[\li(\hh(x) - y\ri)^{2}\ri]
+\end{align*}\]</span> Next, we note that the second term in the above equation is zero because <span class="math display">\[\begin{align*}
+\E_{D,x, y} \li[\li(h_{D}(x) - \hh(x)\ri) \li(\hh(x) - y\ri)\ri] &amp;= \E_{x, y} \li[\E_{D} \li[ h_{D}(x) - \hh(x)\ri] \li(\hh(x) - y\ri) \ri] \\
+&amp;= \E_{x, y} \li[ \li( \E_{D} \li[ h_{D}(x) \ri] - \hh(x) \ri) \li(\hh(x) - y \ri)\ri] \\
+&amp;= \E_{x, y} \li[ \li(\hh(x) - \hh(x) \ri) \li(\hh(x) - y \ri)\ri] \\
+&amp;= \E_{x, y} \li[ 0 \ri] \\
+&amp;= 0\ .
+\end{align*}\]</span></p></li>
+<li><p>The proof here, is similar. We start by reformulating the second term in (2) as <span class="math display">\[\begin{align*}
+\E_{x, y} \li[ \li(\hh(x) - y \ri)^{2}\ri] &amp;= \E_{x, y} \li[ \li(\hh(x) -\bar y(x) )+(\bar y(x) - y \ri)^{2}\ri]  \\
+  &amp;=\E_{x, y} \li[\li(\hy(x) - y\ri)^{2}\ri] + \E_{x} \li[\li(\hh(x) - \hy(x)\ri)^{2}\ri] + 2 \mathrm{\;} \E_{x, y} \li[ \li(\hh(x) - \hy(x)\ri)\li(\hy(x) - y\ri)\ri]
+  \end{align*}\]</span> Here, the third term is zero which follows from an analogous derivation as in (a). Thus, we have <span class="math display">\[\begin{align*}
+\E_{x, y} \li[\li(\hh(x) - \hy(x)\ri)\li(\hy(x) - y\ri)\ri] &amp;= \E_{x}\li[\E_{y \mid x} \li[\hy(x) - y \ri] \li(\hh(x) - \hy(x) \ri) \ri] \\
+&amp;= \E_{x} \li[ \E_{y \mid x} \li[ \hy(x) - y\ri] \li(\hh(x) - \hy(x)\ri)\ri] \\
+&amp;= \E_{x} \li[ \li( \hy(x) - \E_{y \mid x} \li [ y \ri]\ri) \li(\hh(x) - \hy(x)\ri)\ri] \\
+&amp;= \E_{x} \li[ \li( \hy(x) - \hy(x) \ri) \li(\hh(x) - \hy(x)\ri)\ri] \\
+&amp;= \E_{x} \li[ 0 \ri] \\
+&amp;= 0
+  \end{align*}\]</span></p></li>
+</ol>
 </section>
 </section>
 <section id="exercise-3---ensembling" class="level2">

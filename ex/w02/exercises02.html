@@ -252,6 +252,35 @@ ul.task-list li input[type="checkbox"] {
 \cfoot{{\thepage}}
 \rfoot{{}}
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 
 
@@ -284,19 +313,43 @@ ul.task-list li input[type="checkbox"] {
 <!-- Gutman(2022), ex 1.3 -->
 <section id="exercise-1---eigenvectors-and-eigenvalues" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1---eigenvectors-and-eigenvalues">Exercise 1 - Eigenvectors and Eigenvalues</h2>
-<p>!include questions/linalg-evs.md</p>
+<p>For a square matrix <span class="math inline">\(\fA\)</span> of size <span class="math inline">\(n \times n\)</span>, a vector <span class="math inline">\(\fu_i \neq 0\)</span> which satisﬁes <span class="math display">\[\begin{equation}
+\fA\fu_i = \la_i \fu_i
+\label{eq:eigen}
+\end{equation}\]</span> is called a <em>eigenvector</em> of <span class="math inline">\(\fA\)</span>, and <span class="math inline">\(\la_i\)</span> is the corresponding <em>eigenvalue</em>. For a matrix of size <span class="math inline">\(n \times n\)</span>, there are <span class="math inline">\(n\)</span> eigenvalues <span class="math inline">\(\la_i\)</span> (which are not necessarily distinct).</p>
+<p>Show that if <span class="math inline">\(\fu_1\)</span> and <span class="math inline">\(\fu_2\)</span> are eigenvectors with equal corresponding eigenvalues <span class="math inline">\(\la_1 = \la_2\)</span>, then <span class="math inline">\(\fu = \al \fu_1 + \be \fu_2\)</span> is also an eigenvector with the same eigenvalue.</p>
 </section>
 <section id="exercise-2---variance-and-expectation" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2---variance-and-expectation">Exercise 2 - Variance and Expectation</h2>
-<p>!include questions/prob-evvar.md</p>
+<ol type="a">
+<li><p>Given a set of vectors <span class="math inline">\(\{\fx_i\}_{i=1}^N\)</span>. Show that their empirical mean is equivalent to <span class="math display">\[\hmu=\argmin_\fmu \sum_i \|\fx_i - \fmu\|^2.\]</span></p></li>
+<li><p>There are two equivalent definitons of variance of a random variable. The first one is <span class="math inline">\(\Var(X) := \E[(X - \E[X])^2]\)</span> and the second is <span class="math inline">\(\Var(X) = \E[X^2] - \E[X]^2\)</span>. Show that these two definitions actually are equivalent.</p></li>
+</ol>
 </section>
 <section id="exercise-3---linear-regression" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3---linear-regression">Exercise 3 - Linear Regression</h2>
-<p>!include questions/linreg.md</p>
+<!-- Zhang CSC311, Handout 2 -->
+<ol type="a">
+<li><p>In the linear regression model with one feature, we have the following model/hypothesis: <span class="math display">\[y = f(x) = w x + b\]</span> ​with parameters, <span class="math inline">\(w\)</span> and <span class="math inline">\(b\)</span>, which we wish to find by minimizing the cost: <span class="math display">\[\mathcal{E}(w, b) = \frac{1}{2N}\sum_i ((w x^{(i)} + b) - t^{(i)})^2\]</span> What are the derivatives <span class="math inline">\(\frac{\partial \mathcal{E}}{\partial w}\)</span> and <span class="math inline">\(\frac{\partial \mathcal{E}}{\partial b}\)</span>?</p></li>
+<li><p>In the linear regression model with many features, we have the following model/hypothesis: <span class="math display">\[y = f(x) = {\bf w}^\top {\bf x}+ b\]</span> with parameters, <span class="math inline">\({\bf w} = [w_1, w_2, \dots w_d]^T\)</span> and <span class="math inline">\(b\)</span>, which we wish to find by minimizing the cost: <span class="math display">\[\mathcal{E}({\bf w}, b) = \frac{1}{2N}\sum_i ((\fw^\top \fx^{(i)}+b) - t^{(i)})^2\]</span> What is the derivative <span class="math inline">\(\frac{\partial \mathcal{E}}{\partial w_j}\)</span> for a weight <span class="math inline">\(w_j\)</span>?</p></li>
+</ol>
 </section>
 <section id="exercise-4---gradients-and-computation-graphs" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-4---gradients-and-computation-graphs">Exercise 4 - Gradients and Computation Graphs</h2>
-<p>!include questions/nn-compgraph.md</p>
+<!-- Zhang CSC311, Handout 5 -->
+<ol type="a">
+<li><p>Compute the <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial w_j}\)</span> gradient of <span class="math inline">\(\mathcal{L}\)</span> with respect to a <span class="math inline">\(w_j\)</span> in the following computation: <span class="math display">\[\begin{align*}
+  \mathcal{L}(y, t) &amp;= - t \log(y) - (1-t) \log(1-y) ,
+&amp; y &amp;= \sigma(z) ,
+&amp;  z &amp;= {\bf w}^\top {\bf x} .
+  \end{align*}\]</span></p></li>
+<li><p>Draw the computation graph for the following neural network, showing the relevant scalar quantities. Assume that <span class="math inline">\(\fy, \fh, \fx \in \mathbb{R}^2\)</span> <span class="math display">\[\begin{align*}
+  \mathcal{L} &amp;= \frac{1}{2}\sum_k (y_k - t_k)^2 ,
+&amp; y_k &amp;= \sum_i w_{ki}^{(2)} h_i + b_k^{(2)} ,
+&amp; h_i &amp;= \sigma(z_i) ,
+&amp; z_i &amp;= \sum_j w_{ij}^{(1)} x_j + b_i^{(1)} .
+  \end{align*}\]</span></p></li>
+</ol>
 
 
 </section>
