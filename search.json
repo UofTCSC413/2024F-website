@@ -3699,353 +3699,391 @@
     "href": "weeks/week-9.html",
     "title": "Week 9",
     "section": "",
-    "text": "Important\n\n\n\nDue date: Exam 1 released on Fri, Feb 35, due Mon, Feb 28 at 11:59pm"
-  },
-  {
-    "objectID": "weeks/week-9.html#prepare",
-    "href": "weeks/week-9.html#prepare",
-    "title": "Week 9",
-    "section": "Prepare",
-    "text": "Prepare\nNo readings this week."
-  },
-  {
-    "objectID": "weeks/week-9.html#participate",
-    "href": "weeks/week-9.html#participate",
-    "title": "Week 9",
-    "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 16 - MLR: Inference\n🖥️ Lecture 17 - MLR: Inference conditions + multicollinearity"
-  },
-  {
-    "objectID": "weeks/week-9.html#practice",
-    "href": "weeks/week-9.html#practice",
-    "title": "Week 9",
-    "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 8 - Rail Trail"
-  },
-  {
-    "objectID": "weeks/week-9.html#perform",
-    "href": "weeks/week-9.html#perform",
-    "title": "Week 9",
-    "section": "Perform",
-    "text": "Perform\n✅ Exam 2\n\n\nBack to course schedule ⏎"
+    "text": "Fall reading week. No lecture.\nMath assignment 2 due.\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 9"
+    ]
   },
   {
     "objectID": "weeks/week-13.html",
     "href": "weeks/week-13.html",
     "title": "Week 13",
     "section": "",
-    "text": "Important\n\n\n\nDue dates:\n\nLab 6 - Friday, April 8\nProject drafts - Sunday, April 10"
+    "text": "No preparation for this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 13"
+    ]
+  },
+  {
+    "objectID": "weeks/week-13.html#prepare",
+    "href": "weeks/week-13.html#prepare",
+    "title": "Week 13",
+    "section": "",
+    "text": "No preparation for this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 13"
+    ]
   },
   {
     "objectID": "weeks/week-13.html#participate",
     "href": "weeks/week-13.html#participate",
     "title": "Week 13",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 24 - MultiLR: Prediction + inferential models\n🖥️ Lecture 25 - MultiLR: Predictive models"
+    "text": "Participate\nSlides & Recordings\nIf you are interested in both groups’ research, it is worth attending or watching both lectures this week.",
+    "crumbs": [
+      "Weekly materials",
+      "Week 13"
+    ]
   },
   {
     "objectID": "weeks/week-13.html#practice",
     "href": "weeks/week-13.html#practice",
     "title": "Week 13",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 11 - Volcanoes"
+    "text": "Practice\nNo exercise for this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 13"
+    ]
   },
   {
     "objectID": "weeks/week-13.html#perform",
     "href": "weeks/week-13.html#perform",
     "title": "Week 13",
     "section": "Perform",
-    "text": "Perform\n✍️ HW 4 - Multinomial logistic regression\n💻 Lab 6 - Why Many Americans Don’t Vote\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: text generation with transformers lab11\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 13"
+    ]
   },
   {
     "objectID": "weeks/week-10.html",
     "href": "weeks/week-10.html",
     "title": "Week 10",
     "section": "",
-    "text": "Important\n\n\n\nDue date: Project proposal due Fri, Mar 18 at 5:00 pm."
+    "text": "Week 10 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 10"
+    ]
   },
   {
     "objectID": "weeks/week-10.html#prepare",
     "href": "weeks/week-10.html#prepare",
     "title": "Week 10",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Introduction to Modern Statistics, Chp 9: Logistic regression"
+    "section": "",
+    "text": "Week 10 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 10"
+    ]
   },
   {
     "objectID": "weeks/week-10.html#participate",
     "href": "weeks/week-10.html#participate",
     "title": "Week 10",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 18 - Logistic regression\n🖥️ Lecture 19 - Probabilities, odds, odds ratios"
+    "text": "Participate\nSlides & Recordings\nTransformer video: https://www.youtube.com/watch?v=XSSTuhyAmnI\nhttps://nlp.seas.harvard.edu/2018/04/03/attention.html\nhttp://peterbloem.nl/blog/transformers\nLast year’s A3 (a seq2seq autoencoder) http://modelai.gettysburg.edu/2021/headlines/",
+    "crumbs": [
+      "Weekly materials",
+      "Week 10"
+    ]
   },
   {
     "objectID": "weeks/week-10.html#practice",
     "href": "weeks/week-10.html#practice",
     "title": "Week 10",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 9 - Odds"
+    "text": "Practice\nIn-class Exercise & Solutions",
+    "crumbs": [
+      "Weekly materials",
+      "Week 10"
+    ]
   },
   {
     "objectID": "weeks/week-10.html#perform",
     "href": "weeks/week-10.html#perform",
     "title": "Week 10",
     "section": "Perform",
-    "text": "Perform\n✍️ HW 3 - Logistic regression and log transformation\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: gradcam and input gradients lab09\nFinal Project - Deadline to form project groups on Markus, and submit a project proposal\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 10"
+    ]
   },
   {
     "objectID": "weeks/week-3.html",
     "href": "weeks/week-3.html",
     "title": "Week 3",
     "section": "",
-    "text": "Important\n\n\n\n\nWe’re back to in person classes this week! See here for class locations. And don’t forget to wear your mask! 😷\nDue dates:\n\nAE 2: Fri, Jan 21, 11:59pm ET"
+    "text": "Week 3 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 3"
+    ]
   },
   {
     "objectID": "weeks/week-3.html#prepare",
     "href": "weeks/week-3.html#prepare",
     "title": "Week 3",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Introduction to Modern Statistics, Sec 24.1: Case study: Sandwich store\n📖 Read Introduction to Modern Statistics, Sec 24.2: Randomization test for the slope\n📖 Read Introduction to Modern Statistics, Sec 24.3: Bootstrap confidence interval for the slope"
+    "section": "",
+    "text": "Week 3 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 3"
+    ]
   },
   {
     "objectID": "weeks/week-3.html#participate",
     "href": "weeks/week-3.html#participate",
     "title": "Week 3",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 4 - SLR: Prediction + model evaluation\n🖥️ Lecture 5 - SLR: Simulation-based inference"
+    "text": "Participate\nGloVe embedding demo \nVideo on autodiff\nSlides & Recordings",
+    "crumbs": [
+      "Weekly materials",
+      "Week 3"
+    ]
   },
   {
     "objectID": "weeks/week-3.html#practice",
     "href": "weeks/week-3.html#practice",
     "title": "Week 3",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 2 - Bike rentals in DC"
+    "text": "Practice\nIn-class Exercise & Solutions\nProf. Roger Grosse’s notes on autodiff and word embeddings\nNotes on Backpropagation https://cs231n.github.io/optimization-2/\nAutomatic Differentiation in Machine Learning: a Survey (2018) https://arxiv.org/pdf/1502.05767.pdf",
+    "crumbs": [
+      "Weekly materials",
+      "Week 3"
+    ]
   },
   {
     "objectID": "weeks/week-3.html#perform",
     "href": "weeks/week-3.html#perform",
     "title": "Week 3",
     "section": "Perform",
-    "text": "Perform\nNone.\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: numerical gradients / word embeddings lab02\nLec3 pre-recorded videos with quizzes\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 3"
+    ]
   },
   {
     "objectID": "weeks/week-4.html",
     "href": "weeks/week-4.html",
     "title": "Week 4",
     "section": "",
-    "text": "Important\n\n\n\n\nIf you can’t be in class for the lectures, you can watch the live stream or watch the recording later on Panopto.\nDue dates:\n\nHW 1: Fri, Jan 28, 5pm ET\nLab 1: Fri, Jan 28, 5pm ET"
+    "text": "Week 4 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 4"
+    ]
   },
   {
     "objectID": "weeks/week-4.html#prepare",
     "href": "weeks/week-4.html#prepare",
     "title": "Week 4",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Introduction to Modern Statistics, Sec 24.4: Mathematical model for testing the slope\n📖 Read Introduction to Modern Statistics, Sec 24.5: Mathematical model, interval for the slope\n📖 Read Introduction to Modern Statistics, Sec 24.6: Checking model conditions\n📖 Read Introduction to Modern Statistics, Sec 24.7: Chapter review"
+    "section": "",
+    "text": "Week 4 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 4"
+    ]
   },
   {
     "objectID": "weeks/week-4.html#participate",
     "href": "weeks/week-4.html#participate",
     "title": "Week 4",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lab 2 - College scorecard\n🖥️ Lecture 6 - SLR: Mathematical models for inference\n🖥️ Lecture 7 - SLR: Model diagnostics"
+    "text": "Participate\nSlides & Recordings\nDemo: Colab Notebook",
+    "crumbs": [
+      "Weekly materials",
+      "Week 4"
+    ]
   },
   {
     "objectID": "weeks/week-4.html#practice",
     "href": "weeks/week-4.html#practice",
     "title": "Week 4",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 3 - Checking model conditions"
+    "text": "Practice\nIn-class Exercise & Solutions",
+    "crumbs": [
+      "Weekly materials",
+      "Week 4"
+    ]
   },
   {
     "objectID": "weeks/week-4.html#perform",
     "href": "weeks/week-4.html#perform",
     "title": "Week 4",
     "section": "Perform",
-    "text": "Perform\n⌨️ Lab 2 - College scorecard\n✍️ HW 1 - In-person voting trends\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: classification and medical MNIST lab03\nLecture 4 pre-recorded videos and quizzes\nMath Assignment 1 posted\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 4"
+    ]
   },
   {
     "objectID": "weeks/week-7.html",
     "href": "weeks/week-7.html",
     "title": "Week 7",
     "section": "",
-    "text": "Important\n\n\n\nDue dates:\n\nHW 2 - Friday, Feb 18\nProject ideas - Friday, Feb 18"
+    "text": "Week 7 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 7"
+    ]
   },
   {
     "objectID": "weeks/week-7.html#prepare",
     "href": "weeks/week-7.html#prepare",
     "title": "Week 7",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Tidy Modeling in R Chp 8: Feature engineering with recipes"
+    "section": "",
+    "text": "Week 7 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 7"
+    ]
   },
   {
     "objectID": "weeks/week-7.html#participate",
     "href": "weeks/week-7.html#participate",
     "title": "Week 7",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 12 - MLR: Feature engineering\n🖥️ Lecture 13 - MLR: Feature engineering (cont.)"
+    "text": "Participate\nSlides & Recordings\nTroubleshooting Deep Neural Networks",
+    "crumbs": [
+      "Weekly materials",
+      "Week 7"
+    ]
   },
   {
     "objectID": "weeks/week-7.html#practice",
     "href": "weeks/week-7.html#practice",
     "title": "Week 7",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 5 - The Office"
+    "text": "Practice\nIn-class Exercise & Solutions",
+    "crumbs": [
+      "Weekly materials",
+      "Week 7"
+    ]
   },
   {
     "objectID": "weeks/week-7.html#perform",
     "href": "weeks/week-7.html#perform",
     "title": "Week 7",
     "section": "Perform",
-    "text": "Perform\n✍️ HW 2 - Multiple linear regression\n📂 Project - Topic ideas\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions\nMath assignment 2 posted\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 7"
+    ]
   },
   {
     "objectID": "weekly-material.html",
     "href": "weekly-material.html",
     "title": "Weekly Materials",
     "section": "",
-    "text": "Software Installations\n\n\n\nSlides & Recordings\n\n\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Software Installations\n\n\n\nSlides & Recordings\n\n\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review"
   },
   {
     "objectID": "weekly-material.html#week-1",
     "href": "weekly-material.html#week-1",
     "title": "Weekly Materials",
     "section": "",
-    "text": "Software Installations\n\n\n\nSlides & Recordings\n\n\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Software Installations\n\n\n\nSlides & Recordings\n\n\n\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review"
   },
   {
     "objectID": "weekly-material.html#week-2",
     "href": "weekly-material.html#week-2",
     "title": "Weekly Materials",
     "section": "Week 2",
-    "text": "Week 2\n\nLecture\nSlides & Recordings\nProf. Roger Grosse’s notes on backdrop\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: PyTorch basics with linear models lab01\n\n\nQuiz\nLec2 pre-recorded videos with quizzes",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 2\n\nLecture\nSlides & Recordings\nProf. Roger Grosse’s notes on backdrop\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: PyTorch basics with linear models lab01\n\n\nQuiz\nLec2 pre-recorded videos with quizzes"
   },
   {
     "objectID": "weekly-material.html#week-3",
     "href": "weekly-material.html#week-3",
     "title": "Weekly Materials",
     "section": "Week 3",
-    "text": "Week 3\n\nLecture\nGloVe embedding demo \nVideo on autodiff\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: numerical gradients / word embeddings lab02\n\n\nQuiz\nLec3 pre-recorded videos with quizzes\n\n\nAdditional Resources\nProf. Roger Grosse’s notes on autodiff and word embeddings\nNotes on Backpropagation https://cs231n.github.io/optimization-2/\nAutomatic Differentiation in Machine Learning: a Survey (2018) https://arxiv.org/pdf/1502.05767.pdf",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 3\n\nLecture\nGloVe embedding demo \nVideo on autodiff\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: numerical gradients / word embeddings lab02\n\n\nQuiz\nLec3 pre-recorded videos with quizzes\n\n\nAdditional Resources\nProf. Roger Grosse’s notes on autodiff and word embeddings\nNotes on Backpropagation https://cs231n.github.io/optimization-2/\nAutomatic Differentiation in Machine Learning: a Survey (2018) https://arxiv.org/pdf/1502.05767.pdf"
   },
   {
     "objectID": "weekly-material.html#week-4",
     "href": "weekly-material.html#week-4",
     "title": "Weekly Materials",
     "section": "Week 4",
-    "text": "Week 4\n\nLecture\nSlides & Recordings\nDemo: Colab Notebook\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: classification and medical MNIST lab03\n\n\nQuiz\nLecture 4 pre-recorded videos and quizzes\n\n\nAssignment\nMath Assignment 1 posted",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 4\n\nLecture\nSlides & Recordings\nDemo: Colab Notebook\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: classification and medical MNIST lab03\n\n\nQuiz\n\n\nAssignment\nMath Assignment 1 posted"
   },
   {
     "objectID": "weekly-material.html#week-5",
     "href": "weekly-material.html#week-5",
     "title": "Weekly Materials",
     "section": "Week 5",
-    "text": "Week 5\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nTutorial: how to implement SGD with momentum neural network optimization\n\n\nQuiz\nLecture 5 pre-recorded videos and quizzes\n\n\nAdditional Resources\nTaylor Series https://www.youtube.com/watch?v=3d6DsjIBzJ4",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 5\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nTutorial: how to implement SGD with momentum neural network optimization\n\n\nQuiz\nLecture 5 pre-recorded videos and quizzes\n\n\nAdditional Resources\nTaylor Series https://www.youtube.com/watch?v=3d6DsjIBzJ4"
   },
   {
     "objectID": "weekly-material.html#week-6",
     "href": "weekly-material.html#week-6",
     "title": "Weekly Materials",
     "section": "Week 6",
-    "text": "Week 6\n\nLecture\nSlides & Recordings\nEnsembling code skeleton\nThe definition of differential privacy\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: optimization and differential privacy lab05\n\n\nQuiz\nLecture 6 pre-recorded videos and quizzes\n\n\nAssignment\nMath assignment 1 due",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 6\n\nLecture\nSlides & Recordings\nEnsembling code skeleton\nThe definition of differential privacy\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: optimization and differential privacy lab05\n\n\nQuiz\nLecture 6 pre-recorded videos and quizzes\n\n\nAssignment\nMath assignment 1 due"
   },
   {
     "objectID": "weekly-material.html#week-7",
     "href": "weekly-material.html#week-7",
     "title": "Weekly Materials",
     "section": "Week 7",
-    "text": "Week 7\n\nLecture\nSlides & Recordings\nTroubleshooting Deep Neural Networks\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions\n\n\nAssignment\nMath assignment 2 posted",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 7\n\nLecture\nSlides & Recordings\nTroubleshooting Deep Neural Networks\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions\n\n\nAssignment\nMath assignment 2 posted"
   },
   {
     "objectID": "weekly-material.html#week-8",
     "href": "weekly-material.html#week-8",
     "title": "Weekly Materials",
     "section": "Week 8",
-    "text": "Week 8\n\nLecture\nSlides\nMissing recording due to technical issue\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: transfer learning and double descent lab07\n\n\nQuiz\nLecture 8 pre-recorded videos and quizzes",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 8\n\nLecture\nSlides\nMissing recording due to technical issue\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: transfer learning and double descent lab07\n\n\nQuiz\nLecture 8 pre-recorded videos and quizzes"
   },
   {
     "objectID": "weekly-material.html#week-9",
     "href": "weekly-material.html#week-9",
     "title": "Weekly Materials",
     "section": "Week 9",
-    "text": "Week 9\nFall reading week. No lecture.\nMath assignment 2 due.",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 9\nFall reading week. No lecture.\nMath assignment 2 due."
   },
   {
     "objectID": "weekly-material.html#week-10",
     "href": "weekly-material.html#week-10",
     "title": "Weekly Materials",
     "section": "Week 10",
-    "text": "Week 10\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: gradcam and input gradients lab09\n\n\nFinal Project\nDeadline to form project groups on Markus, and submit a project proposal\n\n\nAdditional Resources\nTransformer video: https://www.youtube.com/watch?v=XSSTuhyAmnI\nhttps://nlp.seas.harvard.edu/2018/04/03/attention.html\nhttp://peterbloem.nl/blog/transformers\nLast year’s A3 (a seq2seq autoencoder) http://modelai.gettysburg.edu/2021/headlines/",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 10\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: gradcam and input gradients lab09\n\n\nFinal Project\nDeadline to form project groups on Markus, and submit a project proposal\n\n\nAdditional Resources\nTransformer video: https://www.youtube.com/watch?v=XSSTuhyAmnI\nhttps://nlp.seas.harvard.edu/2018/04/03/attention.html\nhttp://peterbloem.nl/blog/transformers\nLast year’s A3 (a seq2seq autoencoder) http://modelai.gettysburg.edu/2021/headlines/"
   },
   {
     "objectID": "weekly-material.html#week-11",
     "href": "weekly-material.html#week-11",
     "title": "Weekly Materials",
     "section": "Week 11",
-    "text": "Week 11\n\nLecture\nSlides & Recordings\nAutoencoder Notebook\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions\n\n\nQuiz\nLecture 10 pre-recorded videos and quizzes\n\n\nFinal Project\nWritten feedback on project proposals sent by TAs and instructors.",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 11\n\nLecture\nSlides & Recordings\nAutoencoder Notebook\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions\n\n\nQuiz\nLecture 10 pre-recorded videos and quizzes\n\n\nFinal Project\nWritten feedback on project proposals sent by TAs and instructors."
   },
   {
     "objectID": "weekly-material.html#week-12",
     "href": "weekly-material.html#week-12",
     "title": "Weekly Materials",
     "section": "Week 12",
-    "text": "Week 12\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: RNN text classification lab10",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 12\n\nLecture\nSlides & Recordings\n\n\nExercises\nIn-class Exercise & Solutions\n\n\nTutorials/Labs\nIn-person lab session: RNN text classification lab10"
   },
   {
     "objectID": "weekly-material.html#week-13",
     "href": "weekly-material.html#week-13",
     "title": "Weekly Materials",
     "section": "Week 13",
-    "text": "Week 13\n\nLecture\nSlides & Recordings\nIf you are interested in both groups’ research, it is worth attending or watching both lectures this week.\n\n\nTutorials/Labs\nIn-person lab session: text generation with transformers lab11",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 13\n\nLecture\nSlides & Recordings\nIf you are interested in both groups’ research, it is worth attending or watching both lectures this week.\n\n\nTutorials/Labs\nIn-person lab session: text generation with transformers lab11"
   },
   {
     "objectID": "weekly-material.html#week-14",
     "href": "weekly-material.html#week-14",
     "title": "Weekly Materials",
     "section": "Week 14",
-    "text": "Week 14\nFinal project submission",
-    "crumbs": [
-      "Weekly Material"
-    ]
+    "text": "Week 14\nFinal project submission"
   },
   {
     "objectID": "course-links.html",
@@ -4444,273 +4482,407 @@
     "href": "weeks/week-6.html",
     "title": "Week 6",
     "section": "",
-    "text": "Important\n\n\n\nDue dates: Exam 1 - Mon, Feb 7 at 11:59pm"
+    "text": "No preparation this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 6"
+    ]
   },
   {
     "objectID": "weeks/week-6.html#prepare",
     "href": "weeks/week-6.html#prepare",
     "title": "Week 6",
-    "section": "Prepare",
-    "text": "Prepare\nNo reading (take a break after the exam! 😴)"
+    "section": "",
+    "text": "No preparation this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 6"
+    ]
   },
   {
     "objectID": "weeks/week-6.html#participate",
     "href": "weeks/week-6.html#participate",
     "title": "Week 6",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 10 - MLR: Types of predictors\n🖥️ Lecture 11 - MLR: Model comparison"
+    "text": "Participate\nSlides & Recordings\nEnsembling code skeleton\nThe definition of differential privacy",
+    "crumbs": [
+      "Weekly materials",
+      "Week 6"
+    ]
   },
   {
     "objectID": "weeks/week-6.html#practice",
     "href": "weeks/week-6.html#practice",
     "title": "Week 6",
     "section": "Practice",
-    "text": "Practice\nNo application exercises"
+    "text": "Practice\nIn-class Exercise & Solutions",
+    "crumbs": [
+      "Weekly materials",
+      "Week 6"
+    ]
   },
   {
     "objectID": "weeks/week-6.html#perform",
     "href": "weeks/week-6.html#perform",
     "title": "Week 6",
     "section": "Perform",
-    "text": "Perform\nNo lab\n✅ Exam 1\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: optimization and differential privacy lab05\nLecture 6 pre-recorded videos and quizzes\nMath assignment 1 due\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 6"
+    ]
   },
   {
     "objectID": "weeks/week-5.html",
     "href": "weeks/week-5.html",
     "title": "Week 5",
     "section": "",
-    "text": "Important\n\n\n\n\nDue date: Lab 2 - Fri, Feb 4, 5pm ET\nExam 1 released on Fri, Feb 4, due Mon, Feb 7 at 11:59pm"
+    "text": "Week 5 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 5"
+    ]
   },
   {
     "objectID": "weeks/week-5.html#prepare",
     "href": "weeks/week-5.html#prepare",
     "title": "Week 5",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Introduction to Modern Statistics, Sec 8.1: Indicator and categorical predictors\n📖 Read Introduction to Modern Statistics, Sec 8.2: Many predictors in a model\n📖 Read Introduction to Modern Statistics, Sec 8.3: Adjusted R-squared"
+    "section": "",
+    "text": "Week 5 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 5"
+    ]
   },
   {
     "objectID": "weeks/week-5.html#participate",
     "href": "weeks/week-5.html#participate",
     "title": "Week 5",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lab 3 - Coffee ratings\n🖥️ Lecture 8 - Multiple linear regression (MLR)\n🖥️ Lecture 9 - Exam 1 review"
+    "text": "Participate\nSlides & Recordings",
+    "crumbs": [
+      "Weekly materials",
+      "Week 5"
+    ]
   },
   {
     "objectID": "weeks/week-5.html#practice",
     "href": "weeks/week-5.html#practice",
     "title": "Week 5",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 4 - Exam 1 Review"
+    "text": "Practice\nIn-class Exercise & Solutions\nTaylor Series https://www.youtube.com/watch?v=3d6DsjIBzJ4",
+    "crumbs": [
+      "Weekly materials",
+      "Week 5"
+    ]
   },
   {
     "objectID": "weeks/week-5.html#perform",
     "href": "weeks/week-5.html#perform",
     "title": "Week 5",
     "section": "Perform",
-    "text": "Perform\n⌨️ Lab 3 - Coffee ratings\n✅ Exam 1\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nTutorial: how to implement SGD with momentum neural network optimization\nLecture 5 pre-recorded videos and quizzes\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 5"
+    ]
   },
   {
     "objectID": "weeks/week-1.html",
     "href": "weeks/week-1.html",
     "title": "Week 1",
     "section": "",
-    "text": "Important\n\n\n\nClasses are virtual this week. Find Zoom links here."
+    "text": "Read the syllabus\nWeek 1 Overview\nSoftware Installations",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weeks/week-1.html#prepare",
     "href": "weeks/week-1.html#prepare",
     "title": "Week 1",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read the syllabus\n📖 Read the support resources"
+    "section": "",
+    "text": "Read the syllabus\nWeek 1 Overview\nSoftware Installations",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weeks/week-1.html#participate",
     "href": "weeks/week-1.html#participate",
     "title": "Week 1",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lab 0 -Meet+ greet\n🖥️ Lecture 1 - Welcome to STA 210"
+    "text": "Participate\nLecture 1 & Recordings",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weeks/week-1.html#practice",
     "href": "weeks/week-1.html#practice",
     "title": "Week 1",
     "section": "Practice",
-    "text": "Practice\n📋 AE 0 - Movies"
+    "text": "Practice\nNo practices this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weeks/week-1.html#perform",
     "href": "weeks/week-1.html#perform",
     "title": "Week 1",
     "section": "Perform",
-    "text": "Perform\n⌨️ Lab 0 - Meet + greet\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nNo tutorials/labs this week but please complete the Pre-Requisite Math Problems\nSuggested Review :\n\nLinear Algebra review \nProbability review\n\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weeks/week-2.html",
     "href": "weeks/week-2.html",
     "title": "Week 2",
     "section": "",
-    "text": "Important\n\n\n\n\nClasses are virtual this week. Find Zoom links here.\nDue dates:\n\nLab 1: Fri, Jan 14, 5pm ET\nAE 1: Sun, Jan 16, 11:59pm ET"
+    "text": "Week 2 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 2"
+    ]
   },
   {
     "objectID": "weeks/week-2.html#prepare",
     "href": "weeks/week-2.html#prepare",
     "title": "Week 2",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Introduction to Modern Statistics, Chp 7: Linear regression with a single predictor"
+    "section": "",
+    "text": "Week 2 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 2"
+    ]
   },
   {
     "objectID": "weeks/week-2.html#participate",
     "href": "weeks/week-2.html#participate",
     "title": "Week 2",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lab 1 - Meet the toolkit\n🖥️ Lecture 2 - Simple linear regression\n🖥️ Lecture 3 - Model fitting in R with tidymodels"
+    "text": "Participate\nSlides & Recordings\nProf. Roger Grosse’s notes on backdrop",
+    "crumbs": [
+      "Weekly materials",
+      "Week 2"
+    ]
   },
   {
     "objectID": "weeks/week-2.html#practice",
     "href": "weeks/week-2.html#practice",
     "title": "Week 2",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 1 - Bike rentals in DC (Post-class note: complete only Part 1 - Daily counts and temperature)"
+    "text": "Practice\nNo exercises this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 2"
+    ]
   },
   {
     "objectID": "weeks/week-2.html#perform",
     "href": "weeks/week-2.html#perform",
     "title": "Week 2",
     "section": "Perform",
-    "text": "Perform\n⌨️ Lab 1 - Meet the toolkit\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: PyTorch basics with linear models lab01\nLec2 pre-recorded videos with quizzes\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 2"
+    ]
   },
   {
     "objectID": "weeks/week-11.html",
     "href": "weeks/week-11.html",
     "title": "Week 11",
     "section": "",
-    "text": "Important\n\n\n\nDue dates:\n\nLab 5 - Friday, Mar 25\nHW 3 - Friday, Mar 25"
+    "text": "No additional readings this week. Catch up with previously assigned readings if you’ve fallen behind.",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   },
   {
     "objectID": "weeks/week-11.html#prepare",
     "href": "weeks/week-11.html#prepare",
     "title": "Week 11",
-    "section": "Prepare",
-    "text": "Prepare\nNo additional readings this week. Catch up with previously assigned readings if you’ve fallen behind."
+    "section": "",
+    "text": "No additional readings this week. Catch up with previously assigned readings if you’ve fallen behind.",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   },
   {
     "objectID": "weeks/week-11.html#participate",
     "href": "weeks/week-11.html#participate",
     "title": "Week 11",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 20 - LR: Prediction / classification\n🖥️ Lecture 21 - LR: Model validation"
+    "text": "Participate\nSlides & Recordings\nAutoencoder Notebook",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   },
   {
     "objectID": "weeks/week-11.html#practice",
     "href": "weeks/week-11.html#practice",
     "title": "Week 11",
     "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 10 - Flight delays"
+    "text": "Practice\nIn-class Exercise & Solutions",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   },
   {
     "objectID": "weeks/week-11.html#perform",
     "href": "weeks/week-11.html#perform",
     "title": "Week 11",
     "section": "Perform",
-    "text": "Perform\n✍️ HW 3 - Logistic regression and log transformation\n⌨️ Lab 5 - General Social Survey\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions\nLecture 10 pre-recorded videos and quizzes\nFinal Project - Written feedback on project proposals sent by TAs and instructors\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   },
   {
     "objectID": "weeks/week-12.html",
     "href": "weeks/week-12.html",
     "title": "Week 12",
     "section": "",
-    "text": "Important\n\n\n\nDue dates: None."
+    "text": "No Preparation for this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 12"
+    ]
   },
   {
     "objectID": "weeks/week-12.html#prepare",
     "href": "weeks/week-12.html#prepare",
     "title": "Week 12",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Introduction to Modern Statistics, Chp 26: Inference for logistic regression"
+    "section": "",
+    "text": "No Preparation for this week",
+    "crumbs": [
+      "Weekly materials",
+      "Week 12"
+    ]
   },
   {
     "objectID": "weeks/week-12.html#participate",
     "href": "weeks/week-12.html#participate",
     "title": "Week 12",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 22 - LR: Inference + conditions\n🖥️ Lecture 23 - Multinomial logistic regression (MultiLR)"
+    "text": "Participate\nSlides & Recordings",
+    "crumbs": [
+      "Weekly materials",
+      "Week 12"
+    ]
   },
   {
     "objectID": "weeks/week-12.html#practice",
     "href": "weeks/week-12.html#practice",
     "title": "Week 12",
     "section": "Practice",
-    "text": "Practice\nNo application exercises this week."
+    "text": "Practice\nIn-class Exercise & Solutions",
+    "crumbs": [
+      "Weekly materials",
+      "Week 12"
+    ]
   },
   {
     "objectID": "weeks/week-12.html#perform",
     "href": "weeks/week-12.html#perform",
     "title": "Week 12",
     "section": "Perform",
-    "text": "Perform\n✍️ HW 4 - Multinomial logistic regression\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: RNN text classification lab10\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 12"
+    ]
   },
   {
     "objectID": "weeks/week-8.html",
     "href": "weeks/week-8.html",
     "title": "Week 8",
     "section": "",
-    "text": "Important\n\n\n\nDue date: Lab 4 - Friday, Feb 25"
+    "text": "Week 8 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 8"
+    ]
   },
   {
     "objectID": "weeks/week-8.html#prepare",
     "href": "weeks/week-8.html#prepare",
     "title": "Week 8",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Read Tidy Modeling in R Chp 10: Resampling for evaluating performance"
+    "section": "",
+    "text": "Week 8 Overview",
+    "crumbs": [
+      "Weekly materials",
+      "Week 8"
+    ]
   },
   {
     "objectID": "weeks/week-8.html#participate",
     "href": "weeks/week-8.html#participate",
     "title": "Week 8",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 14 - MLR: Cross validation\n🖥️ Lecture 15 - Exam 2 review"
+    "text": "Participate\nSlides\nMissing recording due to technical issue",
+    "crumbs": [
+      "Weekly materials",
+      "Week 8"
+    ]
   },
   {
     "objectID": "weeks/week-8.html#practice",
     "href": "weeks/week-8.html#practice",
     "title": "Week 8",
     "section": "Practice",
-    "text": "Practice\nApplication Exercise 6 - The office - CV\nApplication Exercise 7 - Exam 2 Review"
+    "text": "Practice\nIn-class Exercise & Solutions",
+    "crumbs": [
+      "Weekly materials",
+      "Week 8"
+    ]
   },
   {
     "objectID": "weeks/week-8.html#perform",
     "href": "weeks/week-8.html#perform",
     "title": "Week 8",
     "section": "Perform",
-    "text": "Perform\n⌨️ Lab 4 - The Office, another look\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nIn-person lab session: transfer learning and double descent lab07\nLecture 8 pre-recorded videos and quizzes\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 8"
+    ]
   },
   {
     "objectID": "weeks/week-14.html",
     "href": "weeks/week-14.html",
     "title": "Week 14",
     "section": "",
-    "text": "Important\n\n\n\nDue dates: Friday, April 15 - Project peer review of drafts"
-  },
-  {
-    "objectID": "weeks/week-14.html#participate",
-    "href": "weeks/week-14.html#participate",
-    "title": "Week 14",
-    "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 26 - MultiLR: Predictive models (cont.)\n🖥️ Lecture 27 - Exam 3 Review"
-  },
-  {
-    "objectID": "weeks/week-14.html#practice",
-    "href": "weeks/week-14.html#practice",
-    "title": "Week 14",
-    "section": "Practice",
-    "text": "Practice\n📋 Application Exercise 12 - Exam 3 Review"
+    "text": "Important\n\n\n\nDue dates: Friday, April 15 - Project peer review of drafts",
+    "crumbs": [
+      "Weekly materials",
+      "Week 14"
+    ]
   },
   {
     "objectID": "weeks/week-14.html#perform",
     "href": "weeks/week-14.html#perform",
     "title": "Week 14",
     "section": "Perform",
-    "text": "Perform\n✍️ Project - Peer review of drafts\n\n\nBack to course schedule ⏎"
+    "text": "Perform\nFinal project submission\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 14"
+    ]
   },
   {
     "objectID": "project-tips-resources.html",
@@ -5476,7 +5648,7 @@
     "href": "course-schedule.html",
     "title": "Fall 2024 - UTM - CSC 413: Neural Networks and Deep Learning",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nSlides\nRecordings\nLabs\nQuiz\nAssignments\nTests\nProject\n\n\n\n\n1\nSept 2-6\nLinear Model\n🖥️\n🎥\n\n\n\n\n\n\n\n2\nSept 9-13\nMulti-Layer Perceptron, Backpropagation, Losses\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n3\nSept 16-20\nAutomatic Differentiation, Distributed Representation\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n4\nSept 23-27\nConvolutional Neural Networks\n🖥️\n🎥\n💻\n📋\n✍️\n\n\n\n\n5\nOct 1-4\nOptimization\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n6\nOct 7-11\nGeneralization\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n7\nOct 14-18\nInterpreting Convolutional Neural Networks\n🖥️\n🎥\n\n\n✍️\n✅\n\n\n\n8\nOct 21-25\nRecurrent Neural Networks\n🖥️\n\n💻\n📋\n\n\n\n\n\n9\nOct 28-Nov 1\nFall Reading Week\n\n\n\n\n\n\n\n\n\n10\nNov 4-8\nAttention and Transformers\n🖥️\n🎥\n💻\n\n\n\n📂\n\n\n11\nNov 11-15\nAutoencoders and Transpose Convolutions\n🖥️\n🎥\n\n📋\n\n✅\n\n\n\n12\nNov 18-22\nGenerative Adversarial Networks\n🖥️\n🎥\n💻\n\n\n\n\n\n\n13\nNov 25-29\nUse of Deep Learning in the Research of Profs Shkurti and Gilitschenski\n🖥️\n🎥\n💻\n\n\n\n\n\n\n14\nDec 2-6\nFinal project submission\n\n\n\n\n\n\n📂",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nPrepare\nSlides\nRecordings\nLabs\nQuiz\nAssignments\nTests\nProject\n\n\n\n\n1\nSept 2-6\nLinear Model\n📖\n🖥️\n🎥\n\n\n\n\n\n\n\n2\nSept 9-13\nMulti-Layer Perceptron, Backpropagation, Losses\n📖\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n3\nSept 16-20\nAutomatic Differentiation, Distributed Representation\n📖\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n4\nSept 23-27\nConvolutional Neural Networks\n📖\n🖥️\n🎥\n💻\n📋\n✍️\n\n\n\n\n5\nOct 1-4\nOptimization\n📖\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n6\nOct 7-11\nGeneralization\n📖\n🖥️\n🎥\n💻\n📋\n\n\n\n\n\n7\nOct 14-18\nInterpreting Convolutional Neural Networks\n📖\n🖥️\n🎥\n\n\n✍️\n✅\n\n\n\n8\nOct 21-25\nRecurrent Neural Networks\n📖\n🖥️\n\n💻\n📋\n\n\n\n\n\n9\nOct 28-Nov 1\nFall Reading Week\n📖\n\n\n\n\n\n\n\n\n\n10\nNov 4-8\nAttention and Transformers\n📖\n🖥️\n🎥\n💻\n\n\n\n📂\n\n\n11\nNov 11-15\nAutoencoders and Transpose Convolutions\n📖\n🖥️\n🎥\n\n📋\n\n✅\n\n\n\n12\nNov 18-22\nGenerative Adversarial Networks\n📖\n🖥️\n🎥\n💻\n\n\n\n\n\n\n13\nNov 25-29\nUse of Deep Learning in the Research of Profs Shkurti and Gilitschenski\n📖\n🖥️\n🎥\n💻\n\n\n\n\n\n\n14\nDec 2-6\nFinal project submission\n📖\n\n\n\n\n\n\n📂",
     "crumbs": [
       "Schedule"
     ]
