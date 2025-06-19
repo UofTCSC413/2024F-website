@@ -6,6 +6,7 @@ format:
     slide-number: true
     embed-resources: false
     show-notes: false
+    footer: '<a href="https://utm-csc413.github.io/2024F-website/" target="_blank">↩ Back to Course Website</a>'
     chalkboard:
       src: chalkboard.json
       buttons: true
@@ -22,22 +23,18 @@ format:
 
 ## Last Week
 
-::: {.incremental}
-
-- Optimization Landscape
-- Gradient Descent and SGD
-
+::: incremental
+-   Optimization Landscape
+-   Gradient Descent and SGD
 :::
 
 ## This week
 
-::: {.incremental}
-
-- Generalization
-- Diagnosing Issues using Learning Curves
-- Bias-Variance Tradeoff
-- Differential Privacy
-
+::: incremental
+-   Generalization
+-   Diagnosing Issues using Learning Curves
+-   Bias-Variance Tradeoff
+-   Differential Privacy
 :::
 
 # Generalization
@@ -46,12 +43,12 @@ format:
 
 . . .
 
-- How do we choose between different neural network models?
-    - For example, different number of hidden units, hidden layers, ...?
+-   How do we choose between different neural network models?
+    -   For example, different number of hidden units, hidden layers, ...?
 
 . . .
 
-- **How do we know how well a model will perform on new data?**
+-   **How do we know how well a model will perform on new data?**
 
 ## The Training Set
 
@@ -59,7 +56,7 @@ The training set is used
 
 . . .
 
-- to determine the value of the **parameters**
+-   to determine the value of the **parameters**
 
 . . .
 
@@ -71,52 +68,43 @@ Q: Can we use the **training accuracy** to estimate how well a model will perfor
 
 . . .
 
-- No! It is possible for a model to fit well to the training set, but fail to *generalize*
+-   No! It is possible for a model to fit well to the training set, but fail to *generalize*
 
 . . .
 
-- We want to know how well the model performs on *new data* that we didn't already use to optimize the model
+-   We want to know how well the model performs on *new data* that we didn't already use to optimize the model
 
 ## Poor Generalization
 
-<center>
-![](imgs2/polynomial_1.png){ height="380" }
-![](imgs2/polynomial_3.png){ height="380" }
-</center>
+<center>![](imgs2/polynomial_1.png){height="380"} ![](imgs2/polynomial_3.png){height="380"}</center>
 
-::: {.notes}
-Example of poor generalization:
-- green: data generating process / red: fit.
-- Plot 1: datapoints fitted poorly.
-- Plot 2: datapoints fitted overly well.
-
+::: notes
+Example of poor generalization: - green: data generating process / red: fit. - Plot 1: datapoints fitted poorly. - Plot 2: datapoints fitted overly well.
 :::
 
 ## Underfitting
 
-- The model is simple and doesn't fit the data
+-   The model is simple and doesn't fit the data
 
 . . .
 
-- The model does not capture *discriminative* features of the data
-
+-   The model does not capture *discriminative* features of the data
 
 ## Overfitting
 
-- The model is too complex and does not generalize
+-   The model is too complex and does not generalize
 
 . . .
 
-- The model captures information about patterns in training set that happened by chance
-    - e.g. Ringo happens to be always wearing a red shirt in the training set
-    - Model learns: high red pixel content => predict Ringo
-
+-   The model captures information about patterns in training set that happened by chance
+    -   e.g. Ringo happens to be always wearing a red shirt in the training set
+    -   Model learns: high red pixel content =\> predict Ringo
 
 ## The Test Set
 
 We set aside a **test set** of labeled examples.
 
-. . . 
+. . .
 
 The model's prediction accuracy over the test set is called the **test accuracy**.
 
@@ -128,10 +116,8 @@ The purpose of the test set is to give us a good estimate of how well a model wi
 
 Q: In general, will the test accuracy be *higher* or *lower* than the training accuracy?
 
-::: {.notes}
-
-- The test accuracy will be lower because the model can "memorize" the data.
-
+::: notes
+-   The test accuracy will be lower because the model can "memorize" the data.
 :::
 
 ## Model Choices
@@ -140,15 +126,15 @@ But what about decisions like:
 
 . . .
 
-- How many layers?
+-   How many layers?
 
 . . .
 
-- How many units in each layer?
+-   How many units in each layer?
 
 . . .
 
-- What non-linear activation to use?
+-   What non-linear activation to use?
 
 ## Model Choices II
 
@@ -156,11 +142,11 @@ Q: Why can't we use the test set to determine which model we should deploy?
 
 . . .
 
-- If we use the test set to make modeling decisions, then we will overestimate how well our model will perform on new data!
+-   If we use the test set to make modeling decisions, then we will overestimate how well our model will perform on new data!
 
 . . .
 
-- We are "cheating" by "looking at the test"
+-   We are "cheating" by "looking at the test"
 
 ## The Validation Set
 
@@ -172,18 +158,18 @@ The model's prediction accuracy over the validation set is called the **validati
 
 This dataset is used to:
 
- . . .
+. . .
 
-- Make decisions about models that is **not continuous** and can't be optimized via gradient descent
+-   Make decisions about models that is **not continuous** and can't be optimized via gradient descent
 
 . . .
 
-- Example: choose $k$, choose which features $x_j$ to use, choose $\alpha$, ...
-    - These model settings are called **hyperparameters**
+-   Example: choose $k$, choose which features $x_j$ to use, choose $\alpha$, ...
+    -   These model settings are called **hyperparameters**
 
 . . .
 
-- The validation set is used to optimize **hyperparameters**
+-   The validation set is used to optimize **hyperparameters**
 
 ## Splitting the Dataset
 
@@ -191,15 +177,15 @@ Example split:
 
 . . .
 
-- 60% Training
+-   60% Training
 
 . . .
 
-- 20% Validation
+-   20% Validation
 
 . . .
 
-- 20% Test
+-   20% Test
 
 . . .
 
@@ -211,21 +197,18 @@ If you have more data, you can get a way with a smaller % validation and set.
 
 Learning curve:
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
-
-![](imgs2/overfit.png){ height="300" }
+![](imgs2/overfit.png){height="300"}
 :::
 
 ::: {.column width="55%"}
-
-- **x-axis**: epochs or iterations
-- **y-axis**: cost, error, or accuracy
-
+-   **x-axis**: epochs or iterations
+-   **y-axis**: cost, error, or accuracy
 :::
-:::
+:::::
 
-. . . 
+. . .
 
 Q: In which epochs is the model overfitting? Underfitting?
 
@@ -233,39 +216,38 @@ Q: In which epochs is the model overfitting? Underfitting?
 
 Q: Why don't we plot the test accuracy plot?
 
-::: {.notes}
-
-- Underfitting: the first ~8 epochs and overfitting after that
-- Test accuracy is only supposed to be used for the evaluation of the final trained model and not for any design decisions such as number of epochs.
-
+::: notes
+-   Underfitting: the first \~8 epochs and overfitting after that
+-   Test accuracy is only supposed to be used for the evaluation of the final trained model and not for any design decisions such as number of epochs.
 :::
 
 ## Strategies to Prevent Overfitting
 
 . . .
 
-- Data Augmentation
+-   Data Augmentation
 
 . . .
 
-- Reducing the number of parameters
+-   Reducing the number of parameters
 
 . . .
 
-- Weight decay
+-   Weight decay
 
 . . .
 
-- Early stopping
+-   Early stopping
 
 . . .
 
-- Ensembles
+-   Ensembles
 
 . . .
 
-- Stochastic regularization (e.g. dropout)
+-   Stochastic regularization (e.g. dropout)
 
+```{=html}
 <!--
 - Collect more data: always the best first thing to try
     - data agumentation: add noise to the data
@@ -275,6 +257,7 @@ Q: Why don't we plot the test accuracy plot?
 - Use a training strategy that reduces overfitting:
     - Example: weight decay, dropout
     -->
+```
 
 ## Data Augmentation
 
@@ -282,7 +265,7 @@ The best way to improve generalization is to collect more data!
 
 . . .
 
-But if we already have all the data we're willing to collect. We can augment the training data by *transforming* the examples. 
+But if we already have all the data we're willing to collect. We can augment the training data by *transforming* the examples.
 
 . . .
 
@@ -294,44 +277,39 @@ Examples (for images, but depends on task):
 
 . . .
 
-- translation / rotation
+-   translation / rotation
 
 . . .
 
-- horizontal or vertical flip
+-   horizontal or vertical flip
 
 . . .
 
-- smooth warping
+-   smooth warping
 
 . . .
 
-- noise (e.g. flip random pixels)
+-   noise (e.g. flip random pixels)
 
 We should only augment the training examples, not the validation or test examples (why?)
 
 ## Reducing the Number of Parameters
 
-- Networks with fewer trainable parameters are less likely to overfit. 
+-   Networks with fewer trainable parameters are less likely to overfit.
 
 . . .
 
-- We can reduce the number of layers, or the number of parameters per layer.
-
+-   We can reduce the number of layers, or the number of parameters per layer.
 
 ## Reducing the Number of Parameters II
 
 Adding a **bottleneck layer** is another way to reduce the number of parameters
 
-<center>
-![](imgs2/bottleneck.png){ height="275" }
-</center>
+<center>![](imgs2/bottleneck.png){height="275"}</center>
 
 . . .
 
 In practise, this isn't a great idea (as too much informaiton may get lost).
-
-
 
 ## Weight Decay Idea
 
@@ -347,26 +325,23 @@ Because large weights mean that the prediction relies **a lot** on the content o
 
 The red polynomial overfits. Notice it has really large coefficients
 
-<center>
-![](imgs2/polynomial_overfit.png){ height="450" }
-</center>
+<center>![](imgs2/polynomial_overfit.png){height="450"}</center>
 
 ## Weight Decay
 
 . . .
 
-- $L^1$ regularization: add a term $\sum_{j=1}^D |w_j|$  to the cost function
-    - Mathematically, this term encourages weights to be exactly 0
+-   $L^1$ regularization: add a term $\sum_{j=1}^D |w_j|$ to the cost function
+    -   Mathematically, this term encourages weights to be exactly 0
 
 . . .
 
-- $L^2$ regularization: add a term $\sum_{j=1}^D w_j^2$  to the cost function
-    - Mathematically, in each iteration the weight is pushed towards 0
+-   $L^2$ regularization: add a term $\sum_{j=1}^D w_j^2$ to the cost function
+    -   Mathematically, in each iteration the weight is pushed towards 0
 
 . . .
 
-- Combination of both.
-
+-   Combination of both.
 
 ## Example: Weight Decay for Regression
 
@@ -400,27 +375,21 @@ Idea: Stop training when the validation error starts going up.
 
 . . .
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
-
-![](imgs2/overfit.png){ height="350" }
+![](imgs2/overfit.png){height="350"}
 :::
 
 ::: {.column width="55%"}
-
-In practice, this is implemented by **checkpointing** (saving) the
-neural network weights every few iterations/epochs during training.
-<!-- <br>
+In practice, this is implemented by **checkpointing** (saving) the neural network weights every few iterations/epochs during training. <!-- <br>
 
 Some other text that should be below the first paragraph. -->
-
 :::
-:::
+:::::
 
 . . .
 
-We choose the checkpoint with the best validation error to
-actually use. (And if there is a tie, use the **earlier** checkpoint)
+We choose the checkpoint with the best validation error to actually use. (And if there is a tie, use the **earlier** checkpoint)
 
 ## Why does Early Stopping Work?
 
@@ -432,20 +401,15 @@ Therefore, stopping early has a similar effect to weight decay.
 
 . . .
 
-If you're using sigmoid units, and the weights start out small,
-then the inputs to the activation functions take only a small
-range of values.
+If you're using sigmoid units, and the weights start out small, then the inputs to the activation functions take only a small range of values.
 
 . . .
 
-- The neural network starts out approximately linear,
-  and gradually becomes non-linear (and thus more powerful)
+-   The neural network starts out approximately linear, and gradually becomes non-linear (and thus more powerful)
 
 ## Ensembles
 
-If a loss function is convex (with respect to the predictions),
-you have a bunch of predictions for an input, and you don't
-know which one is best, you are always better off averaging them!
+If a loss function is convex (with respect to the predictions), you have a bunch of predictions for an input, and you don't know which one is best, you are always better off averaging them!
 
 . . .
 
@@ -455,7 +419,7 @@ for $\lambda_i \ge 0$ and $\sum_i \lambda_i = 1$
 
 . . .
 
-**Idea**:  Build multiple candidate models, and average the predictions on the test data.
+**Idea**: Build multiple candidate models, and average the predictions on the test data.
 
 . . .
 
@@ -465,15 +429,15 @@ This set of models is called an **ensemble**.
 
 . . .
 
-- Train neural networks starting from different random initialization (might not give enough diversity)
+-   Train neural networks starting from different random initialization (might not give enough diversity)
 
 . . .
 
-- Train different network on different subset of the training data (called **bagging**)
+-   Train different network on different subset of the training data (called **bagging**)
 
 . . .
 
-- Train networks with different architectures, hyperparameters, or use other machine learning models
+-   Train networks with different architectures, hyperparameters, or use other machine learning models
 
 . . .
 
@@ -483,10 +447,8 @@ Ensembles can improve generalization substantially.
 
 However, ensembles are expensive.
 
-::: {.notes}
-
-- The first strategy is most common in practice.
-
+::: notes
+-   The first strategy is most common in practice.
 :::
 
 ## Stochastic Regularization
@@ -495,8 +457,7 @@ For a network to overfit, its computations need to be really precise.
 
 . . .
 
-This suggests regularizing them by injecting noise into the computations, a
-strategy known as **stochastic regularization**.
+This suggests regularizing them by injecting noise into the computations, a strategy known as **stochastic regularization**.
 
 . . .
 
@@ -506,31 +467,23 @@ One example is **dropout**: in each training iteration, random choose a portion 
 
 The probability $p$ that an activation is set to 0 is a hyperparameter.
 
-<center>
-![](imgs2/neural_net2.jpeg){ height=30% }
-</center>
+<center>![](imgs2/neural_net2.jpeg){height="30%"}</center>
 
 ## Dropout
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
-![](imgs2/dropout.png){height="500" }
+![](imgs2/dropout.png){height="500"}
 :::
 
 ::: {.column width="50%"}
-
-- Can be seen as training an ensemble of 2D different
-architectures with shared weights (where D is the number of units)
-- Avoids **co-adaptation**
-
+-   Can be seen as training an ensemble of 2D different architectures with shared weights (where D is the number of units)
+-   Avoids **co-adaptation**
 :::
-:::
+:::::
 
-::: {.notes}
-
-- **co-adaptation** refers to the phenomena where two neurons cancel each other out by learning essentially the same thing.
-
+::: notes
+-   **co-adaptation** refers to the phenomena where two neurons cancel each other out by learning essentially the same thing.
 :::
 
 ## Dropout at Test Time
@@ -543,72 +496,65 @@ Multiply the weights by $1-p$ (why?)
 
 . . .
 
-::: {.notes}
+::: notes
+-   Dropout at test time would be like using one network of an ensemble.
 
-- Dropout at test time would be like using one network of an ensemble.
-
-- Since the weights are on $1-p$ fraction of the time,
-multiplying the weights by $1-p$ matches the expected value
-of the activation magnitude (e.g. going into the next layer).
-
+-   Since the weights are on $1-p$ fraction of the time, multiplying the weights by $1-p$ matches the expected value of the activation magnitude (e.g. going into the next layer).
 :::
 
 ## Summary of "Bag of Tricks"
 
 . . .
 
-- Data Augmentation
+-   Data Augmentation
 
 . . .
 
-- Reducing the number of parameters
+-   Reducing the number of parameters
 
 . . .
 
-- Weight decay
+-   Weight decay
 
 . . .
 
-- Early stopping
+-   Early stopping
 
 . . .
 
-- Ensembles
+-   Ensembles
 
 . . .
 
-- Stochastic regularization (e.g. dropout)
+-   Stochastic regularization (e.g. dropout)
 
 <!-- 04curves -->
 
 # Diagnosing Issues using Learning Curves
 
 ## Why does the Training Curve look like his?
+
 <!-- (From week 3 tutorial) -->
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/curve1.png){height="500" }
+![](curve/curve1.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- The learning rate is too high
-- The learning rate is too low
-- The number of iterations is too low
-- The weights are all initialized to zero
-
+-   The learning rate is too high
+-   The learning rate is too low
+-   The number of iterations is too low
+-   The weights are all initialized to zero
 :::
-:::
+:::::
 
-::: {.notes}
-
-- Learning rate likely too high.
-- Loss curve shows jumps and no consistent decrease
-
+::: notes
+-   Learning rate likely too high.
+-   Loss curve shows jumps and no consistent decrease
 :::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/curve1.png}
@@ -622,34 +568,31 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
-
+```
 
 ## Why does the Training Curve look like this?
+
 <!-- (From practice test) -->
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/e3.png){height="500" }
+![](curve/e3.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- The batch size is too small
-- Batch normalization was used
-- The number of parameters is too large
-- The learning rate is too small
-
+-   The batch size is too small
+-   Batch normalization was used
+-   The number of parameters is too large
+-   The learning rate is too small
 :::
-:::
+:::::
 
-::: {.notes}
-
-- Batch size likely too small.
-- Learning curve very noisy.
-
+::: notes
+-   Batch size likely too small.
+-   Learning curve very noisy.
 :::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/e3.png}
@@ -663,35 +606,32 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
+```
 
 <!-- (From old test) -->
 
 ## Why does the Training Curve look like this?
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/p1.png){height="500" }
+![](curve/p1.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- The network probably has too few parameters
-- The network probably has too many parameters
-- The learning rate is probably too small
-- If weight decay is used, the lambda parameter is probably too large.
-- Either (1) or (4) could be true
-
+-   The network probably has too few parameters
+-   The network probably has too many parameters
+-   The learning rate is probably too small
+-   If weight decay is used, the lambda parameter is probably too large.
+-   Either (1) or (4) could be true
 :::
-:::
+:::::
 
-::: {.notes}
-
-- Too few parameters as convergence stopped too early.
-- Too much weight decay has similar effect.
-
+::: notes
+-   Too few parameters as convergence stopped too early.
+-   Too much weight decay has similar effect.
 :::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/p1.png}
@@ -706,32 +646,28 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
-
+```
 
 ## Why does the Training Curve look like this?
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/t1.png){height="500" }
+![](curve/t1.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- Evidence of overfitting
-- Evidence of underfitting
-- Too much momentum
-- The weights were all initialized to 0
-
+-   Evidence of overfitting
+-   Evidence of underfitting
+-   Too much momentum
+-   The weights were all initialized to 0
 :::
-:::
+:::::
 
-::: {.notes}
-
-- This model did not fit yet and is so far underfitting the data.
-
+::: notes
+-   This model did not fit yet and is so far underfitting the data.
 :::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/t1.png}
@@ -745,7 +681,7 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
-
+```
 
 <!-- 05bias -->
 
@@ -755,20 +691,19 @@ of the activation magnitude (e.g. going into the next layer).
 
 . . .
 
-- Training set $D = \{(x_1, y_1), ..., (x_n, y_n)\}$ drawn i.i.d. from distribution $P(X,Y)$. Let's write this as $D \sim P^n$.
+-   Training set $D = \{(x_1, y_1), ..., (x_n, y_n)\}$ drawn i.i.d. from distribution $P(X,Y)$. Let's write this as $D \sim P^n$.
 
 . . .
 
-- Assume for simplicity this is a regression problem with $y \in \mathbb{R}$ and $L_2$ loss.
+-   Assume for simplicity this is a regression problem with $y \in \mathbb{R}$ and $L_2$ loss.
 
 . . .
 
-- What is the expected test error for a function $h_D(x)=y$ trained on the training set $D \sim P^n$, assuming a learning algorithm $\mathcal{A}$? It is:
+-   What is the expected test error for a function $h_D(x)=y$ trained on the training set $D \sim P^n$, assuming a learning algorithm $\mathcal{A}$? It is:
 
 ## Method: RMSProp (cont'd)
 
-The following update is applied to each coordinate j independently:
-\begin{align*}
+The following update is applied to each coordinate j independently: \begin{align*}
 \mathbb{E}_{D \sim P^n, (x,y) \sim P} \left[ (h_D(x) - y)^2 \right]
 \end{align*}
 
@@ -780,17 +715,15 @@ The following update is applied to each coordinate j independently:
 
 . . .
 
-- The expectation is taken with respect to possible training sets $D \sim P^n$ and the test distribution P. Let's write the expectation as $\mathbb{E}_{D,x,y}$ for notational simplicity.
+-   The expectation is taken with respect to possible training sets $D \sim P^n$ and the test distribution P. Let's write the expectation as $\mathbb{E}_{D,x,y}$ for notational simplicity.
 
 . . .
 
-- Note that this is the *expected test error* not the *empirical test error* that we report after training. How are they different?
-
+-   Note that this is the *expected test error* not the *empirical test error* that we report after training. How are they different?
 
 ## Decomposing the Expected Test Error
 
-Let's start by adding and subtracting the same quantity
-\begin{multline*}
+Let's start by adding and subtracting the same quantity \begin{multline*}
   \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - y\right)^2 \right] \\
   = \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - \hat{h}(x) + \hat{h}(x) - y\right)^2 \right]
 \end{multline*}
@@ -798,7 +731,6 @@ Let's start by adding and subtracting the same quantity
 . . .
 
 $\hat{h}(x) = \mathbb{E}_{D \sim P^n}[h_D(x)]$ is the expected regressor over possible training sets, given the learning algorithm $\mathcal{A}$.
-
 
 ## Decomposing the Expected Test Error
 
@@ -808,7 +740,7 @@ After some algebraic manipulation ([proof](https://www.cs.cornell.edu/courses/cs
   \underbrace{\mathbb{E}_{D,x,y} \left[ (h_D(x) - y)^2 \right]}_{\text{Expected test error}} 
   = \underbrace{\mathbb{E}_{D,x} \left[\left(h_D(x) - \hat{h}(x)\right)^2 \right]}_{\text{Variance}} \\
   + \underbrace{\mathbb{E}_{x,y} \left[\left(\hat{y}(x) - y\right)^2 \right]}_{\text{Noise}} + 
-		 \underbrace{\mathbb{E}_{x} \left[\left(\hat{h}(x) - \hat{y}(x)\right)^2 \right]}_{\text{Bias}}
+         \underbrace{\mathbb{E}_{x} \left[\left(\hat{h}(x) - \hat{y}(x)\right)^2 \right]}_{\text{Bias}}
 \end{multline*}
 
 . . .
@@ -820,51 +752,53 @@ $\hat{y}(x) = \mathbb{E}_{y|x}[y]$ is the expected label given $x$. Labels might
 # Differential Privacy
 
 ## What is Differential Privacy (DP)?
-- **Definition:** A mathematical framework for quantifying and controlling the privacy risks in data analysis.
+
+-   **Definition:** A mathematical framework for quantifying and controlling the privacy risks in data analysis.
 
 . . .
 
-- **Goal:** Ensures that the inclusion or exclusion of a single data point does not significantly affect the output of a model.
+-   **Goal:** Ensures that the inclusion or exclusion of a single data point does not significantly affect the output of a model.
 
 . . .
 
-**Why?** 
+**Why?**
 
 . . .
 
-- Protects sensitive information in training data.
+-   Protects sensitive information in training data.
 
 . . .
 
-- Prevents models from overfitting to individual samples.
+-   Prevents models from overfitting to individual samples.
 
 ## Definition of Differential Privacy
-- **Intuitive definition** An algorithm is _differentially private_ if the addition or removal of a single data point does not significantly affect the output.
+
+-   **Intuitive definition** An algorithm is *differentially private* if the addition or removal of a single data point does not significantly affect the output.
 
 . . .
 
-- **Formal definition:** An algorithm is _$\varepsilon$-differentially private_ if for all datasets \( D \) and \( D' \) differing in one element, and for all outputs \( S \):
+-   **Formal definition:** An algorithm is $\varepsilon$-differentially private if for all datasets ( D ) and ( D' ) differing in one element, and for all outputs ( S ):
 
 \begin{align*}
 \Pr[Model(D) = S] \leq \exp(\varepsilon) \cdot \Pr[Model(D') = S]
 \end{align*}
 
-
 ## DP in Deep Learning
-**Applying DP in Neural Networks:** 
-Introduce noise to gradients during training.
+
+**Applying DP in Neural Networks:** Introduce noise to gradients during training.
 
 . . .
 
 **Mechanisms (DP-SGD)**
 
-- Clips gradients to a maximum norm.
+-   Clips gradients to a maximum norm.
 
 . . .
 
-- Adds calibrated Gaussian noise to the gradients.
+-   Adds calibrated Gaussian noise to the gradients.
 
 ## Example – Healthcare Dataset
+
 **Scenario:** Predicting Disease Risk
 
 . . .
@@ -879,23 +813,24 @@ Introduce noise to gradients during training.
 
 **What Happens Without DP?**
 
-- **Outcome:** The model performs well but memorizes some specific details from training samples.
+-   **Outcome:** The model performs well but memorizes some specific details from training samples.
 
 . . .
 
-- **Risk:** If an attacker queries the model with information about a specific individual, the model could reveal their presence in the training set by giving a higher probability for that individual, leaking private information.
+-   **Risk:** If an attacker queries the model with information about a specific individual, the model could reveal their presence in the training set by giving a higher probability for that individual, leaking private information.
 
 ## Example – Healthcare Dataset III
 
 **With DP:**
 
-- **Outcome:** The model's predictions are less influenced by any single training sample. The addition of noise prevents overfitting to specific patient data.
+-   **Outcome:** The model's predictions are less influenced by any single training sample. The addition of noise prevents overfitting to specific patient data.
 
 . . .
 
-- **Benefit:** The model's output is less likely to change noticeably even if a single patient's record is added or removed, protecting patient privacy.
+-   **Benefit:** The model's output is less likely to change noticeably even if a single patient's record is added or removed, protecting patient privacy.
 
 ## Example – E-Commerce Recommendations
+
 **Scenario:** Personalized Product Recommendations
 
 . . .
@@ -910,28 +845,27 @@ Introduce noise to gradients during training.
 
 **Without DP:**
 
-- **Outcome:** The model gives highly personalized recommendations.
+-   **Outcome:** The model gives highly personalized recommendations.
 
 . . .
 
-- **Risk:** An attacker could infer specific details about individual users (e.g., based on specific product recommendations or similarities to other users' behaviors), leading to a privacy breach.
+-   **Risk:** An attacker could infer specific details about individual users (e.g., based on specific product recommendations or similarities to other users' behaviors), leading to a privacy breach.
 
 ## Example – E-Commerce Recommendations III
+
 **With DP:**
 
-- **Outcome:** Slightly less personalized recommendations but better generalization to unseen users.
+-   **Outcome:** Slightly less personalized recommendations but better generalization to unseen users.
 
 . . .
 
-- **Benefit:** An attacker would have a much harder time inferring personal details from the recommendations, thanks to the noise added during model training.
+-   **Benefit:** An attacker would have a much harder time inferring personal details from the recommendations, thanks to the noise added during model training.
 
 # Wrap Up
 
 ## Summary
 
-<center>
-![](imgs2/adamcite.png){ height="250" }
-</center>
+<center>![](imgs2/adamcite.png){height="250"}</center>
 
 <!-- 02optim -->
 
@@ -942,68 +876,74 @@ Introduce noise to gradients during training.
 The learning rate $\alpha$ is a hyperparameter we need to tune. Here are the things that can go wrong in batch mode:
 
 <center>
+
 | $\alpha$ too small: | $\alpha$ too large: | $\alpha$ much too large: |
-|--------------|--------------|--------------|
+|------------------------|------------------------|------------------------|
 | ![](imgs2/slow_progress.png){height="150"} | ![](imgs2/oscillations.png){height="150"} | ![](imgs2/instability.png){height="150"} |
 | slow progress | oscillations | instability |
+
 </center>
 
+```{=html}
 <!-- \begin{columns}
 \begin{column}{0.25 \linewidth}
   \includegraphics[width=\linewidth]{imgs2/slow_progress.png}
   \begin{center}
-	$\alpha$ too small: \\ slow progress
+    $\alpha$ too small: \\ slow progress
   \end{center}
 \end{column}
 \begin{column}{0.25 \linewidth}
   \includegraphics[width=\linewidth]{imgs2/oscillations.png}
   \begin{center}
-	$\alpha$ too large: \\ oscillations
+    $\alpha$ too large: \\ oscillations
   \end{center}
 \end{column}
 \begin{column}{0.3 \linewidth}
   \includegraphics[width=\linewidth]{imgs2/instability.png}
   \begin{center}
-	$\alpha$ much too large: \\ instability
+    $\alpha$ much too large: \\ instability
   \end{center}
 \end{column}
 \end{columns} -->
+```
 
 ## Stochastic Gradient Descent
 
 Batch gradient descent moves directly downhill. SGD takes steps in a noisy direction, but moves downhill on average.
 
 <center>
+
 | batch gradient descent: | stochastic gradient descent: |
-|--------------|--------------|
+|------------------------------------|------------------------------------|
 | ![](imgs2/batch_gradient_descent.png){height="300"} | ![](imgs2/sgd.png){height="300"} |
+
 </center>
 
+```{=html}
 <!-- \begin{columns}
 \begin{column}{0.35 \linewidth}
   \includegraphics[width=\linewidth]{imgs2/batch_gradient_descent.png}
   \begin{center}
-	{\bf \small batch gradient descent}
+    {\bf \small batch gradient descent}
   \end{center}
 \end{column}
-	\begin{column}{0.4 \linewidth}
+    \begin{column}{0.4 \linewidth}
   \includegraphics[width=0.85\linewidth]{imgs2/sgd.png}
   \begin{center}
-	{\bf \small stochastic gradient descent}
+    {\bf \small stochastic gradient descent}
   \end{center}
 \end{column}
 \end{columns} -->
+```
 
 ## SGD Learning Rate
 
 In stochastic training, the learning rate also influences the *fluctuations* due to the stochasticity of the gradients.
 
-<center>
-![](imgs2/fluctuations.png){ height="250" }
-</center>
+<center>![](imgs2/fluctuations.png){height="250"}</center>
 
-- Use a large learning rate early in training so you can get close to the optimum
-- Gradually decay the learning rate to reduce the fluctuations
+-   Use a large learning rate early in training so you can get close to the optimum
+-   Gradually decay the learning rate to reduce the fluctuations
 
 ## SGD Batch Size
 
@@ -1021,31 +961,27 @@ Larger batch size implies smaller variance, but at what cost?
 
 ## Training Curve (or Learning Curve)
 
-To diagnose optimization problems, it's useful to look at **learning curves**:
-plot the training cost (or other metrics) as a function of iteration.
+To diagnose optimization problems, it's useful to look at **learning curves**: plot the training cost (or other metrics) as a function of iteration.
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
-
-![](imgs2/training_curve.png){ height="350" }
+![](imgs2/training_curve.png){height="350"}
 :::
 
 ::: {.column width="55%"}
-
-- **Note**:  it's very hard to tell from the training curves whether an optimizer has converged. They can reveal major problems, but they can't guarantee convergence.
-
+-   **Note**: it's very hard to tell from the training curves whether an optimizer has converged. They can reveal major problems, but they can't guarantee convergence.
 :::
-:::
+:::::
 
 ## Visualizing Optimization Algorithms
 
 You might want to check out these links:
 
-- An overview of gradient descent algorithms: [https://ruder.io/optimizing-gradient-descent](https://ruder.io/optimizing-gradient-descent)
+-   An overview of gradient descent algorithms: <https://ruder.io/optimizing-gradient-descent>
 
-- CS231n: [https://cs231n.github.io/neural-networks-3/](https://cs231n.github.io/neural-networks-3/)
+-   CS231n: <https://cs231n.github.io/neural-networks-3/>
 
-- Why momentum really works: [https://distill.pub/2017/momentum/](https://distill.pub/2017/momentum/)
+-   Why momentum really works: <https://distill.pub/2017/momentum/>
 
 <!-- 03gen -->
 
@@ -1053,15 +989,15 @@ You might want to check out these links:
 
 ## Questions
 
-- How do we choose between different neural network models?
-    - For example, different number of hidden units, hidden layers, ...?
-- **How do we know how well a model will perform on new data?**
+-   How do we choose between different neural network models?
+    -   For example, different number of hidden units, hidden layers, ...?
+-   **How do we know how well a model will perform on new data?**
 
 ## The Training Set
 
 The training set is used
 
-- to determine the value of the **parameters**
+-   to determine the value of the **parameters**
 
 The model's prediction accuracy over the training set is called the **training accuracy**.
 
@@ -1071,29 +1007,26 @@ Q: Can we use the **training accuracy** to estimate how well a model will perfor
 
 . . .
 
-- No! It is possible for a model to fit well to the training set, but fail to *generalize*
-- We want to know how well the model performs on *new data* that we didn't already
-  use to optimize the model
+-   No! It is possible for a model to fit well to the training set, but fail to *generalize*
+-   We want to know how well the model performs on *new data* that we didn't already use to optimize the model
 
 ## Poor Generalization
 
-<center>
-![](imgs2/polynomial_1.png){ height="380" }
-![](imgs2/polynomial_3.png){ height="380" }
-</center>
+<center>![](imgs2/polynomial_1.png){height="380"} ![](imgs2/polynomial_3.png){height="380"}</center>
 
 ## Overfitting and Underfitting
 
 Underfitting:
 
-- The model is simple and doesn't fit the data
-- The model does not capture *discriminative* features of the data
+-   The model is simple and doesn't fit the data
+-   The model does not capture *discriminative* features of the data
 
 Overfitting:
 
-- The model is too complex and does not generalize
-- The model captures information about patterns in training set that happened by chance
+-   The model is too complex and does not generalize
+-   The model captures information about patterns in training set that happened by chance
 
+```{=html}
 <!--
 ## Preventing Overfitting
 
@@ -1101,16 +1034,18 @@ Overfitting:
 - Use a smaller network (requires starting over, might underfit)
 - Other techniques (we'll explore later)
 -->
+```
 
 ## Overfitting and Underfitting (cont'd)
 
 Overfitting:
 
-- The model is too complex and does not generalize
-- The model captures information about patterns in training set that happened by chance
-    - e.g. Ringo happens to be always wearing a red shirt in the training set
-    - Model learns: high red pixel content => predict Ringo
+-   The model is too complex and does not generalize
+-   The model captures information about patterns in training set that happened by chance
+    -   e.g. Ringo happens to be always wearing a red shirt in the training set
+    -   Model learns: high red pixel content =\> predict Ringo
 
+```{=html}
 <!--
 ## Preventing Overfitting
 
@@ -1118,6 +1053,7 @@ Overfitting:
 - Use a smaller network (requires starting over, might underfit)
 - Other techniques (we'll explore later)
 -->
+```
 
 ## The Test Set
 
@@ -1133,9 +1069,9 @@ Q: In general, will the test accuracy be *higher* or *lower* than the training a
 
 But what about decisions like:
 
-- How many layers?
-- How many units in each layer?
-- What non-linear activation to use?
+-   How many layers?
+-   How many units in each layer?
+-   What non-linear activation to use?
 
 ## Model Choices (cont'd)
 
@@ -1143,9 +1079,8 @@ Q: Why can't we use the test set to determine which model we should deploy?
 
 . . .
 
-- If we use the test set to make modeling decisions, then we will overestimate
-  how well our model will perform on new data!
-- We are "cheating" by "looking at the test"
+-   If we use the test set to make modeling decisions, then we will overestimate how well our model will perform on new data!
+-   We are "cheating" by "looking at the test"
 
 ## The Validation set
 
@@ -1155,8 +1090,8 @@ The model's prediction accuracy over the validation set is called the **validati
 
 This dataset is used to:
 
-- Make decisions about models that is **not continuous** and can't be optimized via gradient descent
-- Example: choose $k$, choose which features $x_j$ to use, choose $\alpha$, ...
+-   Make decisions about models that is **not continuous** and can't be optimized via gradient descent
+-   Example: choose $k$, choose which features $x_j$ to use, choose $\alpha$, ...
 
 ## The Validation set (cont'd)
 
@@ -1164,18 +1099,18 @@ The model's prediction accuracy over the validation set is called the **validati
 
 This dataset is used to:
 
-- Make decisions about models that is **not continuous** and can't be optimized via gradient descent
-- Example: choose $k$, choose which features $x_j$ to use, choose $\alpha$, ...
-    - These model settings are called **hyperparameters**
-- The validation set is used to optimize **hyperparameters**
+-   Make decisions about models that is **not continuous** and can't be optimized via gradient descent
+-   Example: choose $k$, choose which features $x_j$ to use, choose $\alpha$, ...
+    -   These model settings are called **hyperparameters**
+-   The validation set is used to optimize **hyperparameters**
 
 ## Splitting the data set
 
 Example split:
 
-- 60% Training
-- 20% Validation
-- 20% Test
+-   60% Training
+-   20% Validation
+-   20% Test
 
 The actual split depends on the amount of data that you have.
 
@@ -1185,19 +1120,16 @@ If you have more data, you can get a way with a smaller % validation and set.
 
 Learning curve:
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
-
-![](imgs2/overfit.png){ height="300" }
+![](imgs2/overfit.png){height="300"}
 :::
 
 ::: {.column width="55%"}
-
-- **x-axis**: epochs or iterations
-- **y-axis**: cost, error, or accuracy
-
+-   **x-axis**: epochs or iterations
+-   **y-axis**: cost, error, or accuracy
 :::
-:::
+:::::
 
 Q: In which epochs is the model overfitting? Underfitting?
 
@@ -1205,13 +1137,14 @@ Q: Why don't we plot the test accuracy plot?
 
 ## Strategies to Prevent Overfitting
 
-- Data Augmentation
-- Reducing the number of parameters
-- Weight decay
-- Early stopping
-- Ensembles
-- Stochastic regularization (e.g. dropout)
+-   Data Augmentation
+-   Reducing the number of parameters
+-   Weight decay
+-   Early stopping
+-   Ensembles
+-   Stochastic regularization (e.g. dropout)
 
+```{=html}
 <!--
 - Collect more data: always the best first thing to try
     - data agumentation: add noise to the data
@@ -1221,6 +1154,7 @@ Q: Why don't we plot the test accuracy plot?
 - Use a training strategy that reduces overfitting:
     - Example: weight decay, dropout
     -->
+```
 
 ## Data Augmentation
 
@@ -1232,11 +1166,11 @@ But if we already have all the data we're willing to collect. We can augment the
 
 Example (for images, but depends on task):
 
-- translation
-- horizontal or vertical flip
-- rotation
-- smooth warping
-- noise (e.g. flip random pixels)
+-   translation
+-   horizontal or vertical flip
+-   rotation
+-   smooth warping
+-   noise (e.g. flip random pixels)
 
 We should only warp the training examples, not the validation or test examples (why?)
 
@@ -1250,9 +1184,7 @@ Adding a **bottleneck layer** is another way to reduce the number of parameters
 
 Adding a **bottleneck layer** is another way to reduce the number of parameters
 
-<center>
-![](imgs2/bottleneck.png){ height="275" }
-</center>
+<center>![](imgs2/bottleneck.png){height="275"}</center>
 
 In practise, this isn't a great idea.
 
@@ -1270,17 +1202,15 @@ Because large weights mean that the prediction relies **a lot** on the content o
 
 The red polynomial overfits. Notice it has really large coefficients
 
-<center>
-![](imgs2/polynomial_overfit.png){ height="450" }
-</center>
+<center>![](imgs2/polynomial_overfit.png){height="450"}</center>
 
 ## Weight Decay
 
-- $L^1$ regularization: add a term $\sum_{j=1}^D |w_j|$  to the cost function
-    - Mathematically, this term encourages weights to be exactly 0
-- $L^2$ regularization: add a term $\sum_{j=1}^D w_j^2$  to the cost function
-    - Mathematically, in each iteration the weight is pushed towards 0
-- Combination of $L^1$ and $L^2$ regularization: add a term $\sum_{j=1}^D |w_j| + w_j^2$  to the cost function
+-   $L^1$ regularization: add a term $\sum_{j=1}^D |w_j|$ to the cost function
+    -   Mathematically, this term encourages weights to be exactly 0
+-   $L^2$ regularization: add a term $\sum_{j=1}^D w_j^2$ to the cost function
+    -   Mathematically, in each iteration the weight is pushed towards 0
+-   Combination of $L^1$ and $L^2$ regularization: add a term $\sum_{j=1}^D |w_j| + w_j^2$ to the cost function
 
 ## Example: Weight Decay for Regression
 
@@ -1306,32 +1236,30 @@ $$w_j \leftarrow w_j - \alpha\left(\frac{\partial \mathcal{E}}{\partial w_j} + 2
 
 Idea: Stop training when the validation error starts going up.
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
-
-![](imgs2/overfit.png){ height="350" }
+![](imgs2/overfit.png){height="350"}
 :::
 
 ::: {.column width="55%"}
-
-In practice, this is implemented by **checkpointing** (saving) the
-neural network weights every few iterations/epochs during training.
-<!-- <br>
+In practice, this is implemented by **checkpointing** (saving) the neural network weights every few iterations/epochs during training. <!-- <br>
 
 Some other text that should be below the first paragraph. -->
-
 :::
-:::
+:::::
 
+```{=html}
 <!-- <center>
 ![](imgs2/overfit.png){ height=40% }
 </center> -->
+```
 
+```{=html}
 <!-- In practice, this is implemented by **checkpointing** (saving) the
 neural network weights every few iterations/epochs during training. -->
+```
 
-We choose the checkpoint with the best validation error to
-actually use. (And if there is a tie, use the **earlier** checkpoint)
+We choose the checkpoint with the best validation error to actually use. (And if there is a tie, use the **earlier** checkpoint)
 
 ## Why does early stopping work?
 
@@ -1339,32 +1267,27 @@ Weights start off small, so it takes time for them to grow large.
 
 Therefore, stopping early has a similar effect to weight decay.
 
-If you're using sigmoid units, and the weights start out small,
-then the inputs to the activation functions take only a small
-range of values.
+If you're using sigmoid units, and the weights start out small, then the inputs to the activation functions take only a small range of values.
 
-- The neural network starts out approximately linear,
-  and gradually becomes non-linear (and thus more powerful)
+-   The neural network starts out approximately linear, and gradually becomes non-linear (and thus more powerful)
 
 ## Ensembles
 
-If a loss function is convex (with respect to the predictions),
-you have a bunch of predictions for an input, and you don't
-know which one is best, you are always better off averaging them!
+If a loss function is convex (with respect to the predictions), you have a bunch of predictions for an input, and you don't know which one is best, you are always better off averaging them!
 
 $$\mathcal{L}(\lambda_1 y_1 + \dots \lambda_N y_N, t) \le \lambda_1 \mathcal{L}(y_1, t) + \dots \lambda_N\mathcal{L}(y_N, t)$$
 
 for $\lambda_i \ge 0$ and $\sum_i \lambda_i = 1$
 
-**Idea**:  Build multiple candidate models, and average the predictions on the test data.
+**Idea**: Build multiple candidate models, and average the predictions on the test data.
 
 This set of models is called an **ensemble**.
 
 ## Examples of Ensembles
 
-- Train neural networks starting from different random initialization (might not give enough diversity)
-- Train different network on different subset of the training data (called **bagging**)
-- Train networks with different architectures, hyperparameters, or use other machine learning models
+-   Train neural networks starting from different random initialization (might not give enough diversity)
+-   Train different network on different subset of the training data (called **bagging**)
+-   Train networks with different architectures, hyperparameters, or use other machine learning models
 
 Ensembles can improve generalization substantially.
 
@@ -1372,9 +1295,7 @@ However, ensembles are expensive.
 
 ## Stochastic Regularization
 
-For a network to overfit, its computations need to be really precise.
-This suggests regularizing them by injecting noise into the computations, a
-strategy known as **stochastic regularization**.
+For a network to overfit, its computations need to be really precise. This suggests regularizing them by injecting noise into the computations, a strategy known as **stochastic regularization**.
 
 One example is **dropout**: in each training iteration, random choose a portion of **activations** to set to 0.
 
@@ -1382,25 +1303,19 @@ One example is **dropout**: in each training iteration, random choose a portion 
 
 The probability $p$ that an activation is set to 0 is a hyperparameter.
 
-<center>
-![](imgs2/neural_net2.jpeg){ height=30% }
-</center>
+<center>![](imgs2/neural_net2.jpeg){height="30%"}</center>
 
 ## Dropout
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
-![](imgs2/dropout.png){height="500" }
+![](imgs2/dropout.png){height="500"}
 :::
 
 ::: {.column width="50%"}
-
-Dropout can be seen as training an ensemble of 2D different
-architectures with shared weights (where D is the number of units)
-
+Dropout can be seen as training an ensemble of 2D different architectures with shared weights (where D is the number of units)
 :::
-:::
+:::::
 
 ## Dropout at Test Time
 
@@ -1410,42 +1325,39 @@ Multiply the weights by $1-p$ (why?)
 
 . . .
 
-Since the weights are on $1-p$ fraction of the time,
-multiplying the weights by $1-p$ matches the expected value
-of the activation magnitude (e.g. going into the next layer).
+Since the weights are on $1-p$ fraction of the time, multiplying the weights by $1-p$ matches the expected value of the activation magnitude (e.g. going into the next layer).
 
 ## Summary of "Bag of Tricks"
 
-- Data Augmentation
-- Reducing the number of parameters
-- Weight decay
-- Early stopping
-- Ensembles
-- Stochastic regularization (e.g. dropout)
+-   Data Augmentation
+-   Reducing the number of parameters
+-   Weight decay
+-   Early stopping
+-   Ensembles
+-   Stochastic regularization (e.g. dropout)
 
 <!-- 04curves -->
 
 # Diagnosing issues using learning curves
 
 ## Why does the training curve to look like this?
+
 <!-- (From week 3 tutorial) -->
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/curve1.png){height="500" }
+![](curve/curve1.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- The learning rate is too high
-- The learning rate is too low
-- The number of iterations is too low
-- The weights are all initialized to zero
-
+-   The learning rate is too high
+-   The learning rate is too low
+-   The number of iterations is too low
+-   The weights are all initialized to zero
 :::
-:::
+:::::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/curve1.png}
@@ -1459,27 +1371,26 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
-
+```
 
 ## Why does the training curve to look like this?
+
 <!-- (From practice test) -->
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/e3.png){height="500" }
+![](curve/e3.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- The batch size is too small
-- Batch normalization was used
-- The number of parameters is too large
-- The learning rate is too small
-
+-   The batch size is too small
+-   Batch normalization was used
+-   The number of parameters is too large
+-   The learning rate is too small
 :::
-:::
+:::::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/e3.png}
@@ -1493,28 +1404,27 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
+```
 
 <!-- (From old test) -->
 
 ## Why does the training curve to look like this?
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/p1.png){height="500" }
+![](curve/p1.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- The network probably has too few parameters
-- The network probably has too many parameters
-- The learning rate is probably too small
-- If weight decay is used, the lambda parameter is probably too large.
-- Either (1) or (4) could be true
-
+-   The network probably has too few parameters
+-   The network probably has too many parameters
+-   The learning rate is probably too small
+-   If weight decay is used, the lambda parameter is probably too large.
+-   Either (1) or (4) could be true
 :::
-:::
+:::::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/p1.png} 
@@ -1529,26 +1439,24 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
-
+```
 
 ## Why does the training curve to look like this?
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
-
-![](curve/t1.png){height="500" }
+![](curve/t1.png){height="500"}
 :::
 
 ::: {.column width="65%"}
-
-- Evidence of overfitting
-- Evidence of underfitting
-- Too much momentum
-- The weights were all initialized to 0
-
+-   Evidence of overfitting
+-   Evidence of underfitting
+-   Too much momentum
+-   The weights were all initialized to 0
 :::
-:::
+:::::
 
+```{=html}
 <!-- \begin{center}
 \begin{minipage}{0.4 \linewidth}
   \includegraphics[width=\linewidth]{curve/t1.png}
@@ -1562,7 +1470,7 @@ of the activation magnitude (e.g. going into the next layer).
 \end{enumerate}
 \end{minipage}
 \end{center} -->
-
+```
 
 <!-- 05bias -->
 
@@ -1570,11 +1478,11 @@ of the activation magnitude (e.g. going into the next layer).
 
 ## Expected Test Error for Regression
 
-- Training set $D = \{(x_1, y_1), ..., (x_n, y_n)\}$ drawn i.i.d. from distribution $P(X,Y)$. Let's write this as $D \sim P^n$.
+-   Training set $D = \{(x_1, y_1), ..., (x_n, y_n)\}$ drawn i.i.d. from distribution $P(X,Y)$. Let's write this as $D \sim P^n$.
 
-- Assume for simplicity this is a regression problem with $y \in \mathbb{R}$ and $L_2$ loss.
+-   Assume for simplicity this is a regression problem with $y \in \mathbb{R}$ and $L_2$ loss.
 
-- What is the expected test error for a function $h_D(x)=y$ trained on the training set $D \sim P^n$, assuming a learning algorithm $\mathcal{A}$? It is:
+-   What is the expected test error for a function $h_D(x)=y$ trained on the training set $D \sim P^n$, assuming a learning algorithm $\mathcal{A}$? It is:
 
 \begin{align*}
 \mathbb{E}_{D \sim P^n, (x,y) \sim P} \left[ (h_D(x) - y)^2 \right]
@@ -1586,22 +1494,19 @@ of the activation magnitude (e.g. going into the next layer).
 \mathbb{E}_{D \sim P^n, (x,y) \sim P} \left[ (h_D(x) - y)^2 \right]
 \end{align*}
 
-- The expectation is taken with respect to possible training sets $D \sim P^n$ and the test distribution P. Let's write the expectation as $\mathbb{E}_{D,x,y}$ for notational simplicity.
+-   The expectation is taken with respect to possible training sets $D \sim P^n$ and the test distribution P. Let's write the expectation as $\mathbb{E}_{D,x,y}$ for notational simplicity.
 
-- Note that this is the *expected test error* not the *empirical test error* that we report after training. How are they different?
-
+-   Note that this is the *expected test error* not the *empirical test error* that we report after training. How are they different?
 
 ## Decomposing the Expected Test Error
 
-Let's start by adding and subtracting the same quantity
-\begin{align*}
+Let's start by adding and subtracting the same quantity \begin{align*}
   \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - y\right)^2 \right] = \mathbb{E}_{D,x,y} \left[ \left(h_D(x) - \hat{h}(x) + \hat{h}(x) - y\right)^2 \right]
 \end{align*}
 
 $\hat{h}(x) = \mathbb{E}_{D \sim P^n}[h_D(x)]$ is the expected regressor over possible training sets, given the learning algorithm $\mathcal{A}$.
 
 $\hat{y}(x) = \mathbb{E}_{y|x}[y]$ is the expected label given $x$. Labels might not be deterministic given x.
-
 
 ## Decomposing the Expected Test Error
 
@@ -1610,41 +1515,37 @@ After some algebraic manipulation ([proof](https://www.cs.cornell.edu/courses/cs
 \begin{align*}
   \underbrace{\mathbb{E}_{D,x,y} \left[ (h_D(x) - y)^2 \right]}_{\text{Expected test error}} =\;& \underbrace{\mathbb{E}_{D,x} \left[\left(h_D(x) - \hat{h}(x)\right)^2 \right]}_{\text{Variance}} + \\
     & \underbrace{\mathbb{E}_{x,y} \left[\left(\hat{y}(x) - y\right)^2 \right]}_{\text{Noise}} + \\
-		& \underbrace{\mathbb{E}_{x} \left[\left(\hat{h}(x) - \hat{y}(x)\right)^2 \right]}_{\text{Bias}}
+        & \underbrace{\mathbb{E}_{x} \left[\left(\hat{h}(x) - \hat{y}(x)\right)^2 \right]}_{\text{Bias}}
 \end{align*}
 
 <!-- * You can find the proof in [this URL (*)](https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote12.html) -->
 
 ## Bias, Variance, ...
 
-- **Variance**: Captures how much your regressor $h_D$ changes if you train on a different training set. How "over-specialized" is your regressor $h_D$ to a particular training set $D$? I.e. how much does it overfit? If we have the best possible model for our training data, how far off are we from the average regressor $\hat{h}$?
+-   **Variance**: Captures how much your regressor $h_D$ changes if you train on a different training set. How "over-specialized" is your regressor $h_D$ to a particular training set $D$? I.e. how much does it overfit? If we have the best possible model for our training data, how far off are we from the average regressor $\hat{h}$?
 
-- **Bias**: What is the inherent error that you obtain from your regressor $h_D$ even with infinite training data? This is due to your model being "biased" to a particular kind of solution (e.g. linear model). In other words, bias is inherent to your model/architecture.
+-   **Bias**: What is the inherent error that you obtain from your regressor $h_D$ even with infinite training data? This is due to your model being "biased" to a particular kind of solution (e.g. linear model). In other words, bias is inherent to your model/architecture.
 
 ## ... and Noise
 
-- **Noise**: How big is the data-intrinsic noise? This error measures ambiguity due to your data distribution and feature representation. You can never beat this, it is an aspect of the physical data generation process, over which you have no control. You cannot improve this with more training data. It is sometimes called "aleatoric uncertainty".
+-   **Noise**: How big is the data-intrinsic noise? This error measures ambiguity due to your data distribution and feature representation. You can never beat this, it is an aspect of the physical data generation process, over which you have no control. You cannot improve this with more training data. It is sometimes called "aleatoric uncertainty".
 
 ## The Bias-Variance Tradeoff
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
-![](curve/biasvariance.png){height="325" }
+![](curve/biasvariance.png){height="325"}
 :::
 
 ::: {.column width="50%"}
-
-- If you use a high-capacity model, you will get low bias, but the variance over different training sets will be high.
-
+-   If you use a high-capacity model, you will get low bias, but the variance over different training sets will be high.
 :::
-:::
+:::::
 
 <!-- ![](curve/biasvariance.png){ height=35% } -->
 
-
 <!-- - If you use a high-capacity model, you will get low bias, but the variance over different training sets will be high. -->
 
-- If you use a low-capacity model, you will get high bias, but the variance over different training sets will be low.
+-   If you use a low-capacity model, you will get high bias, but the variance over different training sets will be low.
 
-- There is a sweet spot that trades off between the two.
+-   There is a sweet spot that trades off between the two.

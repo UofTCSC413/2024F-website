@@ -6,6 +6,7 @@ format:
     slide-number: true
     embed-resources: false
     show-notes: false
+    footer: '<a href="https://utm-csc413.github.io/2024F-website/" target="_blank">↩ Back to Course Website</a>'
     chalkboard:
       src: chalkboard.json
       buttons: true
@@ -16,7 +17,7 @@ format:
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
---- 
+---
 
 # Welcome to CSC413!
 
@@ -475,7 +476,7 @@ Q: What happens if the batch size is **too small**?
 ## Linear Regression Summary
 
 |  |  |
-|-------------------|-----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | Model | $$y = {\bf w}^T{\bf x} + b$$ |
 | Loss Function | $$\mathcal{L}(y, t) = (y- t)^2$$ |
 | Optimization Method | $$\min_{{\bf w},\, b}\left(\left\{\mathcal{E}({\bf w}, b)\right\}\right) \text{ via Gradient Descent}$$ |
@@ -775,7 +776,7 @@ $$\mathcal{L}(y, t) = - t \log(y) - (1-t) \log(1-y)$$
 ## Logistic Regression Summary
 
 |  |  |
-|-------------------|-----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | Model | $$y = \sigma({\bf w}^T{\bf x} + b)$$ |
 | Loss Function | $$\mathcal{L}(y, t) = -t \log(y) - (1-t) \log(1-y)$$ |
 | Optimization Method | $$\min_{{\bf w},\, b}\mathcal{E}({\bf w}, b) \text{ via Gradient Descent}$$ |
@@ -857,7 +858,7 @@ Recall that only one of the $t_k$ is going to be 1, and the rest are 0.
 ## Multi-class Classification Summary
 
 |  |  |
-|-------------------|-----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | Model | $${\bf y} = \text{softmax}({\bf W}^T{\bf x} + {\bf b})$$ |
 | Loss Function | $$\mathcal{L}({\bf y}, {\bf t}) =- {\bf t}^T \log({\bf y})$$ |
 | Optimization Method | $$\min_{{\bf w},\, b}\mathcal{E}({\bf w}, b) \text{ via Gradient Descent}$$ |

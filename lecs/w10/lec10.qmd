@@ -4,6 +4,7 @@ subtitle: "Lecture 10"
 format:
     revealjs:
         slide-number: true
+        footer: '<a href="https://utm-csc413.github.io/2024F-website/" target="_blank">↩ Back to Course Website</a>'
         chalkboard:
             buttons: true
         css: style.css

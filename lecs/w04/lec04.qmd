@@ -6,6 +6,7 @@ format:
     slide-number: true
     embed-resources: false
     show-notes: false
+    footer: '<a href="https://utm-csc413.github.io/2024F-website/" target="_blank">↩ Back to Course Website</a>'
     chalkboard:
       src: chalkboard.json
       buttons: true

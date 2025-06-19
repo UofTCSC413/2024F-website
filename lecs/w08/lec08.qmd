@@ -4,6 +4,7 @@ subtitle: "Lecture 8"
 format:
     revealjs:
         slide-number: true
+        footer: '<a href="https://utm-csc413.github.io/2024F-website/" target="_blank">↩ Back to Course Website</a>'
         chalkboard:
             buttons: true
         css: style.css
@@ -16,25 +17,21 @@ format:
 
 ## Last Week
 
-::: {.incremental}
-
-- CNN Feature Visualization and Interpretation
-- Transfer Learning
-- Adversarial Examples
-- Influence Functions
-
+::: incremental
+-   CNN Feature Visualization and Interpretation
+-   Transfer Learning
+-   Adversarial Examples
+-   Influence Functions
 :::
 
 ## This week
 
-::: {.incremental}
-
-- Recurrent Neural Networks
-- Sentiment Analysis with Recurrent Neural Networks
-- Gradient Explosion and Vanishing
-- Text Generation with RNN
-- Sequence-to-Sequence Modelling
-
+::: incremental
+-   Recurrent Neural Networks
+-   Sentiment Analysis with Recurrent Neural Networks
+-   Gradient Explosion and Vanishing
+-   Text Generation with RNN
+-   Sequence-to-Sequence Modelling
 :::
 
 <!-- 01rnn -->
@@ -47,15 +44,15 @@ Sometimes we're interested in making predictions about data in the form of **seq
 
 . . .
 
-- Given the price of a stock in the last week, predict whether stock price will go up
+-   Given the price of a stock in the last week, predict whether stock price will go up
 
 . . .
 
-- Given a sentence (sequence of chars/words) predict its sentiment
+-   Given a sentence (sequence of chars/words) predict its sentiment
 
 . . .
 
-- Given a sentence in English, translate it to French
+-   Given a sentence in English, translate it to French
 
 . . .
 
@@ -73,13 +70,10 @@ This means the model is **memoryless**, so it can only use information from its 
 
 . . .
 
-<center>
-![](imgs/autoregressive.png){height="270"}
-</center>
+<center>![](imgs/autoregressive.png){height="270"}</center>
 
-::: {.notes}
-* In this image, the context length is 1.
-
+::: notes
+-   In this image, the context length is 1.
 :::
 
 ## Recurrent Neural Network
@@ -94,9 +88,7 @@ If we add connections between the hidden units, it becomes a **recurrent neural 
 
 Having a memory lets an RNN use longer-term dependencies:
 
-<center>
-![](imgs/rnn_motivation.png){height=30%}
-</center>
+<center>![](imgs/rnn_motivation.png){height="30%"}</center>
 
 ## RNN Diagram
 
@@ -106,9 +98,7 @@ We can think of an RNN as a dynamical system with one set of hidden units which 
 
 We can **unroll** the RNN's graph by explicitly representing the units at all time steps. The weights and biases are shared between all time steps
 
-<center>
-![](imgs/unroll.png){width="400"}
-</center>
+<center>![](imgs/unroll.png){width="400"}</center>
 
 ## Simple RNNs
 
@@ -116,30 +106,26 @@ Let's go through a few examples of very simple RNNs to understand how RNNs compu
 
 ## Simple RNN Example: Sum
 
-This simple RNN takes a sequence of numbers as input (scalars),
-and sums its inputs.
+This simple RNN takes a sequence of numbers as input (scalars), and sums its inputs.
 
-<center>
-![](imgs/rnn_example1_sol.png){height="500"}
-</center>
+<center>![](imgs/rnn_example1_sol.png){height="500"}</center>
 
 ## Simple RNN Example 2: Comparison
 
-This RNN takes a sequence of **pairs of numbers** as input,
-and determines if the total values of the first or second input are larger:
+This RNN takes a sequence of **pairs of numbers** as input, and determines if the total values of the first or second input are larger:
 
-<center>
-![](imgs/rnn_example2_sol.png){height="450"}
-</center>
+<center>![](imgs/rnn_example2_sol.png){height="450"}</center>
 
 ## Simple RNN Example 3: Parity
 
 Assume we have a sequence of binary inputs. We'll consider how to determine the **parity**, i.e. whether the number of 1's is even or odd. We can compute parity incrementally by keeping track of the parity of the input so far:
 
 <center>
-| [Parity bits:]{style="color:red;"} | | \color{blue} [Input:]{style="color:blue;"} |
-|----|---|----|
+
+| [Parity bits:]{style="color:red;"} |   | \color{blue} [Input:]{style="color:blue;"} |
+|--------------------------|--------------------|--------------------------|
 | [0 1 1 0 1 1]{style="color:red;"} | $\longrightarrow$ | [0 1 0 1 1 0 1 0 1 1]{style="color:blue;"} |
+
 </center>
 
 . . .
@@ -148,94 +134,81 @@ Each parity bit is the XOR of the input and the previous parity bit. Parity is a
 
 ## Parity Approach
 
-Let's find weights and biases for the RNN on the right so that it computes the parity.
-All hidden and output units are **binary threshold units** ($h(x) = 1$ if $x > 0$ and $h(x) = 0$ otherise).
+Let's find weights and biases for the RNN on the right so that it computes the parity. All hidden and output units are **binary threshold units** ($h(x) = 1$ if $x > 0$ and $h(x) = 0$ otherise).
 
 . . .
 
 **Strategy**
 
-- The output unit tracks the current parity, which is the XOR of the current input and previous output.
+-   The output unit tracks the current parity, which is the XOR of the current input and previous output.
 
 . . .
 
-- The hidden units help us compute the XOR.
+-   The hidden units help us compute the XOR.
 
 ## Parity Approach II
 
-<center>
-![](imgs/parity_rnn_template_new.png){height="500"}
-</center>
+<center>![](imgs/parity_rnn_template_new.png){height="500"}</center>
 
 ## Unrolling Parity RNN
 
-<center>
-![](imgs/parity_rnn_unroll.png){height="500"}
-</center>
+<center>![](imgs/parity_rnn_unroll.png){height="500"}</center>
 
 ## Parity Computation
 
 The output unit should compute the XOR of the current input and previous output:
 
 <center>
+
 | $y^{(t-1)}$ | $x^{(t)}$ | $y^{(t)}$ |
-|----|---|----|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 0 |
+|-------------|-----------|-----------|
+| 0           | 0         | 0         |
+| 0           | 1         | 1         |
+| 1           | 0         | 1         |
+| 1           | 1         | 0         |
+
 </center>
 
-::: {.notes}
-
-* $y^{(t)}=0$ meants the number of 1's in the past input has been even.
-* $y^{(t)}=1$ meants the number of 1's in the past input has been odd.
-
+::: notes
+-   $y^{(t)}=0$ meants the number of 1's in the past input has been even.
+-   $y^{(t)}=1$ meants the number of 1's in the past input has been odd.
 :::
 
 ## Computing Parity
 
 Let's use hidden units to help us compute XOR.
 
-- Have one unit compute AND, and the other one compute OR.
+-   Have one unit compute AND, and the other one compute OR.
 
 . . .
 
-- Then we can pick weights and biases just like we did for multilayer perceptrons.
-
+-   Then we can pick weights and biases just like we did for multilayer perceptrons.
 
 ## Computing Parity II
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
 <center>
+
 | $y^{(t-1)}$ | $x^{(t)}$ | $h_1^{(t)}$ | $h_2^{(t)}$ | $y^{(t)}$ |
-|----|----|----|----|----|
-| 0 | 0 | 0 | 0 | 0
-| 0 | 1 | 0 | 1 | 1
-| 1 | 0 | 0 | 1 | 1
-| 1 | 1 | 1 | 1 | 0
-</center>
+|-------------|-----------|-------------|-------------|-----------|
+| 0           | 0         | 0           | 0           | 0         |
+| 0           | 1         | 0           | 1           | 1         |
+| 1           | 0         | 0           | 1           | 1         |
+| 1           | 1         | 1           | 1           | 0         |
 
+</center>
 :::
 
 ::: {.column width="50%"}
-
-<center>
-![](imgs/parity_rnn_solution.png){height="300"}
-</center>
-
+<center>![](imgs/parity_rnn_solution.png){height="300"}</center>
 :::
+:::::
+
+::: notes
+-   $h_1$ computes *and* by subtracting -1.5 from the sum of $y$ and the current input $x$ and then applying the binary threshold activation function.
+-   $h_2$ computes *or* by subtracting -0.5 from the sum of $y$ and the current input $x$ and then applying the binary threshold activation function.
 :::
-
-::: {.notes}
-
-* $h_1$ computes _and_ by subtracting -1.5 from the sum of $y$ and the current input $x$ and then applying the binary threshold activation function.
-* $h_2$ computes _or_ by subtracting -0.5 from the sum of $y$ and the current input $x$ and then applying the binary threshold activation function.
-
-:::
-
 
 ## Back Propagation Through Time
 
@@ -245,48 +218,35 @@ As you can guess, we don't usually set RNN weights by hand. Instead, we learn th
 
 In particular, we do backprop on the unrolled network. This is known as **backprop through time**.
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
-
-<center>
-![](imgs/bptt_rnn.png){height="290"}
-</center>
-
+<center>![](imgs/bptt_rnn.png){height="290"}</center>
 :::
 
 ::: {.column width="60%"}
-
-<center>
-![](imgs/bptt_rnn_unroll.png){height="300"}
-</center>
-
+<center>![](imgs/bptt_rnn_unroll.png){height="300"}</center>
 :::
-:::
+:::::
 
 ## Unrolled BPTT
 
 Here's the unrolled computation graph. Notice the weight sharing.
 
-<center>
-![](imgs/unrolled_computation_graph.png){height="470"}
-</center>
+<center>![](imgs/unrolled_computation_graph.png){height="470"}</center>
 
 ## What can RNNs compute?
 
-In 2014, Google researchers built an encoder-decoder RNN that learns to
-execute simple Python programs, one character at a time! [https://arxiv.org/abs/1410.4615](https://arxiv.org/abs/1410.4615)
+In 2014, Google researchers built an encoder-decoder RNN that learns to execute simple Python programs, one character at a time! <https://arxiv.org/abs/1410.4615>
 
-![](imgs/code.png){ height=70% }
+![](imgs/code.png){height="70%"}
 
 ## What can RNNs compute?
 
 RNNs are good at learning complex syntactic structures: generate Algebraic Geometry LaTex source files that almost compiles:
 
-<center>
-![](imgs/geometry.png){height="350"}
-</center>
+<center>![](imgs/geometry.png){height="350"}</center>
 
-[http://karpathy.github.io/2015/05/21/rnn-effectiveness/](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+<http://karpathy.github.io/2015/05/21/rnn-effectiveness/>
 
 # Sentiment Analysis with Recurrent Neural Networks
 
@@ -308,41 +268,31 @@ As usual, start with the forward pass...
 
 ## RNN: Initial Hidden State
 
-<center>
-![](imgs/rnn0.png){ height=70% }
-</center>
+<center>![](imgs/rnn0.png){height="70%"}</center>
 
 Start with an initial **hidden state** with a blank slate (can be a vector of all zeros, or a parameter that we train)
 
 ## RNN: Update Hidden State
 
-<center>
-![](imgs/rnn1.png){ height=70% }
-</center>
+<center>![](imgs/rnn1.png){height="70%"}</center>
 
 Compute the first hidden state based on the initial hidden state, and the input (the one-hot vector ${\bf x}_1$ of the **first word**).
 
 ## RNN: Continue Updating Hidden State
 
-<center>
-![](imgs/rnn2.png){ height=70% }
-</center>
+<center>![](imgs/rnn2.png){height="70%"}</center>
 
 Update the hidden state based on the subsequent inputs. Note that we are using the **same weights** to perform the update each time.
 
 ## RNN: Last Hidden State
 
-<center>
-![](imgs/rnn3.png){ height=70% }
-</center>
+<center>![](imgs/rnn3.png){height="70%"}</center>
 
 Continue updating the hidden state until we run out of words in our sentence.
 
 ## RNN: Compute Prediction
 
-<center>
-![](imgs/rnn4.png){ height=60% }
-</center>
+<center>![](imgs/rnn4.png){height="60%"}</center>
 
 Use the **last hidden state** as input to a prediction network, usually a MLP.
 
@@ -354,14 +304,11 @@ Alternative: take the max-pool and average-pool over all computed hidden states.
 
 Lab: let's build this model!
 
-<center>
-![](imgs/rnn4.png){height="500"}
-</center>
+<center>![](imgs/rnn4.png){height="500"}</center>
 
 ## Sentiment140 Data
 
-Dataset of tweets with either a positive or negative emoticon, but with
-the emoticon removed.
+Dataset of tweets with either a positive or negative emoticon, but with the emoticon removed.
 
 **Input:** Tweet (sequence of words/characters)
 
@@ -369,54 +316,48 @@ the emoticon removed.
 
 Example:
 
-- Negative: "Just going to cry myself to sleep after watching Marley and Me"
+-   Negative: "Just going to cry myself to sleep after watching Marley and Me"
 
 . . .
 
-- Positive: "WOOOOO! Xbox is back"
+-   Positive: "WOOOOO! Xbox is back"
 
 ## Approach
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
-
-<center>
-![](imgs/rnn4.png){height="200"}
-</center>
-
+<center>![](imgs/rnn4.png){height="200"}</center>
 :::
 
 ::: {.column width="60%"}
-
-- Use GloVe embeddings to represent words as input ${\bf x}^{(t)}$ (note: we could have chosen to work at the character level)
-
+-   Use GloVe embeddings to represent words as input ${\bf x}^{(t)}$ (note: we could have chosen to work at the character level)
 :::
-:::
+:::::
 
 . . .
 
-- Use a recurrent neural network to get a combined embedding of the *entire* tweet
+-   Use a recurrent neural network to get a combined embedding of the *entire* tweet
 
 . . .
 
-- Use a fully-connected layer to make predictions (happy vs sad)
+-   Use a fully-connected layer to make predictions (happy vs sad)
 
-
+```{=html}
 <!-- ## Video Demo
 
 [https://play.library.utoronto.ca/watch/a1d297375e8bfe173b48325c37828a75](https://play.library.utoronto.ca/watch/a1d297375e8bfe173b48325c37828a75)
 -->
+```
 
 ## Key Considerations
 
-- We'll be using the PyTorch `nn.RNN` module, which can be unintuitive
+-   We'll be using the PyTorch `nn.RNN` module, which can be unintuitive
 
 . . .
 
-- Batching difficulties: each tweet is a different length, so how can we batch?
-    - One way is to *pad* shorter sequences with a special "padding" token at the end of the sequence
-    - However, we want to minimize this padding due to computational complexity
-
+-   Batching difficulties: each tweet is a different length, so how can we batch?
+    -   One way is to *pad* shorter sequences with a special "padding" token at the end of the sequence
+    -   However, we want to minimize this padding due to computational complexity
 
 <!-- 03grad -->
 
@@ -426,48 +367,37 @@ Example:
 
 Recall the unrolled computation graph for a small RNN:
 
-<center>
-![](imgs/unrolled_computation_graph.png){height="470"}
-</center>
+<center>![](imgs/unrolled_computation_graph.png){height="470"}</center>
 
 ## Backprop Through Time
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
-**Activations:**
-\begin{align*}
+**Activations:** \begin{align*}
     \overline{\mathcal{L}} &= 1 \\
     \overline{y^{(t)}} &= \overline{\mathcal{L}} \, \frac{\partial \mathcal{L}}{\partial y^{(t)}} \\
     \overline{r^{(t)}} &= \overline{y^{(t)}} \, \phi^\prime(r^{(t)}) \\
     {\color{magenta} \overline{h^{(t)}}} & {\color{magenta}\, = \overline{r^{(t)}} \, v + \overline{z^{(t+1)}} \, w} \\
     \overline{z^{(t)}} &= \overline{h^{(t)}} \, \phi^\prime(z^{(t)})
 \end{align*}
-
 :::
-::: {.column width="50%"}
 
-**Parameters:**
-\begin{align*}
+::: {.column width="50%"}
+**Parameters:** \begin{align*}
     {\color{magenta} \overline{u}} &{\color{magenta} \, = \sum_t \overline{z^{(t)}} \, x^{(t)}} \\
     {\color{magenta} \overline{v}} &{\color{magenta} \,= \sum_t \overline{r^{(t)}} \, h^{(t)}} \\
     {\color{magenta} \overline{w}} &{\color{magenta} \,= \sum_t \overline{z^{(t+1)}} \, h^{(t)}}
 \end{align*}
-
 :::
-:::
+:::::
 
 Key idea: multivariate chain rule!
 
 ## Gradient Explosion and Vanishing
 
-The longer your sequence, the longer gap the time step
-between when we see potentially important information
-and when we need it:
+The longer your sequence, the longer gap the time step between when we see potentially important information and when we need it:
 
-<center>
-![](imgs/grad.png){height="300"}
-</center>
+<center>![](imgs/grad.png){height="300"}</center>
 
 . . .
 
@@ -477,40 +407,30 @@ The derivatives need to travel this entire pathway.
 
 Consider a univariate version of the RNN:
 
-<center>
-![](imgs/encoder_uni.png){height="200"}
-</center>
+<center>![](imgs/encoder_uni.png){height="200"}</center>
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
-**Backpropagation updates:**
-\begin{align*}
+**Backpropagation updates:** \begin{align*}
     \overline{h^{(t)}} &= \overline{z^{(t+1)}} \, w \\
     \overline{z^{(t)}} &= \overline{h^{(t)}} \, \phi^\prime(z^{(t)})
 \end{align*}
-
 :::
-::: {.column width="50%"}
 
-**Applying this recursively:**
-\begin{align*}
+::: {.column width="50%"}
+**Applying this recursively:** \begin{align*}
     \overline{h^{(1)}} = w^{T-1} \phi^\prime(z^{(2)}) \cdots \phi^\prime(z^{(T)}) \overline{h^{(T)}}
 \end{align*}
-
 :::
-:::
-
+:::::
 
 ## Why Gradients Explode or Vanish II
 
-**With linear activations:**
-$$\frac{\partial h^{(T)}}{\partial h^{(1)}} = w^{T-1}$$
+**With linear activations:** $$\frac{\partial h^{(T)}}{\partial h^{(1)}} = w^{T-1}$$
 
 $$\textbf{Exploding:} \qquad w=1.1, T=50 \Rightarrow \frac{\partial h^{(T)}}{\partial h^{(1)}} = 117.4$$
 
 $$\textbf{Vanishing:} \qquad w=0.9, T=50 \Rightarrow \frac{\partial h^{(T)}}{\partial h^{(1)}} = 0.00515$$
-
 
 ## Multivariate Hidden States
 
@@ -524,13 +444,11 @@ Matrices can "explode" or "vanish" just like scalar values, though it's slightly
 
 ## Repeated Application of Functions
 
-Another way to look at why gradients explode or vanish is that
-we are applying a function over and over again.
+Another way to look at why gradients explode or vanish is that we are applying a function over and over again.
 
 . . .
 
-Each hidden layer computes some function of previous hidden layer
-and the current input: ${\bf h}^{(t)} = f({\bf h}^{(t-1)}, {\bf x}^{(t)})$
+Each hidden layer computes some function of previous hidden layer and the current input: ${\bf h}^{(t)} = f({\bf h}^{(t-1)}, {\bf x}^{(t)})$
 
 . . .
 
@@ -548,84 +466,67 @@ We get complicated behaviour from iterated functions. Consider $f(x) = 3.5x(1-x)
 
 . . .
 
-::: columns
+::::::: columns
 ::: {.column width="25%"}
-
 $y = f(x)$
 
 ![](imgs/iterated1.png){height="170"}
-
 :::
-::: {.column width="25%"}
 
+::: {.column width="25%"}
 $y = f(f(x))$
 
 ![](imgs/iterated2.png){height="170"}
-
 :::
-::: {.column width="20%"}
 
+::: {.column width="20%"}
 $y = f^{\circ 3}(x)$
 
 ![](imgs/iterated3.png){height="170"}
-
 :::
-::: {.column width="25%"}
 
+::: {.column width="25%"}
 $y = f^{\circ 6}(x)$
 
 ![](imgs/iterated4.png){height="170"}
-
 :::
-:::
+:::::::
 
 . . .
 
-Note that the function values gravitate towards **fixed points**,
-and that the derivatives becomes either **very large** or **very small**.
+Note that the function values gravitate towards **fixed points**, and that the derivatives becomes either **very large** or **very small**.
 
 ## RNN with tanh activation
 
 More concretely, consider an RNN with a tanh activation function:
 
-<center>
-![](imgs/tanh_rnn.png){height="400"}
-</center>
-
+<center>![](imgs/tanh_rnn.png){height="400"}</center>
 
 ## RNN with tanh activation II
 
 The function computed by the network:
 
-<center>
-![](imgs/tanh_responses.png){height="400"}
-</center>
+<center>![](imgs/tanh_responses.png){height="400"}</center>
 
 ## Cliffs
 
 Repeatedly applying a function adds a new type possible loss landscape: **cliffs**, where the gradient of the loss with respect to a parameter is either close to 0, or very large.
 
-<center>
-![](imgs/cliffs.png){ height=40% }
-</center>
+<center>![](imgs/cliffs.png){height="40%"}</center>
 
 ## Cliffs II
 
-Generally, the gradient will explode on some inputs and vanish on others.
-In expectation, the cost may be fairly smooth.
+Generally, the gradient will explode on some inputs and vanish on others. In expectation, the cost may be fairly smooth.
 
 ## Gradient Clipping
 
-One solution is to "clip" the gradient so that it has a norm of at most $\eta$.
-Otherwise, update the gradient ${\bf g}$ with ${\bf g} \leftarrow \eta\frac{{\bf g}}{||{\bf g}||}$
+One solution is to "clip" the gradient so that it has a norm of at most $\eta$. Otherwise, update the gradient ${\bf g}$ with ${\bf g} \leftarrow \eta\frac{{\bf g}}{||{\bf g}||}$
 
 . . .
 
 The gradients are biased, but at least they don't blow up:
 
-<center>
-![](imgs/clipping.png){height="270"}
-</center>
+<center>![](imgs/clipping.png){height="270"}</center>
 
 . . .
 
@@ -635,34 +536,25 @@ Gradient clipping solves the exploding gradient problem, but not the vanishing g
 
 **Idea**: Initialization
 
-Hidden units are a kind of memory. Their default behaviour
-should be to **keep their previous value**.
+Hidden units are a kind of memory. Their default behaviour should be to **keep their previous value**.
 
 . . .
 
-If the function ${\bf h}^{(t)} = f({\bf h}^{(t-1)}, {\bf x}^{(t)})$
-is close to the identity, then the gradient computations $\displaystyle \frac{\partial {\bf h}^{(t)}}{\partial {\bf h}^{(t-1)}}$
-are stable.
+If the function ${\bf h}^{(t)} = f({\bf h}^{(t-1)}, {\bf x}^{(t)})$ is close to the identity, then the gradient computations $\displaystyle \frac{\partial {\bf h}^{(t)}}{\partial {\bf h}^{(t-1)}}$ are stable.
 
 . . .
 
-This initialization allows learning much longer-term dependencies
-than "vanilla" RNNs
+This initialization allows learning much longer-term dependencies than "vanilla" RNNs
 
 ## Long-Term Short Term Memory
 
-Change the **architecture** of the recurrent neural network
-by replacing each single unit in an RNN by a "memory block":
+Change the **architecture** of the recurrent neural network by replacing each single unit in an RNN by a "memory block":
 
-<center>
-![](imgs/lstm.png){height=50%}
-</center>
+<center>![](imgs/lstm.png){height="50%"}</center>
 
 ## LSTM
 
-<center>
-![](imgs/lstm_jimmy.png){height="550"}
-</center>
+<center>![](imgs/lstm_jimmy.png){height="550"}</center>
 
 ## LSTM Math
 
@@ -691,7 +583,6 @@ $$
 \end{pmatrix}
 $$
 
-
 ## LSTM Math II
 
 \begin{align*}
@@ -701,30 +592,29 @@ $$
 
 . . .
 
-**Exercise:** show that if ${\bf f}_{t+1} = 1$, ${\bf i}_{t+1} = 0$, and ${\bf o}_{t} = 0$, then the gradient of the memory cell gets passed through unmodified, i.e.,  $\bar{{\bf c}_t} = \bar{{\bf c}_{t+1}}$.
-
+**Exercise:** show that if ${\bf f}_{t+1} = 1$, ${\bf i}_{t+1} = 0$, and ${\bf o}_{t} = 0$, then the gradient of the memory cell gets passed through unmodified, i.e., $\bar{{\bf c}_t} = \bar{{\bf c}_{t+1}}$.
 
 ## Key Takeaways
 
 You should be able to understand...
 
-- why learning long-term dependencies is hard for vanilla RNNs
+-   why learning long-term dependencies is hard for vanilla RNNs
 
 . . .
 
-- why gradients vanish/explode in a vanilla RNN
+-   why gradients vanish/explode in a vanilla RNN
 
 . . .
 
-- what cliffs are and how repeated application of a function generates cliffs
+-   what cliffs are and how repeated application of a function generates cliffs
 
 . . .
 
-- what gradient clipping is and when it is useful
+-   what gradient clipping is and when it is useful
 
 . . .
 
-- the mathematics behind why gating works
+-   the mathematics behind why gating works
 
 <!-- 04gen -->
 
@@ -734,61 +624,59 @@ You should be able to understand...
 
 RNN For Prediction:
 
-- Process tokens one at a time
+-   Process tokens one at a time
 
 . . .
 
-- Hidden state is a representation of **all the tokens read thus far**
+-   Hidden state is a representation of **all the tokens read thus far**
 
 . . .
 
 RNN For Generation:
 
-- Generate tokens one at a time
+-   Generate tokens one at a time
 
 . . .
 
-- Hidden state is a representation of **all the tokens to be generated**
+-   Hidden state is a representation of **all the tokens to be generated**
 
 ## RNN Hidden State Updates
 
 RNN for Prediction:
 
-- Update hidden state with new input (token)
+-   Update hidden state with new input (token)
 
 . . .
 
-- Get prediction (e.g. distribution over possible labels)
+-   Get prediction (e.g. distribution over possible labels)
 
 . . .
 
 RNN for Generation:
 
-- Get prediction distribution of next token
+-   Get prediction distribution of next token
 
 . . .
 
-- Generate a token from the distribution
+-   Generate a token from the distribution
 
 . . .
 
-- Update the hidden state with new token
+-   Update the hidden state with new token
 
 ## Text Generation Diagram
 
-<center>
-![](imgs/rnn_gen_figure.png)
-</center>
+<center>![](imgs/rnn_gen_figure.png)</center>
 
-- Get prediction distribution of next token
+-   Get prediction distribution of next token
 
 . . .
 
-- Generate a token from the distribution
+-   Generate a token from the distribution
 
 . . .
 
-- Update the hidden state with new token
+-   Update the hidden state with new token
 
 ## Test Time Behaviour of Generative RNN
 
@@ -798,27 +686,25 @@ Unlike other models we discussed so far, the training time behaviour of Generati
 
 Test time behaviour at each time step:
 
-- Obtain a **distribution** over possible next tokens
+-   Obtain a **distribution** over possible next tokens
 
 . . .
 
-- Sample a token from that distribution
+-   Sample a token from that distribution
 
 . . .
 
-- Update the hidden state based on the sample token
-
+-   Update the hidden state based on the sample token
 
 ## Training Time Behaviour of Generative RNN
 
-During training, we try to get the RNN to generate one
-particular sequence in the training set. At each time step:
+During training, we try to get the RNN to generate one particular sequence in the training set. At each time step:
 
-- Obtain a **distribution** over possible next tokens
+-   Obtain a **distribution** over possible next tokens
 
 . . .
 
-- Compare this with the *actual* next token
+-   Compare this with the *actual* next token
 
 . . .
 
@@ -828,81 +714,69 @@ Q1: What kind of a problem is this? (regression or classification?)
 
 Q2: What loss function should we use during training?
 
-::: {.notes}
-- A1: The problem is classification. The different tokens are the respective classes.
-- A2: The loss is a cross entropy loss as usual in classification
-
+::: notes
+-   A1: The problem is classification. The different tokens are the respective classes.
+-   A2: The loss is a cross entropy loss as usual in classification
 :::
 
 ## Text Generation: First Step
 
-<center>
-![](imgs/rnn_gen_figure.png){height="150"}
-</center>
+<center>![](imgs/rnn_gen_figure.png){height="150"}</center>
 
-- Start with an initial hidden state
+-   Start with an initial hidden state
 
 . . .
 
-- Update the hidden state with a "\<BOS\>" (beginning of string) token to initiate the hidden state
+-   Update the hidden state with a "\<BOS\>" (beginning of string) token to initiate the hidden state
 
 . . .
 
-- Get the distribution over the first character
+-   Get the distribution over the first character
 
 . . .
 
-- Compute the cross-entropy loss against the ground truth (R)
+-   Compute the cross-entropy loss against the ground truth (R)
 
-::: {.notes}
-
-- Each token is its own classification problem. This is the first one.
-
+::: notes
+-   Each token is its own classification problem. This is the first one.
 :::
 
 ## Text Generation with Teacher Forcing
 
-<center>
-![](imgs/rnn_gen_figure.png){height="150"}
-</center>
+<center>![](imgs/rnn_gen_figure.png){height="150"}</center>
 
-- Update the hidden state with the **ground truth** token (R)
-  regardless of the prediction from the previous step
-    - This technique is called **teaching forcing**
+-   Update the hidden state with the **ground truth** token (R) regardless of the prediction from the previous step
+    -   This technique is called **teaching forcing**
 
 . . .
 
-- Get the distribution over the second character
+-   Get the distribution over the second character
 
 . . .
 
-- Compute the cross-entropy loss against the ground truth (I)
-
+-   Compute the cross-entropy loss against the ground truth (I)
 
 ## Text Generation: Later Steps
 
-<center>
-![](imgs/rnn_gen_figure.png){height="400"}
-</center>
+<center>![](imgs/rnn_gen_figure.png){height="400"}</center>
 
 Continue until we get to the "\<EOS\>" (end of string) token
 
 ## Some Remaining Challenges
 
-- Vocabularies can be very large once you include people, places, etc.
+-   Vocabularies can be very large once you include people, places, etc.
 
 . . .
 
-- It's computationally difficult to predict distributions over millions of words.
+-   It's computationally difficult to predict distributions over millions of words.
 
 . . .
 
-- How do we deal with words we haven't seen before?
+-   How do we deal with words we haven't seen before?
 
 . . .
 
-- In some languages, it's hard to define what should be
-considered a word.
+-   In some languages, it's hard to define what should be considered a word.
 
 ## Character vs Word-level
 
@@ -934,7 +808,7 @@ What can we do?
 
 ## Sequence-to-sequence architecture
 
-![](imgs/nmt.png){ height=30% }
+![](imgs/nmt.png){height="30%"}
 
 The network first reads and memorizes the sentences.
 
@@ -950,9 +824,8 @@ The "encoder" and "decoder" are two different networks with different weights.
 
 ## Summary
 
-::: {.incremental}
-* Recurrent Neural Networks can be used for learning sequence data
-* Training RNNs may suffer from gradient explosion and vanishing
-* Important Applications of RNNs are text generation and sequence to sequence modelling
-
+::: incremental
+-   Recurrent Neural Networks can be used for learning sequence data
+-   Training RNNs may suffer from gradient explosion and vanishing
+-   Important Applications of RNNs are text generation and sequence to sequence modelling
 :::
