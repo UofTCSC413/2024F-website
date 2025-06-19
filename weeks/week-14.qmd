@@ -6,7 +6,7 @@ editor: visual
 
 ## Perform
 
-[Final project](project-description.html#final-project) submission
+[Final project](../project-description.html#final-project) submission
 
 <br><br>
 

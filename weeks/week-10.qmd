@@ -28,7 +28,7 @@ Last year's A3 (a seq2seq autoencoder) <http://modelai.gettysburg.edu/2021/headl
 
 In-person lab session: gradcam and input gradients [lab09](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab09.ipynb "Lab instructions"){aria-label="Lab 9 instructions"}
 
-**Final Project** - Deadline to form project groups on Markus, and submit a [project proposal](project-description.html#project-proposal)
+**Final Project** - Deadline to form project groups on Markus, and submit a [project proposal](../project-description.html#project-proposal)
 
 <br><br>
 
