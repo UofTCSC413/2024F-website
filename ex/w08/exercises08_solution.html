@@ -399,13 +399,13 @@ y &amp;= \sigma\li(v \cdot h^{(T)} + b_y\ri)
 <h2 class="anchored" data-anchor-id="exercise-3---rnn-addition">Exercise 3 - RNN Addition</h2>
 <!-- From Tutorial 9 of past offering -->
 <p>In this problem, you will implement a recurrent neural network which implements binary addition. The inputs are given as binary sequences, starting with the significant binary digit. (It is easier to start from the least significant bit, just like how you did addition in grade school.) The sequences will be padded with at least one zero as the most significant digit, so that the output length is the same as the input length. For example, the problem <span class="math inline">\(100111 + 110010\)</span>, whose target output value is <span class="math inline">\(1011001\)</span>, will be represented as follows: <span class="math display">\[\begin{align*}
-\bf{x}^{(1)} = \begin{bmatrix}1 \\ 0\end{bmatrix},
-\bf{x}^{(2)} = \begin{bmatrix}1 \\ 1\end{bmatrix},
-\bf{x}^{(3)} = \begin{bmatrix}1 \\ 0\end{bmatrix},
-\bf{x}^{(4)} = \begin{bmatrix}0 \\ 0\end{bmatrix},
-\bf{x}^{(5)} = \begin{bmatrix}0 \\ 1\end{bmatrix},
-\bf{x}^{(6)} = \begin{bmatrix}1 \\ 1\end{bmatrix},
-\bf{x}^{(7)} = \begin{bmatrix}0 \\ 0\end{bmatrix}
+\mathbf{x}^{(1)} = \begin{bmatrix}1 \\ 0\end{bmatrix},
+\mathbf{x}^{(2)} = \begin{bmatrix}1 \\ 1\end{bmatrix},
+\mathbf{x}^{(3)} = \begin{bmatrix}1 \\ 0\end{bmatrix},
+\mathbf{x}^{(4)} = \begin{bmatrix}0 \\ 0\end{bmatrix},
+\mathbf{x}^{(5)} = \begin{bmatrix}0 \\ 1\end{bmatrix},
+\mathbf{x}^{(6)} = \begin{bmatrix}1 \\ 1\end{bmatrix},
+\mathbf{x}^{(7)} = \begin{bmatrix}0 \\ 0\end{bmatrix}
 \end{align*}\]</span></p>
 <p>With the target output: <span class="math display">\[\begin{align*}
 y^{(1)} = 1,
@@ -419,27 +419,27 @@ y^{(7)} = 1,
 <p>There are two input units corresponding to the two inputs, and one output unit. Therefore, the pattern of inputs and outputs for this example would be:</p>
 <p><img src="rnn-addition.png" class="img-fluid" style="width:3in"></p>
 <p>Design, by hand, the weights and biases for an RNN which has two input units, three hidden units, and one output unit, which implements binary addition as discussed above. All of the units use the hard threshold activation function (<span class="math inline">\(f(x) = 1\)</span> if <span class="math inline">\(x &gt; 0\)</span> and <span class="math inline">\(0\)</span> otherwise). In particular, specify weight matrices <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{v}\)</span>, and <span class="math inline">\(\mathbf{W}\)</span>, bias vector <span class="math inline">\(\mathbf{b}_{\mathbf{h}}\)</span>, and scalar bias <span class="math inline">\(b_y\)</span> for the following architecture: <span class="math display">\[\begin{align*}
-h^{(t)} &amp;= f(\bf{W}h^{(t-1)} + \bf{U}\bf{x}^{(t)} + \bf{b_h}) \\
-y^{(t)} &amp;= f(\bf{v}^T h^{(t)} + b_y)
+h^{(t)} &amp;= f(\mathbf{W}h^{(t-1)} + \mathbf{U}\mathbf{x}^{(t)} + \mathbf{b_h}) \\
+y^{(t)} &amp;= f(\mathbf{v}^T h^{(t)} + b_y)
 \end{align*}\]</span></p>
 <ol type="a">
 <li><p>What are the shapes of <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{v}\)</span>, <span class="math inline">\(\mathbf{W}\)</span>, and <span class="math inline">\(\mathbf{b}_{\mathbf{h}}\)</span>?</p></li>
-<li><p>Come up with values for <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{W}\)</span>, and <span class="math inline">\(\mathbf{b}_{\mathbf{h}}\)</span>. Justify your answer. <strong>Hint:</strong> When performing binary addition, in addition to adding up two digits in a column, we need to track whether there is a digit from the previous column. We will choose one of the three units in <span class="math inline">\(\bf{h}^{(t)}\)</span>, say <span class="math inline">\(\bf{h}_2^{(t)}\)</span>, to represent this carry digit. You may also find it helpful to set <span class="math inline">\(\bf{h}_1\)</span> to activate if the sum of the 3 digits is at least 1, <span class="math inline">\(\bf{h}_2\)</span> to activate if the sum is at least 2, and <span class="math inline">\(\bf{h}_3\)</span> to activate if the sum is at least 3.</p></li>
-<li><p>Come up with the values of <span class="math inline">\(\bf{v}\)</span> and <span class="math inline">\(b_y\)</span>. Justify your answer.</p></li>
+<li><p>Come up with values for <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{W}\)</span>, and <span class="math inline">\(\mathbf{b}_{\mathbf{h}}\)</span>. Justify your answer. <strong>Hint:</strong> When performing binary addition, in addition to adding up two digits in a column, we need to track whether there is a digit from the previous column. We will choose one of the three units in <span class="math inline">\(\mathbf{h}^{(t)}\)</span>, say <span class="math inline">\(\mathbf{h}_2^{(t)}\)</span>, to represent this carry digit. You may also find it helpful to set <span class="math inline">\(\mathbf{h}_1\)</span> to activate if the sum of the 3 digits is at least 1, <span class="math inline">\(\mathbf{h}_2\)</span> to activate if the sum is at least 2, and <span class="math inline">\(\mathbf{h}_3\)</span> to activate if the sum is at least 3.</p></li>
+<li><p>Come up with the values of <span class="math inline">\(\mathbf{v}\)</span> and <span class="math inline">\(b_y\)</span>. Justify your answer.</p></li>
 </ol>
 <section id="solution-2" class="level3">
 <h3 class="anchored" data-anchor-id="solution-2">Solution</h3>
 <ol type="a">
-<li><p>Since the inputs <span class="math inline">\(\bf{x}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span> and the hidden units <span class="math inline">\(\bf{h}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span>, we should have:</p>
+<li><p>Since the inputs <span class="math inline">\(\mathbf{x}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span> and the hidden units <span class="math inline">\(\mathbf{h}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span>, we should have:</p>
 <ul>
-<li><span class="math inline">\(\bf{W}\)</span> is <span class="math inline">\(3 \times 3\)</span></li>
-<li><span class="math inline">\(\bf{U}\)</span> is <span class="math inline">\(3 \times 2\)</span></li>
-<li><span class="math inline">\(\bf{b}_h\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
-<li><span class="math inline">\(\bf{v}\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
+<li><span class="math inline">\(\mathbf{W}\)</span> is <span class="math inline">\(3 \times 3\)</span></li>
+<li><span class="math inline">\(\mathbf{U}\)</span> is <span class="math inline">\(3 \times 2\)</span></li>
+<li><span class="math inline">\(\mathbf{b}_h\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
+<li><span class="math inline">\(\mathbf{v}\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
 </ul></li>
 <li><p>We will follow the hint and implement the addition in our RNN such that:</p>
 <ol type="1">
-<li>The first of our hidden units <span class="math inline">\(h_1^{(t)}\)</span> is 1 if and only if the sum <span class="math inline">\(S^{(t)} \doteq x_1^{(t)} + x_2^{(t)} + c^{(t-1)} \geq 1\)</span>, where by <span class="math inline">\(c^{(t-1)}\)</span> we denote a carry (<span class="math inline">\(\bf{h_2}^{(t-1)}\)</span> from the previous addition). Note, these <span class="math inline">\(S^{(t)}\)</span> and <span class="math inline">\(c^{(t-1)}\)</span> are not variables of the model, merely our notation to help us to work out the solution.</li>
+<li>The first of our hidden units <span class="math inline">\(h_1^{(t)}\)</span> is 1 if and only if the sum <span class="math inline">\(S^{(t)} \doteq x_1^{(t)} + x_2^{(t)} + c^{(t-1)} \geq 1\)</span>, where by <span class="math inline">\(c^{(t-1)}\)</span> we denote a carry (<span class="math inline">\(\mathbf{h_2}^{(t-1)}\)</span> from the previous addition). Note, these <span class="math inline">\(S^{(t)}\)</span> and <span class="math inline">\(c^{(t-1)}\)</span> are not variables of the model, merely our notation to help us to work out the solution.</li>
 <li>The <span class="math inline">\(h_2^{(t)}\)</span> is 1 iff the sum <span class="math inline">\(S^{(t)} \geq 2\)</span>,</li>
 <li>and <span class="math inline">\(h_3^{(t)}\)</span> is 1 iff the sum <span class="math inline">\(S^{(t)}\)</span> is 3.</li>
 </ol>

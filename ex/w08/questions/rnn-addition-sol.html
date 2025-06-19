@@ -287,16 +287,16 @@ window.Quarto = {
 
 
 <ol type="a">
-<li><p>Since the inputs <span class="math inline">\(\bf{x}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span> and the hidden units <span class="math inline">\(\bf{h}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span>, we should have:</p>
+<li><p>Since the inputs <span class="math inline">\(\mathbf{x}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span> and the hidden units <span class="math inline">\(\mathbf{h}^{(t)}\)</span> are <span class="math inline">\(2 \times 1\)</span>, we should have:</p>
 <ul>
-<li><span class="math inline">\(\bf{W}\)</span> is <span class="math inline">\(3 \times 3\)</span></li>
-<li><span class="math inline">\(\bf{U}\)</span> is <span class="math inline">\(3 \times 2\)</span></li>
-<li><span class="math inline">\(\bf{b}_h\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
-<li><span class="math inline">\(\bf{v}\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
+<li><span class="math inline">\(\mathbf{W}\)</span> is <span class="math inline">\(3 \times 3\)</span></li>
+<li><span class="math inline">\(\mathbf{U}\)</span> is <span class="math inline">\(3 \times 2\)</span></li>
+<li><span class="math inline">\(\mathbf{b}_h\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
+<li><span class="math inline">\(\mathbf{v}\)</span> is <span class="math inline">\(3 \times 1\)</span></li>
 </ul></li>
 <li><p>We will follow the hint and implement the addition in our RNN such that:</p>
 <ol type="1">
-<li>The first of our hidden units <span class="math inline">\(h_1^{(t)}\)</span> is 1 if and only if the sum <span class="math inline">\(S^{(t)} \doteq x_1^{(t)} + x_2^{(t)} + c^{(t-1)} \geq 1\)</span>, where by <span class="math inline">\(c^{(t-1)}\)</span> we denote a carry (<span class="math inline">\(\bf{h_2}^{(t-1)}\)</span> from the previous addition). Note, these <span class="math inline">\(S^{(t)}\)</span> and <span class="math inline">\(c^{(t-1)}\)</span> are not variables of the model, merely our notation to help us to work out the solution.</li>
+<li>The first of our hidden units <span class="math inline">\(h_1^{(t)}\)</span> is 1 if and only if the sum <span class="math inline">\(S^{(t)} \doteq x_1^{(t)} + x_2^{(t)} + c^{(t-1)} \geq 1\)</span>, where by <span class="math inline">\(c^{(t-1)}\)</span> we denote a carry (<span class="math inline">\(\mathbf{h_2}^{(t-1)}\)</span> from the previous addition). Note, these <span class="math inline">\(S^{(t)}\)</span> and <span class="math inline">\(c^{(t-1)}\)</span> are not variables of the model, merely our notation to help us to work out the solution.</li>
 <li>The <span class="math inline">\(h_2^{(t)}\)</span> is 1 iff the sum <span class="math inline">\(S^{(t)} \geq 2\)</span>,</li>
 <li>and <span class="math inline">\(h_3^{(t)}\)</span> is 1 iff the sum <span class="math inline">\(S^{(t)}\)</span> is 3.</li>
 </ol>
