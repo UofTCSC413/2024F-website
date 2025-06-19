@@ -4,12 +4,6 @@ subtitle: "Final project submission"
 editor: visual
 ---
 
-## Perform
-
 [Final project](../project-description.html#final-project) submission
 
 <br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::

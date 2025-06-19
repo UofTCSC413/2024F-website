@@ -4,26 +4,10 @@ subtitle: "Use of Deep Learning in the Research of Profs Shkurti and Gilitschens
 editor: visual
 ---
 
-## Prepare
-
-No preparation for this week
-
-## Participate
-
 [Slides](/lecs/w11/lec11.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
 If you are interested in both groups' research, it is worth attending or watching both lectures this week.
 
-## Practice
-
-No exercise for this week
-
-## Perform
-
 In-person lab session: text generation with transformers [lab11](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab11.ipynb "Lab instructions"){aria-label="Lab 11 instructions"}
 
 <br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::

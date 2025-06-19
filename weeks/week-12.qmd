@@ -4,24 +4,10 @@ subtitle: "Generative Adversarial Networks"
 editor: visual
 ---
 
-## Prepare
-
-No Preparation for this week
-
-## Participate
-
 [Slides](/lecs/w11/lec11.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-## Practice
-
 [In-class Exercise](/ex/w11/exercises11.html "Exercise"){aria-label="Exercise 11"} & [Solutions](/ex/w11/exercises11_solution.html "Exercise Solutions"){aria-label="Exercise 11 Solutions"}
-
-## Perform
 
 In-person lab session: RNN text classification [lab10](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab10.ipynb "Lab instructions"){aria-label="Lab 10 instructions"}
 
 <br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::

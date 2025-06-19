@@ -9,7 +9,3 @@ Fall reading week. No lecture.
 Math assignment 2 due.
 
 <br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::

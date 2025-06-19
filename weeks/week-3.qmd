@@ -4,19 +4,13 @@ subtitle: "Automatic Differentiation, Distributed Representation"
 editor: visual
 ---
 
-## Prepare
-
 [Week 3 Overview](https://q.utoronto.ca/courses/366713/pages/week-3-overview?module_item_id=5872103)
-
-## Participate
 
 [GloVe embedding demo](https://colab.research.google.com/drive/1aNbE6HcawVF67RV0hWi4qK33Um7cKykr?usp=sharing#scrollTo=H1mONlhzJ_qQ) 
 
 [Video on autodiff](https://www.youtube.com/watch?v=wG_nF1awSSY)
 
 [Slides](/lecs/w01/lec01.html) & [Recordings](https://q.utoronto.ca/courses/366713)
-
-## Practice
 
 [In-class Exercise](/ex/w03/exercises03.html "Exercise"){aria-label="Exercise 3"} & [Solutions](/ex/w03/exercises03_solution.html "Exercise Solutions"){aria-label="Exercise 3 Solutions"}
 
@@ -26,14 +20,8 @@ Notes on Backpropagation <https://cs231n.github.io/optimization-2/>
 
 Automatic Differentiation in Machine Learning: a Survey (2018) <https://arxiv.org/pdf/1502.05767.pdf>
 
-## Perform
-
 In-person lab session: numerical gradients / word embeddings [lab02](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab02.ipynb "Lab instructions"){aria-label="Lab 2 instructions"}
 
 [Lec3 pre-recorded videos with quizzes](https://q.utoronto.ca/courses/366713/quizzes/412392)
 
 <br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::

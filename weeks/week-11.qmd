@@ -4,21 +4,11 @@ subtitle: "Autoencoders and Transpose Convolutions"
 editor: visual
 ---
 
-## Prepare
-
-No additional readings this week. Catch up with previously assigned readings if you've fallen behind.
-
-## Participate
-
 [Slides](/lecs/w10/lec10.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
 [Autoencoder Notebook](https://q.utoronto.ca/courses/366713)
 
-## Practice
-
 [In-class Exercise](/ex/w10/exercises10.html "Exercise"){aria-label="Exercise 10"} & [Solutions](/ex/w10/exercises10_solution.html "Exercise Solutions"){aria-label="Exercise 10 Solutions"}
-
-## Perform
 
 In-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions
 
@@ -27,7 +17,3 @@ In-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sess
 **Final Project** - Written feedback on project proposals sent by TAs and instructors
 
 <br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::

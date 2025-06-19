@@ -4,21 +4,13 @@ subtitle: "Convolutional Neural Networks"
 editor: visual
 ---
 
-## Prepare
-
 [Week 4 Overview](https://q.utoronto.ca/courses/366713/pages/week-4-overview?module_item_id=5872113)
-
-## Participate
 
 [Slides](/lecs/w04/lec04.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
 Demo: [Colab Notebook](https://colab.research.google.com/drive/1AL2ocL6muULg4P2hzHBOLTPL6RGbQaB5?usp=sharing)
 
-## Practice
-
 [In-class Exercise](/ex/w04/exercises04.html "Exercise"){aria-label="Exercise 4"} & [Solutions](/ex/w04/exercises04_solution.html "Exercise Solutions"){aria-label="Exercise 4 Solutions"}
-
-## Perform
 
 In-person lab session: classification and medical MNIST [lab03](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab03.ipynb "Lab instructions"){aria-label="Lab 3 instructions"}
 
@@ -27,7 +19,3 @@ In-person lab session: classification and medical MNIST [lab03](https://colab.re
 [Math Assignment 1](https://q.utoronto.ca/courses/366713/files/folder/A1) posted
 
 <br><br>
-
-::: {style="font-size: 0.875em;"}
-Back to [course schedule](/ "Course schedule") ⏎
-:::
