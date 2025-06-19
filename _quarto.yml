@@ -49,9 +49,9 @@ website:
     contents:
       - href: index.qmd
         text: Overview
-      - href: https://q.utoronto.ca/courses/366713/external_tools/18207
-        text: Piazza
       - href: https://piazza.com/utoronto.ca/fall2024/csc413h5flec0101/home
+        text: Piazza
+      - href: https://q.utoronto.ca/courses/366713
         text: Quercus	
       - href: course-syllabus.qmd
         text: Syllabus
