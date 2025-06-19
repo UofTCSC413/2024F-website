@@ -14,8 +14,8 @@ website:
   open-graph: true
 
   twitter-card:
-    creator: "@minebocek"
-    image: "images/twitter-card.png"
+    title: "CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM"
+    card-style: "summary" 
 
   page-footer:
     right: "This page is built with ❤️, [Quarto](https://quarto.org/) and inspiration from [STA210](https://sta210-s22.github.io/website/)."
@@ -24,7 +24,7 @@ website:
 
   sidebar:
     background: "#D9E3E4"
-    logo: "images/DrawingHands.jpg"
+    logo: "images/network.jpg"
     pinned: true
     align: center
     title: "UTM - CSC413 Neural Networks and Deep Learning"
