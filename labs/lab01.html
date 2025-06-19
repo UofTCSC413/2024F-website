@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab 01 – CSC413 - Fall 2024</title>
+<title>CSC413 Lab 1: Linear Models – CSC413 - Fall 2024, UTM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -136,12 +136,12 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Lab 01 – CSC413 - Fall 2024">
-<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
-<meta property="og:site_name" content="CSC413 - Fall 2024">
-<meta name="twitter:title" content="Lab 01 – CSC413 - Fall 2024">
-<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
-<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta property="og:title" content="CSC413 Lab 1: Linear Models – CSC413 - Fall 2024, UTM">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM.">
+<meta property="og:site_name" content="CSC413 - Fall 2024, UTM">
+<meta name="twitter:title" content="CSC413 Lab 1: Linear Models – CSC413 - Fall 2024, UTM">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM.">
+<meta name="twitter:image" content="https://utm-csc413.github.io/2024F-website/labs/images/twitter-card.png">
 <meta name="twitter:creator" content="@minebocek">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -320,18 +320,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#csc413-lab-1-linear-models" id="toc-csc413-lab-1-linear-models" class="nav-link active" data-scroll-target="#csc413-lab-1-linear-models">CSC413 Lab 1: Linear Models</a>
-  <ul class="collapse">
-  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link active" data-scroll-target="#submission">Submission</a></li>
   <li><a href="#google-colab-setup" id="toc-google-colab-setup" class="nav-link" data-scroll-target="#google-colab-setup">Google Colab Setup</a></li>
   <li><a href="#part-1.-data" id="toc-part-1.-data" class="nav-link" data-scroll-target="#part-1.-data">Part 1. Data</a></li>
   <li><a href="#part-2.-a-linear-model-in-pytorch" id="toc-part-2.-a-linear-model-in-pytorch" class="nav-link" data-scroll-target="#part-2.-a-linear-model-in-pytorch">Part 2. A Linear Model in PyTorch</a></li>
   <li><a href="#part-3.-cross-entropy-loss-and-automatic-gradient-computation" id="toc-part-3.-cross-entropy-loss-and-automatic-gradient-computation" class="nav-link" data-scroll-target="#part-3.-cross-entropy-loss-and-automatic-gradient-computation">Part 3. Cross Entropy Loss and Automatic Gradient Computation</a></li>
   <li><a href="#part-4.-neural-network-training-via-stochastic-gradient-descent." id="toc-part-4.-neural-network-training-via-stochastic-gradient-descent." class="nav-link" data-scroll-target="#part-4.-neural-network-training-via-stochastic-gradient-descent.">Part 4. Neural Network Training via Stochastic Gradient Descent.</a></li>
   <li><a href="#part-5.-hyperparameter-tuning" id="toc-part-5.-hyperparameter-tuning" class="nav-link" data-scroll-target="#part-5.-hyperparameter-tuning">Part 5. Hyperparameter Tuning</a></li>
-  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab01.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.dev/utm-csc413/2024F-website/blob/main/labs/lab01.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/utm-csc413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -339,7 +336,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 01</h1>
+<h1 class="title">CSC413 Lab 1: Linear Models</h1>
 </div>
 
 
@@ -356,8 +353,6 @@ window.Quarto = {
 </header>
 
 
-<section id="csc413-lab-1-linear-models" class="level1">
-<h1>CSC413 Lab 1: Linear Models</h1>
 <p>In this lab, we will review <strong>linear models</strong> for classification, which was discussed in depth in CSC311. We will use this as an opportunity to review key ideas, including the splitting of the dataset into train/validation/test sets, optimization methods using Stochastic Gradient Descent, and so on. This lab reviews Python libraries that you have used in CSC311, including <code>numpy</code>, <code>matplotlib</code> and others.</p>
 <p>But the main aim of this lab is to introduce a new Python library that we will be using throughout this course: PyTorch. PyTorch provides automatic differentiation capabilities and other neural network tools. This means that <strong>we do not need to compute gradients ourselves</strong>! Instead, we rely on PyTorch to build the computation graph and compute gradients. PyTorch can do this because it knows how to compute gradients for simple operations like addition, multiplication, ReLU activation, and common functions like exponentials, logarithms, and so on. The neural networks we build require computation that are combinations of these simple operations.</p>
 <p>For now, we will we solve a multi-class classification problem in two ways: first with <code>numpy</code>, and then with PyTorch.</p>
@@ -411,31 +406,46 @@ or<br>
 Run the following code snippet: <code>from google.colab import drive     drive.mount('/content/drive')</code> By mounting the drive, we can use any files or folders in our drive by using the path as follows: <code>/content/drive/MyDrive/[folder name]</code> For example, we can read the csv file uploaded in the drive using Pandas library as follows: <code>pd.read_csv('/content/drive/MyDrive/myfolder/myfile.csv')</code></p></li>
 </ol>
 <p>Now, we are ready to import the necessary packages and begin our lab.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<div id="a14075e6" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-1.-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
 <p>We will use the MNIST data set, which consists of hand-written digits. This dataset is available within the <code>torchvision.datasets</code> library. The dataset creators divided the MNIST imgages into a training and test set, so that different researchers report test accuracy on a consistent set of images. (Recall that the test set is to be set aside and <strong>not</strong> used during training or to make any model decisions, and that it is used to estimate <em>how well your models generalize</em> to new data that it has never seen before.)</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.datasets <span class="im">import</span> MNIST</span>
+<div id="67fd2b65" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.datasets <span class="im">import</span> MNIST</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mnist_train <span class="op">=</span> MNIST(root<span class="op">=</span><span class="st">"."</span>,      <span class="co"># where on the disk to store the data</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                    download<span class="op">=</span><span class="va">True</span>, <span class="co"># download the data if it does not already exist</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                    train<span class="op">=</span><span class="va">True</span>)    <span class="co"># use the training set (rather than the test set)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task:</strong> If different practitioners are exploring machine learning models for the same task and data set, why is it important that they use these practitioners report their test performance (e.g., accuracy) on the same test set?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="adc3af16" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>It is always a good idea to visually inspect our data before working with it. First, let’s take a look at the first element of the training set:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mnist_train[<span class="dv">0</span>]) <span class="co"># a tuple consisting of the image, and the label (5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0d4f8400" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mnist_train[<span class="dv">0</span>]) <span class="co"># a tuple consisting of the image, and the label (5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The image can be displayed on Google Colab using matplotlib:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(mnist_train[<span class="dv">0</span>][<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'gray'</span>) <span class="co"># display the image</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3fac3f6b" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(mnist_train[<span class="dv">0</span>][<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">'gray'</span>) <span class="co"># display the image</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>It is important to note that images are represented using numbers on your machine. Converting this image into a numpy array shows a representation of the image using 28x28 numbers, each representing a pixel value.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>np.array(mnist_train[<span class="dv">0</span>][<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="67a81096" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>np.array(mnist_train[<span class="dv">0</span>][<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task:</strong> What does the numerical value 0 (smallest possible value) mean in the image? What about the largest possible value, 255?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="146aa814" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>For our purposes, we will only use the first 5000 elements of the training set. This is to make training faster.</p>
 <p>PyTorch also makes it easy to apply pre-processing transformations to the data, for example to normalize the data prior to using for training. We will use the standard preprocessing functions to <em>transform the images into tensors</em> for PyTorch to be able to use. This transformation also changes the values to be floating-point numbers between 0 and 1. Performing this transformation to PyTorch tensors now makes it easier to use PyTorch functionalities to help us create minibatches with this data.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span>
+<div id="0086bfe0" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mnist_data <span class="op">=</span> MNIST(root<span class="op">=</span><span class="st">"."</span>,      <span class="co"># where on the disk to store the data</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                   download<span class="op">=</span><span class="va">True</span>, <span class="co"># download the data if it does not already exist</span></span>
@@ -444,12 +454,17 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>mnist_data <span class="op">=</span> <span class="bu">list</span>(mnist_data)[:<span class="dv">5000</span>]</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mnist_data[<span class="dv">0</span>]) <span class="co"># a tuple consisting of a PyTorch tensor of shape (1, 28, 28) and an integer target label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We will split the data set into 3000 for training, 1000 for validation, and 1000 for test:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> mnist_data[:<span class="dv">3000</span>]</span>
+<div id="be3e28a7" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> mnist_data[:<span class="dv">3000</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>val_data   <span class="op">=</span> mnist_data[<span class="dv">3000</span>:<span class="dv">4000</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>test_data  <span class="op">=</span> mnist_data[<span class="dv">4000</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: We described, above, that the purpose of the <strong>test set</strong> is to estimate how well our models would generalize to new data that it has never seen before. What are the purposes of the training and validation sets?</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3b66ca53" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-2.-a-linear-model-in-pytorch" class="level2">
 <h2 class="anchored" data-anchor-id="part-2.-a-linear-model-in-pytorch">Part 2. A Linear Model in PyTorch</h2>
@@ -458,37 +473,50 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <p><span class="math display">\[{\bf y} = \textrm{softmax}({\bf W} {\bf x} + {\bf b})\]</span></p>
 <p>Where the <span class="math display">\[{\bf x}\]</span> vector represents the input (i.e., the vector representation of the MNIST image), and the <span class="math display">\[{\bf y}\]</span> vector contains the predicted probably of the image being in each class (i.e., predicted probability of the image being of each digit 0-9).</p>
 <p><strong>Task</strong>: In the MNIST image classification tas, what are the shapes of the quantities <span class="math display">\[{\bf x}\]</span>, <span class="math display">\[{\bf W}\]</span>, <span class="math display">\[{\bf b}\]</span> and <span class="math display">\[{\bf y}\]</span>?</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e287f5a9" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Write your answer here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The matrix <span class="math display">\[{\bf W}\]</span> and <span class="math display">\[{\bf b}\]</span> are the parameters of the model. The matrix <span class="math display">\[{\bf W}\]</span> is sometimes called the <em>weight matrix</em> and the vector <span class="math display">\[{\bf b}\]</span> the <em>bias vector</em>, but these parameters taken together are often referred to collectively as the <strong>weights</strong>. “Good” values of the parameters <span class="math display">\[{\bf W}\]</span> and <span class="math display">\[{\bf b}\]</span> are those that would produce values of the vector <span class="math display">\[{\bf y}\]</span> that more accurately match the actual target label. We will need to discuss what “good” means and how to measure “good”ness and optimize it. For now, let’s begin by applying and analyzing a “bad” model: a model where the parameters <span class="math display">\[{\bf W}\]</span> and <span class="math display">\[{\bf b}\]</span> are chosen randomly.</p>
 <p>Notice that there are two parts to the computation <span class="math display">\[\textrm{softmax}({\bf W} {\bf x} + {\bf b})\]</span>: there is a <em>linear transformation</em> on <span class="math display">\[{\bf X}\]</span>, and then there is a softmax operation. PyTorch models these two components separately.</p>
 <p>The <strong>linear transformation</strong> is modeled as a Python class in PyTorch. Since the parameters <span class="math display">\[{\bf W}\]</span> and <span class="math display">\[{\bf b}\]</span> are parameters of the linear transformation portion of the computation, the weights and biases are class attributes. The output of the linear transformation step is typically denoted using the symbol <span class="math display">\[{\bf z}\]</span>, and is called the <strong>logit</strong> (or unnormalized logits).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<div id="b02c37ac" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>,</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                  out_features<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.weight) <span class="co"># the weight parameter, initialized to random values</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias)   <span class="co"># the bias parameter, initialized to random values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>This <code>model</code> object can be called like a function to perform the computation <span class="math display">\[{\bf W}{\bf x} + {\bf b}\]</span>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reshape the input image into the shape [1, 784]</span></span>
+<div id="4908b2a6" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reshape the input image into the shape [1, 784]</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PyTorch always expects inputs of shape [batch_size, num_features]</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> train_data[<span class="dv">0</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Computes z = Wx + b, also called the *logit*</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> model(x) </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> model(x)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The <strong>softmax operation</strong> has no trainable parameters (i.e., no numbers that we tune that would effect the predictions of our model). Torch ahs a function <code>torch.softmax</code> that performs this operation, which normalizes the prediction so that the prediction represents a probability distribution. The <code>dim</code> parameter to the function tells PyTorch which dimension represent the different label classes (as opposed to, say, the dimension that represents different images in a batch).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.softmax(z, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<div id="507c301f" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.softmax(z, dim<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y) <span class="co"># notice that this represents a probability distribution!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>If we are looking for a discrete/point prediction rather than a probability distribution, we will typically choose the label that the model believes to be <strong>most probable</strong>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> torch.argmax(y, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<div id="22f49348" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> torch.argmax(y, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pred) <span class="co"># a prediction of which class/digit the image belong to</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Note that if all we wanted was a discrete prediction, we need not compute the softmax! (Why is that? How can we prove this property mathematically, using the definition of the softmax operation?)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> torch.argmax(z, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<div id="3e93a63a" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> torch.argmax(z, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Complete the function below, which computes the <strong>accuracy</strong> of a PyTorch model over a dataset. The accuracy metric is the proportion of predictions made that is correct, or:</p>
 <p><span class="math display">\[\frac{\textrm{the number of correct predictions}}{\textrm{total number of predictions made}}\]</span></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy_basic(model, dataset):</span>
+<div id="2a275041" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy_basic(model, dataset):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute the accuracy of `model` over the `dataset`.</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">    We will take the **most probable class**</span></span>
@@ -508,50 +536,55 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span>      <span class="co"># count the total number of predictions made</span></span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> <span class="dv">0</span>    <span class="co"># count the number of correct predictions made</span></span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> img, t <span class="kw">in</span> dataset:</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co"> - what should the input be? Recall that </span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> img.reshape(<span class="dv">1</span>, <span class="dv">784</span>) <span class="co"># SOLUTION</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co"> - how can we compute z = Wx + b using `model`?</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> model(x) <span class="co"># SOLUTION</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co"> - how can we obtain a point prediction?</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> <span class="bu">int</span>(torch.argmax(z, axis<span class="op">=</span><span class="dv">1</span>)) <span class="co"># SOLUTION</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">==</span> pred:</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>            correct <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy over the training set:"</span>)</span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(accuracy_basic(model, train_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co"> - what should the input be? Recall that</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co"> - how can we compute z = Wx + b using `model`?</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co"> - how can we obtain a point prediction?</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">==</span> pred:</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>            correct <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy over the training set:"</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(accuracy_basic(model, train_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Explain why we would expect the training accuracy above to be poor.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="68caf91b" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>One other nice thing about our <code>nn.Linear</code> model is that PyTorch <strong>vectorizes</strong> computations for us: we can make predictions for <em>many</em> images at the same time. Here is a rudimentary example where we make predictions for the first three images of our training set.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> train_data[<span class="dv">0</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
+<div id="4b363e27" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> train_data[<span class="dv">0</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> train_data[<span class="dv">1</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> train_data[<span class="dv">2</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.cat([x1, x2, x3]).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>) <span class="co"># note the -1 value here, explained below</span></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape) <span class="co"># Pytorch figures out that the shape of this tensor needs to be [3, 784]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The above code uses a features of PyTorch’s <code>reshape()</code> method that allows you to use the size <code>-1</code> as a placeholder value and let PyTorch figure out what the correct size should be.</p>
 <p>Now, we can make predictions for all 3 images simultaneously</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> model(X)</span>
+<div id="13b8552f" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> model(X)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.softmax(z, dim<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong> Complete the function <code>accuracy_vectorized</code> that outputs the same result as <code>accuracy_basic</code>, but uses vectorization to compute predictions for <strong>all</strong> inputs in the <code>dataset</code> simultaneously.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy_vectorized(model, dataset):</span>
+<div id="f85734ec" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy_vectorized(model, dataset):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Same signature as the `accuracy_basic()` function, but the call to model() is vectorized</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> torch.concat([x <span class="cf">for</span> x, t <span class="kw">in</span> dataset])</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> torch.Tensor([t <span class="cf">for</span> x, t <span class="kw">in</span> dataset])</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: use a single call to model() to compute the prediction for all inputs</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> model(X.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)) <span class="co"># SOLUTION</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: `pred` should have the same shape as `t`</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> torch.argmax(z, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># SOLUTION</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> <span class="bu">int</span>(torch.<span class="bu">sum</span>(t <span class="op">==</span> pred)) <span class="co"># count the number of correct predictions</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> t.shape[<span class="dv">0</span>]                  <span class="co"># count the total number of predictions made</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: `pred` should have the same shape as `t`</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> <span class="bu">int</span>(torch.<span class="bu">sum</span>(t <span class="op">==</span> pred)) <span class="co"># count the number of correct predictions</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> t.shape[<span class="dv">0</span>]                  <span class="co"># count the total number of predictions made</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Compare the runtime of <code>accuracy_basic</code> and <code>accuracy_vectorized</code> by running the two cells below. The line <code>%%time</code> prints the amount of time that Colab takes to run the code in the cell. The function call is repeated 100 times so that we can more clearly see the difference in runtime. Using what you learned from CSC311, explain why <code>accuracy_vectorized</code> is faster.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<div id="033dbdfb" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
@@ -559,7 +592,9 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>elapsed_time <span class="op">=</span> end_time <span class="op">-</span> start_time</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Elapsed time: </span><span class="sc">{</span>elapsed_time<span class="sc">:.4f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+</div>
+<div id="31b0dd83" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
@@ -568,15 +603,21 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>elapsed_time <span class="op">=</span> end_time <span class="op">-</span> start_time</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Elapsed time: </span><span class="sc">{</span>elapsed_time<span class="sc">:.4f}</span><span class="ss"> seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="afa6e1d1" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>If our data set is large, feeding all inputs into the model at the same time may result in an out of memory error. Thus, we may find PyTorch’s <code>DataLoader</code> useful. This class takes our data set and the desired batch size, and splits the data into mini-batches of that size. We can use a loop to iterate over the minibatches:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">100</span>)</span>
+<div id="8fbf0b43" class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> X, t <span class="kw">in</span> train_loader:</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(X.shape)</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(t.shape)</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Complete the definition of the <code>accuracy</code> function below:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(model, dataset):</span>
+<div id="0a4aa72f" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(model, dataset):</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Same signature as the `accuracy_basic()` function, but we will use a DataLoader and process</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">    100 images at a time</span></span>
@@ -585,42 +626,47 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    loader <span class="op">=</span> torch.utils.data.DataLoader(dataset, batch_size<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> X, t <span class="kw">in</span> loader:</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: use a single call to `model()` here as before</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> model(X.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)) <span class="co"># SOLUTION</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: `pred` should have the same shape as `t`</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> torch.argmax(z, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># SOLUTION</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: update `correct` and `total`</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>        correct <span class="op">+=</span> <span class="bu">int</span>(torch.<span class="bu">sum</span>(t <span class="op">==</span> pred))  <span class="co"># SOLUTION</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>        total   <span class="op">+=</span> t.shape[<span class="dv">0</span>]  <span class="co"># SOLUTION</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>accuracy(model, train_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co">: `pred` should have the same shape as `t`</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: update `correct` and `total`</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>accuracy(model, train_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-3.-cross-entropy-loss-and-automatic-gradient-computation" class="level2">
 <h2 class="anchored" data-anchor-id="part-3.-cross-entropy-loss-and-automatic-gradient-computation">Part 3. Cross Entropy Loss and Automatic Gradient Computation</h2>
 <p>Now that we understand how a linear model makes predictions, we can explore how to modify its parameters to produce a model that makes “better” predictions. To do this, we will define a measure of “good”ness (or rather, “bad”ness) of a model that is <strong>differentiable with respect to the parameters</strong>. Differentiability is important, because it allows us to compute derivatives with respect to these parameters, which tells us how to tune the parameters to decrease “bad”ness.</p>
 <p>This “badness” metric is called a <strong>loss function</strong>. A loss function compares the model prediction against the ground-truth target and produces a value representing how different the prediction is from the target. Like in CSC311, we will use the <strong>Cross-Entropy Loss</strong> for multi-class classification. In statistics courses you may learn about the theoretical reasons why the cross-entropy loss is appropriate for the multi-class classification task.</p>
 <p><span class="math display">\[\mathcal{L}(y, t) = - t \log(y) - (1-t) \log(1-y)\]</span></p>
-<p>You can read more about PyTorch’s implementation of the Cross-entropy loss here: <a href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html" class="uri">https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html</a> One key thing to note is that the cross entropy loss takes as input the <strong>unnormalized logits</strong> (the z’s) and <em>not</em> the post-softmax, normalized probabilities (the y’s).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can read more about PyTorch’s implementation of the Cross-entropy loss here: <a href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html">https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html</a> One key thing to note is that the cross entropy loss takes as input the <strong>unnormalized logits</strong> (the z’s) and <em>not</em> the post-softmax, normalized probabilities (the y’s).</p>
+<div id="ded30c76" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Before we go further, let’s get some more intuition about the cross-entropy loss. We first demonstrate the cross entropy loss in action by computing hte “badness”</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> train_data[<span class="dv">0</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)        <span class="co"># input</span></span>
+<div id="ac69225f" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> train_data[<span class="dv">0</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)        <span class="co"># input</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> torch.Tensor([train_data[<span class="dv">0</span>][<span class="dv">1</span>]]).<span class="bu">long</span>() <span class="co"># target label, represented as an integer index</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> model(x.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>))               <span class="co"># prediction logit</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> criterion(z, t)</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Consider the code below. What value of <code>label</code> would produce the lowest cross-entropy loss? Why? To answer this question, start by exploring the arguments passed to the call to <code>criterion</code>, and form an understanding of what those arugments represent. (Why are there 3 possible values of <code>label</code>? What do the 3 floating-point values in the first argument to <code>criterion</code> represent?)</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> <span class="va">None</span> <span class="co"># 0, 1, or 2?</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> <span class="dv">2</span> <span class="co"># SOLUTION</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> criterion(torch.Tensor([[<span class="fl">1.5</span>, <span class="fl">2.2</span>, <span class="fl">3.2</span>]]),</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                 torch.Tensor([label]).<span class="bu">long</span>())</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Explain why the label choice produces the lowest loss.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e23012cc" class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> <span class="va">None</span> <span class="co"># 0, 1, or 2?</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> criterion(torch.Tensor([[<span class="fl">1.5</span>, <span class="fl">2.2</span>, <span class="fl">3.2</span>]]),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                 torch.Tensor([label]).<span class="bu">long</span>())</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="57aeead6" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Explain why the label choice produces the lowest loss.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now that we have an understanding of the cross-entropy loss, we can begin to understand how PyTorch computes gradients. Notice that when we print the variable <code>loss</code> above, the value printed is not only a numerical value, but also has other information attached. These information help PyTorch compute gradients, and these gradients can be propagated backwards using the <code>loss.backward()</code> method.</p>
 <p>Under the hood, PyTorch <em>performs backpropagation</em>, which we discussed in CSC311 and will review again in the coming weeks. After <code>loss.backward()</code> is computed, tensors like <code>model.bias</code> and <code>model.weights</code> will have gradients.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recreate the model to clean up some hidden variables</span></span>
+<div id="3a8bcb9d" class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recreate the model to clean up some hidden variables</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>, out_features<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> train_data[<span class="dv">0</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)        <span class="co"># input</span></span>
@@ -631,39 +677,50 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loss)</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>loss.backward() <span class="co"># propagate the gradients with respect to the loss</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias.grad) <span class="co"># the gradient of the loss with respect to the bias vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.weight.grad) <span class="co"># the gradient of the loss with respect to the weight matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="bfc5c84c" class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias.grad) <span class="co"># the gradient of the loss with respect to the bias vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="32856d90" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.weight.grad) <span class="co"># the gradient of the loss with respect to the weight matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Verify that <code>model.bias.grad</code> is correct by computing this gradient explicitly in PyTorch. You may wish to begin by reviewing your past CSC311 notes, or by using calculus to find an expression to represent this quantity.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>t_onehot <span class="op">=</span> torch.eye(<span class="dv">10</span>)[t] <span class="co"># You may find this useful. (Why? What does this quantity represent)</span></span>
+<div id="60d95465" class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>t_onehot <span class="op">=</span> torch.eye(<span class="dv">10</span>)[t] <span class="co"># You may find this useful. (Why? What does this quantity represent)</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>model_bias_grad <span class="op">=</span> <span class="va">None</span>      <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>model_bias_grad <span class="op">=</span> (torch.softmax(z, dim<span class="op">=</span><span class="dv">1</span>) <span class="op">-</span> t_onehot)   <span class="co"># SOLUTION</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_bias_grad) <span class="co"># should be the same as model.bias.grad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_bias_grad) <span class="co"># should be the same as model.bias.grad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The gradient computation works in a vectorized setting as well.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data set with 3 inputs, 3 targets</span></span>
+<div id="5f323008" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data set with 3 inputs, 3 targets</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> train_data[<span class="dv">0</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> train_data[<span class="dv">1</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> train_data[<span class="dv">1</span>][<span class="dv">0</span>].reshape(<span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.cat([x1, x2, x3]).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)</span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> torch.Tensor([train_data[<span class="dv">0</span>][<span class="dv">1</span>], train_data[<span class="dv">1</span>][<span class="dv">1</span>], train_data[<span class="dv">2</span>][<span class="dv">1</span>]]).<span class="bu">long</span>()</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                 </span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span>
 <span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The average loss (mean) across the data points are shown:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>, out_features<span class="op">=</span><span class="dv">10</span>)</span>
+<div id="fde6a9a3" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>, out_features<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> model(X)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> criterion(z, t)</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loss)</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>loss.backward() <span class="co"># propagate the gradients with respect to the loss</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Verify that <code>model.bias.grad</code> is correct when using vectorized input by computing this gradient explicitly in PyTorch. Again, we recommend working this out by hand first. After you have done so, you may find the function <code>torch.sum()</code> or <code>torch.mean()</code> helpful.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>t_onehot <span class="op">=</span> torch.eye(<span class="dv">10</span>)[t] <span class="co"># </span><span class="al">TODO</span><span class="co">: understand the shape of this quantity before using it</span></span>
+<div id="63ca23bf" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>t_onehot <span class="op">=</span> torch.eye(<span class="dv">10</span>)[t] <span class="co"># </span><span class="al">TODO</span><span class="co">: understand the shape of this quantity before using it</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>model_bias_grad <span class="op">=</span> <span class="va">None</span>      <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>model_bias_grad <span class="op">=</span> torch.mean((torch.softmax(z, dim<span class="op">=</span><span class="dv">1</span>) <span class="op">-</span> t_onehot), axis<span class="op">=</span><span class="dv">0</span>) <span class="co"># SOLUTION</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_bias_grad)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias.grad) <span class="co"># should be the same as above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_bias_grad)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias.grad) <span class="co"># should be the same as above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-4.-neural-network-training-via-stochastic-gradient-descent." class="level2">
 <h2 class="anchored" data-anchor-id="part-4.-neural-network-training-via-stochastic-gradient-descent.">Part 4. Neural Network Training via Stochastic Gradient Descent.</h2>
@@ -672,18 +729,23 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <p>TODO: description of gradient descent here!!</p>
 <p>When we use the entire training data set to compute the gradient of the mean loss (with respect to each parameter), we call the approach <strong>full batch gradient descent</strong>. However, this approach is expensive if we have a large training set. Typically, we approximate this mean loss using a <strong>minibatch</strong>, or a small sample of the training set. Using gradient descent with this approximate gradient is called <strong>stochastic gradient descent</strong>.</p>
 <p>PyTorch has built-in classes inside the package <code>torch.optim</code> to perform these gradient update steps. We will use the <code>SGD</code> class. Initializing this class requires a few things, including the list of model parameters that we want to optimize. For us, the list of parameters to optimize include <code>model.weight</code> and <code>model.bias</code>, which we can obtain by calling <code>model.parameters()</code>.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<div id="38a9ca69" class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.SGD(model.parameters(), <span class="co"># the parameters to optimize</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                      lr<span class="op">=</span><span class="fl">0.005</span>)           <span class="co"># the learning rate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>There are two important optimizer methods that we will use. First is the <code>optimizer.zero_grad()</code> method, which clears the <code>.grad</code> attribute of the parameters. Let’s see how it works:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias.grad) <span class="co"># should be a nonzero value from above</span></span>
+<div id="503c9750" class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias.grad) <span class="co"># should be a nonzero value from above</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias.grad) <span class="co"># should be cleared</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The other method is the <code>step()</code> method, which performs the actual gradient descent update.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>, out_features<span class="op">=</span><span class="dv">10</span>)</span>
+<div id="4576a041" class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(in_features<span class="op">=</span><span class="dv">784</span>, out_features<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.SGD(model.parameters(), lr<span class="op">=</span><span class="fl">0.005</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias)</span>
@@ -698,9 +760,11 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span>
 <span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.bias) <span class="co"># should be different compared to above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now that we have everything in place, we are ready to write the training loop:</p>
 <p><strong>Graded Task</strong>: Complete the function below, which trains the model.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_model(model,</span>
+<div id="58e8de7d" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_model(model,</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>                train_data,</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                val_data,</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                learning_rate<span class="op">=</span><span class="fl">0.005</span>,</span>
@@ -727,59 +791,67 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 <span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
 <span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i, (images, labels) <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader):</span>
 <span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>                z <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>                z <span class="op">=</span> model(images.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">784</span>)) <span class="co"># SOLUTION</span></span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> criterion(z, labels) <span class="co"># SOLUTION</span></span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>                loss.backward() <span class="co"># propagate the gradients</span></span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>                optimizer.step() <span class="co"># update the parameters</span></span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>                optimizer.zero_grad() <span class="co"># clean up accumualted gradients</span></span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>                iter_count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> iter_count <span class="op">%</span> plot_every <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>                    iters.append(iter_count)</span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>                    train_loss.append(<span class="bu">float</span>(loss))</span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>                    train_acc.append(accuracy(model, train_data))</span>
-<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>                    val_acc.append(accuracy(model, val_data))</span>
-<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
-<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This try/finally block is to display the training curve</span></span>
-<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># even if training is interrupted</span></span>
-<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
-<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_loss)], train_loss)</span>
-<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Loss over iterations"</span>)</span>
-<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
-<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Loss"</span>)</span>
-<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
-<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_acc)], train_acc)</span>
-<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(val_acc)], val_acc)</span>
-<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Accuracy over iterations"</span>)</span>
-<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
-<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Accuracy"</span>)</span>
-<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a>        plt.legend([<span class="st">"Train"</span>, <span class="st">"Validation"</span>])</span>
-<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(<span class="dv">784</span>, <span class="dv">10</span>)</span>
-<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a>train_model(model, train_data, val_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>                loss.backward() <span class="co"># propagate the gradients</span></span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>                optimizer.step() <span class="co"># update the parameters</span></span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>                optimizer.zero_grad() <span class="co"># clean up accumualted gradients</span></span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>                iter_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> iter_count <span class="op">%</span> plot_every <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>                    iters.append(iter_count)</span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>                    train_loss.append(<span class="bu">float</span>(loss))</span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>                    train_acc.append(accuracy(model, train_data))</span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>                    val_acc.append(accuracy(model, val_data))</span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This try/finally block is to display the training curve</span></span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># even if training is interrupted</span></span>
+<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
+<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_loss)], train_loss)</span>
+<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Loss over iterations"</span>)</span>
+<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a>        plt.figure()</span>
+<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(train_acc)], train_acc)</span>
+<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a>        plt.plot(iters[:<span class="bu">len</span>(val_acc)], val_acc)</span>
+<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">"Accuracy over iterations"</span>)</span>
+<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Accuracy"</span>)</span>
+<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a>        plt.legend([<span class="st">"Train"</span>, <span class="st">"Validation"</span>])</span>
+<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Linear(<span class="dv">784</span>, <span class="dv">10</span>)</span>
+<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a>train_model(model, train_data, val_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-5.-hyperparameter-tuning" class="level2">
 <h2 class="anchored" data-anchor-id="part-5.-hyperparameter-tuning">Part 5. Hyperparameter Tuning</h2>
 <p>Our training process is not yet complete. In general, the performance of machine learning models depend heavily on the hyperparameter settings used. Hyperparameters are settings that cannot be tuned via gradient descent in a straightforward way. These settings can affect the model architecture, but may also affect the optimization process.</p>
 <p><strong>Graded Task</strong>: What are some examples of hyperparameters that affect the model architecture of a model? You may consider some hyperparameters that you learned about in CSC311. List at least 3 examples.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: List at least 3 examples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="563d0144" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: List at least 3 examples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: What are some examples of hyperparameters that affect the optimization process?</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: List at least 2 examples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="94166bd4" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: List at least 2 examples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Model architecture related hyperparameters are important to tune and should <em>not</em> be neglected in practical application. However, since we are working with a linear model right now, we are limited in this lab to exploring the optimization hyperparameters.</p>
 <p><strong>Task</strong>: What happens if the learning rate is too small? Provide an example training curve by calling <code>train_model</code> with a low learning rate, and describe the features of the training curve that you see.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="43a0dee5" class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: What happens if the learning rate is too large? Provide an example training curve by calling <code>train_model</code> with a large learning rate, and describe the features of the training curve that you see.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8d6892e7" class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Hyperparameter choices interact with one another. Thus, practitioners use a strategy called <strong>grid search</strong> to try all variations of hyperparameters from a set of hyperparameters. We will not do that here since linear models don’t yet have many hyperparameters to work with.</p>
 <p><strong>Task</strong>: Choose the best model that you have trained. Typically we make this choice using the validation accuracy. To understand how well the model you choose would generalize to unseen data, we use the <em>test data</em>. Compute the test accuracy for this model by calling the function <code>accuracy()</code> on the model and the test data.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Compute the test accuracy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3db4033b" class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Compute the test accuracy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -868,7 +940,7 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+        var filterRegex = new RegExp("https:\/\/utm-csc413\.github\.io\/2024F-website\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1203,9 +1275,9 @@ Run the following code snippet: <code>from google.colab import drive     drive.m
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab01.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/utm-csc413/2024F-website/blob/main/labs/lab01.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/utm-csc413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+<p>This page is built with ❤️, <a href="https://quarto.org/">Quarto</a> and inspiration from <a href="https://sta210-s22.github.io/website/">STA210</a>.</p>
 </div>
   </div>
 </footer>

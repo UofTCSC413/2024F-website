@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lab10 – CSC413 - Fall 2024</title>
+<title>CSC413 Lab 8: Text Classification using RNNs – CSC413 - Fall 2024, UTM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -136,12 +136,12 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="CSC413 - Fall 2024">
-<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
-<meta property="og:site_name" content="CSC413 - Fall 2024">
-<meta name="twitter:title" content="CSC413 - Fall 2024">
-<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
-<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta property="og:title" content="CSC413 Lab 8: Text Classification using RNNs – CSC413 - Fall 2024, UTM">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM.">
+<meta property="og:site_name" content="CSC413 - Fall 2024, UTM">
+<meta name="twitter:title" content="CSC413 Lab 8: Text Classification using RNNs – CSC413 - Fall 2024, UTM">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM.">
+<meta name="twitter:image" content="https://utm-csc413.github.io/2024F-website/labs/images/twitter-card.png">
 <meta name="twitter:creator" content="@minebocek">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -320,26 +320,37 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#csc413-lab-8-text-classification-using-rnns" id="toc-csc413-lab-8-text-classification-using-rnns" class="nav-link active" data-scroll-target="#csc413-lab-8-text-classification-using-rnns">CSC413 Lab 8: Text Classification using RNNs</a>
-  <ul class="collapse">
-  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link active" data-scroll-target="#submission">Submission</a></li>
   <li><a href="#part-1.-data" id="toc-part-1.-data" class="nav-link" data-scroll-target="#part-1.-data">Part 1. Data</a></li>
   <li><a href="#part-2.-model" id="toc-part-2.-model" class="nav-link" data-scroll-target="#part-2.-model">Part 2. Model</a></li>
   <li><a href="#part-3.-training" id="toc-part-3.-training" class="nav-link" data-scroll-target="#part-3.-training">Part 3. Training</a></li>
   <li><a href="#part-4.-pretrained-embeddings" id="toc-part-4.-pretrained-embeddings" class="nav-link" data-scroll-target="#part-4.-pretrained-embeddings">Part 4. Pretrained Embeddings</a></li>
-  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab10.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.dev/utm-csc413/2024F-website/blob/main/labs/lab10.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/utm-csc413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CSC413 Lab 8: Text Classification using RNNs</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<section id="csc413-lab-8-text-classification-using-rnns" class="level1">
-<h1>CSC413 Lab 8: Text Classification using RNNs</h1>
+</header>
+
+
 <p><strong>Sentiment Analysis</strong> is the problem of identifying the writer’s sentiment given a piece of text. Sentiment Analysis can be applied to movie reviews, feedback of other forms, emails, tweets, course evaluations, and much more.</p>
 <p>In this lab, we will build an RNN to classify positive vs negative tweets We use the Sentiment140 data set, which contains tweets with either a positive or negative emoticon. Our goal is to determine whether which type of emoticon the tweet (with the emoticon removed) contained. The dataset was actually collected by a group of students, much like you, who are doing their first machine learning projects.</p>
 <p>By the end of this lab, you will be able to:</p>
@@ -375,10 +386,13 @@ window.Quarto = {
 <section id="part-1.-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-1.-data">Part 1. Data</h2>
 <p>Start by running these two lines of code to download the data on to Google Colab.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download tutorial data files.</span></span>
+<div id="d8ee73c9" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download tutorial data files.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>www.cs.toronto.edu<span class="op">/~</span>lczhang<span class="op">/</span><span class="dv">413</span><span class="op">/</span>sample_tweets.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>As always, we start by understanding what our data looks like. Notice that the test set has been set aside for us. Both the training and test set files follow the same format. Each line in the csv file contains the tweet text, the string label “4” (positive) or “0” (negative), and some additional information about the tweet.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
+<div id="3f26b361" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>datafile <span class="op">=</span> <span class="st">"sample_tweets.csv"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Training/Validation set</span></span>
@@ -387,15 +401,20 @@ window.Quarto = {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(line)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">10</span>:</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: How many positive and negative tweets are in this file?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter <span class="co"># SOLUTION</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Counter(x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> csv.reader(<span class="bu">open</span>(datafile))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="321e515f" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Counter(x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> csv.reader(<span class="bu">open</span>(datafile))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: We have printed several negative tweets above. Print 10 positive tweets.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Please make sure to include both your code and the</span></span>
+<div id="9fe6e4ca" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Please make sure to include both your code and the</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># printed output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We will now split the dataset into training, validation, and test sets:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data; convert labels into integers</span></span>
+<div id="284b58bf" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data; convert labels into integers</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [(review, <span class="bu">int</span>(label<span class="op">==</span><span class="st">'4'</span>))  <span class="co"># label 1 = positive, 0 = negative</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> label, _, _, _, _, review <span class="kw">in</span> csv.reader(<span class="bu">open</span>(datafile))]</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -407,9 +426,11 @@ window.Quarto = {
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> data[:<span class="dv">50000</span>] </span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>val_data <span class="op">=</span> data[<span class="dv">50000</span>:<span class="dv">60000</span>] </span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> data[<span class="dv">60000</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>In order to be able to use neural networks to make predictions about these tweets, we need to begin by convert these tweets into sequences of numbers, each representing a words. This is akin to a one-hot encoding: each word will be converted into an a number representing the unique <em>index</em> of that word.</p>
 <p>Although we could do this conversion by writing our own python code, torch has a package called <strong>torchtext</strong> that has utilities useful for text classification and generation tasks. In particular, the <code>Vocab</code> class and <code>build_vocab_from_iterator</code> will be useful for us for building the mapping from words to indices.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchtext</span>
+<div id="3cc4a246" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchtext</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchtext.data.utils <span class="im">import</span> get_tokenizer</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchtext.vocab <span class="im">import</span> Vocab, build_vocab_from_iterator</span>
@@ -428,6 +449,7 @@ window.Quarto = {
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># set the index of a word not in the vocabulary</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>vocab.set_default_index(<span class="dv">2</span>) <span class="co"># this is the index of the `&lt;unk&gt;` keyword</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now, <code>vocab</code> is an object of class <code>Vocab</code> (see more here <a href="https://pytorch.org/text/stable/vocab.html">https://pytorch.org/text/stable/vocab.html</a> ) that provides functionalities for converting words into their indices. In addition to words appearing in the training set, ther are four special tokens that we use, akin to placeholder words:</p>
 <ul>
 <li><code>&lt;bos&gt;</code>, to indicate the beginning of a sequence.</li>
@@ -437,7 +459,8 @@ window.Quarto = {
 </ul>
 <p>The <code>min_freq</code> parameter identifies the minimum number of times a word must appear in the training set in order to be included in the vocabulary.</p>
 <p>Here you can see the <code>vocab</code> object in action:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the number of words in the vocabulary</span></span>
+<div id="40c1e5ab" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the number of words in the vocabulary</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(vocab))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert a tweet into a sequence of word indices.</span></span>
@@ -446,25 +469,31 @@ window.Quarto = {
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> vocab.forward(tokens)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indices)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: What is the index of the <code>&lt;pad&gt;</code> token?</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write code to identify the index of the `&lt;pad&gt;` token</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vocab.forward([<span class="st">'&lt;pad&gt;'</span>]) <span class="co"># SOLUTION: 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="36eb8d98" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: write code to identify the index of the `&lt;pad&gt;` token</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now let’s apply this transformation to the entire set of training, validation, and test data.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_indices(data, vocab):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convert data of form [(tweet, label)...] where tweet is a string</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    into an equivalent list, but where the tweets represented as a list</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    of word indices.</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(vocab.forward(tokenizer(<span class="ss">f'&lt;bos&gt; </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss"> &lt;eos&gt;'</span>)), label)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> (text, label) <span class="kw">in</span> data]</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>train_data_indices <span class="op">=</span> convert_indices(train_data, vocab)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>val_data_indices <span class="op">=</span> convert_indices(val_data, vocab)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>test_data_indices <span class="op">=</span> convert_indices(test_data, vocab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c25f875f" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_indices(data, vocab):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convert data of form [(tweet, label)...] where tweet is a string</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    into an equivalent list, but where the tweets represented as a list</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    of word indices.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(vocab.forward(tokenizer(<span class="ss">f'&lt;bos&gt; </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss"> &lt;eos&gt;'</span>)), label)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> (text, label) <span class="kw">in</span> data]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>train_data_indices <span class="op">=</span> convert_indices(train_data, vocab)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>val_data_indices <span class="op">=</span> convert_indices(val_data, vocab)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>test_data_indices <span class="op">=</span> convert_indices(test_data, vocab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We have seen that PyTorch’s <code>DataLoader</code> provides an easy way to form minibatches when we worked with image data. However, text and sequence data is more challenging to work with since the sequences may not be the same length.</p>
 <p>Although we can (and will!) continue to use <code>DataLoader</code> for our text data, we need to provide a function that merges sequences of various lengths into two PyTorch tensors correspondingg to the inputs and targets for that batch.</p>
 <p><strong>Task</strong>: Following the instructions below, complete the <code>collate_batch</code> function, which creates the input and target tensors for a batch of data.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<div id="17443eb6" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.nn.utils.rnn <span class="im">import</span> pad_sequence</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -488,25 +517,28 @@ window.Quarto = {
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (text_indices, label) <span class="kw">in</span> batch:</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        text_list.append(torch.tensor(text_indices))</span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co">: what do we need to do with `label`?</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        label_list.append(label) <span class="co"># SOLUTION</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> pad_sequence(text_list, padding_value<span class="op">=</span><span class="dv">3</span>).transpose(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> torch.tensor(label_list) <span class="co"># SOLUTION</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X, t</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>train_dataloader <span class="op">=</span> DataLoader(train_data_indices, batch_size<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>                              collate_fn<span class="op">=</span>collate_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> pad_sequence(text_list, padding_value<span class="op">=</span><span class="dv">3</span>).transpose(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X, t</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>train_dataloader <span class="op">=</span> DataLoader(train_data_indices, batch_size<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>                              collate_fn<span class="op">=</span>collate_batch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>With the above code in mind, we should be able to extract batches from <code>train_dataloader</code>. Notice that <code>X.shape</code> is different in each batch. You should also see that the index <code>3</code> is used to pad shorter sequences in in a batch.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (X, t) <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataloader):</span>
+<div id="cec441b2" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (X, t) <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataloader):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(X.shape, t.shape)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;=</span> <span class="dv">10</span>:</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Why does each sequence begin with the token <code>0</code>, and end with the token <code>1</code> (ignoring the paddings).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="46c4cf6f" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-2.-model" class="level2">
 <h2 class="anchored" data-anchor-id="part-2.-model">Part 2. Model</h2>
@@ -517,7 +549,8 @@ window.Quarto = {
 <li>A <em>fully connected layer</em>, which computes the final binary classification using features computed from the recurrent layer. In our case, we concatenate the <em>max</em> and <em>mean</em> of the hidden units across the time steps (i.e.&nbsp;across each word).</li>
 </ul>
 <p>Let’s define the model that we will use, and then explore it step by step.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<div id="a0f28bc7" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyRNN(nn.Module):</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, vocab_size, emb_size, hidden_size, num_classes):</span>
@@ -544,18 +577,24 @@ window.Quarto = {
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z</span>
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MyRNN(<span class="bu">len</span>(vocab), <span class="dv">128</span>, <span class="dv">64</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>To explore exactly what this model is doing, let’s grab one batch of data from the data loader we created. We will observe, step-by-step, what computation will be performed on the input <code>X</code> to obtain the final prediction. We do this by emulating the <code>forward</code> method of the <code>MyRNN</code> function.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X, t <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(train_dataloader))</span>
+<div id="8fcc1d0d" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X, t <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(train_dataloader))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Run the code below to check the shape of <code>wordemb</code>. What shape does this tensor have? Explain what each dimension in this shape means.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wordemb <span class="op">=</span> model.emb(X)</span>
+<div id="37d3c22f" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wordemb <span class="op">=</span> model.emb(X)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wordemb.shape)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Run the code below, which computes the RNN forward pass, with <code>wordemb</code> as input. What shape do the tensors <code>h</code> and <code>out</code> have? Explain what these tensors correspond to. (See the RNN reference <a href="https://pytorch.org/docs/stable/generated/torch.nn.RNN.html">https://pytorch.org/docs/stable/generated/torch.nn.RNN.html</a> on the PyTorch documentation page.)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>h, out <span class="op">=</span> model.rnn(wordemb)</span>
+<div id="6f17f7a8" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>h, out <span class="op">=</span> model.rnn(wordemb)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(h.shape)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(out.shape)</span>
@@ -568,6 +607,7 @@ window.Quarto = {
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(out[<span class="dv">0</span>, index, :])</span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: There is a step in the MyRNN forward pass that combines the features from <em>each</em> time step of the RNN by computing:</p>
 <ol type="1">
 <li>the <em>maximum</em> value of each position in the hidden vector.</li>
@@ -576,7 +616,8 @@ window.Quarto = {
 </ol>
 <p>(Note that in the demo below, we are working with a minibatch. Thus, each of <code>out1</code>, <code>out2</code>, and <code>features</code> below are <em>matrices</em> containing the vectors from each minibatch)</p>
 <p>This method typically performs better than, say, taking the hidden state at the last time step (the value <code>out</code> from above). Explain, intuitively, why you might expect this performance to be the case for a sentiment analysis task.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> torch.amax(h, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<div id="5d12985b" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> torch.amax(h, dim<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> torch.mean(h, dim<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> torch.cat([out1, out2], axis<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -588,10 +629,14 @@ window.Quarto = {
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(features[index, :])</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Finally, the model uses the <code>features</code> tensor to compute the prediction for each element in the batch. Run the code below to complete this step.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.fc(features))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a76aa317" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.fc(features))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>There is one more thing we need to do before training the model, which is to write a function to estimate the accuracy of the model. This is done for you below.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(model, dataset, <span class="bu">max</span><span class="op">=</span><span class="dv">1000</span>):</span>
+<div id="8fc11ede" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(model, dataset, <span class="bu">max</span><span class="op">=</span><span class="dv">1000</span>):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Estimate the accuracy of `model` over the `dataset`.</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">    We will take the **most probable class**</span></span>
@@ -620,12 +665,14 @@ window.Quarto = {
 <span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> correct <span class="op">/</span> total</span>
 <span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>accuracy(model, train_data_indices) <span class="co"># should be close to half</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-3.-training" class="level2">
 <h2 class="anchored" data-anchor-id="part-3.-training">Part 3. Training</h2>
 <p>In this section, we will train the <code>MyRNN</code> model to classify tweets. As the models that we are building begin to increase in complexity, it is important to use good debugging techniques. In this section, we will introduce the technique of checking whether the model and training code is able to overfit on a small training set. This is a way to check for bugs in the implementation.</p>
 <p><strong>Task</strong>: Complete the training code below</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim </span>
+<div id="8501ba96" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_model(model,                <span class="co"># an instance of MLPModel</span></span>
@@ -652,58 +699,58 @@ window.Quarto = {
 <span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
 <span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i, (texts, labels) <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader):</span>
 <span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>                z <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>                z <span class="op">=</span> model(texts) <span class="co"># SOLUTION</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> criterion(z, labels) <span class="co"># SOLUTION</span></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>                loss.backward() <span class="co"># propagate the gradients</span></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>                optimizer.step() <span class="co"># update the parameters</span></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>                optimizer.zero_grad() <span class="co"># clean up accumualted gradients</span></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>                iter_count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> iter_count <span class="op">%</span> plot_every <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>                    iters.append(iter_count)</span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>                    ta <span class="op">=</span> accuracy(model, train_data)</span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>                    va <span class="op">=</span> accuracy(model, val_data)</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>                    train_loss.append(<span class="bu">float</span>(loss))</span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>                    train_acc.append(ta)</span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>                    val_acc.append(va)</span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(iter_count, <span class="st">"Loss:"</span>, <span class="bu">float</span>(loss), <span class="st">"Train Acc:"</span>, ta, <span class="st">"Val Acc:"</span>, va)</span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This try/finally block is to display the training curve</span></span>
-<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># even if training is interrupted</span></span>
-<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> plot:</span>
-<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>            plt.figure()</span>
-<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>            plt.plot(iters[:<span class="bu">len</span>(train_loss)], train_loss)</span>
-<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>            plt.title(<span class="st">"Loss over iterations"</span>)</span>
-<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>            plt.xlabel(<span class="st">"Iterations"</span>)</span>
-<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>            plt.ylabel(<span class="st">"Loss"</span>)</span>
-<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>            plt.figure()</span>
-<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>            plt.plot(iters[:<span class="bu">len</span>(train_acc)], train_acc)</span>
-<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>            plt.plot(iters[:<span class="bu">len</span>(val_acc)], val_acc)</span>
-<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>            plt.title(<span class="st">"Accuracy over iterations"</span>)</span>
-<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>            plt.xlabel(<span class="st">"Iterations"</span>)</span>
-<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>            plt.ylabel(<span class="st">"Loss"</span>)</span>
-<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>            plt.legend([<span class="st">"Train"</span>, <span class="st">"Validation"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>                loss.backward() <span class="co"># propagate the gradients</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>                optimizer.step() <span class="co"># update the parameters</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>                optimizer.zero_grad() <span class="co"># clean up accumualted gradients</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>                iter_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> iter_count <span class="op">%</span> plot_every <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>                    iters.append(iter_count)</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>                    ta <span class="op">=</span> accuracy(model, train_data)</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>                    va <span class="op">=</span> accuracy(model, val_data)</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>                    train_loss.append(<span class="bu">float</span>(loss))</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>                    train_acc.append(ta)</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>                    val_acc.append(va)</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(iter_count, <span class="st">"Loss:"</span>, <span class="bu">float</span>(loss), <span class="st">"Train Acc:"</span>, ta, <span class="st">"Val Acc:"</span>, va)</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This try/finally block is to display the training curve</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># even if training is interrupted</span></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> plot:</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>            plt.figure()</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>            plt.plot(iters[:<span class="bu">len</span>(train_loss)], train_loss)</span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>            plt.title(<span class="st">"Loss over iterations"</span>)</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>            plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>            plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>            plt.figure()</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>            plt.plot(iters[:<span class="bu">len</span>(train_acc)], train_acc)</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>            plt.plot(iters[:<span class="bu">len</span>(val_acc)], val_acc)</span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>            plt.title(<span class="st">"Accuracy over iterations"</span>)</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>            plt.xlabel(<span class="st">"Iterations"</span>)</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>            plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>            plt.legend([<span class="st">"Train"</span>, <span class="st">"Validation"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: As a way to check the model and training code, check if your model can obtain a 100% training accuracy relatively quickly (e.g.&nbsp;within less than a minute of training time), when training on only the first 20 element of the training data.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MyRNN(vocab_size<span class="op">=</span><span class="bu">len</span>(vocab),</span>
+<div id="0258a7b8" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MyRNN(vocab_size<span class="op">=</span><span class="bu">len</span>(vocab),</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>              emb_size<span class="op">=</span><span class="dv">300</span>,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>              hidden_size<span class="op">=</span><span class="dv">64</span>,</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>              num_classes<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your code and output </span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>train_model(model, train_data_indices[:<span class="dv">20</span>], val_data_indices[:<span class="dv">20</span>], <span class="co"># SOLUTION</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>            batch_size<span class="op">=</span><span class="dv">10</span>, num_epochs<span class="op">=</span><span class="dv">100</span>, plot_every<span class="op">=</span><span class="dv">1</span>,    <span class="co"># SOLUTION</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>            learning_rate<span class="op">=</span><span class="fl">0.001</span>)                            <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your code and output </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Will this model that you trained above have a high accuracy over the validation set? Explain why or why not.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bd423d2a" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Train your model on the full data set. What validation accuracy can you achieve?</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your code here. Try a few hyperparameter choices until you</span></span>
+<div id="4343c761" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your code here. Try a few hyperparameter choices until you</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># are satisfied that your model performance is reasonable (i.e. no obviously</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># poor hyperparameter choices)</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MyRNN(vocab_size<span class="op">=</span><span class="bu">len</span>(vocab), emb_size<span class="op">=</span><span class="dv">300</span>, hidden_size<span class="op">=</span><span class="dv">64</span>, num_classes<span class="op">=</span><span class="dv">2</span>) <span class="co"># SOLUTION</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>train_model(model, train_data_indices, val_data_indices, batch_size<span class="op">=</span><span class="dv">100</span>, num_epochs<span class="op">=</span><span class="dv">20</span>, learning_rate<span class="op">=</span><span class="fl">0.001</span>) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># poor hyperparameter choices)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Instead of a (vanilla) RNN model, PyTorch also makes available <code>nn.LSTM</code> and <code>nn.GRU</code> units. They can be used in place of <code>nn.RNN</code> without further changes to the <code>MyRNN</code> code.</p>
 <p>In general, gated units like LSTM’s are much more frequently used than vanilla RNNs, although transformers are much more popular now as well.</p>
 </section>
@@ -713,14 +760,19 @@ window.Quarto = {
 <p>Just like with images, using a pretrained model is an important strategy for working with text. Large language models is an excellent demonstration of how generalizable pretrained features can be.</p>
 <p>In this part of the lab, we will use a slightly older idea of using pretrained <em>word embeddings</em>. In particular, instead of training our own <code>nn.Embedding</code> layer, we will use GloVe embeddings (2014) <a href="https://nlp.stanford.edu/projects/glove/">https://nlp.stanford.edu/projects/glove/</a> trained on a large data set containing all of Wikipedia and other webpages.</p>
 <p>Nowadays, large language model (LLMs), including those with APIs provided by various organizations, can also be used to map words/sentences into embeddings. However, the basic idea of using pretrained models in low-data settings remains similar. We will also identify some bias issues with pretrained word embeddings. There is evidence that these types of bias issues continues to persist in LLMs as well.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchtext.vocab <span class="im">import</span> GloVe</span>
+<div id="41308fa2" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchtext.vocab <span class="im">import</span> GloVe</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>glove <span class="op">=</span> torchtext.vocab.GloVe(name<span class="op">=</span><span class="st">"6B"</span>, dim<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Run the below code to print the GloVe word embedding for the word “cat”.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(glove[<span class="st">'cat'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6b09e544" class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(glove[<span class="st">'cat'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Unfortunately, it is not straightforward to add the <code>&lt;pad&gt;</code>, <code>&lt;unk&gt;</code>, <code>&lt;bos&gt;</code> and <code>&lt;eos&gt;</code> tokens. So we will do without them.</p>
 <p><strong>Task</strong>: Run the below code to look up GloVe word indices for the training, validation, and test sets.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_indices_glove(data, default<span class="op">=</span><span class="bu">len</span>(glove)<span class="op">-</span><span class="dv">1</span>):</span>
+<div id="32d30894" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_indices_glove(data, default<span class="op">=</span><span class="bu">len</span>(glove)<span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> text, label <span class="kw">in</span> data:</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        words <span class="op">=</span> tokenizer(text) <span class="co"># for simplicity, we wont use &lt;bos&gt; and &lt;eos&gt;</span></span>
@@ -739,8 +791,10 @@ window.Quarto = {
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>train_data_glove <span class="op">=</span> convert_indices_glove(train_data)</span>
 <span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>val_data_glove <span class="op">=</span> convert_indices_glove(val_data)</span>
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>test_data_glove <span class="op">=</span> convert_indices_glove(test_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now, we will modify the <code>MyRNN</code> to use the pretrained GloVe vectors:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyGloveRNN(nn.Module):</span>
+<div id="96172f5f" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyGloveRNN(nn.Module):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,  hidden_size, num_classes):</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(MyGloveRNN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.vocab_size, <span class="va">self</span>.emb_size <span class="op">=</span> glove.vectors.shape</span>
@@ -771,64 +825,76 @@ window.Quarto = {
 <span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MyGloveRNN(<span class="dv">64</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong> Train this model. Use comparable hyperparameters so that you can compare your result against <code>MyRNN</code>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Train your model here, and include the output</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MyGloveRNN(<span class="dv">100</span>, <span class="dv">2</span>)                           <span class="co"># SOLUTION</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>train_model(model, train_data_glove, val_data_glove, <span class="co"># SOLUTION</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>              batch_size<span class="op">=</span><span class="dv">100</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>              num_epochs<span class="op">=</span><span class="dv">200</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>              plot_every<span class="op">=</span><span class="dv">100</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>              learning_rate<span class="op">=</span><span class="fl">0.001</span>) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3d34cc0e" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Train your model here, and include the output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: You might notice that a <em>very</em> smaller number of iterations will be required to train this model to a reasonable performance (e.g.&nbsp;&gt;70% validation accuracy). Why might this be?</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0daa9159" class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include your explanation here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Train both MyGloveRNN and MyRNN models using the corresponding embeddings (pretrained vs.&nbsp;not), <strong>but only with the first 200 data points in the training set</strong>. How do the validation accuracies compare between these two models?</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Training code for MyGloveRNN.</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Include outputs and training curves in your submission</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>glove_model <span class="op">=</span> MyGloveRNN(<span class="dv">100</span>, <span class="dv">2</span>)                                  <span class="co"># SOLUTION</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>train_model(glove_model, train_data_glove[:<span class="dv">200</span>], val_data_glove, <span class="co"># SOLUTION</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>              batch_size<span class="op">=</span><span class="dv">200</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>              num_epochs<span class="op">=</span><span class="dv">200</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>              plot_every<span class="op">=</span><span class="dv">100</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>              learning_rate<span class="op">=</span><span class="fl">0.001</span>) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Training code for MyRNN</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Include outputs and training curves in your submission</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>rnn_model <span class="op">=</span> MyRNN(<span class="bu">len</span>(vocab), <span class="dv">300</span>, <span class="dv">100</span>, <span class="dv">2</span>)                                  <span class="co"># SOLUTION</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>train_model(rnn_model, train_data_indices[:<span class="dv">200</span>], val_data_indices, <span class="co"># SOLUTION</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>              batch_size<span class="op">=</span><span class="dv">200</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>              num_epochs<span class="op">=</span><span class="dv">200</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>              plot_every<span class="op">=</span><span class="dv">100</span>, <span class="co"># SOLUTION</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>              learning_rate<span class="op">=</span><span class="fl">0.001</span>) <span class="co"># SOLUTION</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Compare the validation accuaries here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e4b9072e" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Training code for MyGloveRNN.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Include outputs and training curves in your submission</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a9c9aea7" class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Training code for MyRNN</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Include outputs and training curves in your submission</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3042bed3" class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Compare the validation accuaries here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Machine learning models have an air of “fairness” about them, since models make decisions without human intervention. However, models can and do learn whatever bias is present in the training data. GloVe vectors seems innocuous enough: they are just representations of words in some embedding space. Even so, we will show that the structure of the GloVe vectors encodes the everyday biases present in the texts that they are trained on.</p>
 <p>We start with an example analogy to demonstrate the power of GloVe embeddings that allows us to complete analogies by applying arithmetic operations to the word vectors.</p>
 <p><span class="math display">\[doctor - man + woman \approx ??\]</span></p>
 <p>To find the answers to the above analogy, we will compute the following vector, and then find the word whose vector representation is <em>closest</em> to it.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> glove[<span class="st">'doctor'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="416955a6" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> glove[<span class="st">'doctor'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Run the code below to find the closets word. You should see the word “nurse” fairly high up in that list.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_closest_words(vec, n<span class="op">=</span><span class="dv">5</span>):</span>
+<div id="18fb9d33" class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_closest_words(vec, n<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    dists <span class="op">=</span> torch.norm(glove.vectors <span class="op">-</span> vec, dim<span class="op">=</span><span class="dv">1</span>)     <span class="co"># compute distances to all words</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    lst <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">enumerate</span>(dists.numpy()), key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>]) <span class="co"># sort by distance</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx, difference <span class="kw">in</span> lst[<span class="dv">1</span>:n<span class="op">+</span><span class="dv">1</span>]:                         <span class="co"># take the top n</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(glove.itos[idx], difference)</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>print_closest_words(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: To compare, use a similar method to find the answer to this analogy: <span class="math display">\[doctor - woman + man \approx ??\]</span></p>
 <p>In other words, we go the opposite direction in the “gender” axis to check if similarly concerning analogies exist.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'doctor'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a72d150e" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'doctor'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Compare the following two outputs.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'programmer'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'programmer'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6da371f2" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'programmer'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="faa86b6d" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'programmer'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Compare the following two outputs.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'professor'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'professor'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="10d06e59" class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'professor'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b37c91e7" class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'professor'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Compare the following two outputs.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'engineer'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'engineer'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f4c803ea" class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'engineer'</span>] <span class="op">-</span> glove[<span class="st">'man'</span>] <span class="op">+</span> glove[<span class="st">'woman'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ba13f55d" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>print_closest_words(glove[<span class="st">'engineer'</span>] <span class="op">-</span> glove[<span class="st">'woman'</span>] <span class="op">+</span> glove[<span class="st">'man'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Explain where the bias in these embeddings come from. Would you expect our word embeddings (trained on tweets) to be similarly problematic? Why or why not?</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="12bc61d2" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -917,7 +983,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+        var filterRegex = new RegExp("https:\/\/utm-csc413\.github\.io\/2024F-website\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1252,9 +1318,9 @@ window.Quarto = {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab10.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/utm-csc413/2024F-website/blob/main/labs/lab10.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/utm-csc413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+<p>This page is built with ❤️, <a href="https://quarto.org/">Quarto</a> and inspiration from <a href="https://sta210-s22.github.io/website/">STA210</a>.</p>
 </div>
   </div>
 </footer>

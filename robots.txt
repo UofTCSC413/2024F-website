@@ -1,1 +1,1 @@
-Sitemap: https://uoftcsc413.github.io/2024F-website/sitemap.xml
+Sitemap: https://utm-csc413.github.io/2024F-website/sitemap.xml

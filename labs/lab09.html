@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lab09 – CSC413 - Fall 2024</title>
+<title>CSC413 Lab 9: GradCAM and Input Gradients – CSC413 - Fall 2024, UTM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -136,12 +136,12 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="CSC413 - Fall 2024">
-<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
-<meta property="og:site_name" content="CSC413 - Fall 2024">
-<meta name="twitter:title" content="CSC413 - Fall 2024">
-<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024.">
-<meta name="twitter:image" content="https://uoftcsc413.github.io/2024F-website/labs/images/twitter-card.png">
+<meta property="og:title" content="CSC413 Lab 9: GradCAM and Input Gradients – CSC413 - Fall 2024, UTM">
+<meta property="og:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM.">
+<meta property="og:site_name" content="CSC413 - Fall 2024, UTM">
+<meta name="twitter:title" content="CSC413 Lab 9: GradCAM and Input Gradients – CSC413 - Fall 2024, UTM">
+<meta name="twitter:description" content="Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM.">
+<meta name="twitter:image" content="https://utm-csc413.github.io/2024F-website/labs/images/twitter-card.png">
 <meta name="twitter:creator" content="@minebocek">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -320,25 +320,36 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#csc413-lab-9-gradcam-and-input-gradients" id="toc-csc413-lab-9-gradcam-and-input-gradients" class="nav-link active" data-scroll-target="#csc413-lab-9-gradcam-and-input-gradients">CSC413 Lab 9: GradCAM and Input Gradients</a>
-  <ul class="collapse">
-  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link active" data-scroll-target="#submission">Submission</a></li>
   <li><a href="#part-1.-class-activation-maps-cam" id="toc-part-1.-class-activation-maps-cam" class="nav-link" data-scroll-target="#part-1.-class-activation-maps-cam">Part 1. Class Activation Maps (CAM)</a></li>
   <li><a href="#part-2.-grad-cam" id="toc-part-2.-grad-cam" class="nav-link" data-scroll-target="#part-2.-grad-cam">Part 2. Grad-CAM</a></li>
   <li><a href="#just-for-fun" id="toc-just-for-fun" class="nav-link" data-scroll-target="#just-for-fun">Just For Fun</a></li>
-  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab09.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.dev/utm-csc413/2024F-website/blob/main/labs/lab09.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/utm-csc413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CSC413 Lab 9: GradCAM and Input Gradients</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<section id="csc413-lab-9-gradcam-and-input-gradients" class="level1">
-<h1>CSC413 Lab 9: GradCAM and Input Gradients</h1>
+</header>
+
+
 <p>We have seen that convolutional neural networks (CNN) are successful in many computer vision tasks, including classification, object detection and others. However, it is not immediately clear how CNNs work, and how one can explain the predictions made by CNNs. A deeper understanding of how CNNs work can also help us identify reasons why CNNs may fail to produce correct predictions for some samples.</p>
 <p>A line of work started to visualize and interpret computed features of convolutional neural networks. CAM and Grad-CAM are two influential and fundamental works to find which parts of the input have the most impact on the final output of the models by analyzing the model’s extracted feature maps.</p>
 <p>By the end of this lab, you will be able to:</p>
@@ -376,7 +387,8 @@ window.Quarto = {
 <p>The framework of the Class Activation Mapping is as below (from https://github.com/zhoubolei/CAM):</p>
 <p><img src="https://camo.githubusercontent.com/ef86405fc14b4af391c891c93a50ce92c8bfc3f8fae6e7c04f5f7185b21c3eca/687474703a2f2f636e6e6c6f63616c697a6174696f6e2e637361696c2e6d69742e6564752f6672616d65776f726b2e6a7067" width="500px"></p>
 <p>In this part of the lab, we will implement CAM to produce a heatmap of the contribution to locations in the image to a predicted class. We will use the pre-trained convolutional neural network <strong>ResNet</strong>, chosen because this model’s architecture uses global average pooling (GAP). ResNet is trained on the ImageNet data set.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models, transforms</span>
+<div id="cell-2" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models, transforms</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
@@ -393,16 +405,24 @@ window.Quarto = {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print model architecture</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># We will use the CNN activations computed after layer 4, and before GAP.</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>resnet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The ImageNet labels are a bit challenging to read. We will download a list of human-readable labels from here:</p>
-<pre><code>!wget https://raw.githubusercontent.com/anishathalye/imagenet-simple-labels/master/imagenet-simple-labels.json</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the imagenet category list</span></span>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>anishathalye<span class="op">/</span>imagenet<span class="op">-</span>simple<span class="op">-</span>labels<span class="op">/</span>master<span class="op">/</span>imagenet<span class="op">-</span>simple<span class="op">-</span>labels.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the imagenet category list</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'imagenet-simple-labels.json'</span>) <span class="im">as</span> f:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    classes <span class="op">=</span> json.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>To remind ourselves of how ResNet works, let’s predict what class these images belongs to:</p>
 <p><img src="https://www.cs.toronto.edu/~lczhang/413/cat.jpg" width="300px"> <img src="https://www.cs.toronto.edu/~lczhang/413/boat.jpg" width="300px"></p>
-<pre><code>!wget https://www.cs.toronto.edu/~lczhang/413/cat.jpg
-!wget https://www.cs.toronto.edu/~lczhang/413/boat.jpg</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>www.cs.toronto.edu<span class="op">/~</span>lczhang<span class="op">/</span><span class="dv">413</span><span class="op">/</span>cat.jpg</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>www.cs.toronto.edu<span class="op">/~</span>lczhang<span class="op">/</span><span class="dv">413</span><span class="op">/</span>boat.jpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_input(image_file):</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># open the image</span></span>
@@ -417,8 +437,10 @@ window.Quarto = {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>          std<span class="op">=</span>[<span class="fl">0.229</span>, <span class="fl">0.224</span>, <span class="fl">0.225</span>])])</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> preprocess(img).unsqueeze(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Write a function that takes a model and an image file and produces a list of the top 5 predictions with the corresponding probability score.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(model, image_file):</span>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(model, image_file):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Return the top 5 class predictions with the corresponding probability score.</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -444,19 +466,22 @@ window.Quarto = {
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> model(x) <span class="co"># SOLUTION</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="bu">float</span>(s) <span class="cf">for</span> s <span class="kw">in</span> torch.softmax(scores, axis<span class="op">=</span><span class="dv">1</span>)[<span class="dv">0</span>]] <span class="co"># SOLUTION</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">zip</span>(classes, <span class="bu">range</span>(<span class="dv">1000</span>),  y), key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">2</span>], reverse<span class="op">=</span><span class="va">True</span>)[:<span class="dv">5</span>] <span class="co"># SOLUTION</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Please include the output of the below cell in your submission.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>predict(resnet, <span class="st">'cat.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>predict(resnet, <span class="st">'cat.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now that we can use ResNet to make predictions, we need two additional pieces of information for CAM.</p>
 <p>First, given an image, we need to be able to compute the <strong>features/activations of the last convolutional layer</strong>. This feature map is the input to the GAP layer. Although this information is computed in a forward pass, we will need to write some code to extract this information.</p>
 <p>Second, we will need the weights of the final fully-connected layer in ResNet.</p>
 <p><strong>Graded Task</strong>: Complete the following function that takes an image file and produces the weights of the finally fully-connected layer in Resnet. You may find the <code>named_children()</code> method of resnet helpful, as it produces a sequence of (named) layers. We would like the feature map directly before the global average pooling layer.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (name, model) <span class="kw">in</span> resnet.named_children():</span>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (name, model) <span class="kw">in</span> resnet.named_children():</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_resnet_features(image_file):</span>
+</div>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_resnet_features(image_file):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Return the final CNN layer (layer4) feature map in resnet</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -469,19 +494,21 @@ window.Quarto = {
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> process_input(image_file)</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> x <span class="co"># SOLUTION</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (name, model) <span class="kw">in</span> resnet.named_children():</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co"> -- update result</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> model.forward(result) <span class="co"># SOLUTION</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> name <span class="op">==</span> <span class="st">'layer4'</span>:</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fets <span class="op">=</span> get_resnet_features(<span class="st">'cat.jpg'</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (name, model) <span class="kw">in</span> resnet.named_children():</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># </span><span class="al">TODO</span><span class="co"> -- update result</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> name <span class="op">==</span> <span class="st">'layer4'</span>:</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fets <span class="op">=</span> get_resnet_features(<span class="st">'cat.jpg'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fets.shape) <span class="co"># should be [1, 512, 7, 7]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Assign the variable <code>fc_weight</code> to the weights of the final fully-connected layer in resnet.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> resnet.fc.weight <span class="co"># SOLUTIONS</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weights.shape) <span class="co"># should be [1000, 512]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-18" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weights.shape) <span class="co"># should be [1000, 512]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Complete the function <code>compute_cam</code>, which takes the CNN feature map (from the <code>get_resnet_features</code> function), the ImageNet label of interest, and produces a heat map of the features that contribute to the label score according to the following approach.</p>
 <p>We will use the notation <span class="math inline">\({\bf X}\)</span> to denote the CNN feature map (the input to the GAP), with <span class="math inline">\(X_{i,j,c}\)</span> being the activation at location <span class="math inline">\((i, j)\)</span> and channel <span class="math inline">\(c\)</span>. Here, <span class="math inline">\({\bf X}\)</span> is a tensor with shape <span class="math inline">\(H \times W \times C\)</span>, where <span class="math inline">\(H \times W\)</span> is the height and width of the feature map and <span class="math inline">\(C\)</span> is the number of channels. We will use the vector <span class="math inline">\({\bf h}\)</span> to denote the output of the GAP, so that <span class="math inline">\(h_c = \frac{1}{HW} \sum_{i=1}^{H} \sum_{j=1}^{W} X_{i,j,c}\)</span>. Finally, we will use <span class="math inline">\({\bf W}\)</span> to denote the finally fully connected layer weights, and <span class="math inline">\({\bf z}\)</span> to the denote the prediction score, so that <span class="math inline">\({\bf z} = {\bf W}{\bf h}\)</span>.</p>
 <p>Now, we would like to relate the features <span class="math inline">\(X_{i,j,c}\)</span> to the scores <span class="math inline">\(z_k\)</span>, so that we can compute the contribution of the features at position <span class="math inline">\((i,j)\)</span> to the score <span class="math inline">\(k\)</span>.</p>
@@ -492,7 +519,8 @@ window.Quarto = {
 <p>Rearranging the sums, we have:</p>
 <p><span class="math display">\[z_k  = \frac{1}{HW} \sum_{i=1}^H \sum_{j=1}^W \sum_{c=1}^C w_{k,c} X_{i,j,c}\]</span></p>
 <p>The inner term <span class="math inline">\(\sum_c w_{k,c} X_{i,j,c}\)</span> is exactly what we are looking for: this term indicates how much the value in location <span class="math inline">\((i, j)\)</span> of the feature map <span class="math inline">\({\bf X}\)</span> attributes to class <span class="math inline">\(k\)</span>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cam(features, label):</span>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cam(features, label):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the contribution of each location in `features` towards </span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">    `label` using CAM.</span></span>
@@ -507,11 +535,11 @@ window.Quarto = {
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> features.squeeze(<span class="dv">0</span>) <span class="co"># remove the first dimension</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span><span class="co"> </span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    weight <span class="op">=</span> resnet.fc.weight[label]   <span class="co"># SOLUTIONS</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> torch.mul(weight, features.permute((<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>))).<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">2</span>)  <span class="co"># SOLUTIONS</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Run the below code, which superimposes the result of the <code>compute_cam</code> operation on the image.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_cam(image_file, label):</span>
+<div id="cell-22" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_cam(image_file, label):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># open the image</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(image_file)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -532,16 +560,21 @@ window.Quarto = {
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (image_file, classes[label]))</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    plt.imshow((<span class="fl">0.3</span> <span class="op">*</span> heatmap <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.array(img)).astype(np.uint8)) <span class="co"># superimpose heat map on img</span></span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'cat.jpg'</span>, <span class="dv">743</span>)</span>
+</div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'cat.jpg'</span>, <span class="dv">743</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'cat.jpg'</span>, <span class="dv">383</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong> Compare the above two outputs, and explain what conclusion you may be able to draw about the contribution of the pixel locations to those two classes. Why do you think the model misclassified the image?</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: your explanation goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="part-2.-grad-cam" class="level2">
 <h2 class="anchored" data-anchor-id="part-2.-grad-cam">Part 2. Grad-CAM</h2>
 <p>Although CAM was an important step toward understanding convolutional neural networks, the technique is only applicable to convolutional networks with GAP and a single fully-connected layer. Recall that it leveraged the following relationship between the output of the GAP layer <span class="math inline">\({\bf h}\)</span> and the score for the output class <span class="math inline">\(z_k\)</span>:</p>
 <p><span class="math display">\[z_k  = \sum_c w_{k,c} h_c\]</span></p>
-<p>Where <span class="math inline">\(w_{k,c}\)</span> is the fully connected layer weight that describes the strength of the connection between <span class="math inline">\(h_c\)</span> and <span class="math inline">\(z_k\)</span>. In other words, <span class="math inline">\(w_{k,c}\)</span> describes the following gradient:</p>
+<p>Where <span class="math inline">\(w_{k,c}\)</span> is the fully connected layer weight that describes the strength of the connection betwee <span class="math inline">\(h_c\)</span> and <span class="math inline">\(z_k\)</span>. In other words, <span class="math inline">\(w_{k,c}\)</span> describes the following gradient:</p>
 <p><span class="math display">\[\frac{\partial z_k}{\partial h_c}\]</span></p>
 <p>With this in mind, you may be able to see how CAM may be generalized so that <span class="math inline">\({\bf z}\)</span> may be a more complex function of <span class="math inline">\({\bf h}\)</span>—e.g., a MLP or even an RNN!</p>
 <p>Gradient-weighted Class Activation Mapping (Grad-CAM) is a generalized form of CAM, and can be applied to any convolutional neural network. In Grad-CAM, we use the gradient <span class="math inline">\(\frac{\partial z_k}{\partial h_c}\)</span> in place of <span class="math inline">\(w_{k,c}\)</span> when attributing class scores to locations <span class="math inline">\((i, j)\)</span>. In other words, the below term indicates how much the value in location <span class="math inline">\((i, j)\)</span> of the feature map <span class="math inline">\({\bf X}\)</span> attributes to class <span class="math inline">\(k\)</span>.</p>
@@ -549,12 +582,17 @@ window.Quarto = {
 <p>The addition of the ReLU activation only allows positive contributions to be visualized.</p>
 <p>Sidenote: To generalize this result even further, we can replace <span class="math inline">\(z_k\)</span> with any target we would like! Grad-CAM has been used on neural networks that performs image caption generation: a model with a CNN <em>encoder</em> and an RNN <em>decoder</em>. We can use use the gradients of any target concept (say “dog” in a classification network or a sequence of words in a captioning network) flowing into the final convolutional layer to produce a coarse localization map highlighting the important regions in the image for predicting the concept. Taking a look at <a href="https://www.youtube.com/watch?v=COjUB9Izk6E">this video</a> helps you to understand the power of Grad-CAM.</p>
 <p>Let’s explore GradCAM with the VGG network:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>vgg19 <span class="op">=</span> models.vgg19(pretrained<span class="op">=</span><span class="va">True</span>)</span>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>vgg19 <span class="op">=</span> models.vgg19(pretrained<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>vgg19.<span class="bu">eval</span>()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>vgg19</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>predict(vgg19, <span class="st">'cat.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>predict(vgg19, <span class="st">'cat.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong> Just like with CAM, we will need to extract the feature map obtained from the last convolutional layer. This step is actually very straightforward with VGG since <code>vgg19</code> splits the network into a <code>features</code> network and a <code>classifier</code> network.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_vgg_features(image_file):</span>
+<div id="cell-30" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_vgg_features(image_file):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Return the output of `vgg19.features` network for the image</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -566,13 +604,18 @@ window.Quarto = {
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> process_input(image_file)</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="va">None</span> <span class="co"># </span><span class="al">TODO</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> vgg19.features(x) <span class="co"># SOLUTIONS</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>get_vgg_features(<span class="st">'cat.jpg'</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-31" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>get_vgg_features(<span class="st">'cat.jpg'</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Read the forward method of the VGG model here. https://github.com/pytorch/vision/blob/main/torchvision/models/vgg.py What other steps are remaining in the forward pass?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Explain the remaining steps here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Explain the remaining steps here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Graded Task</strong>: Complete the function <code>compute_gradcam</code>, which takes an image file path, the ImageNet label of interest, and produces a heat map of the features that contribute to the label score according to the GradCAM approach described at the beginning of Part 2.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_gradcam(image_file, label):</span>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_gradcam(image_file, label):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the contribution of each location in `features` towards </span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">    `label` using GradCAM.</span></span>
@@ -595,32 +638,30 @@ window.Quarto = {
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span><span class="al">TODO</span><span class="co">: compute the rest of the vgg19 forward pass from `fets`</span></span>
 <span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="va">None</span> <span class="co"># should be the output of the classifier network</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> vgg19.avgpool(fets)     <span class="co"># SOLUTION</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> torch.flatten(out, <span class="dv">1</span>)  <span class="co"># SOLUTION</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> vgg19.classifier(out)  <span class="co"># SOLUTION</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    z_k <span class="op">=</span> out.squeeze(<span class="dv">0</span>)[label] <span class="co"># identify the target output class</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    z_k.backward()              <span class="co"># backpropagation to compute gradients</span></span>
 <span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    z_k <span class="op">=</span> out.squeeze(<span class="dv">0</span>)[label] <span class="co"># identify the target output class</span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    z_k.backward()              <span class="co"># backpropagation to compute gradients</span></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    features_grad <span class="op">=</span> fets.grad   <span class="co"># identify the gradient of z_k with respect to fets</span></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># account for the pooling operation, so that "pooled_grad"</span></span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># aligns with the notation used</span></span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    n, c, h, w <span class="op">=</span> features_grad.shape</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    features_grad <span class="op">=</span> torch.reshape(features_grad, (c, h<span class="op">*</span>w))</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    pooled_grad <span class="op">=</span> features_grad.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rearrange "fets" so that "X" aligns with the notation</span></span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># used above</span></span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> fets.squeeze(<span class="dv">0</span>).permute((<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span><span class="al">TODO</span><span class="co">: Compute the heatmap using the gradcam</span></span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> torch.matmul(X, pooled_grad) <span class="co"># SOLUTION</span></span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> F.relu(m) <span class="co"># apply the ReLU operation</span></span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    features_grad <span class="op">=</span> fets.grad   <span class="co"># identify the gradient of z_k with respect to fets</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># account for the pooling operation, so that "pooled_grad"</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># aligns with the notation used</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    n, c, h, w <span class="op">=</span> features_grad.shape</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    features_grad <span class="op">=</span> torch.reshape(features_grad, (c, h<span class="op">*</span>w))</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    pooled_grad <span class="op">=</span> features_grad.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rearrange "fets" so that "X" aligns with the notation</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># used above</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> fets.squeeze(<span class="dv">0</span>).permute((<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span><span class="al">TODO</span><span class="co">: Compute the heatmap using the gradcam</span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> F.relu(m) <span class="co"># apply the ReLU operation</span></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>Task</strong>: Run the below code, which superimposes the result of the <code>compute_gradcam</code> operation on the image.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_gradcam(image_file, label):</span>
+<div id="cell-37" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_gradcam(image_file, label):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># open the image</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> Image.<span class="bu">open</span>(image_file)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -640,9 +681,16 @@ window.Quarto = {
 <span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (image_file, classes[label]))</span>
 <span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    plt.imshow((<span class="fl">0.3</span> <span class="op">*</span> heatmap <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.array(img)).astype(np.uint8)) <span class="co"># superimpose heat map on img</span></span>
 <span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'cat.jpg'</span>, <span class="dv">743</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'cat.jpg'</span>, <span class="dv">383</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'boat.jpg'</span>, <span class="dv">536</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-38" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'cat.jpg'</span>, <span class="dv">743</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-39" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'cat.jpg'</span>, <span class="dv">383</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-40" class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>visualize_cam(<span class="st">'boat.jpg'</span>, <span class="dv">536</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="just-for-fun" class="level2">
 <h2 class="anchored" data-anchor-id="just-for-fun">Just For Fun</h2>
@@ -651,7 +699,6 @@ window.Quarto = {
 <p>Hint: There is a file which re-implements the forward pipeline of ResNet101, where you can store the features.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -740,7 +787,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/uoftcsc413\.github\.io\/2024F-website\/");
+        var filterRegex = new RegExp("https:\/\/utm-csc413\.github\.io\/2024F-website\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1075,9 +1122,9 @@ window.Quarto = {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/UofTCSC413/2024F-website/edit/main/labs/lab09.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/UofTCSC413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/utm-csc413/2024F-website/blob/main/labs/lab09.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/utm-csc413/2024F-website/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+<p>This page is built with ❤️, <a href="https://quarto.org/">Quarto</a> and inspiration from <a href="https://sta210-s22.github.io/website/">STA210</a>.</p>
 </div>
   </div>
 </footer>
