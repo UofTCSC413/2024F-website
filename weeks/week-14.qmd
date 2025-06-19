@@ -4,10 +4,6 @@ subtitle: "Final project submission"
 editor: visual
 ---
 
-::: callout-important
-Due dates: Friday, April 15 - Project peer review of drafts
-:::
-
 ## Perform
 
 [Final project](project-description.html#final-project) submission
