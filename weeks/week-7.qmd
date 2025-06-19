@@ -1,35 +1,28 @@
 ---
 title: "Week 7"
-subtitle: "MLR: Feature engineering and model evaluation"
+subtitle: "Interpreting Convolutional Neural Networks"
 editor: visual
 ---
 
-::: callout-important
-Due dates:
-
--   HW 2 - Friday, Feb 18
--   Project ideas - Friday, Feb 18
-:::
-
 ## Prepare
 
-📖 Read Tidy Modeling in R Chp 8: [Feature engineering with recipes](https://www.tmwr.org/recipes.html)
+[Week 7 Overview](https://q.utoronto.ca/courses/366713/pages/week-7-overview?module_item_id=5872118)
 
 ## Participate
 
-🖥️ [Lecture 12 - MLR: Feature engineering](/slides/lec-12.html)
+[Slides](/lecs/w07/lec07.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-🖥️ [Lecture 13 - MLR: Feature engineering (cont.)](/slides/lec-13.html)
+[Troubleshooting Deep Neural Networks](http://josh-tobin.com/assets/pdf/troubleshooting-deep-neural-networks-01-19.pdf)
 
 ## Practice
 
-📋 [Application Exercise 5 - The Office](/ae/ae-5-the-office.html)
+[In-class Exercise](/ex/w07/exercises07.html "Exercise"){aria-label="Exercise 7"} & [Solutions](/ex/w07/exercises07_solution.html "Exercise Solutions"){aria-label="Exercise 7 Solutions"}
 
 ## Perform
 
-✍️ [HW 2 - Multiple linear regression](/hw/hw-2.html)
+In-person midterm #1 which covers weeks 1-5. Held during the tutorial / lab sessions
 
-📂 [Project - Topic ideas](/project-description.html)
+[Math assignment 2](https://q.utoronto.ca/courses/366713/files/folder/A2) posted
 
 <br><br>
 

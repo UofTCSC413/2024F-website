@@ -1,43 +1,30 @@
 ---
 title: "Week 4"
-subtitle: "TBA"
+subtitle: "Convolutional Neural Networks"
 editor: visual
 ---
 
-::: callout-important
--   If you can't be in class for the lectures, you can watch the live stream or watch the recording later on [Panopto](https://duke.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22d6c1d58a-cb6d-4732-9d4b-ae0c011bf767%22).
--   Due dates:
-    -   HW 1: Fri, Jan 28, 5pm ET
-    -   Lab 1: Fri, Jan 28, 5pm ET
-:::
-
 ## Prepare
 
-📖 Read Introduction to Modern Statistics, Sec 24.4: [Mathematical model for testing the slope](https://openintro-ims.netlify.app/inf-model-slr.html#mathslope)
-
-📖 Read Introduction to Modern Statistics, Sec 24.5: [Mathematical model, interval for the slope](https://openintro-ims.netlify.app/inf-model-slr.html#mathematical-model-interval-for-the-slope)
-
-📖 Read Introduction to Modern Statistics, Sec 24.6: [Checking model conditions](https://openintro-ims.netlify.app/inf-model-slr.html#tech-cond-linmod)
-
-📖 Read Introduction to Modern Statistics, Sec 24.7: [Chapter review](https://openintro-ims.netlify.app/inf-model-slr.html#chp24-review)
+[Week 4 Overview](https://q.utoronto.ca/courses/366713/pages/week-4-overview?module_item_id=5872113)
 
 ## Participate
 
-🖥️ [Lab 2 - College scorecard](/slides/lab-1.html)
+[Slides](/lecs/w04/lec04.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-🖥️ [Lecture 6 - SLR: Mathematical models for inference](/slides/lec-6.html)
-
-🖥️ [Lecture 7 - SLR: Model diagnostics](/slides/lec-7.html)
+Demo: [Colab Notebook](https://colab.research.google.com/drive/1AL2ocL6muULg4P2hzHBOLTPL6RGbQaB5?usp=sharing)
 
 ## Practice
 
-📋 [Application Exercise 3 - Checking model conditions](/ae/ae-3-duke-forest.html)
+[In-class Exercise](/ex/w04/exercises04.html "Exercise"){aria-label="Exercise 4"} & [Solutions](/ex/w04/exercises04_solution.html "Exercise Solutions"){aria-label="Exercise 4 Solutions"}
 
 ## Perform
 
-⌨️ [Lab 2 - College scorecard](/labs/lab-2.html "Lab instructions")
+In-person lab session: classification and medical MNIST [lab03](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab03.ipynb "Lab instructions"){aria-label="Lab 3 instructions"}
 
-✍️ [HW 1 - In-person voting trends](/hw/hw-1.html)
+[Lecture 4 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/405061)
+
+[Math Assignment 1](https://q.utoronto.ca/courses/366713/files/folder/A1) posted
 
 <br><br>
 

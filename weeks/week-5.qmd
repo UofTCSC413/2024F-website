@@ -1,39 +1,28 @@
 ---
 title: "Week 5"
-subtitle: "TBA"
+subtitle: "Optimization"
 editor: visual
 ---
 
-::: callout-important
--   Due date: Lab 2 - Fri, Feb 4, 5pm ET
--   Exam 1 released on Fri, Feb 4, due Mon, Feb 7 at 11:59pm
-:::
-
 ## Prepare
 
-📖 Read Introduction to Modern Statistics, Sec 8.1: [Indicator and categorical predictors](https://openintro-ims.netlify.app/model-mlr.html#ind-and-cat-predictors)
-
-📖 Read Introduction to Modern Statistics, Sec 8.2: [Many predictors in a model](https://openintro-ims.netlify.app/model-mlr.html#many-predictors-in-a-model)
-
-📖 Read Introduction to Modern Statistics, Sec 8.3: [Adjusted R-squared](https://openintro-ims.netlify.app/model-mlr.html#adjusted-r-squared)
+[Week 5 Overview](https://q.utoronto.ca/courses/366713/pages/week-6-overview?module_item_id=5872108)
 
 ## Participate
 
-🖥️ [Lab 3 - Coffee ratings](/slides/lab-3.html)
-
-🖥️ [Lecture 8 - Multiple linear regression (MLR)](/slides/lec-8.html)
-
-🖥️ [Lecture 9 - Exam 1 review](/slides/lec-9.html)
+[Slides](/lecs/w05/lec05.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
 ## Practice
 
-📋 [Application Exercise 4 - Exam 1 Review](/ae/ae-4-exam-1-review.html)
+[In-class Exercise](/ex/w05/exercises05.html "Exercise"){aria-label="Exercise 5"} & [Solutions](/ex/w05/exercises05_solution.html "Exercise Solutions"){aria-label="Exercise 5 Solutions"}
+
+Taylor Series <https://www.youtube.com/watch?v=3d6DsjIBzJ4>
 
 ## Perform
 
-⌨️ [Lab 3 - Coffee ratings](labs/lab-3.html)
+Tutorial: how to implement SGD with momentum [neural network optimization](https://q.utoronto.ca/courses/366713/files/33627019?wrap=1)
 
-✅ [Exam 1](/exams/exam-1.html)
+[Lecture 5 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/417060)
 
 <br><br>
 

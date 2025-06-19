@@ -1,36 +1,30 @@
 ---
 title: "Week 11"
-subtitle: "TBA"
+subtitle: "Autoencoders and Transpose Convolutions"
 editor: visual
 ---
 
-::: callout-important
-Due dates:
-
--   Lab 5 - Friday, Mar 25
--   HW 3 - Friday, Mar 25
-:::
-
 ## Prepare
 
-No additional readings this week.
-Catch up with previously assigned readings if you've fallen behind.
+No additional readings this week. Catch up with previously assigned readings if you've fallen behind.
 
 ## Participate
 
-🖥️ [Lecture 20 - LR: Prediction / classification](/slides/lec-20.html)
+[Slides](/lecs/w10/lec10.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-🖥️ [Lecture 21 - LR: Model validation](/slides/lec-21.html)
+[Autoencoder Notebook](https://q.utoronto.ca/courses/366713)
 
 ## Practice
 
-📋 [Application Exercise 10 - Flight delays](/ae/ae-10-flight-delays.html)
+[In-class Exercise](/ex/w10/exercises10.html "Exercise"){aria-label="Exercise 10"} & [Solutions](/ex/w10/exercises10_solution.html "Exercise Solutions"){aria-label="Exercise 10 Solutions"}
 
 ## Perform
 
-✍️ [HW 3 - Logistic regression and log transformation](/hw/hw-3.html)
+In-person midterm #2 which covers weeks 6-9. Held during the tutorial / lab sessions
 
-⌨️ [Lab 5 - General Social Survey](labs/lab-5.html)
+[Lecture 10 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/421077)
+
+**Final Project** - Written feedback on project proposals sent by TAs and instructors
 
 <br><br>
 

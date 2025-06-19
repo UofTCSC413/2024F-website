@@ -1,30 +1,24 @@
 ---
 title: "Week 12"
-subtitle: "Multinomial logistic regression"
+subtitle: "Generative Adversarial Networks"
 editor: visual
 ---
 
-::: callout-important
-Due dates: None.
-:::
-
 ## Prepare
 
-📖 Read Introduction to Modern Statistics, Chp 26: [Inference for logistic regression](https://openintro-ims.netlify.app/inf-model-logistic.html)
+No Preparation for this week
 
 ## Participate
 
-🖥️ [Lecture 22 - LR: Inference + conditions](/slides/lec-22.html)
-
-🖥️ [Lecture 23 - Multinomial logistic regression (MultiLR)](/slides/lec-23.html)
+[Slides](/lecs/w11/lec11.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
 ## Practice
 
-No application exercises this week.
+[In-class Exercise](/ex/w11/exercises11.html "Exercise"){aria-label="Exercise 11"} & [Solutions](/ex/w11/exercises11_solution.html "Exercise Solutions"){aria-label="Exercise 11 Solutions"}
 
 ## Perform
 
-✍️ [HW 4 - Multinomial logistic regression](/hw/hw-4.html)
+In-person lab session: RNN text classification [lab10](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab10.ipynb "Lab instructions"){aria-label="Lab 10 instructions"}
 
 <br><br>
 

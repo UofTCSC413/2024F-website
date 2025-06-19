@@ -1,31 +1,26 @@
 ---
 title: "Week 13"
-subtitle: "MultiLR"
+subtitle: "Use of Deep Learning in the Research of Profs Shkurti and Gilitschenski"
 editor: visual
 ---
 
-::: callout-important
-Due dates:
+## Prepare
 
--   Lab 6 - Friday, April 8
--   Project drafts - Sunday, April 10
-:::
+No preparation for this week
 
 ## Participate
 
-🖥️ [Lecture 24 - MultiLR: Prediction + inferential models](/slides/lec-24.html)
+[Slides](/lecs/w11/lec11.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-🖥️ [Lecture 25 - MultiLR: Predictive models](/slides/lec-25.html)
+If you are interested in both groups' research, it is worth attending or watching both lectures this week.
 
 ## Practice
 
-📋 [Application Exercise 11 - Volcanoes](/ae/ae-11-volcanoes.html)
+No exercise for this week
 
 ## Perform
 
-✍️ [HW 4 - Multinomial logistic regression](/hw/hw-4.html)
-
-[💻](/labs/lab-6.html "Lab instructions") [Lab 6 - Why Many Americans Don't Vote](/labs/lab-6.html)
+In-person lab session: text generation with transformers [lab11](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab11.ipynb "Lab instructions"){aria-label="Lab 11 instructions"}
 
 <br><br>
 

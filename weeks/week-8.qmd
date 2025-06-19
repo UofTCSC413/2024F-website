@@ -1,32 +1,28 @@
 ---
 title: "Week 8"
-subtitle: "MLR: Cross validation"
+subtitle: "Recurrent Neural Networks"
 editor: visual
 ---
 
-::: callout-important
-Due date: Lab 4 - Friday, Feb 25
-:::
-
 ## Prepare
 
-📖 Read Tidy Modeling in R Chp 10: [Resampling for evaluating performance](https://www.tmwr.org/resampling.html)
+[Week 8 Overview](https://q.utoronto.ca/courses/366713/pages/week-9-overview?module_item_id=5872128)
 
 ## Participate
 
-🖥️ [Lecture 14 - MLR: Cross validation](/slides/lec-14.html)
+[Slides](/lecs/w08/lec08.html)
 
-🖥️ [Lecture 15 - Exam 2 review](/slides/lec-15.html)
+Missing recording due to technical issue
 
 ## Practice
 
-[Application Exercise 6 - The office - CV](/ae/ae-6-the-office-cv.html)
-
-[Application Exercise 7 - Exam 2 Review](/ae/ae-7-exam-2-review.html)
+[In-class Exercise](/ex/w08/exercises08.html "Exercise"){aria-label="Exercise 8"} & [Solutions](/ex/w08/exercises08_solution.html "Exercise Solutions"){aria-label="Exercise 8 Solutions"}
 
 ## Perform
 
-⌨️ [Lab 4 - The Office, another look](labs/lab-4.html)
+In-person lab session: transfer learning and double descent [lab07](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab07.ipynb "Lab instructions"){aria-label="Lab 7 instructions"}
+
+[Lecture 8 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/419409)
 
 <br><br>
 

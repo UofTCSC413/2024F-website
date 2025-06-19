@@ -1,35 +1,28 @@
 ---
 title: "Week 2"
-subtitle: "Simple linear regression"
+subtitle: "Multi-Layer Perceptron, Backpropagation, Losses"
 editor: visual
 ---
 
-::: callout-important
--   Classes are virtual this week. Find Zoom links [here](https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/page/d5eef508-07a4-4c6d-b7bd-4614a9631562 "Sakai - Zoom meetings").
--   Due dates:
-    -   Lab 1: Fri, Jan 14, 5pm ET
-    -   AE 1: Sun, Jan 16, 11:59pm ET
-:::
-
 ## Prepare
 
-📖 Read Introduction to Modern Statistics, Chp 7: [Linear regression with a single predictor](https://openintro-ims.netlify.app/model-slr.html)
+[Week 2 Overview](https://q.utoronto.ca/courses/366713/modules/items/5872098 "Week 2 Overview")
 
 ## Participate
 
-🖥️ [Lab 1 - Meet the toolkit](/slides/lab-1.html)
+[Slides](/lecs/w02/lec02.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-🖥️ [Lecture 2 - Simple linear regression](/slides/lec-2.html)
-
-🖥️ [Lecture 3 - Model fitting in R with tidymodels](/slides/lec-3.html)
+Prof. Roger Grosse's notes on [backdrop](https://q.utoronto.ca/courses/366713/files/32607080?wrap=1)
 
 ## Practice
 
-📋 [Application Exercise 1 - Bike rentals in DC](/ae/ae-1-dcbikeshare.html) *(Post-class note: complete only Part 1 - Daily counts and temperature)*
+No exercises this week
 
 ## Perform
 
-⌨️ [Lab 1 - Meet the toolkit](/labs/lab-1.html "Lab instructions")
+In-person lab session: PyTorch basics with linear models [lab01](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab01.ipynb "Lab instructions"){aria-label="Lab 1 instructions"}
+
+[Lec2 pre-recorded videos with quizzes](https://q.utoronto.ca/courses/366713/quizzes/404473)
 
 <br><br>
 

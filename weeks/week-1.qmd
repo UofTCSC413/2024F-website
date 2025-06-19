@@ -1,33 +1,33 @@
 ---
 title: "Week 1"
-subtitle: "Welcome to STA 210"
+subtitle: "Linear Model"
 editor: visual
 ---
 
-::: callout-important
-Classes are virtual this week.
-Find Zoom links [here](https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/page/d5eef508-07a4-4c6d-b7bd-4614a9631562 "Sakai - Zoom meetings").
-:::
-
 ## Prepare
 
-📖 Read the [syllabus](/course-syllabus.html)
+Read the [syllabus](/https://q.utoronto.ca/courses/366713/files/32969250?wrap=1)
 
-📖 Read the [support](/course-support.html) resources
+[Week 1 Overview](https://q.utoronto.ca/courses/366713/pages/week-1-overview?module_item_id=5872092)
+
+[Software Installations](https://q.utoronto.ca/courses/366713/pages/software-installations)
 
 ## Participate
 
-🖥️ [Lab 0 -](/_slides/lab-0.html)[Meet](/slides/lab-0.html)[+ greet](/_slides/lab-0.html)
-
-🖥️ [Lecture 1 - Welcome to STA 210](/slides/lec-1.html)
+[Lecture 1](/lecs/w01/lec01.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
 ## Practice
 
-📋 [AE 0 - Movies](/ae/ae-0-movies.html)
+No practices this week
 
 ## Perform
 
-⌨️ [Lab 0 - Meet + greet](/labs/lab-0.html)
+No tutorials/labs this week but please complete the [Pre-Requisite Math Problems](https://q.utoronto.ca/courses/366713/files/32607079?wrap=1 "prereq.pdf")
+
+Suggested Review :
+
+-   [Linear Algebra review](http://www.deeplearningbook.org/contents/linear_algebra.html) 
+-   [Probability review](https://www.deeplearningbook.org/contents/prob.html)
 
 <br><br>
 

@@ -1,32 +1,32 @@
 ---
 title: "Week 6"
-subtitle: "MLR: Model building and comparison"
+subtitle: "Generalization"
 editor: visual
 ---
 
-::: callout-important
-Due dates: Exam 1 - Mon, Feb 7 at 11:59pm
-:::
-
 ## Prepare
 
-No reading (take a break after the exam! 😴)
+No preparation this week
 
 ## Participate
 
-🖥️ [Lecture 10 - MLR: Types of predictors](/slides/lec-10.html)
+[Slides](/lecs/w06/lec06.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-🖥️ [Lecture 11 - MLR: Model comparison](/slides/lec-11.html)
+[Ensembling code skeleton](https://q.utoronto.ca/courses/366713/files/32607111?wrap=1 "exercises06-ensembling.ipynb")
+
+[The definition of differential privacy](https://www.youtube.com/watch?v=lg-VhHlztqo)
 
 ## Practice
 
-No application exercises
+[In-class Exercise](/ex/w06/exercises06.html "Exercise"){aria-label="Exercise 6"} & [Solutions](/ex/w06/exercises06_solution.html "Exercise Solutions"){aria-label="Exercise 6 Solutions"}
 
 ## Perform
 
-No lab
+In-person lab session: optimization and differential privacy [lab05](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab05.ipynb "Lab instructions"){aria-label="Lab 5 instructions"}
 
-✅ [Exam 1](/exams/exam-1.html)
+[Lecture 6 pre-recorded videos and quizzes](https://q.utoronto.ca/courses/366713/quizzes/418108)
+
+Math assignment 1 due
 
 <br><br>
 

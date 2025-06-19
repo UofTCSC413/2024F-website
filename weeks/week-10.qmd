@@ -1,30 +1,34 @@
 ---
 title: "Week 10"
-subtitle: "Logistic regression"
+subtitle: "Attention and Transformers"
 editor: visual
 ---
 
-::: callout-important
-Due date: Project proposal due Fri, Mar 18 at 5:00 pm.
-:::
-
 ## Prepare
 
-📖 Read Introduction to Modern Statistics, Chp 9: [Logistic regression](https://openintro-ims.netlify.app/model-logistic.html)
+[Week 10 Overview](https://q.utoronto.ca/courses/366713/pages/week-10-overview?module_item_id=5872133)
 
 ## Participate
 
-🖥️ [Lecture 18 - Logistic regression](/slides/lec-18.html)
+[Slides](/lecs/w09/lec09.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
-🖥️ [Lecture 19 - Probabilities, odds, odds ratios](/slides/lec-18.html)
+Transformer video: <https://www.youtube.com/watch?v=XSSTuhyAmnI>
+
+<https://nlp.seas.harvard.edu/2018/04/03/attention.html>
+
+<http://peterbloem.nl/blog/transformers>
+
+Last year's A3 (a seq2seq autoencoder) <http://modelai.gettysburg.edu/2021/headlines/>
 
 ## Practice
 
-📋 [Application Exercise 9 - Odds](/ae/ae-9-odds.html)
+[In-class Exercise](/ex/w09/exercises09.html "Exercise"){aria-label="Exercise 9"} & [Solutions](/ex/w09/exercises09_solution.html "Exercise Solutions"){aria-label="Exercise 9 Solutions"}
 
 ## Perform
 
-✍️ [HW 3 - Logistic regression and log transformation](/hw/hw-3.html)
+In-person lab session: gradcam and input gradients [lab09](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab09.ipynb "Lab instructions"){aria-label="Lab 9 instructions"}
+
+**Final Project** - Deadline to form project groups on Markus, and submit a [project proposal](project-description.html#project-proposal)
 
 <br><br>
 

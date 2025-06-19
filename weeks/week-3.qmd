@@ -1,36 +1,36 @@
 ---
 title: "Week 3"
-subtitle: "TBA"
+subtitle: "Automatic Differentiation, Distributed Representation"
 editor: visual
 ---
 
-::: callout-important
--   We're back to in person classes this week! See [here](/course-syllabus.html#course-info) for class locations. And don't forget to wear your mask! 😷
--   Due dates:
-    -   AE 2: Fri, Jan 21, 11:59pm ET
-:::
-
 ## Prepare
 
-📖 Read Introduction to Modern Statistics, Sec 24.1: [Case study: Sandwich store](https://openintro-ims.netlify.app/inf-model-slr.html#case-study-sandwich-store)
-
-📖 Read Introduction to Modern Statistics, Sec 24.2: [Randomization test for the slope](https://openintro-ims.netlify.app/inf-model-slr.html#randslope)
-
-📖 Read Introduction to Modern Statistics, Sec 24.3: [Bootstrap confidence interval for the slope](https://openintro-ims.netlify.app/inf-model-slr.html#bootbeta1)
+[Week 3 Overview](https://q.utoronto.ca/courses/366713/pages/week-3-overview?module_item_id=5872103)
 
 ## Participate
 
-🖥️ [Lecture 4 - SLR: Prediction + model evaluation](/slides/lec-4.html)
+[GloVe embedding demo](https://colab.research.google.com/drive/1aNbE6HcawVF67RV0hWi4qK33Um7cKykr?usp=sharing#scrollTo=H1mONlhzJ_qQ) 
 
-🖥️ [Lecture 5 - SLR: Simulation-based inference](/slides/lec-5.html)
+[Video on autodiff](https://www.youtube.com/watch?v=wG_nF1awSSY)
+
+[Slides](/lecs/w01/lec01.html) & [Recordings](https://q.utoronto.ca/courses/366713)
 
 ## Practice
 
-📋 [Application Exercise 2 - Bike rentals in DC](/ae/ae-2-dcbikeshare.html)
+[In-class Exercise](/ex/w03/exercises03.html "Exercise"){aria-label="Exercise 3"} & [Solutions](/ex/w03/exercises03_solution.html "Exercise Solutions"){aria-label="Exercise 3 Solutions"}
+
+Prof. Roger Grosse's notes on [autodiff](https://q.utoronto.ca/courses/366713/files/32607086?wrap=1 "L03a.pdf") and [word embeddings](https://q.utoronto.ca/courses/366713/files/32607091?wrap=1 "L03b.pdf")
+
+Notes on Backpropagation <https://cs231n.github.io/optimization-2/>
+
+Automatic Differentiation in Machine Learning: a Survey (2018) <https://arxiv.org/pdf/1502.05767.pdf>
 
 ## Perform
 
-None.
+In-person lab session: numerical gradients / word embeddings [lab02](https://colab.research.google.com/github/UofTCSC413/2024F-website/blob/main/labs/lab02.ipynb "Lab instructions"){aria-label="Lab 2 instructions"}
+
+[Lec3 pre-recorded videos with quizzes](https://q.utoronto.ca/courses/366713/quizzes/412392)
 
 <br><br>
 
