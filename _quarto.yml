@@ -4,11 +4,11 @@ project:
 
 website:
   page-navigation: true
-  title: "CSC413 - Fall 2024"
-  description: "Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024."
-  site-url: "https://uoftcsc413.github.io/2024F-website/"
+  title: "CSC413 - Fall 2024, UTM"
+  description: "Homepage for CSC413 - Neural Networks and Deep Learning, Fall 2024, UTM."
+  site-url: "https://utm-csc413.github.io/2024F-website/"
 
-  repo-url: https://github.com/UofTCSC413/2024F-website
+  repo-url: https://github.com/utm-csc413/2024F-website
   repo-actions: [edit, issue]
 
   open-graph: true
@@ -18,7 +18,7 @@ website:
     image: "images/twitter-card.png"
 
   page-footer:
-    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    right: "This page is built with ❤️, [Quarto](https://quarto.org/) and inspiration from [STA210](https://sta210-s22.github.io/website/)."
     left: "&copy; Copyright 2024, Florian Shkurti"
     background: "#D9E3E4"
 
@@ -27,11 +27,11 @@ website:
     logo: "images/DrawingHands.jpg"
     pinned: true
     align: center
-    title: "CSC413 Neural Networks and Deep Learning"
+    title: "UTM - CSC413 Neural Networks and Deep Learning"
     
     tools:
       - icon: github
-        href: https://github.com/UofTCSC413
+        href: https://github.com/utm-csc413 
         text: "Github workspace for the course"
       - icon: chat-quote
         href: https://q.utoronto.ca/courses/366713/external_tools/18207
@@ -56,8 +56,6 @@ website:
         text: Quercus	
       - href: course-syllabus.qmd
         text: Syllabus
-      # - href: course-grading.qmd
-      #   text: Grading
       - href: course-team.qmd
         text: Teaching Staff
       - href: course-schedule.qmd

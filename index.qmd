@@ -1,5 +1,5 @@
 ---
-title: "Fall 2024 - CSC 413: Neural Networks and Deep Learning"
+title: "Fall 2024 - UTM - CSC 413: Neural Networks and Deep Learning"
 ---
 
 ### Course Overview

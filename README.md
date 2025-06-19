@@ -1,6 +1,6 @@
-# Website for CSC 413 at the University of Toronto (Fall 2024)
+# Website for CSC 413 at the University of Toronto Mississauga (Fall 2024) 
 
-🔗 https://uoftcsc413.github.io/2024F-website/
+🔗 https://utm-csc413.github.io/2024F-website/ 
 
 ## Colors
 
