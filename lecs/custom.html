@@ -1,0 +1,168 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for Reveal.js to be initialized
+    if (typeof Reveal !== 'undefined') {
+        initReportIssue();
+    } else {
+        // If Reveal.js isn't loaded yet, wait for it
+        setTimeout(initReportIssue, 100);
+    }
+});
+
+function initReportIssue() {
+    // Create the report issue button
+    const reportButton = document.createElement('div');
+    reportButton.id = 'report-issue-btn';
+    
+    // github icon URL
+    const imageUrl = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'; // Replace with your image URL
+    
+    reportButton.innerHTML = `<a href="#" id="report-issue-link">
+        <img src="${imageUrl}" alt="Report issue icon" class="report-icon"> Report an issue
+    </a>`;
+    
+    // style the button
+    reportButton.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        font-size: 14px;
+    `;
+    
+    // Style the link 
+    const link = reportButton.querySelector('#report-issue-link');
+    link.style.cssText = `
+        color: #656d76;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    `;
+    
+    // Style the icon image
+    const icon = reportButton.querySelector('.report-icon');
+    icon.style.cssText = `
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+    `;
+    
+    // Add subtle hover effect
+    reportButton.addEventListener('mouseenter', function() {
+        link.style.color = '#0969da';
+        icon.style.opacity = '1';
+    });
+    
+    reportButton.addEventListener('mouseleave', function() {
+        link.style.color = '#656d76';
+        icon.style.opacity = '0.7';
+    });
+    
+    // Add click handler
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        openIssueReport();
+    });
+    
+    // Add to the page
+    document.body.appendChild(reportButton);
+    
+    // Update the link when slides change
+    if (Reveal) {
+        Reveal.on('slidechanged', updateReportLink);
+        Reveal.on('ready', updateReportLink);
+    }
+}
+
+function getCurrentSlideInfo() {
+    if (!Reveal) return { url: window.location.href, slide: '1' };
+    
+    const indices = Reveal.getIndices();
+    const currentSlide = indices.h + 1; // Convert to 1-based indexing
+    const verticalSlide = indices.v || 0;
+
+    // Try to get slide number from the slide-number-a span first
+    const slideNumberSpan = document.querySelector('.slide-number-a');
+    let slideNumber = '1'; // Default fallback
+    
+    if (slideNumberSpan && slideNumberSpan.textContent) {
+        slideNumber = slideNumberSpan.textContent.trim();
+    } else if (Reveal) {
+        // Fallback to Reveal.js indices if span is not available
+        const indices = Reveal.getIndices();
+        const currentSlide = indices.h + 1;
+        const verticalSlide = indices.v || 0;
+        slideNumber = verticalSlide > 0 ? `${currentSlide}.${verticalSlide + 1}` : currentSlide.toString();
+    }
+    
+    // Construct the specific slide URL
+    let slideUrl = window.location.origin + window.location.pathname;
+    if (verticalSlide > 0) {
+        slideUrl += `#/${indices.h}/${indices.v}`;
+    } else if (indices.h > 0) {
+        slideUrl += `#/${indices.h}`;
+    }
+
+    // Extract lecture number from URL/filename
+    const currentPath = window.location.pathname;
+    const lectureMatch = currentPath.match(/lec(\d+)/i); // Matches lec01, lec11, etc.
+    const lectureNumber = lectureMatch ? parseInt(lectureMatch[1], 10).toString() : '1';
+    
+    return {
+        url: slideUrl,
+        // slide: verticalSlide > 0 ? `${currentSlide}.${verticalSlide + 1}` : currentSlide.toString(),
+        slide: slideNumber,
+        horizontal: indices.h,
+        vertical: indices.v, 
+        lectureNumber: lectureNumber
+    };
+}
+
+function updateReportLink() {
+    // This function can be used to update any slide-specific information
+    // Currently, the link generation happens dynamically in openIssueReport()
+}
+
+function openIssueReport() {
+    const slideInfo = getCurrentSlideInfo();
+    
+    // Customize these variables for your issue tracking system
+    const issueTitle = `Issue with Lecture ${slideInfo.lectureNumber} Slide ${slideInfo.slide}`;
+    const issueBody = `Please describe the issue you found on slide ${slideInfo.slide}:
+
+**Slide URL:** ${slideInfo.url}
+**Slide Number:** ${slideInfo.slide}
+
+**Issue Description:**
+[Please describe the issue here]
+
+**Suggested Fix (optional):**
+[If you have a suggestion for how to fix this, please describe it here]`;
+    
+    // Option 1: GitHub Issues (replace with your repository URL)
+    const githubRepo = 'utm-csc413/2024F-website'; // Replace with your actual repo
+    const githubUrl = `https://github.com/${githubRepo}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+    
+    // Open the issue report (using GitHub as default)
+    window.open(githubUrl, '_blank');
+}
+</script>
+
+<style>
+/* Responsive design - adjust position on small screens */
+@media (max-width: 768px) {
+    #report-issue-btn {
+        top: 10px;
+        right: 10px;
+        font-size: 12px;
+    }
+}
+
+/* Ensure button doesn't interfere with other controls */
+.reveal .controls {
+    z-index: 999;
+}
+</style>

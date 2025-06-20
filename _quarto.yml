@@ -75,3 +75,4 @@ format:
 freeze: auto
 
 editor: visual
+script: [/lecs/w01/custom.js]
